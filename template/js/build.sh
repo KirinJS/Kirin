@@ -1,15 +1,6 @@
 #!/bin/sh
 
-
-
-
-
 export PROJECT_NAME=<INSERT PROJECT NAME HERE>
-
-
-
-
-
 
 dirname=$(dirname $0)
 if [ "${KIRIN_HOME}" = "" ] ; then
