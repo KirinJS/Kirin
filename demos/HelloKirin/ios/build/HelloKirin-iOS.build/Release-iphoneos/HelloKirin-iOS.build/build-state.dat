@@ -1,0 +1,478 @@
+THelloKirin-iOS
+v3
+r1
+cCheck dependencies
+cCpResource /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist
+cProcessInfoPlistFile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/Info.plist HelloKirin-iOS/HelloKirin-iOS-Info.plist
+cPhaseScriptExecution "Run Script" /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh
+cProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv6 objective-c com.apple.compilers.llvmgcc42
+cProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv7 objective-c com.apple.compilers.llvmgcc42
+cCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+cCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+cCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk
+c000000004E3736960000000000000110
+t1312241302
+s272
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/Entitlements.plist
+c000000004D4F6A4700000000000001A7
+t1297050183
+s423
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist
+c000000004D4F6A4700000000000001E5
+t1297050183
+s485
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+c000000004D54D18C00000000003532A0
+t1297404300
+s3486368
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004D54D1F500000000003E22F0
+t1297404405
+s4072176
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004D54D1DD0000000000001466
+t1297404381
+s5222
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.h
+c000000004D5A28AB0000000000000AA1
+t1297754283
+s2721
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/System/Library/Frameworks/UIKit.framework/UIKit
+c000000004D5A292A0000000000CA2AE0
+t1297754410
+s13249248
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/include/Availability.h
+c000000004D4F74C20000000000001B19
+t1297052866
+s6937
+
+N/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/usr/lib/libsqlite3.0.dylib
+c000000004D54CC1100000000000D80B0
+t1297402897
+s884912
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos/KirinKit.framework/KirinKit
+c000000004EF516750000000000087094
+t1324684917
+s553108
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h
+c000000004EF4E8B70000000000000339
+t1324673207
+s825
+i<UIKit/UIKit.h>
+i<KirinKit/KirinHelper.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.m
+c000000004EF4E83C00000000000016DA
+t1324673084
+s5850
+i"DumbListViewController.h"
+i<KirinKit/Kirin.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Prefix.pch
+c000000004EC6B1EA000000000000014E
+t1321644522
+s334
+i<Availability.h>
+i<UIKit/UIKit.h>
+i<Foundation/Foundation.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.h
+c000000004EC6B1EA0000000000000350
+t1321644522
+s848
+i<UIKit/UIKit.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m
+c000000004EC6B1EA0000000000000B68
+t1321644522
+s2920
+i"HelloKirin_iOSAppDelegate.h"
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.h
+c000000004EC6B1EA0000000000000409
+t1321644522
+s1033
+i<UIKit/UIKit.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m
+c000000004EC6B1EA0000000000000C92
+t1321644522
+s3218
+i"RootViewController.h"
+i<KirinKit/Kirin.h>
+i"DumbListViewController.h"
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/DumbListViewController.xib
+c000000004EC6B1EA0000000000001D1A
+t1321644522
+s7450
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/DumbTableCell.xib
+c000000004EC6B1EA000000000000232C
+t1321644522
+s9004
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/InfoPlist.strings
+c000000004EC6B1EA000000000000002D
+t1321644522
+s45
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/MainWindow.xib
+c000000004EC6B1EA0000000000006023
+t1321644522
+s24611
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/RootViewController.xib
+c000000004EC6B1EA0000000000059D12
+t1321644522
+s367890
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m
+c000000004EC6B1EA0000000000000333
+t1321644522
+s819
+i<UIKit/UIKit.h>
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.xcent
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/DumbListViewController.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin-iOS
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin-iOS.LinkFileList
+c000000004EF517AE00000000000002C9
+t1324685230
+s713
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o
+t1324685231
+s49948
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o
+t1324685231
+s3260
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/DumbListViewController.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/HelloKirin-iOS
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/HelloKirin-iOS.LinkFileList
+c000000004EF517AE00000000000002C9
+t1324685230
+s713
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/HelloKirin_iOSAppDelegate.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/RootViewController.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/main.o
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh
+c000000004EF517AE0000000000000048
+t1324685230
+s72
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/com.apple.build-tools.platform.validate
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app
+t1324685230
+s170
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app.dSYM
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/HelloKirin-iOS
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/Info.plist
+t1324685230
+s1092
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/PkgInfo
+t1324685230
+s8
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist
+t1324685230
+s485
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/embedded.mobileprovision
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/DumbListViewController.nib
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/DumbTableCell.nib
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/InfoPlist.strings
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/MainWindow.nib
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/RootViewController.nib
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/generated-javascript
+t2
+s0
+
+N/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/generated-javascript
+c000000004EF517AE0000000000000110
+t1324685230
+s272
+
+N/Users/james/Library/MobileDevice/Provisioning Profiles/539F85E0-342A-48BE-BD68-93EBE2473062.mobileprovision
+c000000004EEB605A00000000000036F7
+t1324048474
+s14071
+
+N/var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch
+t1324685231
+s7739292
+
+N/var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch
+t1324685231
+s8234908
+
+NHelloKirin-iOS/HelloKirin-iOS-Info.plist
+c000000004EC6B1EA00000000000004B0
+t1321644522
+s1200
+
+CCheck dependencies
+r0
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies529c6b2d4fa5b441^a14c3b2e4fa5b441^---0#1#0#--18"Check dependencies
+
+CCodeSign /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app
+r0
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/DumbListViewController.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+s346378031.635807
+e346378031.875150
+r1
+xCompileC
+xbuild/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o
+x/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Compile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m15e5a22f4fa5b441^3010e02f4fa5b441^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m0000000000000000^2581"CompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o HelloKirin-iOS/HelloKirin_iOSAppDelegate.m normal armv6 objective-c com.apple.compilers.llvmgcc42    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -gdwarf-2 -fvisibility=hidden -mthumb -miphoneos-version-min=4.3 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.hmap -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/include -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources/armv6 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS "-F /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m -o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin_iOSAppDelegate.o
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+s346378031.709759
+e346378031.775086
+r0
+xCompileC
+xbuild/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o
+x/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:20:27: error: KirinKit/Kirin.h: No such file or directory
+oIn file included from /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:22:
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h:20:33: error: KirinKit/KirinHelper.h: No such file or directory
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController viewWillAppear:]':
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: 'KIRIN' undeclared (first use in this function)
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: (Each undeclared identifier is reported only once
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: for each function it appears in.)
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController buttonOnClick:]':
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:74: error: 'KIRIN' undeclared (first use in this function)
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController showListOnClick:]':
+o/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:79: error: 'KIRIN' undeclared (first use in this function)
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection115"Compile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m17d6b52f4fa5b441^944cc62f4fa5b441^-1785"/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:20:27: error: KirinKit/Kirin.h: No such file or directoryIn file included from /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:22:/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h:20:33: error: KirinKit/KirinHelper.h: No such file or directory/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController viewWillAppear:]':/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: 'KIRIN' undeclared (first use in this function)/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: (Each undeclared identifier is reported only once/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:45: error: for each function it appears in.)/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController buttonOnClick:]':/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:74: error: 'KIRIN' undeclared (first use in this function)/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m: In function '-[RootViewController showListOnClick:]':/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m:79: error: 'KIRIN' undeclared (first use in this function)5(21%IDEActivityLogMessage2@43"KirinKit/Kirin.h: No such file or directory-346378031#0#166#-2#-23%DVTTextDocumentLocation3@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^19#18446744073709551615#19#18446744073709551615#18446744073709551615#0#28"*: No such file or directory--2@49"KirinKit/KirinHelper.h: No such file or directory-346378031#300#176#2(36%IDEActivityLogHeaderInclusionMessage4@129"In file included from /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m-346378031#18446744073709551615#0#-0#-3@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^21#18446744073709551615#21#18446744073709551615#18446744073709551615#0#---2@164"KirinKit/KirinHelper.h: No such file or directory in /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h-346378031#18446744073709551615#0#-0#-3@127"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h0000000000000000^19#18446744073709551615#19#18446744073709551615#18446744073709551615#0#---2#-3@127"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.h0000000000000000^19#18446744073709551615#19#18446744073709551615#18446744073709551615#0#28"*: No such file or directory--2@47"'KIRIN' undeclared (first use in this function)-346378031#638#167#-2#-3@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^44#18446744073709551615#44#18446744073709551615#18446744073709551615#0#43"'*' undeclared (first use in this function)--2@47"'KIRIN' undeclared (first use in this function)-346378031#1288#167#-2#-3@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^73#18446744073709551615#73#18446744073709551615#18446744073709551615#0#43"'*' undeclared (first use in this function)--2@47"'KIRIN' undeclared (first use in this function)-346378031#1618#167#-2#-3@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^78#18446744073709551615#78#18446744073709551615#18446744073709551615#0#43"'*' undeclared (first use in this function)--0#0#0#-19%DVTDocumentLocation5@123"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m0000000000000000^2553"CompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o HelloKirin-iOS/RootViewController.m normal armv6 objective-c com.apple.compilers.llvmgcc42    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -gdwarf-2 -fvisibility=hidden -mthumb -miphoneos-version-min=4.3 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.hmap -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/include -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources/armv6 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS "-F /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m -o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/RootViewController.o
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m normal armv6 objective-c com.apple.compilers.llvmgcc42
+s346378031.632472
+e346378031.708385
+r1
+xCompileC
+xbuild/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o
+x/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection101"Compile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m1f0ea22f4fa5b441^8a57b52f4fa5b441^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m0000000000000000^2497"CompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o HelloKirin-iOS/main.m normal armv6 objective-c com.apple.compilers.llvmgcc42    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c -arch armv6 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -gdwarf-2 -fvisibility=hidden -mthumb -miphoneos-version-min=4.3 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.hmap -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/include -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources/armv6 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS "-F /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m -o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/main.o
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/DumbListViewController.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/DumbListViewController.m normal armv7 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/HelloKirin_iOSAppDelegate.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin_iOSAppDelegate.m normal armv7 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/RootViewController.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/RootViewController.m normal armv7 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileC build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/main.o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/main.m normal armv7 objective-c com.apple.compilers.llvmgcc42
+r0
+
+CCompileXIB /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/DumbListViewController.xib
+r0
+
+CCompileXIB /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/DumbTableCell.xib
+r0
+
+CCompileXIB /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/MainWindow.xib
+r0
+
+CCompileXIB /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/en.lproj/RootViewController.xib
+r0
+
+CCopyStringsFile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/en.lproj/InfoPlist.strings HelloKirin-iOS/en.lproj/InfoPlist.strings
+r0
+
+CCpResource /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist
+s346378030.254052
+e346378030.257183
+r1
+xCpResource
+x/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist
+xbuild/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection66"Copy build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist8c2c412e4fa5b441^2bdd412e4fa5b441^---0#0#0#-19%DVTDocumentLocation2@149"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist9a5c9a5b4bdad343^846"CpResource /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -strip-debug-symbols -resolve-src-symlinks /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/ResourceRules.plist /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app
+
+CCpResource generated-javascript build/Release-iphoneos/HelloKirin-iOS.app/generated-javascript
+r0
+
+CCreateUniversalBinary /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/HelloKirin-iOS normal "armv6 armv7"
+r0
+
+CGenerateDSYMFile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app.dSYM /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/HelloKirin-iOS
+r0
+
+CLd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv6/HelloKirin-iOS normal armv6
+r0
+
+CLd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Objects-normal/armv7/HelloKirin-iOS normal armv7
+r0
+
+CPhaseScriptExecution "Run Script" /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh
+s346378030.267059
+e346378030.850140
+r1
+xPhaseScriptExecution
+xRun Script
+x/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh
+o../HelloKirin-js/build.sh: line 19: //: is a directory
+oPROJECT_HOME=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js
+oPROJECT_HOME_SCRIPT=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts
+owhich java is /usr/bin/java
+ofind: /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/lib: No such file or directory
+oGenerating index-ios.html
+oAssembling files into generated-javascript
+oCopying lib/json2.js from /Users/james/workspaces/Kirin/js/lib/json2.js to generated-javascript/lib
+oCopying lib/underscore.js from /Users/james/workspaces/Kirin/js/lib/underscore.js to generated-javascript/lib
+oCopying core/client-modules.js from /Users/james/workspaces/Kirin/js/scripts/core/client-modules.js to generated-javascript/core
+oCopying core/util/JSONUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/JSONUtils.js to generated-javascript/core/util
+oCopying core/util/StringUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/StringUtils.js to generated-javascript/core/util
+oCopying core/util/api-utils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/api-utils.js to generated-javascript/core/util
+oCopying services/Databases.js from /Users/james/workspaces/Kirin/js/scripts/services/Databases.js to generated-javascript/services
+oCopying services/LocalNotifications.js from /Users/james/workspaces/Kirin/js/scripts/services/LocalNotifications.js to generated-javascript/services
+oCopying services/Networking.js from /Users/james/workspaces/Kirin/js/scripts/services/Networking.js to generated-javascript/services
+oCopying services/Proxocube.js from /Users/james/workspaces/Kirin/js/scripts/services/Proxocube.js to generated-javascript/services
+oCopying services/Settings.js from /Users/james/workspaces/Kirin/js/scripts/services/Settings.js to generated-javascript/services
+oCopying utils/dates.js from /Users/james/workspaces/Kirin/js/scripts/utils/dates.js to generated-javascript/utils
+oCopying core/Native-ios.js from /Users/james/workspaces/Kirin/js/scripts/core/Native-ios.js to generated-javascript/core
+oCopying core/kirin-webview.js from /Users/james/workspaces/Kirin/js/scripts/core/kirin-webview.js to generated-javascript/core
+oCopying services/window-webview.js from /Users/james/workspaces/Kirin/js/scripts/services/window-webview.js to generated-javascript/services
+oCopying scripts/DumbButtonScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbButtonScreen.js to generated-javascript/scripts
+oCopying scripts/DumbListScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbListScreen.js to generated-javascript/scripts
+oDirectory for ios is at generated-javascript
+oDone
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection36"Run custom shell script 'Run Script'e542452e4fa5b441^a7add92e4fa5b441^-2704"../HelloKirin-js/build.sh: line 19: //: is a directoryPROJECT_HOME=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-jsPROJECT_HOME_SCRIPT=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scriptswhich java is /usr/bin/javafind: /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/lib: No such file or directoryGenerating index-ios.htmlAssembling files into generated-javascriptCopying lib/json2.js from /Users/james/workspaces/Kirin/js/lib/json2.js to generated-javascript/libCopying lib/underscore.js from /Users/james/workspaces/Kirin/js/lib/underscore.js to generated-javascript/libCopying core/client-modules.js from /Users/james/workspaces/Kirin/js/scripts/core/client-modules.js to generated-javascript/coreCopying core/util/JSONUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/JSONUtils.js to generated-javascript/core/utilCopying core/util/StringUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/StringUtils.js to generated-javascript/core/utilCopying core/util/api-utils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/api-utils.js to generated-javascript/core/utilCopying services/Databases.js from /Users/james/workspaces/Kirin/js/scripts/services/Databases.js to generated-javascript/servicesCopying services/LocalNotifications.js from /Users/james/workspaces/Kirin/js/scripts/services/LocalNotifications.js to generated-javascript/servicesCopying services/Networking.js from /Users/james/workspaces/Kirin/js/scripts/services/Networking.js to generated-javascript/servicesCopying services/Proxocube.js from /Users/james/workspaces/Kirin/js/scripts/services/Proxocube.js to generated-javascript/servicesCopying services/Settings.js from /Users/james/workspaces/Kirin/js/scripts/services/Settings.js to generated-javascript/servicesCopying utils/dates.js from /Users/james/workspaces/Kirin/js/scripts/utils/dates.js to generated-javascript/utilsCopying core/Native-ios.js from /Users/james/workspaces/Kirin/js/scripts/core/Native-ios.js to generated-javascript/coreCopying core/kirin-webview.js from /Users/james/workspaces/Kirin/js/scripts/core/kirin-webview.js to generated-javascript/coreCopying services/window-webview.js from /Users/james/workspaces/Kirin/js/scripts/services/window-webview.js to generated-javascript/servicesCopying scripts/DumbButtonScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbButtonScreen.js to generated-javascript/scriptsCopying scripts/DumbListScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbListScreen.js to generated-javascript/scriptsDirectory for ios is at generated-javascriptDone26(21%IDEActivityLogMessage2@55"../HelloKirin-js/build.sh: line 19: //: is a directory-346378030#0#55#-0#-----2@74"PROJECT_HOME=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js-346378030#55#74#-0#-----2@89"PROJECT_HOME_SCRIPT=/Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts-346378030#129#89#-0#-----2@28"which java is /usr/bin/java-346378030#218#28#-0#-----2@97"Find: /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/lib: No such file or directory-346378030#246#98#-2#--29"Shell Script Invocation Error--2@26"Generating index-ios.html-346378030#344#26#-0#-----2@43"Assembling files into generated-javascript-346378030#370#43#-0#-----2@100"Copying lib/json2.js from /Users/james/workspaces/Kirin/js/lib/json2.js to generated-javascript/lib-346378030#413#100#-0#-----2@110"Copying lib/underscore.js from /Users/james/workspaces/Kirin/js/lib/underscore.js to generated-javascript/lib-346378030#513#110#-0#-----2@129"Copying core/client-modules.js from /Users/james/workspaces/Kirin/js/scripts/core/client-modules.js to generated-javascript/core-346378030#623#129#-0#-----2@134"Copying core/util/JSONUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/JSONUtils.js to generated-javascript/core/util-346378030#752#134#-0#-----2@138"Copying core/util/StringUtils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/StringUtils.js to generated-javascript/core/util-346378030#886#138#-0#-----2@134"Copying core/util/api-utils.js from /Users/james/workspaces/Kirin/js/scripts/core/util/api-utils.js to generated-javascript/core/util-346378030#1024#134#-0#-----2@131"Copying services/Databases.js from /Users/james/workspaces/Kirin/js/scripts/services/Databases.js to generated-javascript/services-346378030#1158#131#-0#-----2@149"Copying services/LocalNotifications.js from /Users/james/workspaces/Kirin/js/scripts/services/LocalNotifications.js to generated-javascript/services-346378030#1289#149#-0#-----2@133"Copying services/Networking.js from /Users/james/workspaces/Kirin/js/scripts/services/Networking.js to generated-javascript/services-346378030#1438#133#-0#-----2@131"Copying services/Proxocube.js from /Users/james/workspaces/Kirin/js/scripts/services/Proxocube.js to generated-javascript/services-346378030#1571#131#-0#-----2@129"Copying services/Settings.js from /Users/james/workspaces/Kirin/js/scripts/services/Settings.js to generated-javascript/services-346378030#1702#129#-0#-----2@114"Copying utils/dates.js from /Users/james/workspaces/Kirin/js/scripts/utils/dates.js to generated-javascript/utils-346378030#1831#114#-0#-----2@121"Copying core/Native-ios.js from /Users/james/workspaces/Kirin/js/scripts/core/Native-ios.js to generated-javascript/core-346378030#1945#121#-0#-----2@127"Copying core/kirin-webview.js from /Users/james/workspaces/Kirin/js/scripts/core/kirin-webview.js to generated-javascript/core-346378030#2066#127#-0#-----2@141"Copying services/window-webview.js from /Users/james/workspaces/Kirin/js/scripts/services/window-webview.js to generated-javascript/services-346378030#2193#141#-0#-----2@162"Copying scripts/DumbButtonScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbButtonScreen.js to generated-javascript/scripts-346378030#2334#162#-0#-----2@158"Copying scripts/DumbListScreen.js from /Users/james/workspaces/Kirin/demos/HelloKirin/HelloKirin-js/scripts/DumbListScreen.js to generated-javascript/scripts-346378030#2496#158#-0#-----2@45"Directory for ios is at generated-javascript-346378030#2654#45#-0#-----2@5"Done-346378030#2699#5#-0#-----0#0#0#--400"PhaseScriptExecution "Run Script" build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    /bin/sh -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/Script-1A61E48B1431328B00A2E0DB.sh
+
+CProcessInfoPlistFile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/Info.plist HelloKirin-iOS/HelloKirin-iOS-Info.plist
+s346378030.254474
+e346378030.261112
+r1
+xProcessInfoPlistFile
+x/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/Info.plist
+xHelloKirin-iOS/HelloKirin-iOS-Info.plist
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection48"Process HelloKirin-iOS/HelloKirin-iOS-Info.plistff3c412e4fa5b441^d1cf442e4fa5b441^---0#0#0#-19%DVTDocumentLocation2@128"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Info.plist0000000000000000^1014"ProcessInfoPlistFile build/Release-iphoneos/HelloKirin-iOS.app/Info.plist HelloKirin-iOS/HelloKirin-iOS-Info.plist    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    builtin-infoPlistUtility HelloKirin-iOS/HelloKirin-iOS-Info.plist -genpkginfo /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/ResourceRules.plist -o /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/Info.plist
+
+CProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv6 objective-c com.apple.compilers.llvmgcc42
+s346378030.853325
+e346378031.626315
+r1
+xProcessPCH
+x/var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch
+xHelloKirin-iOS/HelloKirin-iOS-Prefix.pch
+xnormal
+xarmv6
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection51"Precompile HelloKirin-iOS/HelloKirin-iOS-Prefix.pch9a98da2e4fa5b441^9066a02f4fa5b441^---0#0#0#-19%DVTDocumentLocation2@128"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Prefix.pch0000000000000000^2460"ProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv6 objective-c com.apple.compilers.llvmgcc42    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c-header -arch armv6 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -gdwarf-2 -fvisibility=hidden -mthumb -miphoneos-version-min=4.3 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.hmap -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/include -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources/armv6 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS "-F /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Prefix.pch -o /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-bdggbybmeaxdorfwmvnchccequjk/HelloKirin-iOS-Prefix.pch.gch
+
+CProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv7 objective-c com.apple.compilers.llvmgcc42
+s346378030.853473
+e346378031.634303
+r1
+xProcessPCH
+x/var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch
+xHelloKirin-iOS/HelloKirin-iOS-Prefix.pch
+xnormal
+xarmv7
+xobjective-c
+xcom.apple.compilers.llvmgcc42
+lSLF03#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection51"Precompile HelloKirin-iOS/HelloKirin-iOS-Prefix.pchfe98da2e4fa5b441^a791a22f4fa5b441^---0#0#0#-19%DVTDocumentLocation2@128"file://localhost/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Prefix.pch0000000000000000^2460"ProcessPCH /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch HelloKirin-iOS/HelloKirin-iOS-Prefix.pch normal armv7 objective-c com.apple.compilers.llvmgcc42    cd /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS    setenv LANG en_US.US-ASCII    setenv PATH "/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Developer/usr/bin:/opt/local/bin:/opt/local/sbin:/opt/local/bin:/opt/local/sbin:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin:/usr/X11R6/bin"    /Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/llvm-gcc-4.2 -x objective-c-header -arch armv7 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -Os -Wreturn-type -Wunused-variable -isysroot /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk -gdwarf-2 -fvisibility=hidden -mthumb -miphoneos-version-min=4.3 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.hmap -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/include -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources/armv7 -I/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/DerivedSources -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos -F/Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS "-F /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/../../../iOS/KirinKit/build/Release-iphoneos" -DNS_BLOCK_ASSERTIONS=1 -c /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/HelloKirin-iOS/HelloKirin-iOS-Prefix.pch -o /var/folders/wy/wyA+LcaAEN0aiTcYnh5tYk+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/HelloKirin-iOS-Prefix-dzkvrebfjktqpfbimnfxkvwwtygz/HelloKirin-iOS-Prefix.pch.gch
+
+CProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/539F85E0-342A-48BE-BD68-93EBE2473062.mobileprovision" /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app/embedded.mobileprovision
+r0
+
+CProcessProductPackaging /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS4.3.sdk/Entitlements.plist /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/HelloKirin-iOS.build/Release-iphoneos/HelloKirin-iOS.build/HelloKirin-iOS.xcent
+r0
+
+CTouch /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app
+r0
+
+CValidate /Users/james/Documents/workspaces/Kirin/demos/HelloKirin/HelloKirin-iOS/build/Release-iphoneos/HelloKirin-iOS.app
+r0
+

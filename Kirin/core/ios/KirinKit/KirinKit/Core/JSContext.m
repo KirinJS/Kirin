@@ -1,0 +1,56 @@
+//
+//  JSContext.m
+//  KirinKit
+//
+//  Created by James Hugman on 21/12/2011.
+//  Copyright 2011 Future Platforms. All rights reserved.
+//
+
+#import "JSContext.h"
+#import "JSON.h"
+
+
+@interface JSContext (private)
+ 
+    
+@end
+
+@implementation JSContext
+
+@synthesize jsExecutor;
+
+- (id) init {
+    return [self initWithJSExecutor: nil];
+}
+
+- (id) initWithJSExecutor:(id<JSExecutor>) executor {
+    self = [super init];
+    if (self) {
+        jsExecutor = executor;
+    }
+    return self;
+}
+
+- (void) dealloc {
+    self.jsExecutor = nil;
+    [super dealloc];
+}
+
+- (void) js: (NSString*) js {
+    if (jsExecutor) {
+        [jsExecutor execJS:js];
+    } else {
+        NSLog(@"javascript: %@", js);
+    }
+}
+
+- (void) registerObjectProxy: (NSString*) name withMethods:(NSArray*) methods {
+    NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];
+    [self js: [NSString stringWithFormat:@"kirin.loadProxyForModule('%@', ['%@'])",  name, methodJSON]];
+}
+
+- (void) unregisterObjectProxy: (NSString*) name {
+    [self js: [NSString stringWithFormat:@"kirin.unloadProxyForModule('%@')",  name]];
+}
+
+@end
