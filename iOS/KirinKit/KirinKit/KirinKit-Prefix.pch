@@ -1,6 +1,0 @@
-//
-// Prefix header for all source files of the 'KirinKit' target in the 'KirinKit' project
-//
-
-#ifdef __OBJC__
-#endif
