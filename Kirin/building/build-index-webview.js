@@ -2,7 +2,7 @@
 var _ = require("underscore");
 exports.templateFile = "index-ios.html";
 
-exports.templateLine = "<script language='text/javascript' src='%FILENAME%' />";
+exports.templateLine = "<script type='text/javascript' src='%FILENAME%' ></script>";
 
 exports.buildIndexFile = function (moduleNames, dir) {
 	var path = require("path");
@@ -13,7 +13,7 @@ exports.buildIndexFile = function (moduleNames, dir) {
 		throw new Error("Can't find an existing template file " + templateFilepath);
 	}
 	
-	var fileString = fs.readFileSync(templateFilepath).toString();
+	var fileString = fs.readFileSync(templateFilepath).toString()		;
 	
 	var scriptTags = [];
 	_.each(moduleNames, function (filepath) {

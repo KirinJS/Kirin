@@ -6,7 +6,6 @@
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <KirinKit/Kirin.h>
 #import <KirinKit/KirinHelper.h>
 

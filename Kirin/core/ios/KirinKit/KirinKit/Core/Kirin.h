@@ -26,19 +26,9 @@
 #import <KirinKit/KirinDropbox.h>
 
 @interface Kirin : NSObject {
-
-    @private
-    JSContext* jsContext;
-    
-    @private
-    NativeContext* nativeContext;
-    
-    @private 
-    KirinDropbox* dropbox;
-    
-    
-    
 }
+
+@property(retain) KirinDropbox* dropbox;
 
 - (id) initWithWebView: (UIWebView*) aWebView;
 
@@ -47,5 +37,12 @@
 SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 
 #define KIRIN [Kirin sharedKirin]
+
+
+
+// TODO move these into class extensions in the .m file
+@property(nonatomic, retain) JSContext* jsContext;
+@property(nonatomic, retain) NativeContext* nativeContext;
+
 
 @end

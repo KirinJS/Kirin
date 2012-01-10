@@ -19,9 +19,15 @@
 #import "DumbListViewController.h"
 #import <KirinKit/Kirin.h>
 
+@interface DumbListViewController (private) 
+
+
+    
+@end
+
 @implementation DumbListViewController
 @synthesize jsonList;
-
+@synthesize kirinHelper;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -33,9 +39,9 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.navigationItem.title = @"Alphabet";
 
-    kirinHelper = [KIRIN bindObject:self toModule:@"DumbListScreen"];
+    self.kirinHelper = [KIRIN bindObject:self toModule:@"DumbListScreen"];
     
-    [kirinHelper onLoad];
+    [self.kirinHelper onLoad];
 }
 
 
@@ -166,12 +172,12 @@
     [detailViewController release];
     */
 	
-	[kirinHelper jsMethod:@"onListItemClick" withArgsList: [NSString stringWithFormat:@"%d", indexPath.row]];
+	[self.kirinHelper jsMethod:@"onListItemClick" withArgsList: [NSString stringWithFormat:@"%d", indexPath.row]];
 }
 
 - (void) showToast:(NSString*) title {
 	NSString* message = [NSString stringWithFormat:@"You clicked on %@", title];
-	[[[UIAlertView alloc] initWithTitle:@"Click!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+	[[[[UIAlertView alloc] initWithTitle:@"Click!" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease] show];
 }
 
 
@@ -189,13 +195,13 @@
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 	self.jsonList = nil;
-    [kirinHelper onUnload];
+    [self.kirinHelper onUnload];
     
 }
 
 
 - (void)dealloc {
-	[kirinHelper release];
+    self.kirinHelper = nil;
     [super dealloc];
 }
 

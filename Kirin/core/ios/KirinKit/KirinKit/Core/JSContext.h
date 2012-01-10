@@ -11,8 +11,6 @@
 
 
 @interface JSContext : NSObject {
-
-    id<JSExecutor> jsExecutor;
 }
 
 @property(retain) id<JSExecutor> jsExecutor;

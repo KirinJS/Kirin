@@ -26,7 +26,7 @@
 - (id) initWithJSExecutor:(id<JSExecutor>) executor {
     self = [super init];
     if (self) {
-        jsExecutor = executor;
+        self.jsExecutor = executor;
     }
     return self;
 }
@@ -38,19 +38,21 @@
 
 - (void) js: (NSString*) js {
     if (jsExecutor) {
-        [jsExecutor execJS:js];
+        [self.jsExecutor execJS:js];
     } else {
-        NSLog(@"javascript: %@", js);
+        
+        NSLog(@"No JSExecutor! javascript: %@", js);
     }
 }
 
 - (void) registerObjectProxy: (NSString*) name withMethods:(NSArray*) methods {
     NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];
-    [self js: [NSString stringWithFormat:@"kirin.loadProxyForModule('%@', ['%@'])",  name, methodJSON]];
+    [self js: [NSString stringWithFormat:@"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('%@', ['%@'])",  name, methodJSON]];
 }
 
 - (void) unregisterObjectProxy: (NSString*) name {
-    [self js: [NSString stringWithFormat:@"kirin.unloadProxyForModule('%@')",  name]];
+    [self js: [NSString stringWithFormat:@"EXPOSED_TO_NATIVE.native2js.unloadProxyForModule('%@')",  name]];
 }
+
 
 @end

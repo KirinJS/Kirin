@@ -20,12 +20,20 @@
 #import "Kirin.h"
 
 #import "KirinWebViewHolder.h"
+#import "DebugConsole.h"
 
 @interface Kirin (private)
 
+
 @end
 
+
+
 @implementation Kirin 
+
+@synthesize dropbox;
+@synthesize jsContext;
+@synthesize nativeContext;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
@@ -38,22 +46,25 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
     self = [super init];
 	if (self) {
 
-        nativeContext = [[NativeContext alloc] init];
-        dropbox = [[KirinDropbox alloc] init];
-        // the webview needs to be able to call out to native using the nativeContext.
-        KirinWebViewHolder* webViewHolder = [[[KirinWebViewHolder alloc] initWithWebView:aWebView andNativeContext: nativeContext] autorelease];
+        self.nativeContext = [[[NativeContext alloc] init] autorelease];
+
+        [self.nativeContext registerNativeObject:[[[DebugConsole alloc] init] autorelease] asName:@"DebugConsole"];
         
-        jsContext = [[JSContext alloc] initWithJSExecutor: webViewHolder];
+        dropbox = [[[KirinDropbox alloc] init] autorelease];
+        // the webview needs to be able to call out to native using the nativeContext.
+        KirinWebViewHolder* webViewHolder = [[[KirinWebViewHolder alloc] initWithWebView:aWebView andNativeContext: self.nativeContext] autorelease];
+        
+        self.jsContext = [[[JSContext alloc] initWithJSExecutor: webViewHolder] autorelease];
         
 	}
 	return self;
-}
+}   
 
 - (KirinHelper*) bindObject: (id) nativeObject toModule:(NSString*) moduleName {
     return [[[KirinHelper alloc] initWithModuleName:moduleName 
                                    andNativeObject:nativeObject 
-                                      andJsContext:jsContext 
-                                  andNativeContext:nativeContext
+                                      andJsContext:self.jsContext 
+                                  andNativeContext:self.nativeContext
                                         andDropbox:dropbox] autorelease];
 }
 
@@ -61,8 +72,8 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 #pragma mark Memory managment
 - (void)dealloc
 {
-    [jsContext release];
-    [nativeContext release];
+    self.jsContext = nil;
+    self.nativeContext = nil;
     [dropbox release];
 	[super dealloc];
 }

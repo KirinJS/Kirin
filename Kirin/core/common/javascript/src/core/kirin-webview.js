@@ -77,6 +77,7 @@ defineModule("kirin", function (require, exports) {
 				proxy[methodName] = createWrappingCall(className, methodName);
 			}
 		}
+		return proxy;
 	}
 	
 	/**
@@ -91,18 +92,20 @@ defineModule("kirin", function (require, exports) {
 	 * 
 	 * @deprecated
 	 */
+	 /*
 	native2js.registerProxy = function (className, methodNames) {
 		services[className] = createProxy(className, methodNames);
 	};
-	
+	*/
 	/* @deprecated */
+	/*
 	native2js.registerScreenProxy = function (className, methodNames) {
 		native2js.registerProxy("NativeScreenObject", methodNames);
 	};
-
+	*/
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
-	
+		console.log("Generated proxy for " + moduleName);
 		var module = require(moduleName);
 		module.onLoad(proxy);
 	};
@@ -161,7 +164,7 @@ defineModule("kirin", function (require, exports) {
 	 * and this is a place to let them use those callbacks.
 	 * @deprecated
 	 */
-	native2js.callCallback = function (callbackId) {
+	native2js.callCallback = function (callbackId, args) {
 		var callback = callbacks[callbackId];
 		
 		if (typeof callback !== 'function') {
@@ -169,7 +172,7 @@ defineModule("kirin", function (require, exports) {
 			return;
 		}
 		
-		var args = slice.call(arguments, 1);
+		//var args = slice.call(arguments, 1);
 		return callback.apply(null, args);
 	};
 	
@@ -180,8 +183,8 @@ defineModule("kirin", function (require, exports) {
 	 * they've finished with them
 	 * (difference b/w callback and listener).
 	 */
-	native2js.deleteCallback = function () {
-		var args = slice.call(arguments, 0), i=0, max;
+	native2js.deleteCallback = function (args) {
+		var i=0, max;
 		for (max=args.length; i<max; i++) {
 			delete callbacks[args[i]];
 		}
@@ -194,6 +197,7 @@ defineModule("kirin", function (require, exports) {
 	 * in the onResume() or viewWillAppear: method.
 	 * Native should use registerScreenProxy followed by setCurrentScreenProxy.
 	 */
+	 /*
 	native2js.setCurrentScreenProxy = function (className) {
 		exports.js2nativeScreenProxy = services.NativeScreenObject;
 		
@@ -201,6 +205,7 @@ defineModule("kirin", function (require, exports) {
 		// TODO review memory usage.
 		Native.exposeToNative("native2jsScreenProxy", require(className));
 	};
+	*/
 	
 	native2js.initializeApplicationLifecycle = function () {
 		var appLifecycle = require("ApplicationLifecycle");
@@ -212,8 +217,17 @@ defineModule("kirin", function (require, exports) {
 		require(className);
 	};
 	
+	
+	/**
+	 * Let native see all these functions.
+	 *
+	 */
 	Native.exposeToNative("native2js", native2js);
 	
+	/**
+	 * As a convenience, let javascript see them too.
+	 * It may turn out we don't need any of these functions.
+	 */
 	exports.native2js = native2js;
 	
 	/**********************************************************************/
@@ -226,7 +240,7 @@ defineModule("kirin", function (require, exports) {
 	 * Any call to registerProxy will dump things into the services object.
 	 * Currently, the only proxy is "NativeScreenObject", 
 	 * which is used for the communicating with the screen.
-	 * 
+	 * @deprecated
 	 */
 	exports.proxy = function (name) {
 		var service = services[name];
@@ -241,6 +255,8 @@ defineModule("kirin", function (require, exports) {
 	exports.wrapCallback = wrapCallback;
 	exports.exposeToNative = Native.exposeToNative;
 	
+	/*
 	// for documentation purposes:
 	exports.js2nativeScreenProxy = null;
+	*/
 });

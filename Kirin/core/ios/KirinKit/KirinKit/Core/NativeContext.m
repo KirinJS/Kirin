@@ -11,16 +11,24 @@
 #import <objc/runtime.h>
 
 
+@interface NativeContext (private) 
+
+    
+@end
+
+
 @implementation NativeContext
 
+@synthesize nativeObjects;
+
 - (id) init {
-    return [self initWithDictionary: [[NSMutableDictionary alloc] init]]; 
+    return [self initWithDictionary: [[[NSMutableDictionary alloc] init] autorelease]]; 
 }
 
 - (id) initWithDictionary: (NSMutableDictionary*) nativeObjs {
     self = [super init];
     if (self) {
-        nativeObjects = [nativeObjs retain];
+        self.nativeObjects = nativeObjs;
     }
     return self;
 }
@@ -43,15 +51,15 @@
 }
 
 - (void) registerNativeObject: (id) object asName: (NSString*) name {
-    [nativeObjects setValue:object forKey:name];
+    [self.nativeObjects setValue:object forKey:name];
 }
 
 - (void) unregisterNativeObject: (NSString*) name {
-    [nativeObjects removeObjectForKey:name];
+    [self.nativeObjects removeObjectForKey:name];
 }
 
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query {
-    id obj = [nativeObjects objectForKey:host];
+    id obj = [self.nativeObjects objectForKey:host];
     NSString* fullMethodName = [[file componentsSeparatedByString:@"_"] componentsJoinedByString:@":"];
     
 	SEL selector = NSSelectorFromString(fullMethodName);
@@ -81,11 +89,21 @@
 	else {                
         // There's no method to call, so throw an error.
         NSString* className = [[obj class] description];
+        if (!className) {
+            className = host;
+        }
         NSLog(@"Class method '%@' not defined in class %@, called from module %@.js", fullMethodName, className, host);
         
         //[NSException raise:NSInternalInconsistencyException format:@"Class method '%@' not defined against class '%@'.", fullMethodName, className];
         
 	}
+}
+
+- (void) dealloc {
+    [self.nativeObjects removeAllObjects];
+    self.nativeObjects = nil;
+    
+    [super dealloc];
 }
 
 @end

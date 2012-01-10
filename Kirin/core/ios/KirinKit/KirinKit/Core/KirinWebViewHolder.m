@@ -12,6 +12,8 @@
 
 @interface KirinWebViewHolder (private)
 
+
+
 - (void) _initializeWebView: (UIWebView*) webView;
 
 @end
@@ -80,7 +82,7 @@
 
 - (void) _execJSImmediately: (NSString*) js {
 	NSLog(@"Javascript: %@", js);
-    [webView stringByEvaluatingJavaScriptFromString:js];
+    [self.webView stringByEvaluatingJavaScriptFromString:js];
 }
 
 - (void) execJS: (NSString*) js; {
@@ -105,9 +107,20 @@
         // Tell the JS code that we've gotten this command, and we're ready for another
         [theWebView stringByEvaluatingJavaScriptFromString:@"EXPOSED_TO_NATIVE.js_ObjC_bridge.ready = true;"];
 		
+        NSArray* components = [[url host] componentsSeparatedByString:@"."];
+        
+
+        NSString* selectorName = nil;
+        NSString* moduleName = nil;
+        if (components.count == 2) {
+            moduleName = [components objectAtIndex:0];
+            selectorName = [components objectAtIndex:1];
+        }               
+
+
         // Check to see if we are provided a class:method style command.
-        [self.nativeExecutor executeCommandFromModule:[url host] 
-                                            andMethod:[url path] 
+        [self.nativeExecutor executeCommandFromModule:moduleName
+                                            andMethod:selectorName 
                                           andArgsList:[url query]];
 		
 		return NO;
@@ -141,10 +154,11 @@
 }
 
 - (void)dealloc {
-    [webView setDelegate:nil];
-    [webView stopLoading];
+    [self.webView setDelegate:nil];
+    [self.webView stopLoading];
 
     self.webView = nil;
+    self.nativeExecutor = nil;
     [super dealloc];
 }
 

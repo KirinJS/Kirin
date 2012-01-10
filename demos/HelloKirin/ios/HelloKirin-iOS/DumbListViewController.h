@@ -21,7 +21,7 @@
 
 @interface DumbListViewController : UITableViewController {
 	NSArray* jsonList;
-    KirinHelper* kirinHelper;
+
 }
 
 	
@@ -29,5 +29,5 @@
 - (void) populateList: (NSArray*) list;
 
 @property(retain) NSArray* jsonList;
-
+@property(retain, nonatomic) KirinHelper* kirinHelper;
 @end

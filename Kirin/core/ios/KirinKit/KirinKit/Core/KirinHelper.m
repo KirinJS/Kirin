@@ -20,6 +20,8 @@
 @synthesize nativeObject;
 @synthesize dropbox;
 
+@synthesize jsContext;
+@synthesize nativeContext;
 
 - (id) initWithModuleName: (NSString*) moduleName 
           andNativeObject: (NSObject*) obj 
@@ -33,24 +35,23 @@
         self.jsModuleName = moduleName;
         self.nativeObject = obj;
         self.dropbox = dropBox;
-        jsContext = [ctx retain];
-        nativeContext = [nativeCtx retain];
+        self.jsContext = ctx;
+        self.nativeContext = nativeCtx;
     }
     return self;
 }
 
 - (void) onLoad {
-    [nativeContext registerNativeObject:nativeObject asName:jsModuleName];
-    [jsContext registerObjectProxy: jsModuleName withMethods:[nativeContext methodNamesFor: nativeObject]];
+    [self.nativeContext registerNativeObject:self.nativeObject asName:jsModuleName];
+    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[nativeContext methodNamesFor: nativeObject]];
 }
 
 - (void) onUnload {
-    // TODO tell jsContext.
     
-    [jsContext unregisterObjectProxy:jsModuleName];
+    [self.jsContext unregisterObjectProxy:jsModuleName];
     
     // possible race condition here. We should disallow any calls in onUnload() to native.
-    [nativeContext unregisterNativeObject:jsModuleName];
+    [self.nativeContext unregisterNativeObject:jsModuleName];
 
 }
 
@@ -60,9 +61,9 @@
 
 - (void) jsMethod:(NSString *)methodName withArgsList:(NSString*) argsList {
     if (argsList == nil || [argsList length] == 0) {
-        [jsContext js:[NSString stringWithFormat: @"kirin.execMethod('%@', '%@')", jsModuleName, methodName]];
+        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@')", self.jsModuleName, methodName]];
     } else {
-        [jsContext js:[NSString stringWithFormat: @"kirin.execMethod('%@', '%@', [%@])", jsModuleName, methodName, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@', [%@])", self.jsModuleName, methodName, argsList]];
     }
 }
 
@@ -75,9 +76,9 @@
         return;
     }
     if (argsList == nil || [argsList length] == 0) {
-        [jsContext js:[NSString stringWithFormat: @"kirin.execCallback('%@')", callbackId]];
+        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')", callbackId]];
     } else {
-        [jsContext js:[NSString stringWithFormat: @"kirin.execCallback('%@', [%@])", callbackId, argsList]];
+        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])", callbackId, argsList]];
     }    
 }
 
@@ -93,7 +94,7 @@
 
 - (void) cleanupCallbacks:(NSArray*) callbackIds {
     if ([callbackIds count]) {
-        [jsContext js:[NSString stringWithFormat: @"kirin.deleteCallback(['%@'])", [callbackIds componentsJoinedByString:@"', '"]]];
+        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.deleteCallback(['%@'])", [callbackIds componentsJoinedByString:@"', '"]]];
     }
 }
 
@@ -123,11 +124,9 @@
 }
 
 - (void) dealloc {
-    
-    [jsContext release];
-    jsContext = nil;
-    [nativeContext release];
-    nativeContext = nil;
+    self.jsContext = nil;
+
+    self.nativeContext = nil;
     
     self.jsModuleName = nil;
     self.nativeObject = nil;

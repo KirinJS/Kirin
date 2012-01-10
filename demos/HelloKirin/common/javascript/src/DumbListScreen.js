@@ -15,7 +15,8 @@
 */
 
 defineModule("DumbListScreen", function (require, exports) {
-	var kirin = require("kirin");
+
+	var theScreen;
 
 	var data = [
 				{key: 'ant'}, {key: 'ball'}, {key: 'chair'}, 
@@ -28,13 +29,19 @@ defineModule("DumbListScreen", function (require, exports) {
 				{key: 'vase'}, {key: 'xylophone'}, {key: 'yoyo'}, 
 				{key: 'zebra'}
 			];
+
+	exports.onLoad = function (ui) {
+		theScreen = ui;
+		theScreen.populateList_(data);	
+	};
+
 	exports.onResume = function () {
-		kirin.js2nativeScreenProxy.populateList_(data);		
+	
 	};
 			
 	exports.onListItemClick = function (index) {
 		var key = data[index].key;
 		console.log("Clicked on '" + key + "' (item #" + index + ")");
-		kirin.js2nativeScreenProxy.showToast_(key.toUpperCase());
+		theScreen.showToast_(key.toUpperCase());
 	};	
 });

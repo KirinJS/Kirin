@@ -39,6 +39,7 @@
 	self.navigationItem.title = @"How big?";
     kirinHelper = [[KIRIN bindObject:self
                            toModule:@"DumbButtonScreen"] retain];
+    [kirinHelper onLoad];
 }
 
 

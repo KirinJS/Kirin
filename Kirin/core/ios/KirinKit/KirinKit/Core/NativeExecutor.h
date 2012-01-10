@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol NativeExecutor <NSObject>
+@protocol NativeExecutor
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query;
 @end

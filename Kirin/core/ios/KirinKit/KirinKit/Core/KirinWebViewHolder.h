@@ -12,17 +12,14 @@
 #import <KirinKit/NativeExecutor.h>
 
 @interface KirinWebViewHolder : NSObject <UIWebViewDelegate, JSExecutor> {
-    
-    id<NativeExecutor> nativeExecutor;
 
     @private
 	NSMutableArray* jsQueue;
-    UIWebView* webView;
+
     BOOL webViewIsReady;
 }
 
-@property(retain) UIWebView* webView;
-@property(retain) id<NativeExecutor> nativeExecutor;
+
 
 - (id) initWithWebView: (UIWebView*) aWebView andNativeContext: (id<NativeExecutor>) nativeExec;
 
@@ -31,5 +28,9 @@
 + (NSString*) wwwFolderName;
 
 + (NSString*) pathForResource:(NSString*)resourcepath;
+
+// TODO move these into class extensions in the .m file
+@property(retain) UIWebView* webView;
+@property(retain) id<NativeExecutor> nativeExecutor;
 
 @end
