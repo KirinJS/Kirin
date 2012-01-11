@@ -1,3 +1,4 @@
+#!/usr/local/bin/node
 "use strict";
 var _ = require("underscore");
 var util = require("util"), path = require("path");
@@ -76,6 +77,7 @@ function buildAll (argv, dir) {
 			case "qa": 
 			case "developer": 
 			case "production":
+			case "stage":
 				environment.testing = "all";
 				break;
 			case "uitest":
@@ -99,6 +101,7 @@ function buildAll (argv, dir) {
 		switch (environment.buildType) {
 			case "qa":  
 			case "production":
+			case "stage":
 				environment.minify = true;
 				break;
 			default:
@@ -277,6 +280,13 @@ var libraryModules = {};
 function buildModule (pluginName, inheritedEnvironment, dir) {
 
 	var info = loadJSON(dir, "info.js");
+	if (!info) {
+		info = loadJSON(dir, "common/javascript/info.js");
+	}
+	
+	if (!info) {
+		
+	}
 	
 	var environment = _.extend(info, inheritedEnvironment);
 	
@@ -336,9 +346,9 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		javascriptFiles.push(filepath);
 	};
 	
-	var srcPath = path.join(dir, "common/javascript/src");
-	var resPath = path.join(dir, "common/resources");	
-	var libPath = path.join(dir, "common/lib");	
+	var srcPath = path.join(dir, info.src || "common/javascript/src");
+	var resPath = path.join(dir, info.resources || "common/resources");	
+	var libPath = path.join(dir, info.lib || "common/lib");	
 
 	dirWalker(srcPath, javascriptFileWalker);
 
@@ -424,6 +434,10 @@ function buildDependency (moduleName, info) {
 
 function help (err) {
 	console.error("HELP: " + err);
+	
+	console.log(fs.readFileSync(path.join(__dirname, "./building/build-usage.txt")).toString());
+	
+	
 	process.exit(1);
 }
 
