@@ -2,7 +2,7 @@
 var _ = require("underscore");
 
 // TODO split these keyword definitions into a seperate module.
-exports.buildTypes = ['prod', 'developer', 'qa', 'uitest'];
+exports.buildTypes = ['prod', 'developer', 'qa', 'stage', 'uitest'];
 
 exports.supportedPlatforms = {
 		"ios": ["webview"],
