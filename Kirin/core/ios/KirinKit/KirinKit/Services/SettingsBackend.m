@@ -22,12 +22,16 @@
 
 @implementation SettingsBackend
 
+- (id) init {
+    return [super initWithModuleName:@"Settings"];
+}
+
 #pragma mark -
 #pragma mark Interal Methods
 
 -(void) initSettingsFileLocationIfNeeded{
     
-    NSLog(@"        <SETTINGS> init settings files");
+    NSLog(@"        [SettingsBackend] init settings files");
     
     if(settingsFileName) return;
     
@@ -40,13 +44,13 @@
     
     [settingsFileName retain];
     
-    NSLog(@"        <SETTINGS> settings file: %@", settingsFileName);
+    NSLog(@"        [SettingsBackend] settings file: %@", settingsFileName);
 
 }
 
 -(void) openSettingsFileIfNeeded{
     
-    NSLog(@"    <SETTINGS> open files");
+    NSLog(@"    [SettingsBackend] open files");
     
     if(settings != nil) return;
         
@@ -66,67 +70,59 @@
 
 -(void) writeToSettingsFile{
     
-    NSLog(@"    <SETTINGS> write files READY");
+    NSLog(@"    [SettingsBackend] write files READY");
     [self initSettingsFileLocationIfNeeded];
     [settings writeToFile:settingsFileName atomically:YES];
-    NSLog(@"    <SETTINGS> write files DONE");
+    NSLog(@"    [SettingsBackend] write files DONE");
     
 }
 
-- (void) populateJSWithInitialValues {
-    [self openSettingsFileIfNeeded];
-	[KIRIN fireEventIntoJS:[NSString stringWithFormat:@"initializeSettings(%@)", [settings JSONRepresentation]]];
-}
 
 #pragma mark -
 #pragma mark External Interface Methods
 
 - (void)requestPopulateJSWithCallback:(NSString *)updateCallback
 {
-    NSLog(@"<SETTINGS> Request made for settings with callback: %@", updateCallback);
+    NSLog(@"[SettingsBackend] Request made for settings with callback: %@", updateCallback);
     
     [self openSettingsFileIfNeeded];
     
-    NSLog(@"<SETTINGS> have a settigns file called: %@", settings);
+    NSLog(@"[SettingsBackend] have a settings.json file called: %@", settings);
 
-//    [KIRIN runCallback:updateCallback withArgument:
-//    
-//                    [settings JSONRepresentation]
-//     
-//    ];
-	[KIRIN fireEventIntoJS:[NSString stringWithFormat:@"initializeSettings(%@)", [settings JSONRepresentation]]];
-    NSLog(@"<SETTINGS> callback made with %d arguments.", [settings count]);     
+    [self.kirinHelper jsCallback:updateCallback withArgsList:[settings JSONRepresentation]];
+//	[KIRIN fireEventIntoJS:[NSString stringWithFormat:@"initializeSettings(%@)", [settings JSONRepresentation]]];
+
 }
 
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
 {
-    NSLog(@"<SETTINGS> Request made for settings update: %@, %@", adds, deletes);
+    NSLog(@"[SettingsBackend] Request made for settings update: %@, %@", adds, deletes);
     
     [self openSettingsFileIfNeeded];
     
     if([adds isKindOfClass:[NSString class]]) {
         
-        NSLog(@"<SETTINGS> Was a string and shouldn't be");
+        NSLog(@"[SettingsBackend] Was a string and shouldn't be");
         
     } else if([adds isKindOfClass:[NSDictionary class]]) {
         
-        NSLog(@"<SETTINGS> adding, was %d and about to add %d adds", [settings count], [adds count]);
+        NSLog(@"[SettingsBackend] adding, was %d and about to add %d adds", [settings count], [adds count]);
         [settings addEntriesFromDictionary: adds];
-        NSLog(@"<SETTINGS> added, now %d", [settings count]);
+        NSLog(@"[SettingsBackend] added, now %d", [settings count]);
         
     } else {
         
-        NSLog(@"<SETTINGS> didn't expect a %@", [adds class]);
+        NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
         
     }
     
-    NSLog(@"<SETTINGS> deletes ready");
+    NSLog(@"[SettingsBackend] deletes ready");
     //modify settings object
     [settings removeObjectsForKeys: deletes];
     
     //write them out to the file
     [self writeToSettingsFile];
-    NSLog(@"<SETTINGS> written");
+    NSLog(@"[SettingsBackend] written");
 }
 
 #pragma mark -
@@ -136,7 +132,6 @@
     
     [settingsFileName release];
     [settings release];
-    
     [super dealloc];
 }
 

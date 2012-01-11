@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-defineModule("Settings", function (require, exports) {
+defineServiceModule("Settings", function (require, exports) {
 	var kirin = require("kirin"),
 		keyValuePairs = null,
 		deletedKeys = [], 
@@ -23,7 +23,15 @@ defineModule("Settings", function (require, exports) {
 	
 	exports.onLoad = function (proxy) {
 		backend = proxy;
-		exports.initializeSettings();
+		exports.initializeSettings(function () {
+			console.log("Settings now are: " + keyValuePairs);
+			try {
+				require("Environment");
+			} catch (e) {
+				console.warn("No Environment.js module is loaded");
+			}
+			
+		});
 	};
 	
 	exports.onUnload = function () {
@@ -88,14 +96,11 @@ defineModule("Settings", function (require, exports) {
 		}
 	};
 	
-	
-//	kirin.exposeToNative("initializeSettings", updateJS);
-	
 	var rollback = function (callback) {
 		var token = kirin.wrapCallback(function (values) {
 			updateJS(values, callback);
 		});
-//        var backend = kirin.proxy("Settings-backend");
+
 		backend.requestPopulateJSWithCallback_(token);
 	};
 
