@@ -13,4 +13,11 @@
     
 }
 
+
++ (NSString*) indexFilename;
+
++ (NSString*) javascriptDirectory;
+
++ (NSString*) pathForResource:(NSString*)resourcepath;
+
 @end

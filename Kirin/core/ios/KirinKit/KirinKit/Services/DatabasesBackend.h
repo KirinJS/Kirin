@@ -16,11 +16,11 @@
 
 
 
-#import <Foundation/Foundation.h>
+#import <KirinKit/KirinKit.h>
 #import "DatabasesBackendProtocol.h"
 @class Database;
 
-@interface DatabasesBackend : NSObject <DatabasesBackendProtocol> {
+@interface DatabasesBackend : KirinServiceStub <DatabasesBackendProtocol> {
     
     Database *db;
     NSMutableDictionary *connectionsByName;

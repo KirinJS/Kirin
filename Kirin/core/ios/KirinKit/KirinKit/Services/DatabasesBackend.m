@@ -74,9 +74,9 @@
     NSString *filename = [args objectForKey:@"filename"];
     NSNumber *schemaVersionToOpenWith = [args objectForKey:@"version"];
     NSString *txId = [args objectForKey:@"txId"];
-    NSString *onCreate = [args objectForKey:@"onCreateToken"];
+
     NSString *onOpened = [args objectForKey:@"onOpenedToken"];
-    NSString *onUpdate = [args objectForKey:@"onUpdateToken"];
+
     NSString *onError = [args objectForKey:@"onErrorToken"];
     
     @try {
@@ -100,8 +100,8 @@
             
             NSLog(@"CREATING NEW SCHEMA tx %@ has version on commit %@ (from store %@)", [openTx txId], [openTx schemaVersionOnCommit],
                   [[transactionsById objectForKey:txId] schemaVersionOnCommit]);
-            
-            [KIRIN runCallback:onCreate withArgument:nil];
+            [self.kirinHelper jsCallback:@"onCreateToken" fromConfig:args];
+//            [KIRIN runCallback:onCreate withArgument:nil];
             
         }
         else {
@@ -109,20 +109,28 @@
             int comparison = [schemaVersion compare:schemaVersionToOpenWith];
             
             if (comparison == NSOrderedSame) {
-                
-                [KIRIN runCallback:onOpened withArgument:nil];
+                [self.kirinHelper jsCallback:@"onOpenedToken" fromConfig:args];                
+//                [KIRIN runCallback:onOpened withArgument:nil];
                 
             }
             else {
                 
                 // The schema needs updating.
                 
-                openTx.schemaVersionOnCommit = schemaVersionToOpenWith;
+                openTx.schemaVersionOnCommit = schemaVersionToOpenWith;                
+                
                 
                 NSLog(@"UPDATING NEW SCHEMA tx %@ has version on commit %@ (from store %@)", [openTx txId], [openTx schemaVersionOnCommit],
                       [[transactionsById objectForKey:txId] schemaVersionOnCommit]);
                 
-                [KIRIN runCallback:onUpdate withArgument:nil];
+                [self.kirinHelper jsCallback:@"onUpdateToken" 
+                                  fromConfig:args 
+                                withArgsList:[NSString stringWithFormat: @"%d, %d", 
+                                              schemaVersion,   
+                                              schemaVersionToOpenWith]];
+
+                
+//                [KIRIN runCallback:onUpdate withArgument:nil];
                 
             }
             
@@ -130,9 +138,10 @@
         
     }
     @catch (NSException *exception) {
-        
-        [KIRIN runCallback:onError withArgument:[exception description]];
-        
+        [self.kirinHelper jsCallback:onError 
+                        withArgsList:[NSString stringWithFormat: @"'%@'", [exception description]]];
+//        [KIRIN runCallback:onError withArgument:[exception description]];
+        [self.kirinHelper cleanupCallback:args withNames:@"onErrorToken", @"onOpenedToken", @"onUpdateToken", @"onCreateToken", nil];
     }
     
 }
@@ -240,35 +249,28 @@
     while((op = [enumerator nextObject])){
         // check if we have an onSuccess callback to cleanup
         if (![op.onSuccess isKindOfClass:[NSNull class]]) {
-            
             [callbacks addObject:op.onSuccess];
-            
         }
         
         // check if we have an onError callback to cleanup.
         if (![op.onError isKindOfClass:[NSNull class]]) {
-            
             [callbacks addObject:op.onError];
-            
         }
     }
 
     // check if we have an onSuccess callback to cleanup
     if (![tx.onSuccess isKindOfClass:[NSNull class]]) {
-        
         [callbacks addObject:tx.onSuccess];
-        
     }
     
     // check if we have an onError callback to cleanup.
     if (![tx.onError isKindOfClass:[NSNull class]]) {
-        
-        [callbacks addObject:tx.onError];
-        
+        [callbacks addObject:tx.onError];        
     }
     
     // call deleteCallback once with all callbacks that need to be deleted.
-    [KIRIN fireEventIntoJS:[NSString stringWithFormat:@"native2js.deleteCallback('%@')", [callbacks componentsJoinedByString:@"', '"]]];
+    [self.kirinHelper cleanupCallbacks:callbacks];
+//    [KIRIN fireEventIntoJS:[NSString stringWithFormat:@"native2js.deleteCallback('%@')", [callbacks componentsJoinedByString:@"', '"]]];
     
     [transactionsById removeObjectForKey:tx.txId];
 
@@ -293,11 +295,11 @@
         [tx.connection executeBlock: @"BEGIN TRANSACTION;"];
         
         while((op = [enumerator nextObject])){       
-            //NSLog(@"<DATABASE BACKEND> exe: READY");
+            //NSLog(@"[DatabasesBackend] exe: READY");
             
             NSString* sql =  [op sql];
             
-            NSLog(@"<DATABASE BACKEND> exe: %@", sql);
+            NSLog(@"[DatabasesBackend] exe: %@", sql);
             
             if(op.type == file) {
             
@@ -314,7 +316,7 @@
                 
             }
             
-            //NSLog(@"<DATABASE BACKEND> exe: DONE");
+            //NSLog(@"[DatabasesBackend] exe: DONE");
             
         }
 
@@ -337,24 +339,24 @@
     }
     @catch (NSException *exception) {
         
-        NSLog(@"<DATABASE BACKEND> Couldn't execute a transaction: %@", exception);
+        NSLog(@"[DatabasesBackend] Couldn't execute a transaction: %@", exception);
         
         @try {
             [tx.connection executeBlock:@"ROLLBACK TRANSACTION;"];
         }
         @catch (NSException *exception) {
-            NSLog(@"<DATABASE BACKEND> Couldn't roll back a transaction: %@", exception);
+            NSLog(@"[DatabasesBackend] Couldn't roll back a transaction: %@", exception);
         }
         
         if (![op.onError isKindOfClass:[NSNull class]]) {
-            
-            [KIRIN runCallbackWithoutDelete:op.onError withArgument:@"'SQL problem'"];
+            [self.kirinHelper jsCallback:op.onError withArgsList:@"'SQL problem'"];
+//            [KIRIN runCallbackWithoutDelete:op.onError withArgument:@"'SQL problem'"];
 
         }
 
         if (![tx.onError isKindOfClass:[NSNull class]]) {
-            
-            [KIRIN runCallbackWithoutDelete:tx.onError withArgument:@"'SQL problem'"];
+            [self.kirinHelper jsCallback:op.onError withArgsList:@"'SQL problem'"];            
+//            [KIRIN runCallbackWithoutDelete:tx.onError withArgument:@"'SQL problem'"];
             
         }
         
@@ -402,21 +404,27 @@
                     
                 }
                 
-                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [[arg objectAtIndex:0] JSONRepresentation]];
+                [self.kirinHelper jsCallback:op.onSuccess withArgsList:[[arg objectAtIndex:0] JSONRepresentation]];
+//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [[arg objectAtIndex:0] JSONRepresentation]];
                     
                 
                 
             }
             else if (op.type == array) {
-                
-                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [arg JSONRepresentation]];
+                [self.kirinHelper jsCallback:op.onSuccess withArgsList:[arg JSONRepresentation]];                
+//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [arg JSONRepresentation]];
                 
             } else if (op.type == rowset) {
                 
                 // put into a drop box for retrieval later on by the ui.
-                NSString* token = [KIRIN dropboxPut:arg withTokenPrefix:@"resultset"];
+
+                NSString* token = [self.kirinHelper.dropbox putObject:arg 
+                                                      withTokenPrefix:@"resultset"];
+
+                [self.kirinHelper jsCallback:op.onSuccess withArgsList:[NSString stringWithFormat:@"'%@'", token]];
                 
-                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [NSString stringWithFormat:@"'%@'", token]];
+                // NSString* token = [KIRIN dropboxPut:arg withTokenPrefix:@"resultset"];
+//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [NSString stringWithFormat:@"'%@'", token]];
                 
 //                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [arg JSONRepresentation]];
                 
@@ -425,7 +433,7 @@
         }
         @catch (NSException *exception) {
             
-            NSLog(@"<DATABASE BACKEND> Couldn't run a success callback for %@: %@", op, exception);
+            NSLog(@"[DatabasesBackend] Couldn't run a success callback for %@: %@", op, exception);
             
         } 
         @finally {
@@ -439,7 +447,8 @@
     data = nil;
     
     if (![tx.onSuccess isKindOfClass:[NSNull class]]) {
-        [KIRIN runCallback:tx.onSuccess withArgument:nil];
+        [self.kirinHelper jsCallback:tx.onSuccess];
+//        [KIRIN runCallback:tx.onSuccess withArgument:nil];
     }
     [self cleanupAfterEndTransaction: tx];
     
@@ -455,7 +464,7 @@
 }
 
 - (void)disposeToken:(NSString*) token {
-    [KIRIN dropboxDispose:token];
+    [self.kirinHelper.dropbox disposeObjectWithToken:token];
 }
 
 #pragma mark -

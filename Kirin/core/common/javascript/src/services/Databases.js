@@ -50,11 +50,18 @@
  * });
  * 
  */
-defineModule("Databases", function (require, exports) {
+defineServiceModule("Databases", function (require, exports) {
     var kirin = require("kirin"), 
         backend;
    
-    
+   	exports.onLoad = function (nativeObject) {
+   		backend = nativeObject;
+   	};
+   	
+   	exports.onUnload = function () {
+   		backend = null;
+   	};
+   	
     var wrapCallback = function (callback, name) {
         
         if (_.isFunction(callback)) {
@@ -185,7 +192,6 @@ defineModule("Databases", function (require, exports) {
             }
         }, config);
 
-        backend = kirin.proxy("Databases-backend");
         var db = _.clone(databasePrototype);
         db.init();
     

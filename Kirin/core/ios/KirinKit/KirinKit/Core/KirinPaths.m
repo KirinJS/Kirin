@@ -11,4 +11,23 @@
 
 @implementation KirinPaths
 
+
++ (NSString*) indexFilename {
+	return @"index-ios.html";
+}
+
++ (NSString*) javascriptDirectory {
+	return @"generated-javascript";
+}
+
++ (NSString*) pathForResource:(NSString*)resourcepath {
+    NSBundle * mainBundle = [NSBundle mainBundle];
+    NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
+    NSString       *filename       = [directoryParts lastObject];
+    [directoryParts removeLastObject];
+	
+    NSString *directoryStr = [NSString stringWithFormat:@"%@%@", [self javascriptDirectory], [directoryParts componentsJoinedByString:@"/"]];
+    return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
+}
+
 @end

@@ -17,7 +17,8 @@
 
 
 #import "SQLOperation.h"
-#import "Kirin.h"
+#import <KirinKit/Kirin.h>
+#import <KirinKit/KirinPaths.h>
 
 @implementation SQLOperation
 
@@ -52,7 +53,7 @@
     
     NSError* err = nil;
     
-    NSString* filename = [Kirin pathForResource: self.statement];
+    NSString* filename = [KirinPaths pathForResource: self.statement];
     
     NSLog(@"<SQL OPPERATION> using file: %@", filename);
     
