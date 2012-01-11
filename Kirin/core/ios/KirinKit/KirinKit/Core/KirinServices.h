@@ -7,10 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <KirinKit/KirinServiceProtocol.h>
 
 @interface KirinServices : NSObject {
     
 }
+
++ (KirinServices*) coreServices;
+
++ (KirinServices*) empty;
+
+@property BOOL isStarted;
+
+
+
+- (void) registerService: (id<KirinServiceProtocol>) service;
+
+- (void) ensureStarted;
+
+// @private
+@property(retain) NSMutableArray* allServices;
+
 
 @end

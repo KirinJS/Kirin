@@ -6,11 +6,17 @@
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <KirinKit/KirinServiceProtocol.h>
+#import <KirinKit/KirinServiceHelper.h>
 
 
-@interface KirinServiceStub : NSObject {
+@interface KirinServiceStub : NSObject <KirinServiceProtocol> {
     
 }
+
+@property(retain, nonatomic) NSString* moduleName;
+@property(retain, nonatomic) KirinServiceHelper* kirinHelper;
+
+- (id) initWithModuleName: (NSString*) moduleName;
 
 @end

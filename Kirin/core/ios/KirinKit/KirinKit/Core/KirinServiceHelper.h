@@ -1,16 +1,20 @@
 //
-//  KirinBackendHelper.h
+//  KirinServiceHelper.h
 //  KirinKit
 //
 //  Created by James Hugman on 10/01/2012.
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
+#import <KirinKit/KirinHelper.h>
 
-@interface KirinBackendHelper : KirinHelper {
+@interface KirinServiceHelper : KirinHelper {
     
 }
+
+- (void) onStart;
+
+- (void) onStop;
 
 @end

@@ -11,4 +11,10 @@
 
 @protocol KirinServiceProtocol <NSObject>
 
+- (void) onLoad;
+
+- (void) onStart;
+
+- (void) onUnload;
+
 @end
