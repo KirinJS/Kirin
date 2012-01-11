@@ -16,7 +16,7 @@
 
 
 
-#import <Foundation/Foundation.h>
+#import <KirinKit/KirinKit.h>
 #import "Networking.h"
 
 @interface JSONListDownloader : NSObject {
@@ -25,11 +25,14 @@
     NSDictionary* config;
 }
 
++ (JSONListDownloader*) downloaderWithHelper: (KirinHelper*) helper;
+
 -(void) downloadJSONList: (NSDictionary *) config;
 
 -(void) handleList: (NSData*) d withPath: (NSArray*) path;
 
 -(void) failWithError: (NSString*) error;
 
+@property (retain, nonatomic) KirinHelper* kirinHelper;
 
 @end

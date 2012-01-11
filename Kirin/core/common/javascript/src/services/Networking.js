@@ -14,11 +14,19 @@
    limitations under the License.
 */
 
-defineModule("Networking", function (require, exports) {
+defineServiceModule("Networking", function (require, exports) {
 
-    var kirin = require("kirin");
-    
+	var backend;
+	
+	exports.onLoad = function (nativeObject) {
+		backend = nativeObject;
+	};
 
+	exports.onUnload = function () {
+		backend = null;
+	};
+
+	var kirin = require("kirin");
     var wrapCallbacks = function (config) {
         var key;
         for (var i=1, max=arguments.length; i<max; i++) {
@@ -134,7 +142,7 @@ defineModule("Networking", function (require, exports) {
 		configureParams(config);
 		
         wrapCallbacks(config, "payload", "onError");
-        kirin.proxy("Networking-backend").downloadJSON_(config);
+        backend.downloadJSON_(config);
     };
         
 	/**
@@ -169,7 +177,7 @@ defineModule("Networking", function (require, exports) {
         // TODO this needs to be in a util method.
         wrapCallbacks(config, "each", "onFinish", "onError", "envelope");
         
-        kirin.proxy("Networking-backend").downloadJSONList_(config);
+        backend.downloadJSONList_(config);
     };
     
     exports.downloadFileToDisk = function (config) {
@@ -189,7 +197,7 @@ defineModule("Networking", function (require, exports) {
         
         wrapCallbacks(config, "onFinish", "onError");
         
-        kirin.proxy("Networking-backend").downloadFile_(config);
+        backend.downloadFile_(config);
     };
     
     // TODO Needs implementing on Android and iOS
@@ -213,7 +221,7 @@ defineModule("Networking", function (require, exports) {
         configureParams(config);
         
         wrapCallbacks(config, "payload", "onError");
-        kirin.proxy("Networking-backend").downloadString_(config);
+        backend.downloadString_(config);
     };
     
     exports.deleteDownloadedFile = function (config) {
@@ -232,6 +240,6 @@ defineModule("Networking", function (require, exports) {
         
         wrapCallbacks(config, "onFinish", "onError");
         
-        kirin.proxy("Networking-backend").deleteDownloadedFile_(config);
+        backend.deleteDownloadedFile_(config);
     };
 });

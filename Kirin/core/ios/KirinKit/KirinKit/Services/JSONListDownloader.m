@@ -22,10 +22,16 @@
 
 @implementation JSONListDownloader
 
+@synthesize kirinHelper;
+
++ (JSONListDownloader*) downloaderWithHelper: (KirinHelper*) helper {
+    JSONListDownloader* downloader = [[[JSONListDownloader alloc] init] autorelease];
+    downloader.kirinHelper = helper;
+    return downloader;
+}
+
 -(void) cleanupCallbacks {
-    [KIRIN deleteCallbackWithoutRun: [config objectForKey:@"each"]];
-    [KIRIN deleteCallbackWithoutRun: [config objectForKey:@"envelope"]];
-    [KIRIN deleteCallbackWithoutRun: [config objectForKey:@"onError"]];    
+    [self.kirinHelper cleanupCallback:config withNames:@"each", @"envelope", @"onError", @"onFinish", nil];
 }
 
 -(void) downloadJSONList: (NSDictionary *) _config{
@@ -96,10 +102,8 @@
     
     NSLog(@"<NETWORKING BACKEND> Error");
     
-    [KIRIN 
-        runCallbackWithoutDelete: [config objectForKey:@"onError"] 
-        withArgument: [NSString stringWithFormat:@"\"%@\"", error]
-     ];
+    [self.kirinHelper jsCallback:@"onError" 
+                      fromConfig:config withArgsList:[NSString stringWithFormat:@"\"%@\"", error]];
     [self cleanupCallbacks];
 }
 
@@ -133,11 +137,10 @@
         while((object = [e nextObject])) {
             @try{
                 
-                
-                [KIRIN runCallbackWithoutDelete: [config objectForKey:@"each"]
-                                                   withArgument: [((NSDictionary*)object)  JSONRepresentation]
-                 ];
-                
+                [self.kirinHelper jsCallback:@"each" 
+                                  fromConfig:config 
+                                withArgsList:[((NSDictionary*)object)  JSONRepresentation]];
+
                 ++i;
                 
             } @catch(NSException* e) {
@@ -150,10 +153,10 @@
         
         
     } else {
-        
-        [KIRIN runCallback: [config objectForKey:@"each"]
-                              withArgument: stringy
-         ];
+        // TODO. Not sure if this is the right thing to do. Check with Adrian.
+        [self.kirinHelper jsCallback:@"each" 
+                          fromConfig:config 
+                        withArgsList:[NSString stringWithFormat:@"\"%@\"", stringy]];
         
         i = 1;
         
@@ -168,15 +171,15 @@
     
     //NSLog(@"<NETWORKING BACKEND> OUTPUT: %@", stringy);
     
-    [KIRIN runCallbackWithoutDelete:[config objectForKey:@"onFinish"]
-                          withArgument: [NSString stringWithFormat:@"%d", i]
-     ];
-    
-    
+    [self.kirinHelper jsCallback:@"onFinish" 
+                      fromConfig:config 
+                    withArgsList:[NSString stringWithFormat:@"%d", i]];
+    [self cleanupCallbacks];
 }
 
 - (void) dealloc
 {
+    self.kirinHelper = nil;
     [config release];
     [super dealloc];
 }

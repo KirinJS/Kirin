@@ -14,13 +14,10 @@
    limitations under the License.
 */
 
-
-
-#import <Foundation/Foundation.h>
+#import <KirinKit/KirinKit.h>
 #import "Networking.h"
 
-
-@interface NetworkingBackend : NSObject <Networking> {
+@interface NetworkingBackend : KirinServiceStub <Networking> {
 
 }
 

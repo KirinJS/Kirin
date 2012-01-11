@@ -16,26 +16,28 @@
 
 
 
-#import <Foundation/Foundation.h>
+#import <KirinKit/KirinKit.h>
 
 
 @interface FileDownloader : NSObject  {
     NSURLConnection *theConnection;
     NSMutableData* data;
-    NSDictionary* config;
 }
 
-@property (nonatomic, retain) NSDictionary *config;
+@property (nonatomic, retain) KirinHelper* kirinHelper;
+@property (nonatomic, retain) NSDictionary* config;
 
--(void) startDownloadWithConfig: (NSDictionary*) _config;
++ (FileDownloader*) downloaderWithHelper: (KirinHelper*) helper;
 
--(void) deleteFileWithConfig: (NSDictionary*) _config;
+- (void) startDownloadWithConfig: (NSDictionary*) _config;
 
--(void) cleanupCallbacks;
+- (void) deleteFileWithConfig: (NSDictionary*) _config;
 
--(void) writeToFile: (NSData*) fileData;
+- (void) cleanupCallbacks;
 
--(void) failWithError: (NSString*) error;
+- (void) writeToFile: (NSData*) fileData;
+
+- (void) failWithError: (NSString*) error;
 
 
 @end

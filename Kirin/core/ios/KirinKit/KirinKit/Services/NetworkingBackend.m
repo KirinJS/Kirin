@@ -22,8 +22,11 @@
 
 @implementation NetworkingBackend
 
+- (id) init {
+    return [super initWithModuleName: @"Networking"];
+}
 
--(void) downloadJSON: (NSDictionary *) config{
+- (void) downloadJSON: (NSDictionary *) config{
     
     if(1) return;
 
@@ -31,21 +34,21 @@
 
 -(void) downloadJSONList: (NSDictionary *) _config{
     
-    NSLog(@"<NETWORKING BACKEND> downloadJSONList_: %@", _config);
+    NSLog(@"[NetworkingBackend] downloadJSONList_: %@", _config);
     
-    JSONListDownloader* downloader = [[[JSONListDownloader alloc] init] autorelease];
+    JSONListDownloader* downloader = [JSONListDownloader downloaderWithHelper:self.kirinHelper];
     [downloader downloadJSONList: _config];
 }
 
 -(void) downloadFile: (NSDictionary *) config {
-    NSLog(@"<NETWORKING BACKEND> downloadFile_: %@", config);
-    FileDownloader* downloader = [[[FileDownloader alloc] init] autorelease];
+    NSLog(@"[NetworkingBackend] downloadFile_: %@", config);
+    FileDownloader* downloader = [FileDownloader downloaderWithHelper:self.kirinHelper];
     [downloader startDownloadWithConfig: config];
 }
 
 -(void) deleteDownloadedFile: (NSDictionary *) config {
-    NSLog(@"<NETWORKING BACKEND> deleteDownloadedFile_: %@", config);
-    FileDownloader* downloader = [[[FileDownloader alloc] init] autorelease];
+    NSLog(@"[NetworkingBackend] deleteDownloadedFile_: %@", config);
+    FileDownloader* downloader = [FileDownloader downloaderWithHelper:self.kirinHelper];
     [downloader deleteFileWithConfig: config];    
 }
 

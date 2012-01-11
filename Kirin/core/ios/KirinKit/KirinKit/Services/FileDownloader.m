@@ -23,6 +23,13 @@
 @implementation FileDownloader
 
 @synthesize config;
+@synthesize kirinHelper;
+
++ (FileDownloader*) downloaderWithHelper: (KirinHelper*) helper {
+    FileDownloader* downloader = [[[FileDownloader alloc] init] autorelease];
+    downloader.kirinHelper = helper;
+    return downloader;
+}
 
 -(NSString*) destinationFilePath
 {
@@ -39,9 +46,10 @@
     
     NSString* fileName = [self destinationFilePath];
     if([[NSFileManager defaultManager] fileExistsAtPath:fileName]){
-        [KIRIN runCallbackWithoutDelete: [_config objectForKey:@"onFinish"]
-                                           withArgument: [NSString stringWithFormat:@"'%@'", imageFile]
-         ];    
+        [self.kirinHelper jsCallback:@"onFinish" 
+                          fromConfig:self.config 
+                        withArgsList:[NSString stringWithFormat:@"'%@'", imageFile]];
+
     }
     
     NSURLRequest* req = [NSURLRequest requestWithURL:[NSURL URLWithString:[config objectForKey:@"url"] ]];
@@ -62,20 +70,17 @@
     NSString* imageFile = [config objectForKey:@"filename"];
     BOOL removeSuccess = [[NSFileManager defaultManager] removeItemAtPath:[self destinationFilePath] error:&error];
     if (removeSuccess) {
-        [KIRIN runCallbackWithoutDelete: [config objectForKey:@"onFinish"]
-                                           withArgument: [NSString stringWithFormat:@"'%@'", imageFile]
-         ];
+        [self.kirinHelper jsCallback:@"onFinish" 
+                          fromConfig:self.config 
+                        withArgsList:[NSString stringWithFormat:@"'%@'", imageFile]];
         
         [self cleanupCallbacks];
     } else {
-        [KIRIN fireEventIntoJS:
-                    [NSString stringWithFormat:@"native2js.callCallback('%@', '%@', '%@')", 
-                                [config objectForKey:@"onError"],
-                                [error description], 
-                                imageFile
-                    ]
-         ];
-        
+        [self.kirinHelper jsCallback:@"onError" 
+                          fromConfig:self.config 
+                        withArgsList:[NSString stringWithFormat:@"'%@', '%@'", 
+                                      [error description], 
+                                      imageFile]];
         [self cleanupCallbacks];
     }
 
@@ -131,19 +136,19 @@
 
 -(void) cleanupCallbacks
 {
-    [KIRIN fireEventIntoJS:[NSString stringWithFormat:@"native2js.deleteCallback('%@', '%@')", 
-                                            [config objectForKey:@"onError"],
-                                            [config objectForKey:@"onFinish"]
-                                            ]
-     ];
-    
+    [self.kirinHelper cleanupCallback:self.config withNames:@"onError", @"onFinish", nil];    
 }
 
 -(void) failWithError: (NSString*) error{
     
     NSLog(@"<NETWORKING BACKEND> Error");
+
+    [self.kirinHelper jsCallback:@"onError" 
+                      fromConfig:self.config 
+                    withArgsList:[NSString stringWithFormat:@"'%@', '%@'", 
+                                  [error description], 
+                                  [self.config objectForKey:@"filename"]]];
     
-    [KIRIN runCallbackWithoutDelete: [config objectForKey:@"onError"] withArgument:error];
     [self cleanupCallbacks];
 }
 
@@ -158,15 +163,16 @@
         [fileData writeToFile:fileName atomically:YES];
     }
     
-    [KIRIN runCallbackWithoutDelete: [config objectForKey:@"onFinish"]
-                          withArgument: [NSString stringWithFormat:@"'%@'", imageFile]
-     ];
-
+    [self.kirinHelper jsCallback:@"onFinish" 
+                      fromConfig:self.config 
+                    withArgsList:[NSString stringWithFormat:@"'%@'", imageFile]];
+    
     [self cleanupCallbacks];
     
 }
 
 - (void)dealloc {
+    self.kirinHelper = nil;
     self.config = nil;
     [super dealloc];
 }
