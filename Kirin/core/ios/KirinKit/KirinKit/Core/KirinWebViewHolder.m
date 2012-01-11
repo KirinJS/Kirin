@@ -9,6 +9,7 @@
 #import "KirinWebViewHolder.h"
 
 #import <UIKit/UIApplication.h>
+#import <KirinKit/KirinPaths.h>
 
 @interface KirinWebViewHolder (private)
 
@@ -24,13 +25,6 @@
 @synthesize webView;
 @synthesize nativeExecutor;
 
-+ (NSString*) startPage {
-	return @"index-ios.html";
-}
-
-+ (NSString*) wwwFolderName {
-	return @"generated-javascript";
-}
 
 - (id) init {
 	return [self initWithWebView:[[UIWebView alloc] init] andNativeContext:nil];
@@ -47,27 +41,19 @@
 	return self;
 }
 
-+ (NSString*) pathForResource:(NSString*)resourcepath {
-    NSBundle * mainBundle = [NSBundle mainBundle];
-    NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
-    NSString       *filename       = [directoryParts lastObject];
-    [directoryParts removeLastObject];
-	
-    NSString *directoryStr = [NSString stringWithFormat:@"%@%@", [self wwwFolderName], [directoryParts componentsJoinedByString:@"/"]];
-    return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
-}
+
 
 
 
 - (void) _initializeWebView: (UIWebView*) aWebView {
 	aWebView.delegate = self;
 	
-	NSString* startPage = [[self class] startPage];
+	NSString* startPage = [KirinPaths indexFilename];
 	NSURL *appURL = [NSURL URLWithString:startPage];
 	if(![appURL scheme])
 	{
         
-		NSString* indexPath = [[self class] pathForResource:startPage];
+		NSString* indexPath = [KirinPaths pathForResource:startPage];
         
 		appURL = [NSURL fileURLWithPath: indexPath];
 	}

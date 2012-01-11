@@ -23,11 +23,6 @@
 
 - (id) initWithWebView: (UIWebView*) aWebView andNativeContext: (id<NativeExecutor>) nativeExec;
 
-+ (NSString*) startPage;
-
-+ (NSString*) wwwFolderName;
-
-+ (NSString*) pathForResource:(NSString*)resourcepath;
 
 // TODO move these into class extensions in the .m file
 @property(retain) UIWebView* webView;
