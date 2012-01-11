@@ -6,11 +6,14 @@
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
+#import <KirinKit/KirinHelper.h>
 
 @interface KirinUiFragmentHelper : KirinHelper {
     
 }
+
+- (void) onResume;
+
+- (void) onPause;
 
 @end

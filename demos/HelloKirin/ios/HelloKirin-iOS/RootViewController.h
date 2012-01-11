@@ -17,13 +17,13 @@
 
 
 #import <UIKit/UIKit.h>
-#import <KirinKit/KirinHelper.h>
+#import <KirinKit/KirinKit.h>
 
 @interface RootViewController : UIViewController {
 	UILabel* label;
 	UIViewController* dumbListViewController;
     
-    KirinHelper* kirinHelper;
+    KirinScreenHelper* kirinHelper;
 }
 
 

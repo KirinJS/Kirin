@@ -37,7 +37,7 @@
 	self.navigationItem.rightBarButtonItem = editButton;
 	
 	self.navigationItem.title = @"How big?";
-    kirinHelper = [[KIRIN bindObject:self
+    kirinHelper = [[KIRIN bindScreen:self
                            toModule:@"DumbButtonScreen"] retain];
     [kirinHelper onLoad];
 }
@@ -45,6 +45,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [kirinHelper onResume];
     [super viewWillAppear:animated];
 }
 
@@ -58,11 +59,12 @@
 	[super viewWillDisappear:animated];
 }
 */
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
+    [kirinHelper onPause];
 	[super viewDidDisappear:animated];
 }
-*/
+
 
 /*
  // Override to allow orientations other than the default portrait orientation.

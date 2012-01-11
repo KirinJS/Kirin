@@ -21,7 +21,6 @@ defineModule("DumbButtonScreen", function (require, exports) {
 	
 	
 	exports.onLoad = function (ui) {
-		console.log("theScreen has been defined as " + ui);
 		theScreen = ui;
 	};
 	

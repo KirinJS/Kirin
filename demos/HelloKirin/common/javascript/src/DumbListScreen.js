@@ -32,11 +32,10 @@ defineModule("DumbListScreen", function (require, exports) {
 
 	exports.onLoad = function (ui) {
 		theScreen = ui;
-		theScreen.populateList_(data);	
 	};
 
 	exports.onResume = function () {
-	
+		theScreen.populateList_(data);	
 	};
 			
 	exports.onListItemClick = function (index) {

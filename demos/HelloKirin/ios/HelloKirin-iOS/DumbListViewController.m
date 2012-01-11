@@ -17,7 +17,6 @@
 
 
 #import "DumbListViewController.h"
-#import <KirinKit/Kirin.h>
 
 @interface DumbListViewController (private) 
 
@@ -39,7 +38,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.navigationItem.title = @"Alphabet";
 
-    self.kirinHelper = [KIRIN bindObject:self toModule:@"DumbListScreen"];
+    self.kirinHelper = [KIRIN bindScreen:self toModule:@"DumbListScreen"];
     
     [self.kirinHelper onLoad];
 }
@@ -49,7 +48,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    //[kirinHelper onResume];
+    [self.kirinHelper onResume];
 }
 
 /*
@@ -62,11 +61,12 @@
     [super viewWillDisappear:animated];
 }
 */
-/*
+
 - (void)viewDidDisappear:(BOOL)animated {
+    [self.kirinHelper onPause];
     [super viewDidDisappear:animated];
 }
-*/
+
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -76,9 +76,7 @@
 */
 
 - (void) populateList: (NSArray*) list {
-	NSLog(@"Received %@", list);
 	self.jsonList = list;
-	
 	[(UITableView*)self.view reloadData];
 }
 

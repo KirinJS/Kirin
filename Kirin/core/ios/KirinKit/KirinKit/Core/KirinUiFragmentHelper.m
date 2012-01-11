@@ -11,4 +11,12 @@
 
 @implementation KirinUiFragmentHelper
 
+- (void) onPause {
+    [self jsMethod:@"onPause"];
+}
+
+- (void) onResume {
+    [self jsMethod:@"onResume"];
+}
+
 @end

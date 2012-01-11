@@ -17,7 +17,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import <KirinKit/KirinHelper.h>
+#import <KirinKit/KirinKit.h>
 
 @interface DumbListViewController : UITableViewController {
 	NSArray* jsonList;
@@ -29,5 +29,5 @@
 - (void) populateList: (NSArray*) list;
 
 @property(retain) NSArray* jsonList;
-@property(retain, nonatomic) KirinHelper* kirinHelper;
+@property(retain, nonatomic) KirinScreenHelper* kirinHelper;
 @end
