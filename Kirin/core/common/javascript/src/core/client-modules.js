@@ -60,4 +60,9 @@ var defineModule = function (name, block) {
 	modules[name] = block;
 };
 
+var defineScreenModule = defineModule,
+	defineUiFragmentModule = defineModule,
+	defineServiceModule = defineModule;
+
+
 

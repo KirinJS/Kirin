@@ -73,7 +73,7 @@
 - (void) cleanupCallback: (NSDictionary*) config withNames: (NSString*) callbackName, ...
     NS_REQUIRES_NIL_TERMINATION;
 
-
+- (void) cleanupCallbacks:(NSArray*) callbackIds;
 
 
 @end

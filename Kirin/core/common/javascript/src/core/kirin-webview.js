@@ -80,29 +80,6 @@ defineModule("kirin", function (require, exports) {
 		return proxy;
 	}
 	
-	/**
-	 * To be called by native.
-	 * From a classname and method names, a proxy is created which will 
-	 * call the native object.
-	 * This gives nice Javascipt-y calling syntax, instead of 
-	 * whatever mindfuck the actual bridge ends up being.
-	 * The proxy is *not* returned, but placed in the services object.
-	 *
-	 * The proxy will be available to Javascript via the proxy() method. 
-	 * 
-	 * @deprecated
-	 */
-	 /*
-	native2js.registerProxy = function (className, methodNames) {
-		services[className] = createProxy(className, methodNames);
-	};
-	*/
-	/* @deprecated */
-	/*
-	native2js.registerScreenProxy = function (className, methodNames) {
-		native2js.registerProxy("NativeScreenObject", methodNames);
-	};
-	*/
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
 		console.log("Generated proxy for " + moduleName);
@@ -156,24 +133,6 @@ defineModule("kirin", function (require, exports) {
 			callback();
 		}
 
-	};
-	
-	/*
-	 * Make sure we can callback into javascript from native. 
-	 * We ask the native calls to check in their functions at the border, 
-	 * and this is a place to let them use those callbacks.
-	 * @deprecated
-	 */
-	native2js.callCallback = function (callbackId, args) {
-		var callback = callbacks[callbackId];
-		
-		if (typeof callback !== 'function') {
-			console.error("Problem calling callback '" + callbackId + "'");
-			return;
-		}
-		
-		//var args = slice.call(arguments, 1);
-		return callback.apply(null, args);
 	};
 	
 	/* Once a callback has been finished with, then it should 

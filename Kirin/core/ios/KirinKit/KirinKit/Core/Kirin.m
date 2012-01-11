@@ -24,6 +24,7 @@
 
 @interface Kirin (private)
 
+- (void) ensureStarted;
 
 @end
 
@@ -32,6 +33,9 @@
 @implementation Kirin 
 
 @synthesize dropbox;
+@synthesize kirinServices = kirinServices_;
+
+
 @synthesize jsContext;
 @synthesize nativeContext;
 
@@ -50,22 +54,81 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
         [self.nativeContext registerNativeObject:[[[DebugConsole alloc] init] autorelease] asName:@"DebugConsole"];
         
-        dropbox = [[[KirinDropbox alloc] init] autorelease];
+        self.dropbox = [[[KirinDropbox alloc] init] autorelease];
         // the webview needs to be able to call out to native using the nativeContext.
         KirinWebViewHolder* webViewHolder = [[[KirinWebViewHolder alloc] initWithWebView:aWebView andNativeContext: self.nativeContext] autorelease];
         
-        self.jsContext = [[[JSContext alloc] initWithJSExecutor: webViewHolder] autorelease];
-        
+        self.jsContext = [[[JSContext alloc] initWithJSExecutor: webViewHolder] autorelease];       
 	}
 	return self;
 }   
 
 - (KirinHelper*) bindObject: (id) nativeObject toModule:(NSString*) moduleName {
+    [self ensureStarted];
     return [[[KirinHelper alloc] initWithModuleName:moduleName 
                                    andNativeObject:nativeObject 
                                       andJsContext:self.jsContext 
                                   andNativeContext:self.nativeContext
                                         andDropbox:dropbox] autorelease];
+}
+
+- (KirinUiFragmentHelper*) bindUiFragment: (id) nativeObject toModule:(NSString*) moduleName {
+    [self ensureStarted];
+    return [[[KirinUiFragmentHelper alloc] initWithModuleName:moduleName 
+                                              andNativeObject:nativeObject 
+                                                 andJsContext:self.jsContext 
+                                             andNativeContext:self.nativeContext
+                                                   andDropbox:dropbox] autorelease];
+    
+}
+
+- (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName {
+    [self ensureStarted];
+    return [[[KirinScreenHelper alloc] initWithModuleName:moduleName 
+                                              andNativeObject:nativeObject 
+                                                 andJsContext:self.jsContext 
+                                             andNativeContext:self.nativeContext
+                                                   andDropbox:dropbox] autorelease];
+
+}
+
+- (KirinServiceHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName {
+    // we don't want to ensureStarted here, because this will be adding services, 
+    // and services is what we're starting.
+    return [[[KirinServiceHelper alloc] initWithModuleName:moduleName 
+                                          andNativeObject:nativeObject 
+                                             andJsContext:self.jsContext 
+                                         andNativeContext:self.nativeContext
+                                               andDropbox:dropbox] autorelease];
+}
+
+#pragma mark -
+#pragma mark Managing Services
+
+- (void) ensureStarted {
+    NSLog(@"Make sure services are registered");
+    [self.kirinServices ensureStarted];
+}
+
+- (void) setKirinServices:(KirinServices *) services {
+    NSLog(@"Kirin.setKirinServices");
+    if (services != nil && kirinServices_ != nil) {
+        [NSException raise:@"KirinServicesException" 
+                    format:@"Cannot change KirinServices contained once the first service has been added"];
+    }
+    
+    [kirinServices_ release];
+    kirinServices_ = services;
+    [kirinServices_ retain];
+}
+
+
+- (KirinServices*) kirinServices {
+        NSLog(@"Kirin.getKirinServices");
+    if (kirinServices_ == nil) {
+        self.kirinServices = [KirinServices coreServices];
+    }
+    return kirinServices_;
 }
 
 #pragma mark -

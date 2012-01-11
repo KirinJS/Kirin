@@ -8,4 +8,10 @@
 
 #import <KirinKit/Kirin.h>
 #import <KirinKit/KirinHelper.h>
+#import <KirinKit/KirinUiFragmentHelper.h>
+#import <KirinKit/KirinScreenHelper.h>
+#import <KirinKit/KirinServiceHelper.h>
 
+#import <KirinKit/KirinServiceProtocol.h>
+#import <KirinKit/KirinServiceStub.h>
+#import <KirinKit/KirinPaths.h>

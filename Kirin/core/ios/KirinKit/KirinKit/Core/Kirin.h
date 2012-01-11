@@ -16,23 +16,41 @@
 
 
 
-#import <Foundation/Foundation.h>
-#import <KirinKit/SynthesizeSingleton.h>
-#import <UIKit/UIWebView.h>
+
 
 #import <KirinKit/KirinHelper.h>
+#import <KirinKit/KirinUiFragmentHelper.h>
+#import <KirinKit/KirinScreenHelper.h>
+#import <KirinKit/KirinServiceHelper.h>
+#import <KirinKit/KirinServices.h>
+
+// NONE OF THESE SHOULD BE public. 
 #import <KirinKit/JSContext.h>
 #import <KirinKit/NativeContext.h>
 #import <KirinKit/KirinDropbox.h>
 
+
+#import <KirinKit/SynthesizeSingleton.h>
+#import <UIKit/UIWebView.h>
+
+
 @interface Kirin : NSObject {
 }
 
+// publicly available objects.
 @property(retain) KirinDropbox* dropbox;
+
+@property(nonatomic, retain) KirinServices* kirinServices;
 
 - (id) initWithWebView: (UIWebView*) aWebView;
 
 - (KirinHelper*) bindObject: (id) nativeObject toModule:(NSString*) moduleName;
+
+- (KirinUiFragmentHelper*) bindUiFragment: (id) nativeObject toModule:(NSString*) moduleName;
+
+- (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName;
+
+- (KirinServiceHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName;
 
 SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 
@@ -43,6 +61,7 @@ SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 // TODO move these into class extensions in the .m file
 @property(nonatomic, retain) JSContext* jsContext;
 @property(nonatomic, retain) NativeContext* nativeContext;
+
 
 
 @end
