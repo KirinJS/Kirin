@@ -78,6 +78,26 @@
 		1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97814B2E36500211F34 /* DummyJSContext.m */; };
 		1A00C99514B2EC5F00211F34 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		1A00C99A14B2EE8900211F34 /* KirinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C99814B2EE8800211F34 /* KirinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010214BCFFED00CB9765 /* KirinUiFragmentHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010314BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */; };
+		1A02010414BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */; };
+		1A02010714BD025E00CB9765 /* KirinScreenHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010514BD025E00CB9765 /* KirinScreenHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010814BD025E00CB9765 /* KirinScreenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010614BD025E00CB9765 /* KirinScreenHelper.m */; };
+		1A02010914BD025E00CB9765 /* KirinScreenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010614BD025E00CB9765 /* KirinScreenHelper.m */; };
+		1A02010D14BD072C00CB9765 /* KirinServiceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010E14BD072C00CB9765 /* KirinServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */; };
+		1A02010F14BD072C00CB9765 /* KirinServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */; };
+		1A02011214BD09B000CB9765 /* KirinServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011514BD130600CB9765 /* KirinServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011314BD130500CB9765 /* KirinServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011614BD130600CB9765 /* KirinServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011414BD130600CB9765 /* KirinServices.m */; };
+		1A02011714BD130600CB9765 /* KirinServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011414BD130600CB9765 /* KirinServices.m */; };
+		1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011B14BD628300CB9765 /* KirinServiceStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011C14BD628400CB9765 /* KirinServiceStub.m */; };
+		1A02011F14BD628500CB9765 /* KirinServiceStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011C14BD628400CB9765 /* KirinServiceStub.m */; };
+		1A02012114BD658200CB9765 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012014BD658200CB9765 /* Settings.h */; };
+		1A02012414BD782300CB9765 /* KirinPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012214BD782000CB9765 /* KirinPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02012514BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
+		1A02012614BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,7 +191,21 @@
 		1A00C97814B2E36500211F34 /* DummyJSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyJSContext.m; sourceTree = "<group>"; };
 		1A00C97914B2E36500211F34 /* DummyJSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyJSContext.h; sourceTree = "<group>"; };
 		1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		1A00C99814B2EE8800211F34 /* KirinKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinKit.h; sourceTree = "<group>"; };
+		1A00C99814B2EE8800211F34 /* KirinKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KirinKit.h; path = Core/KirinKit.h; sourceTree = "<group>"; };
+		1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinUiFragmentHelper.h; sourceTree = "<group>"; };
+		1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinUiFragmentHelper.m; sourceTree = "<group>"; };
+		1A02010514BD025E00CB9765 /* KirinScreenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinScreenHelper.h; sourceTree = "<group>"; };
+		1A02010614BD025E00CB9765 /* KirinScreenHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinScreenHelper.m; sourceTree = "<group>"; };
+		1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceHelper.h; sourceTree = "<group>"; };
+		1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServiceHelper.m; sourceTree = "<group>"; };
+		1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceProtocol.h; sourceTree = "<group>"; };
+		1A02011314BD130500CB9765 /* KirinServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServices.h; sourceTree = "<group>"; };
+		1A02011414BD130600CB9765 /* KirinServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServices.m; sourceTree = "<group>"; };
+		1A02011B14BD628300CB9765 /* KirinServiceStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceStub.h; sourceTree = "<group>"; };
+		1A02011C14BD628400CB9765 /* KirinServiceStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServiceStub.m; sourceTree = "<group>"; };
+		1A02012014BD658200CB9765 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		1A02012214BD782000CB9765 /* KirinPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinPaths.h; sourceTree = "<group>"; };
+		1A02012314BD782200CB9765 /* KirinPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinPaths.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +253,7 @@
 		1A00C8B114B2E2FD00211F34 /* KirinKit */ = {
 			isa = PBXGroup;
 			children = (
+				1A00C99814B2EE8800211F34 /* KirinKit.h */,
 				1A00C8DB14B2E32600211F34 /* Core */,
 				1A00C8EF14B2E32600211F34 /* Services */,
 				1A00C90614B2E32600211F34 /* JSON */,
@@ -278,24 +313,19 @@
 		1A00C8DB14B2E32600211F34 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1A00C8DC14B2E32600211F34 /* DebugConsole.h */,
-				1A00C8DD14B2E32600211F34 /* DebugConsole.m */,
-				1A00C8E014B2E32600211F34 /* JSContext.h */,
-				1A00C8E114B2E32600211F34 /* JSContext.m */,
-				1A00C8E214B2E32600211F34 /* JSExecutor.h */,
 				1A00C8E314B2E32600211F34 /* Kirin.h */,
 				1A00C8E414B2E32600211F34 /* Kirin.m */,
 				1A00C8E514B2E32600211F34 /* KirinDropbox.h */,
 				1A00C8E614B2E32600211F34 /* KirinDropbox.m */,
-				1A00C8E714B2E32600211F34 /* KirinHelper.h */,
-				1A00C8E814B2E32600211F34 /* KirinHelper.m */,
-				1A00C8E914B2E32600211F34 /* KirinWebViewHolder.h */,
-				1A00C8EA14B2E32600211F34 /* KirinWebViewHolder.m */,
-				1A00C8EB14B2E32600211F34 /* NativeContext.h */,
-				1A00C8EC14B2E32600211F34 /* NativeContext.m */,
-				1A00C8ED14B2E32600211F34 /* NativeExecutor.h */,
-				1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */,
-				1A00C99814B2EE8800211F34 /* KirinKit.h */,
+				1A02011314BD130500CB9765 /* KirinServices.h */,
+				1A02011414BD130600CB9765 /* KirinServices.m */,
+				1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */,
+				1A02011B14BD628300CB9765 /* KirinServiceStub.h */,
+				1A02011C14BD628400CB9765 /* KirinServiceStub.m */,
+				1A02011014BD08B800CB9765 /* Helpers */,
+				1A0200FE14BCF7A600CB9765 /* Internal */,
+				1A02012214BD782000CB9765 /* KirinPaths.h */,
+				1A02012314BD782200CB9765 /* KirinPaths.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -303,28 +333,9 @@
 		1A00C8EF14B2E32600211F34 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				1A00C8F014B2E32600211F34 /* Connection.h */,
-				1A00C8F114B2E32600211F34 /* Database.h */,
-				1A00C8F214B2E32600211F34 /* DatabasesBackend.h */,
-				1A00C8F314B2E32600211F34 /* DatabasesBackend.m */,
-				1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */,
-				1A00C8F514B2E32600211F34 /* FileDownloader.h */,
-				1A00C8F614B2E32600211F34 /* FileDownloader.m */,
-				1A00C8F714B2E32600211F34 /* JSONListDownloader.h */,
-				1A00C8F814B2E32600211F34 /* JSONListDownloader.m */,
-				1A00C8F914B2E32600211F34 /* Networking.h */,
-				1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */,
-				1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */,
-				1A00C8FC14B2E32600211F34 /* SettingsBackend.h */,
-				1A00C8FD14B2E32600211F34 /* SettingsBackend.m */,
-				1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */,
-				1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */,
-				1A00C90014B2E32600211F34 /* SQLiteDatabase.h */,
-				1A00C90114B2E32600211F34 /* SQLiteDatabase.m */,
-				1A00C90214B2E32600211F34 /* SQLOperation.h */,
-				1A00C90314B2E32600211F34 /* SQLOperation.m */,
-				1A00C90414B2E32600211F34 /* Transaction.h */,
-				1A00C90514B2E32600211F34 /* Transaction.m */,
+				1A02011A14BD619600CB9765 /* Databases */,
+				1A02011914BD617700CB9765 /* Networking */,
+				1A02011814BD615700CB9765 /* Settings */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -353,6 +364,83 @@
 				1A00C91914B2E32600211F34 /* SBJsonWriter.m */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		1A0200FE14BCF7A600CB9765 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8DC14B2E32600211F34 /* DebugConsole.h */,
+				1A00C8DD14B2E32600211F34 /* DebugConsole.m */,
+				1A00C8E014B2E32600211F34 /* JSContext.h */,
+				1A00C8E114B2E32600211F34 /* JSContext.m */,
+				1A00C8E214B2E32600211F34 /* JSExecutor.h */,
+				1A00C8E914B2E32600211F34 /* KirinWebViewHolder.h */,
+				1A00C8EA14B2E32600211F34 /* KirinWebViewHolder.m */,
+				1A00C8EB14B2E32600211F34 /* NativeContext.h */,
+				1A00C8EC14B2E32600211F34 /* NativeContext.m */,
+				1A00C8ED14B2E32600211F34 /* NativeExecutor.h */,
+				1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		1A02011014BD08B800CB9765 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8E714B2E32600211F34 /* KirinHelper.h */,
+				1A00C8E814B2E32600211F34 /* KirinHelper.m */,
+				1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */,
+				1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */,
+				1A02010514BD025E00CB9765 /* KirinScreenHelper.h */,
+				1A02010614BD025E00CB9765 /* KirinScreenHelper.m */,
+				1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */,
+				1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		1A02011814BD615700CB9765 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1A02012014BD658200CB9765 /* Settings.h */,
+				1A00C8FC14B2E32600211F34 /* SettingsBackend.h */,
+				1A00C8FD14B2E32600211F34 /* SettingsBackend.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		1A02011914BD617700CB9765 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8F914B2E32600211F34 /* Networking.h */,
+				1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */,
+				1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */,
+				1A00C8F514B2E32600211F34 /* FileDownloader.h */,
+				1A00C8F614B2E32600211F34 /* FileDownloader.m */,
+				1A00C8F714B2E32600211F34 /* JSONListDownloader.h */,
+				1A00C8F814B2E32600211F34 /* JSONListDownloader.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		1A02011A14BD619600CB9765 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8F014B2E32600211F34 /* Connection.h */,
+				1A00C8F114B2E32600211F34 /* Database.h */,
+				1A00C8F214B2E32600211F34 /* DatabasesBackend.h */,
+				1A00C8F314B2E32600211F34 /* DatabasesBackend.m */,
+				1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */,
+				1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */,
+				1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */,
+				1A00C90014B2E32600211F34 /* SQLiteDatabase.h */,
+				1A00C90114B2E32600211F34 /* SQLiteDatabase.m */,
+				1A00C90214B2E32600211F34 /* SQLOperation.h */,
+				1A00C90314B2E32600211F34 /* SQLOperation.m */,
+				1A00C90414B2E32600211F34 /* Transaction.h */,
+				1A00C90514B2E32600211F34 /* Transaction.m */,
+			);
+			name = Databases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,6 +484,14 @@
 				1A00C96A14B2E32600211F34 /* SBJsonTokeniser.h in Headers */,
 				1A00C96D14B2E32600211F34 /* SBJsonWriter.h in Headers */,
 				1A00C99A14B2EE8900211F34 /* KirinKit.h in Headers */,
+				1A02010214BCFFED00CB9765 /* KirinUiFragmentHelper.h in Headers */,
+				1A02010714BD025E00CB9765 /* KirinScreenHelper.h in Headers */,
+				1A02010D14BD072C00CB9765 /* KirinServiceHelper.h in Headers */,
+				1A02011214BD09B000CB9765 /* KirinServiceProtocol.h in Headers */,
+				1A02011514BD130600CB9765 /* KirinServices.h in Headers */,
+				1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */,
+				1A02012114BD658200CB9765 /* Settings.h in Headers */,
+				1A02012414BD782300CB9765 /* KirinPaths.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -559,6 +655,12 @@
 				1A00C96814B2E32600211F34 /* SBJsonStreamWriterState.m in Sources */,
 				1A00C96B14B2E32600211F34 /* SBJsonTokeniser.m in Sources */,
 				1A00C96E14B2E32600211F34 /* SBJsonWriter.m in Sources */,
+				1A02010314BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */,
+				1A02010814BD025E00CB9765 /* KirinScreenHelper.m in Sources */,
+				1A02010E14BD072C00CB9765 /* KirinServiceHelper.m in Sources */,
+				1A02011614BD130600CB9765 /* KirinServices.m in Sources */,
+				1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */,
+				1A02012514BD782300CB9765 /* KirinPaths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +673,12 @@
 				1A00C97C14B2E36500211F34 /* KirinHelperTest.m in Sources */,
 				1A00C97D14B2E36500211F34 /* DummyNativeContext.m in Sources */,
 				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
+				1A02010414BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */,
+				1A02010914BD025E00CB9765 /* KirinScreenHelper.m in Sources */,
+				1A02010F14BD072C00CB9765 /* KirinServiceHelper.m in Sources */,
+				1A02011714BD130600CB9765 /* KirinServices.m in Sources */,
+				1A02011F14BD628500CB9765 /* KirinServiceStub.m in Sources */,
+				1A02012614BD782300CB9765 /* KirinPaths.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
