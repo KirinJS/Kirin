@@ -110,8 +110,8 @@
 			children = (
 				1A61E4881431272900A2E0DB /* DumbTableCell.xib */,
 				1A4A0F7F1430C7680010EF83 /* DumbListViewController.xib */,
-				1A4A0F761430C6CD0010EF83 /* DumbListViewController.m */,
 				1A4A0F771430C6CE0010EF83 /* DumbListViewController.h */,
+				1A4A0F761430C6CD0010EF83 /* DumbListViewController.m */,
 				1A61E4811431236C00A2E0DB /* RootViewController.xib */,
 				1A4A0F4A1430C12F0010EF83 /* RootViewController.h */,
 				1A4A0F4B1430C12F0010EF83 /* RootViewController.m */,
@@ -328,8 +328,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/KirinKit-fswjoqojxunyzxaeoaxsjnnikaaq/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/KirinKit-gvvohdfhhkneanahnaaqvjoygdnj/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Kirin/core/ios/KirinKit/build/Debug-iphoneos\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -350,8 +349,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/KirinKit-fswjoqojxunyzxaeoaxsjnnikaaq/Build/Products/Debug-iphoneos\"",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/KirinKit-gvvohdfhhkneanahnaaqvjoygdnj/Build/Products/Debug-iphoneos\"",
+					"\"$(SRCROOT)/../../../Kirin/core/ios/KirinKit/build/Release-iphoneos\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";
