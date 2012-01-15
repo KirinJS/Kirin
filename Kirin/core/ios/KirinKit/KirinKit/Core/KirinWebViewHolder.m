@@ -11,9 +11,10 @@
 #import <UIKit/UIApplication.h>
 #import <KirinKit/KirinPaths.h>
 
-@interface KirinWebViewHolder (private)
+@interface KirinWebViewHolder ()
 
-
+@property(retain) UIWebView* webView;
+@property(retain) id<NativeExecutor> nativeExecutor;
 
 - (void) _initializeWebView: (UIWebView*) webView;
 
@@ -22,8 +23,8 @@
 
 @implementation KirinWebViewHolder
 
-@synthesize webView;
-@synthesize nativeExecutor;
+@synthesize webView = webView_;
+@synthesize nativeExecutor = nativeExecutor_;
 
 
 - (id) init {

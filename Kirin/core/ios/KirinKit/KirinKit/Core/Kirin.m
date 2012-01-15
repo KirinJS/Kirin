@@ -22,9 +22,16 @@
 #import "KirinWebViewHolder.h"
 #import "DebugConsole.h"
 
-@interface Kirin (private)
+#import "KirinKit/JSContext.h"
+#import "KirinKit/NativeContext.h"
+
+
+@interface Kirin ()
 
 - (void) ensureStarted;
+
+@property(nonatomic, retain) JSContext* jsContext;
+@property(nonatomic, retain) NativeContext* nativeContext;
 
 @end
 
@@ -32,12 +39,12 @@
 
 @implementation Kirin 
 
-@synthesize dropbox;
+@synthesize dropbox = dropbox_;
 @synthesize kirinServices = kirinServices_;
 
 
-@synthesize jsContext;
-@synthesize nativeContext;
+@synthesize jsContext = jsContext_;
+@synthesize nativeContext = nativeContext_;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
@@ -69,7 +76,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                    andNativeObject:nativeObject 
                                       andJsContext:self.jsContext 
                                   andNativeContext:self.nativeContext
-                                        andDropbox:dropbox] autorelease];
+                                        andDropbox:self.dropbox] autorelease];
 }
 
 - (KirinUiFragmentHelper*) bindUiFragment: (id) nativeObject toModule:(NSString*) moduleName {
@@ -78,7 +85,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                               andNativeObject:nativeObject 
                                                  andJsContext:self.jsContext 
                                              andNativeContext:self.nativeContext
-                                                   andDropbox:dropbox] autorelease];
+                                                   andDropbox:self.dropbox] autorelease];
     
 }
 
@@ -88,7 +95,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                               andNativeObject:nativeObject 
                                                  andJsContext:self.jsContext 
                                              andNativeContext:self.nativeContext
-                                                   andDropbox:dropbox] autorelease];
+                                                   andDropbox:self.dropbox] autorelease];
 
 }
 
@@ -99,19 +106,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                           andNativeObject:nativeObject 
                                              andJsContext:self.jsContext 
                                          andNativeContext:self.nativeContext
-                                               andDropbox:dropbox] autorelease];
+                                               andDropbox:self.dropbox] autorelease];
 }
 
 #pragma mark -
 #pragma mark Managing Services
 
 - (void) ensureStarted {
-    NSLog(@"Make sure services are registered");
+    // implicitly calls the getter, ensuring a kirinservices object exists.
     [self.kirinServices ensureStarted];
 }
 
 - (void) setKirinServices:(KirinServices *) services {
-    NSLog(@"Kirin.setKirinServices");
     if (services != nil && kirinServices_ != nil) {
         [NSException raise:@"KirinServicesException" 
                     format:@"Cannot change KirinServices contained once the first service has been added"];
@@ -124,7 +130,6 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
 
 - (KirinServices*) kirinServices {
-        NSLog(@"Kirin.getKirinServices");
     if (kirinServices_ == nil) {
         self.kirinServices = [KirinServices coreServices];
     }
@@ -137,7 +142,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 {
     self.jsContext = nil;
     self.nativeContext = nil;
-    [dropbox release];
+    self.dropbox = nil;
 	[super dealloc];
 }
 

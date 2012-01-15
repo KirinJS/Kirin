@@ -7,7 +7,7 @@
 //
 
 #import "KirinUiFragmentHelper.h"
-
+#import "JSON.h"
 
 @implementation KirinUiFragmentHelper
 
@@ -17,6 +17,10 @@
 
 - (void) onResume {
     [self jsMethod:@"onResume"];
+}
+
+- (void) onResumeWithOptions: (NSDictionary*) options {
+    [self jsMethod: @"onResume" withArgsList: [options JSONRepresentation]];
 }
 
 @end

@@ -10,8 +10,9 @@
 #import "JSON.h"
 
 
-@interface KirinHelper (private) 
-
+@interface KirinHelper () 
+@property(retain) JSContext* jsContext;
+@property(retain) NativeContext* nativeContext;
 @end
 
 @implementation KirinHelper
@@ -20,8 +21,8 @@
 @synthesize nativeObject;
 @synthesize dropbox;
 
-@synthesize jsContext;
-@synthesize nativeContext;
+@synthesize jsContext = jsContext_;
+@synthesize nativeContext = nativeObject_;
 
 - (id) initWithModuleName: (NSString*) moduleName 
           andNativeObject: (NSObject*) obj 
@@ -43,7 +44,7 @@
 
 - (void) onLoad {
     [self.nativeContext registerNativeObject:self.nativeObject asName:jsModuleName];
-    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[nativeContext methodNamesFor: nativeObject]];
+    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[self.nativeContext methodNamesFor: nativeObject]];
 }
 
 - (void) onUnload {
@@ -76,9 +77,9 @@
         return;
     }
     if (argsList == nil || [argsList length] == 0) {
-        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')", callbackId]];
+        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')", callbackId]];
     } else {
-        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])", callbackId, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])", callbackId, argsList]];
     }    
 }
 
@@ -94,7 +95,7 @@
 
 - (void) cleanupCallbacks:(NSArray*) callbackIds {
     if ([callbackIds count]) {
-        [jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.deleteCallback(['%@'])", [callbackIds componentsJoinedByString:@"', '"]]];
+        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.deleteCallback(['%@'])", [callbackIds componentsJoinedByString:@"', '"]]];
     }
 }
 
@@ -125,7 +126,6 @@
 
 - (void) dealloc {
     self.jsContext = nil;
-
     self.nativeContext = nil;
     
     self.jsModuleName = nil;

@@ -14,6 +14,8 @@
 
 - (void) onResume;
 
+- (void) onResumeWithOptions: (NSDictionary*) options;
+
 - (void) onPause;
 
 @end

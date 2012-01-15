@@ -24,9 +24,7 @@
 @property(retain) NSObject* nativeObject;
 @property(retain) KirinDropbox* dropbox;
 
-// TODO move these into class extensions in the .m file
-@property(retain) JSContext* jsContext;
-@property(retain) NativeContext* nativeContext;
+
 
 
 - (id) initWithModuleName: (NSString*) moduleName 

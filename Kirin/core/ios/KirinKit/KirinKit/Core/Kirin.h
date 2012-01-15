@@ -24,11 +24,7 @@
 #import <KirinKit/KirinServiceHelper.h>
 #import <KirinKit/KirinServices.h>
 
-// NONE OF THESE SHOULD BE public. 
-#import <KirinKit/JSContext.h>
-#import <KirinKit/NativeContext.h>
 #import <KirinKit/KirinDropbox.h>
-
 
 #import <KirinKit/SynthesizeSingleton.h>
 #import <UIKit/UIWebView.h>
@@ -55,13 +51,5 @@
 SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 
 #define KIRIN [Kirin sharedKirin]
-
-
-
-// TODO move these into class extensions in the .m file
-@property(nonatomic, retain) JSContext* jsContext;
-@property(nonatomic, retain) NativeContext* nativeContext;
-
-
 
 @end

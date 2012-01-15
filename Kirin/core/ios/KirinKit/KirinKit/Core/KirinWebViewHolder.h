@@ -23,9 +23,4 @@
 
 - (id) initWithWebView: (UIWebView*) aWebView andNativeContext: (id<NativeExecutor>) nativeExec;
 
-
-// TODO move these into class extensions in the .m file
-@property(retain) UIWebView* webView;
-@property(retain) id<NativeExecutor> nativeExecutor;
-
 @end

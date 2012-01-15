@@ -11,15 +11,16 @@
 #import <objc/runtime.h>
 
 
-@interface NativeContext (private) 
+@interface NativeContext () 
 
+@property(nonatomic, retain) NSMutableDictionary* nativeObjects;
     
 @end
 
 
 @implementation NativeContext
 
-@synthesize nativeObjects;
+@synthesize nativeObjects = nativeObjects_;
 
 - (id) init {
     return [self initWithDictionary: [[[NSMutableDictionary alloc] init] autorelease]]; 

@@ -22,8 +22,4 @@
 
 - (void) unregisterNativeObject: (NSString*) name;
 
-// TODO move these into class extensions in the .m file
-@property(nonatomic, retain) NSMutableDictionary* nativeObjects;
-
-
 @end
