@@ -2,7 +2,7 @@
 var _ = require("underscore");
 
 // TODO split these keyword definitions into a seperate module.
-exports.buildTypes = ['prod', 'developer', 'qa', 'stage', 'uitest'];
+exports.buildTypes = ['prod', 'dev', 'qa', 'stage', 'uitest'];
 
 exports.supportedPlatforms = {
 		"ios": ["webview"],
@@ -60,7 +60,8 @@ function pushAll (l, r) {
 }
 
 
-exports.runJSLint = function () {
+exports.runJSLint = function (dryRun) {
+	var lintPath = require("path").join(__dirname, "./tools/jslint/lib/fulljslint_export.js");
 	var JSLINT = require("./tools/jslint/lib/fulljslint_export.js").JSLINT;
 	// TODO put these into a seperate file. 
 	var jslint_config = require("./kirin-jslint-rules.js");
@@ -70,6 +71,11 @@ exports.runJSLint = function () {
 	_.each(testtools.getAllNonTestModulePathMapping(), function (filepath) {
 		var code = fs.readFileSync(filepath);
 		if (filepath.indexOf(".js") < 0) {
+			return;
+		}
+
+		if (dryRun) {
+			console.log("node " + lintPath + " " + filepath);
 			return;
 		}
 
@@ -98,7 +104,7 @@ exports.runJSLint = function () {
 	return numErrors === 0;
 };
 
-exports.runCompiler = function (outputFilepath, callback) {
+exports.runCompiler = function (outputFilepath, callback, dryRun) {
 	var path = require("path");
 	var compilerPath = path.join(__dirname, "tools", "closure", "compiler.jar");
 	if (!path.existsSync(compilerPath)) {
@@ -115,16 +121,20 @@ exports.runCompiler = function (outputFilepath, callback) {
 	}
 	
 	var cmd = [javaPath, "-jar", compilerPath, "--js", file, "--js_output_file", "\"" + outputFilepath + "\""].join(" ");
-    var cp = require("child_process");
-    cp.exec(cmd, function(err, stdout, stderr) {
-      if (err) {
-        console.error("Could not compile");
-        console.error(stderr);
-      } else {
-		callback(stdout);
-      }          
-    }); 
-    
+	if (dryRun) {
+		console.log(cmd);
+		callback("");
+	} else {
+		var cp = require("child_process");
+		cp.exec(cmd, function(err, stdout, stderr) {
+		  if (err) {
+			console.error("Could not compile");
+			console.error(stderr);
+		  } else {
+			callback(stdout);
+		  }          
+		}); 
+    }
     var allJSFiles = testtools.getAllNonTestModuleRelativePathMapping();
     var files = _.filter(allJSFiles, function (f) {return /(\/lib\/)|-min\.js/.test(f);});
     files.push(path.basename(outputFilepath));
@@ -134,7 +144,7 @@ exports.runCompiler = function (outputFilepath, callback) {
 	
 };
 
-exports.runTests = function (callback, errback) {
+exports.runTests = function (callback, errback, dryRun) {
 	var testtools = require("./kirin-testtools.js");
 	var path = require("path");
 	var plugins = testtools.getAllPlugins();
@@ -149,14 +159,18 @@ exports.runTests = function (callback, errback) {
 		if (path.existsSync(testAllJs)) {
 			// TODO can we use something bbetter than a raw require 
 			// while still exposing testtools?
-			try {
-				require(testAllJs);
-			} catch (e) {
-				console.error(require("util").inspect(e));
-				errors.push(e);
+			if (!dryRun) {
+				try {
+					require(testAllJs);
+				} catch (e) {
+					console.error(require("util").inspect(e));
+					errors.push(e);
+				}
+			} else {
+				console.log("node " + testAllJs);
 			}
 		} else {
-			console.error("Test doesn't exist: " + testAllJs);
+			console.error("# node " + testAllJs + " # doesn't exist");
 		}
 	});
 	
@@ -164,5 +178,18 @@ exports.runTests = function (callback, errback) {
 		callback();
 	} else {
 		errback(errors);
+	}
+};
+
+exports.compileNative = function (isApplication, dir, environment, callback, errback) {
+	try {
+		var nativeBuilder = require("./kirin-buildtools-" + environment.platform + ".js");
+		if (isApplication) {
+			nativeBuilder.compileApplication(environment, dir, callback, errback);
+		} else {
+			nativeBuilder.compileDependency(environment, dir, callback, errback);
+		}
+	} catch (e) {
+		console.error("Native building is not supported on " + environment.platform, e);
 	}
 };

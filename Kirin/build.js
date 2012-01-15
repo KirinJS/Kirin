@@ -3,11 +3,11 @@
 var _ = require("underscore");
 var util = require("util"), path = require("path");
 var fs = require("fs");
-var testTools = require("./building/kirin-testtools.js");
+var testtools = require("./building/kirin-testtools.js");
 var buildtools = require("./building/kirin-buildtools.js");
 
 var kirinPluginsPath = process.env["KIRIN_PLUGINS"];
-
+var dryRun = false;
 var pathSep = ":";
 if (process.platform === "windows") {
 	pathSep = ";";
@@ -27,7 +27,7 @@ function buildAll (argv, dir) {
 	libraryModules = {};
 	var defaults = {
 		testing: "all",
-		buildType: "developer",
+		buildType: "dev",
 		resourcesDir: "common/resources",
 		javascriptSrcDir: "common/javascript/src",
 		javascriptTestDir: "common/javascript/test",
@@ -64,10 +64,35 @@ function buildAll (argv, dir) {
 				break;
 			case "--nolint":
 				args.jslint = false;
+				break;
+			case "--native":
+				args.compileNative = true;
+				break;
+			case "--ios-configuration":
+				args["ios.configuration"] = argv[i+1];
+				i++;
+				break;
+			case "--dry-run":
+				args.dryRun = dryRun = true;
+				break;
+			case "-x":
+			case "--app-file":
+				args.appFile = argv[i+1];
+				i++;
+				break;
 			default:
 				run = "help";
 				break ARGS;
 		}
+	}
+	
+	switch (args.buildType) {
+		case "developer": 
+			args.buildType = "dev";
+			break;
+		case "production": 
+			args.buildType = "prod";
+			break;			
 	}
 	
 	var environment = args;
@@ -75,8 +100,8 @@ function buildAll (argv, dir) {
 	if (!environment.testing) {
 		switch (environment.buildType) {
 			case "qa": 
-			case "developer": 
-			case "production":
+			case "dev": 
+			case "prod":
 			case "stage":
 				environment.testing = "all";
 				break;
@@ -100,7 +125,7 @@ function buildAll (argv, dir) {
 	if (!environment.minify) {
 		switch (environment.buildType) {
 			case "qa":  
-			case "production":
+			case "prod":
 			case "stage":
 				environment.minify = true;
 				break;
@@ -113,6 +138,10 @@ function buildAll (argv, dir) {
 		environment.minify = false;
 	}
 	
+	if (args.buildType === "none") {
+		// noop build type.
+		return;
+	}
 
 	if (!buildtools.isValidConfiguration(args.platform, args.buildType)) {
 		help("Not a valid platform and/or buildtype");
@@ -145,13 +174,15 @@ function preBuild(env) {
 		}
 		mkdirs(dir);
 	}
+	// the first module will always be the application?
+	env.isApplication = true;
 }
 
 function postPluginProcessing(environment) {
 	
 	if (environment.jslint) {
 		startMessage("JSLint");
-		if (!buildtools.runJSLint()) {
+		if (!buildtools.runJSLint(dryRun)) {
 			endBuildBadly("Too many JSLint errors.");
 		}
 	}
@@ -163,21 +194,22 @@ function postPluginProcessing(environment) {
 		}, 
 		function () {
 			endBuildBadly("Not all tests passed");
-		});
+		}, dryRun);
 	} else {
 		packaging(environment);
 	}
 }
 
 function packaging (environment) {
+	var continuation = environment.compileNative ? compileNative : endBuild;
 	if (environment.buildDir) {
 
-		var jsFiles = testTools.getLibraryFiles();
+		var jsFiles = testtools.getLibraryFiles();
 		
 		if (environment.minify) {
-			jsFiles = buildtools.runCompiler(path.join(environment.buildDir, environment.minifiedJs), endBuild);
+			jsFiles = buildtools.runCompiler(path.join(environment.buildDir, environment.minifiedJs), continuation, dryRun);
 		} else {
-			jsFiles = testTools.getAllNonTestModuleRelativePathMapping();
+			jsFiles = testtools.getAllNonTestModuleRelativePathMapping();
 		}
 
 	
@@ -190,15 +222,47 @@ function packaging (environment) {
 			indexBuilder.templateFile = "index-" + environment.platform + ".html";
 		}
 		jsFiles = _.union(_.keys(libraryModules), jsFiles);
-		indexBuilder.buildIndexFile(jsFiles, environment.buildDir); 
+		if (!dryRun) {
+			indexBuilder.buildIndexFile(jsFiles, environment.buildDir); 
+		} else {
+			console.log("# creating index file from Javascript files");
+		}
+		
+		if (environment.minify) {
+			startMessage("Minifying");
+		}
 	}
 
 	if (!environment.minify) {
-		endBuild();
-	} else {
-		startMessage("Minifying");
-	}	
+		continuation();
+	}
 	
+}
+
+function compileNative () {
+	startMessage("Compiling native projects");
+
+	var i = 0; 
+	var env;
+	var errback = endBuildBadly;
+	var cb = function () {
+		if (i < buildOrder.length) {
+			env = buildOrder[i];
+
+			//  (isApplication, dir, environment, callback, errback)
+			i++;
+			buildtools.compileNative(env.isApplication, env.cwd, env, cb, errback);
+		} else {
+			endBuild();
+		}
+	};
+	
+	cb();
+	
+}
+
+function postPackaging (environment) {
+
 }
 
 function endBuildBadly (err) {
@@ -240,6 +304,9 @@ function dirWalker (filepath, callbacks) {
 
 function rmForce(dir) {
 	console.log("rm -Rf " + dir);
+	if (dryRun) {
+		return;
+	}
 	dirWalker(dir, {
 		perFile: function (file) {
 			fs.unlinkSync(file);
@@ -259,7 +326,9 @@ function mkdirs(dirname) {
 	} else {
 		mkdirs(path.dirname(dirname));
 		console.log("mkdir " + dirname);
-		fs.mkdirSync(dirname);
+		if (!dryRun) {
+			fs.mkdirSync(dirname);
+		}
 		return true;
 	}
 }
@@ -277,6 +346,7 @@ function loadJSON(dir, file) {
 
 var pluginModules = {};
 var libraryModules = {};
+var buildOrder = [];
 function buildModule (pluginName, inheritedEnvironment, dir) {
 
 	var info = loadJSON(dir, "info.js");
@@ -285,7 +355,7 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	}
 	
 	if (!info) {
-		
+		throw new Error("Can't find an info.js in " + dir);
 	}
 	
 	var environment = _.extend(info, inheritedEnvironment);
@@ -293,7 +363,16 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	pluginName = pluginName || info.name;
 
 	pluginModules[pluginName] = {};
+	
+	var isApplication = environment.isApplication;
+	environment.cwd = dir;
+	
+	
+	
+	delete environment.isApplication;
 	buildDependencies(info, environment);
+	environment.isApplication = isApplication;
+	buildOrder.push(environment);
 	startMessage("Gathering " + pluginName);
 	var createFilteredWalker = function (extensionPattern, exclusionsPattern) {
 		extensionPattern = extensionPattern || /\.*$/;
@@ -333,7 +412,9 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 			var newFilepath = filepath.replace(srcPath, destPath);
 			mkdirs(path.dirname(newFilepath));
 			console.log("cp " + filepath + " " + newFilepath);
-			fs.linkSync(filepath, newFilepath);
+			if (!dryRun) {
+				fs.linkSync(filepath, newFilepath);
+			}
 		};
 	}
 	
@@ -346,14 +427,14 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		javascriptFiles.push(filepath);
 	};
 	
-	var srcPath = path.join(dir, info.src || "common/javascript/src");
-	var resPath = path.join(dir, info.resources || "common/resources");	
-	var libPath = path.join(dir, info.lib || "common/lib");	
+	var srcPath = path.join(dir, info["javascript.src"] || "common/javascript/src");
+	var resPath = path.join(dir, info["common.resources"] || "common/resources");	
+	var libPath = path.join(dir, info["javascript.lib"] || "common/lib");	
 
 	dirWalker(srcPath, javascriptFileWalker);
 
 
-	var moduleInfo = testTools.addPlugin(pluginName, javascriptFiles, srcPath);	
+	var moduleInfo = testtools.addPlugin(pluginName, javascriptFiles, srcPath);	
 	pluginModules[pluginName] = moduleInfo;
 
 	
@@ -390,9 +471,7 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		
 		
 	}
-	
 
-	
 
 }
 
@@ -433,8 +512,9 @@ function buildDependency (moduleName, info) {
 
 
 function help (err) {
-	console.error("HELP: " + err);
-	
+	if (err) {
+		console.error("HELP: " + err);
+	}
 	console.log(fs.readFileSync(path.join(__dirname, "./building/build-usage.txt")).toString());
 	
 	

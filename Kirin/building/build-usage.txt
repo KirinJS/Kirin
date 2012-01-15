@@ -36,15 +36,16 @@ OPTIONS
 	-webview        Only included for platforms where the Javascript is to be run in a webview. e.g. Android, iOS
 	-javascript     Only included for platforms where the Javascript is to be run in a webview. e.g. QML, WebOS
 
---build-type, -b developer|qa|prod|uitest (developer by default)
+--build-type, -b developer|qa|prod|uitest|none (developer by default)
 
 	Specifies the type of build the Javascript is going to be used for.
 	
-	-developer		Only included for development releases. This will not minify the source.
-	-qa				Only included for QA releases
-	-stage			Only included for Staging releases
-	-prod			Only included for production releases
-	-uitest         If ui tests are available, use these files preferentially. Useful for when building UI first.
+	dev		Only included for development releases. This will not minify the source.
+	qa			Only included for QA releases
+	stage		Only included for Staging releases
+	prod		Only included for production releases
+	uitest    	If ui tests are available, use these files preferentially. Useful for when building UI first.
+
 
 	Additionally, the following is provided to ease unit testing.
     -dummy          If dummy modules are available, use these files preferentially. Useful for unit testing.
@@ -53,18 +54,19 @@ OPTIONS
 --build-dir, -d <dir> (optional)
 	This is where the final javascript and index file will be deposited. If this is specified the named directory will be deleted and replaced with a new build directory.
 	
+--native (optional)
+	By default, this flag is not applied. When present, the build script should do the right thing building the native package, in the correct order needed to assemble the app.
 	
 Build-type:
 This will toggle minification, and the use of minified versions of library files.
 For this reason, for each external library, there must be two versions supplied: with and without a -min.js suffix.
-
-
 
 Build-type options:
 	production    minify the Javascript in shared/ and use the -min.js files available in lib/
 	stage         minify the Javascript in shared/ and use the -min.js files available in lib/
 	qa            minify the Javascript in shared/ and use the -min.js files available in lib/
 	developer     uses unminified versions of files in lib/.
+	none          causes the build script to terminate immediately and normally. Useful for headless building.
 
 Distribution directory
 If one is specified, the platform specific file in index/ is used as a template. The value of %INCLUDED_SCRIPTS% is
