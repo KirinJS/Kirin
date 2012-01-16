@@ -269,6 +269,10 @@ function compileNative () {
 			env = buildOrder[i];
 
 			//  (isApplication, dir, environment, callback, errback)
+			if (env.isApplication) {
+				env.info.appFile = env.appFile;
+			}
+			
 			i++;
 			buildtools.compileNative(env.isApplication, env.cwd, env.platform, env.buildType, env.info, cb, errback);
 		} else {
