@@ -80,7 +80,7 @@ exports.compileApplication = function (environment, dir, callback, errback) {
 	compileProject(environment, dir, function () {
 		var archiveFile = environment.appFile || path.join(process.cwd(), environment.name + "-" + environment["ios.configuration"] + "-" + environment.buildType + ".zip");
 		var appPath = path.join(dir, environment["ios.dir"] || "ios", "build", environment["ios.configuration"] + "-iphoneos");
-		var zipCmd = "zip -r " + archiveFile + " *.app";
+		var zipCmd = "zip -r -T -y '" + archiveFile + "' *.app";
 		console.log("cd " + appPath);
 		console.log(zipCmd);
 		if (environment.dryRun) {

@@ -209,7 +209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "node ../build.js --platform ios --build-type $KIRIN_BUILD_TYPE\n";
+			shellScript = "/usr/local/bin/node ../build.js --platform ios --build-type $KIRIN_BUILD_TYPE\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
