@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-defineModule("DumbListScreen", function (require, exports) {
+defineScreenModule("DumbListScreen", function (require, exports) {
 
 	var theScreen;
 
@@ -32,6 +32,10 @@ defineModule("DumbListScreen", function (require, exports) {
 
 	exports.onLoad = function (ui) {
 		theScreen = ui;
+	};
+
+	exports.onUnload = function () {
+		theScreen = null;
 	};
 
 	exports.onResume = function () {

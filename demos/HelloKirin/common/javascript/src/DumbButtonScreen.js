@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-defineModule("DumbButtonScreen", function (require, exports) {
+defineScreenModule("DumbButtonScreen", function (require, exports) {
 	var strings = ["smallest", "still small", "small", "medium", "big", "bigger", "huge", "giant", "quite big", "biggest"],
 		counter = strings.length - 1,
 		theScreen;
