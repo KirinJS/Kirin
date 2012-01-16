@@ -183,7 +183,6 @@ exports.runTests = function (callback, errback, dryRun) {
 
 exports.compileNative = function (isApplication, dir, platform, buildType, environment, callback, errback) {
 	try {
-		console.dir(environment);
 		var nativeBuilder = require("./kirin-buildtools-" + platform + ".js");
 		if (isApplication) {
 			nativeBuilder.compileApplication(environment, dir, buildType, callback, errback);
