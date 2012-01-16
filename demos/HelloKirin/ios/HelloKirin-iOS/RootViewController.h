@@ -20,10 +20,7 @@
 #import <KirinKit/KirinKit.h>
 
 @interface RootViewController : UIViewController {
-	UILabel* label;
-	UIViewController* dumbListViewController;
-    
-    KirinScreenHelper* kirinHelper;
+
 }
 
 

@@ -18,15 +18,16 @@
 
 #import "DumbListViewController.h"
 
-@interface DumbListViewController (private) 
+@interface DumbListViewController () 
 
+@property(retain, nonatomic) KirinScreenHelper* kirinHelper;
+@property(retain, nonatomic) NSArray* jsonList;
 
-    
 @end
 
 @implementation DumbListViewController
-@synthesize jsonList;
-@synthesize kirinHelper;
+@synthesize jsonList = jsonList_;
+@synthesize kirinHelper = kirinHelper_;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -91,7 +92,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [jsonList count];
+    return [self.jsonList count];
 }
 
 

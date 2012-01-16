@@ -22,10 +22,16 @@
 
 #import "DumbListViewController.h"
 
-@implementation RootViewController
-@synthesize label;
-@synthesize dumbListViewController;
+@interface RootViewController() 
 
+@property(retain, nonatomic) KirinScreenHelper* kirinHelper;
+
+@end
+
+@implementation RootViewController
+@synthesize label = label_;
+@synthesize dumbListViewController = dumbListViewController_;
+@synthesize kirinHelper = kirinHelper_;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -37,15 +43,15 @@
 	self.navigationItem.rightBarButtonItem = editButton;
 	
 	self.navigationItem.title = @"How big?";
-    kirinHelper = [[KIRIN bindScreen:self
+    self.kirinHelper = [[KIRIN bindScreen:self
                            toModule:@"DumbButtonScreen"] retain];
-    [kirinHelper onLoad];
+    [self.kirinHelper onLoad];
 }
 
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    [kirinHelper onResume];
+    [self.kirinHelper onResume];
     [super viewWillAppear:animated];
 }
 
@@ -61,7 +67,7 @@
 */
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [kirinHelper onPause];
+    [self.kirinHelper onPause];
 	[super viewDidDisappear:animated];
 }
 
@@ -75,12 +81,12 @@
  */
 
 -(IBAction) buttonOnClick: (id)sender {    
-    [kirinHelper jsMethod:@"onDumbButtonClick"];
+    [self.kirinHelper jsMethod:@"onDumbButtonClick"];
 	
 }
 
 -(IBAction) showListOnClick: (id)sender {
-    [kirinHelper jsMethod:@"onNextScreenButtonClick"];
+    [self.kirinHelper jsMethod:@"onNextScreenButtonClick"];
 }
 
 - (void) updateLabelSize:(NSInteger) size andText:(NSString*) text {
@@ -112,12 +118,12 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-    [kirinHelper onUnload];
+    [self.kirinHelper onUnload];
 }
 
 
 - (void)dealloc {
-    [kirinHelper release];
+    [self.kirinHelper release];
     [super dealloc];
 }
 
