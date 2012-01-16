@@ -28,9 +28,6 @@ function buildAll (argv, dir) {
 	var defaults = {
 		testing: "all",
 		buildType: "dev",
-		resourcesDir: "common/resources",
-		javascriptSrcDir: "common/javascript/src",
-		javascriptTestDir: "common/javascript/test",
 		minifiedJs: "application.js",
 		dirname: dir,
 		jslint: true
@@ -80,12 +77,21 @@ function buildAll (argv, dir) {
 				args.appFile = argv[i+1];
 				i++;
 				break;
+			case "-B":
+			case "--no-js-build":
+				args.noJSBuildDir = true;
+				break;
 			default:
 				run = "help";
 				break ARGS;
 		}
 	}
 	
+	
+	if (args.noJSBuildDir) {
+		delete args.buildDir;
+	}
+
 	switch (args.buildType) {
 		case "developer": 
 			args.buildType = "dev";
@@ -134,14 +140,22 @@ function buildAll (argv, dir) {
 		}
 	}
 	
-	if (!environment.buildDir) {
+
+	
+	if (environment.noJSBuildDir) {
 		environment.minify = false;
+	} else if (!environment.buildDir) {
+		var info = loadInfo(dir);
+		environment.cwd = dir;
+		environment.buildDir = buildtools.deriveBuildPath(environment);
 	}
 	
 	if (args.buildType === "none") {
 		// noop build type.
 		return;
 	}
+
+	
 
 	if (!buildtools.isValidConfiguration(args.platform, args.buildType)) {
 		help("Not a valid platform and/or buildtype");
@@ -152,6 +166,8 @@ function buildAll (argv, dir) {
 	environment.excludeRegexp = new RegExp("-" + filters.negative.join("|-"));
 	environment.includeRegexp = new RegExp("-" + filters.positive.join("|-"));
 	environment.allVariantsRegexp = new RegExp("-" + filters.allVariants.join("|-"));
+
+
 
 	preBuild(environment);
  
@@ -165,6 +181,8 @@ function startMessage (msg) {
 }
 
 function preBuild(env) {
+
+
 
 	var dir = env.buildDir;
 	if (dir) {
@@ -344,11 +362,7 @@ function loadJSON(dir, file) {
 	}
 }
 
-var pluginModules = {};
-var libraryModules = {};
-var buildOrder = [];
-function buildModule (pluginName, inheritedEnvironment, dir) {
-
+function loadInfo(dir) {
 	var info = loadJSON(dir, "info.js");
 	if (!info) {
 		info = loadJSON(dir, "common/javascript/info.js");
@@ -358,7 +372,19 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		throw new Error("Can't find an info.js in " + dir);
 	}
 	
+	return info;
+}
+
+var pluginModules = {};
+var libraryModules = {};
+var buildOrder = [];
+function buildModule (pluginName, inheritedEnvironment, dir) {
+
+
+	var info = loadInfo(dir);
 	var environment = _.extend(info, inheritedEnvironment);
+	environment.cwd = dir;
+	
 	
 	pluginName = pluginName || info.name;
 
@@ -366,7 +392,7 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	
 	var isApplication = environment.isApplication;
 	environment.cwd = dir;
-	
+
 	
 	
 	delete environment.isApplication;

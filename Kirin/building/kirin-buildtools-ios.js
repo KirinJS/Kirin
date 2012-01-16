@@ -9,7 +9,7 @@ function compileProject (environment, dir, callback, errback) {
 	}
 
 	if (!iphoneSDK) {
-		childProcess.exec("xcodebuild -showsdks | grep -o 'iphoneos*.*'", function (error, stdout, stderr) {
+		childProcess.exec("xcodebuild -showsdks | grep -o 'iphoneos*.*' | tail -n 1", function (error, stdout, stderr) {
 			if (!error) {
 				iphoneSDK = stdout.toString().replace(/[\n\s]/g, "");
 				compileProject (environment, dir, callback, errback);
@@ -56,7 +56,10 @@ function compileProject (environment, dir, callback, errback) {
 	childProcess.exec(cmd, {maxBuffer: 1024*1024, cwd: directory }, function (error, stdout, stderr) {
 		console.log("cd -");
 		if (error) {
+			console.log("---------------------------------------");
 			console.dir(error);
+			console.log(stdout);
+			console.log("---------------------------------------");
 			console.log(stderr);
 			if (errback) {
 				errback(error);
@@ -70,6 +73,9 @@ function compileProject (environment, dir, callback, errback) {
 	});
 }
 
+/*
+ * Native compiling methods.
+ */
 exports.compileApplication = function (environment, dir, callback, errback) {
 	compileProject(environment, dir, function () {
 		var archiveFile = environment.appFile || path.join(process.cwd(), environment.name + "-" + environment["ios.configuration"] + "-" + environment.buildType + ".zip");
@@ -95,7 +101,10 @@ exports.compileApplication = function (environment, dir, callback, errback) {
 	
 	}, errback);
 };
-
 exports.compileDependency = function (environment, dir, callback, errback) {
 	compileProject(environment, dir, callback, errback);
 };
+
+exports.deriveBuildPath = function (environment) {
+	return path.join(environment.cwd, environment["ios.dir"] || "ios", "generated-javascript");
+}

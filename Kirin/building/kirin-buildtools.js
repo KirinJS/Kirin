@@ -135,11 +135,11 @@ exports.runCompiler = function (outputFilepath, callback, dryRun) {
 		  }          
 		}); 
     }
-    var allJSFiles = testtools.getAllNonTestModuleRelativePathMapping();
-    var files = _.filter(allJSFiles, function (f) {return /(\/lib\/)|-min\.js/.test(f);});
+    var files = testtools.getAllNonTestModuleRelativePathMapping();
+
+    files = _.filter(files, function (f) {return /(\/lib\/)|-min\.js/.test(f);});
     files.push(path.basename(outputFilepath));
-	files = _.union(files, _.filter(allJSFiles, function (f) {return /generated/.test(f);}));
-    
+	files = _.union(files, _.filter(files, function (f) {return /generated/.test(f);}));    
     return files;
 	
 };
@@ -189,6 +189,15 @@ exports.compileNative = function (isApplication, dir, environment, callback, err
 		} else {
 			nativeBuilder.compileDependency(environment, dir, callback, errback);
 		}
+	} catch (e) {
+		console.error("Native building is not supported on " + environment.platform, e);
+	}
+};
+
+exports.deriveBuildPath = function (environment) {
+	try {
+		var nativeBuilder = require("./kirin-buildtools-" + environment.platform + ".js");
+		return nativeBuilder.deriveBuildPath(environment);
 	} catch (e) {
 		console.error("Native building is not supported on " + environment.platform, e);
 	}
