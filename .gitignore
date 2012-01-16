@@ -33,3 +33,7 @@ gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+
+# General
+.DS_Store
+*.swp
