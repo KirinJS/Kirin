@@ -208,9 +208,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = "/usr/local/bin/node ../build.js --platform ios --build-type developer --build-dir generated-javascript ";
-			shellScript = "";
-			showEnvVarsInLog = 0;
+			shellPath = /bin/sh;
+			shellScript = "node ../build.js --platform ios --build-type $KIRIN_BUILD_TYPE\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -335,6 +334,7 @@
 				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";
 				INFOPLIST_FILE = "HelloKirin-iOS/HelloKirin-iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				KIRIN_BUILD_TYPE = developer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -355,6 +355,7 @@
 				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";
 				INFOPLIST_FILE = "HelloKirin-iOS/HelloKirin-iOS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				KIRIN_BUILD_TYPE = none;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
