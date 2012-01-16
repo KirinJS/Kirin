@@ -1,4 +1,4 @@
-
+"use strict";
 var _ = require("underscore");
 
 // TODO split these keyword definitions into a seperate module.
@@ -181,23 +181,26 @@ exports.runTests = function (callback, errback, dryRun) {
 	}
 };
 
-exports.compileNative = function (isApplication, dir, environment, callback, errback) {
+exports.compileNative = function (isApplication, dir, platform, buildType, environment, callback, errback) {
 	try {
-		var nativeBuilder = require("./kirin-buildtools-" + environment.platform + ".js");
+		console.dir(environment);
+		var nativeBuilder = require("./kirin-buildtools-" + platform + ".js");
 		if (isApplication) {
-			nativeBuilder.compileApplication(environment, dir, callback, errback);
+			nativeBuilder.compileApplication(environment, dir, buildType, callback, errback);
 		} else {
 			nativeBuilder.compileDependency(environment, dir, callback, errback);
 		}
 	} catch (e) {
-		console.error("Native building is not supported on " + environment.platform, e);
+		console.error("Native building is not supported on " + platform, e);
 	}
 };
 
-exports.deriveBuildPath = function (environment) {
+exports.deriveBuildPath = function (platform, dir, environment) {
 	try {
-		var nativeBuilder = require("./kirin-buildtools-" + environment.platform + ".js");
-		return nativeBuilder.deriveBuildPath(environment);
+		var nativeBuilder = require("./kirin-buildtools-" + platform + ".js");
+		var dir = nativeBuilder.deriveBuildPath(dir, environment);
+		
+		return dir;
 	} catch (e) {
 		console.error("Native building is not supported on " + environment.platform, e);
 	}

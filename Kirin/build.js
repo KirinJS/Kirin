@@ -147,7 +147,8 @@ function buildAll (argv, dir) {
 	} else if (!environment.buildDir) {
 		var info = loadInfo(dir);
 		environment.cwd = dir;
-		environment.buildDir = buildtools.deriveBuildPath(environment);
+		console.dir(info);
+		environment.buildDir = buildtools.deriveBuildPath(environment.platform, dir, info);
 	}
 	
 	if (args.buildType === "none") {
@@ -269,7 +270,7 @@ function compileNative () {
 
 			//  (isApplication, dir, environment, callback, errback)
 			i++;
-			buildtools.compileNative(env.isApplication, env.cwd, env, cb, errback);
+			buildtools.compileNative(env.isApplication, env.cwd, env.platform, env.buildType, env.info, cb, errback);
 		} else {
 			endBuild();
 		}
@@ -382,7 +383,9 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 
 
 	var info = loadInfo(dir);
-	var environment = _.extend(info, inheritedEnvironment);
+	var environment = _.extend({}, info, inheritedEnvironment);
+	environment.info = info;
+	info.dryRun = dryRun;
 	environment.cwd = dir;
 	
 	

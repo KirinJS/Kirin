@@ -5,7 +5,9 @@ function compileProject (environment, dir, callback, errback) {
 
 	var directory = path.join(dir, environment["ios.dir"] || "ios");
 	if (!path.existsSync(directory)) {
+		console.log("# cd " + directory + " # directory doesn't exist");
 		callback();
+		return;
 	}
 
 	if (!iphoneSDK) {
@@ -76,9 +78,9 @@ function compileProject (environment, dir, callback, errback) {
 /*
  * Native compiling methods.
  */
-exports.compileApplication = function (environment, dir, callback, errback) {
+exports.compileApplication = function (environment, dir, buildType, callback, errback) {
 	compileProject(environment, dir, function () {
-		var archiveFile = environment.appFile || path.join(process.cwd(), environment.name + "-" + environment["ios.configuration"] + "-" + environment.buildType + ".zip");
+		var archiveFile = environment.appFile || path.join(process.cwd(), environment.name + "-" + environment["ios.configuration"] + "-" + buildType + ".zip");
 		var appPath = path.join(dir, environment["ios.dir"] || "ios", "build", environment["ios.configuration"] + "-iphoneos");
 		var zipCmd = "zip -r -T -y '" + archiveFile + "' *.app";
 		console.log("cd " + appPath);
@@ -105,6 +107,6 @@ exports.compileDependency = function (environment, dir, callback, errback) {
 	compileProject(environment, dir, callback, errback);
 };
 
-exports.deriveBuildPath = function (environment) {
-	return path.join(environment.cwd, environment["ios.dir"] || "ios", "generated-javascript");
+exports.deriveBuildPath = function (dir, environment) {
+	return path.join(dir, (environment["ios.dir"] || "ios"), "generated-javascript");
 }
