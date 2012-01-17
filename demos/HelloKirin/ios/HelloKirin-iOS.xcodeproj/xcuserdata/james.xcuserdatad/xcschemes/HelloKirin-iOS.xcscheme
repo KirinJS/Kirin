@@ -46,13 +46,6 @@
             ReferencedContainer = "container:HelloKirin-iOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "DYLD_FRAMEWORK_PATH"
-            value = "/Users/james/workspaces/Kirin/iOS/KirinKit/build/Release-iphoneos"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

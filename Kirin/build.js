@@ -350,7 +350,7 @@ function mkdirs(dirname) {
 		mkdirs(path.dirname(dirname));
 		console.log("mkdir " + dirname);
 		if (!dryRun) {
-			fs.mkdirSync(dirname);
+			fs.mkdirSync(dirname, "0755");
 		}
 		return true;
 	}
