@@ -98,6 +98,11 @@
 		1A02012414BD782300CB9765 /* KirinPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012214BD782000CB9765 /* KirinPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02012514BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
 		1A02012614BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
+		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
+		1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C032D14C86AF8000829F2 /* StringDownloader.m */; };
+		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
+		1AE3FD9014C9AC57009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +211,10 @@
 		1A02012014BD658200CB9765 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
 		1A02012214BD782000CB9765 /* KirinPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinPaths.h; sourceTree = "<group>"; };
 		1A02012314BD782200CB9765 /* KirinPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinPaths.m; sourceTree = "<group>"; };
+		1A8C032C14C86AF7000829F2 /* StringDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloader.h; sourceTree = "<group>"; };
+		1A8C032D14C86AF8000829F2 /* StringDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloader.m; sourceTree = "<group>"; };
+		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
+		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,6 +342,7 @@
 		1A00C8EF14B2E32600211F34 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1A8C032614C86534000829F2 /* Camera */,
 				1A02011A14BD619600CB9765 /* Databases */,
 				1A02011914BD617700CB9765 /* Networking */,
 				1A02011814BD615700CB9765 /* Settings */,
@@ -380,6 +390,8 @@
 				1A00C8EC14B2E32600211F34 /* NativeContext.m */,
 				1A00C8ED14B2E32600211F34 /* NativeExecutor.h */,
 				1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */,
+				1AE3FD8B14C9A41D009C2F3B /* KirinState.h */,
+				1AE3FD8C14C9A41D009C2F3B /* KirinState.m */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -419,6 +431,8 @@
 				1A00C8F614B2E32600211F34 /* FileDownloader.m */,
 				1A00C8F714B2E32600211F34 /* JSONListDownloader.h */,
 				1A00C8F814B2E32600211F34 /* JSONListDownloader.m */,
+				1A8C032C14C86AF7000829F2 /* StringDownloader.h */,
+				1A8C032D14C86AF8000829F2 /* StringDownloader.m */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -441,6 +455,13 @@
 				1A00C90514B2E32600211F34 /* Transaction.m */,
 			);
 			name = Databases;
+			sourceTree = "<group>";
+		};
+		1A8C032614C86534000829F2 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -492,6 +513,8 @@
 				1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */,
 				1A02012114BD658200CB9765 /* Settings.h in Headers */,
 				1A02012414BD782300CB9765 /* KirinPaths.h in Headers */,
+				1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */,
+				1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,7 +525,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A00C8D514B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKit" */;
 			buildPhases = (
-				1A00C8A814B2E2FD00211F34 /* ShellScript */,
+				1A00C8A814B2E2FD00211F34 /* Run Script */,
 				1A00C8A914B2E2FD00211F34 /* Sources */,
 				1A00C8AA14B2E2FD00211F34 /* Frameworks */,
 				1A00C8AB14B2E2FD00211F34 /* Headers */,
@@ -543,6 +566,7 @@
 		1A00C8A314B2E2FD00211F34 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastUpgradeCheck = 0420;
 				ORGANIZATIONNAME = "Future Platforms";
 			};
 			buildConfigurationList = 1A00C8A614B2E2FD00211F34 /* Build configuration list for PBXProject "KirinKit" */;
@@ -584,13 +608,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1A00C8A814B2E2FD00211F34 /* ShellScript */ = {
+		1A00C8A814B2E2FD00211F34 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -661,6 +686,8 @@
 				1A02011614BD130600CB9765 /* KirinServices.m in Sources */,
 				1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */,
 				1A02012514BD782300CB9765 /* KirinPaths.m in Sources */,
+				1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */,
+				1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +706,7 @@
 				1A02011714BD130600CB9765 /* KirinServices.m in Sources */,
 				1A02011F14BD628500CB9765 /* KirinServiceStub.m in Sources */,
 				1A02012614BD782300CB9765 /* KirinPaths.m in Sources */,
+				1AE3FD9014C9AC57009C2F3B /* KirinState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,6 +781,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KirinKit/KirinKit-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KirinKit/KirinKit-Info.plist";
 				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
@@ -781,6 +810,7 @@
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KirinKit/KirinKit-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KirinKit/KirinKit-Info.plist";
 				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
@@ -807,6 +837,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KirinKitTests/KirinKitTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KirinKitTests/KirinKitTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -833,6 +864,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "KirinKitTests/KirinKitTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KirinKitTests/KirinKitTests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

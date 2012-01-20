@@ -17,7 +17,7 @@
     [super setUp];
     ctx = [[DummyJSContext alloc] init];
     DummyNativeContext* nativeContext = [[DummyNativeContext alloc] init];
-    helper = [[KirinHelper alloc] initWithModuleName: @"TestModule" andNativeObject: self andJsContext: ctx andNativeContext: nativeContext andDropbox:nil];
+    helper = [[KirinHelper alloc] initWithModuleName: @"TestModule" andNativeObject: self andJsContext: ctx andNativeContext: nativeContext andState:nil];
     STAssertNotNil(helper, @"Helper should not be nil");
     
 }
