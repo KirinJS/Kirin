@@ -36,47 +36,47 @@
     
     [helper onLoad];
     
-    STAssertEqualObjects(@"kirin.loadProxyForModule('TestModule', ['dummyMethod_WithArgs_'])", [ctx.jsCalls objectAtIndex:0], @"loading didn't work");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('TestModule', ['dummyMethod_WithArgs_'])", [ctx.jsCalls objectAtIndex:0], @"loading didn't work");
     
     [ctx reset];
     
     [helper onUnload];
-    STAssertEqualObjects(@"kirin.unloadProxyForModule('TestModule')", [ctx.jsCalls objectAtIndex:0], @"unloading didn't work");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.unloadProxyForModule('TestModule')", [ctx.jsCalls objectAtIndex:0], @"unloading didn't work");
 }
 
 - (void) testJsExecMethod {
     [helper jsMethod:@"doStuff"];
-    STAssertEqualObjects(@"kirin.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");
     
     [ctx reset];
     
     [helper jsMethod:@"doStuff" withArgsList: @"42, 'foo'"];
-    STAssertEqualObjects(@"kirin.execMethod('TestModule', 'doStuff', [42, 'foo'])", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'doStuff', [42, 'foo'])", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
     
     [ctx reset];
     
     [helper jsMethod:@"doStuff" withArgsList: @""];
-    STAssertEqualObjects(@"kirin.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
     
     [ctx reset];
     
     [helper jsMethod:@"doStuff" withArgsList: nil];
-    STAssertEqualObjects(@"kirin.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'doStuff')", [ctx.jsCalls objectAtIndex:0], @"Method calling");    
 }
 
 - (void) testJsExecCallback {
     [helper jsCallback:@"cb0001"];
-    STAssertEqualObjects(@"kirin.execCallback('cb0001')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('cb0001')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
     
     [ctx reset];
     
     [helper jsCallback:@"cb0001WithArgs" withArgsList: @""];
-    STAssertEqualObjects(@"kirin.execCallback('cb0001WithArgs')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('cb0001WithArgs')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
 
     [ctx reset];
     
     [helper jsCallback:@"cb0001WithArgs" withArgsList: nil];
-    STAssertEqualObjects(@"kirin.execCallback('cb0001WithArgs')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('cb0001WithArgs')", [ctx.jsCalls objectAtIndex:0], @"Callback calling");
     
 }
 
@@ -86,19 +86,19 @@
     [config setValue:@"errback0001" forKey:@"onError"];
     
     [helper jsCallback:@"onSuccess" fromConfig:config];
-    STAssertEqualObjects(@"kirin.execCallback('callback0001')", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('callback0001')", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
 
     [ctx reset];
     [helper jsCallback:@"onSuccess" fromConfig:config withArgsList:@"2, 'bar', []"];
-    STAssertEqualObjects(@"kirin.execCallback('callback0001', [2, 'bar', []])", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('callback0001', [2, 'bar', []])", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
 
     [ctx reset];
     [helper jsCallback:@"onError" fromConfig:config];
-    STAssertEqualObjects(@"kirin.execCallback('errback0001')", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('errback0001')", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
     
     [ctx reset];
     [helper jsCallback:@"onError" fromConfig:config withArgsList:@"2, 'bar', []"];
-    STAssertEqualObjects(@"kirin.execCallback('errback0001', [2, 'bar', []])", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('errback0001', [2, 'bar', []])", [ctx.jsCalls objectAtIndex:0], @"Config Callback calling");
     
     
 
@@ -106,7 +106,7 @@
     
 - (void) testJsRemoveCallback {
     [helper cleanupCallback:@"cb001", @"eb001", nil];
-    STAssertEqualObjects(@"kirin.deleteCallback(['cb001', 'eb001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback(['cb001', 'eb001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
     
     [ctx reset];
     [helper cleanupCallback:nil];
@@ -122,7 +122,7 @@
     [helper cleanupCallback:config withNames:@"onSuccess", @"onError", nil];
     
 
-    STAssertEqualObjects(@"kirin.deleteCallback(['callback0001', 'errback0001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback(['callback0001', 'errback0001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
     
     [ctx reset];
     [helper cleanupCallback:nil withNames:@"onSuccess", @"onError", nil];

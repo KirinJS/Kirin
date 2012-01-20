@@ -80,29 +80,23 @@
 		1A00C99A14B2EE8900211F34 /* KirinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C99814B2EE8800211F34 /* KirinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02010214BCFFED00CB9765 /* KirinUiFragmentHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02010314BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */; };
-		1A02010414BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */; };
 		1A02010714BD025E00CB9765 /* KirinScreenHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010514BD025E00CB9765 /* KirinScreenHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02010814BD025E00CB9765 /* KirinScreenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010614BD025E00CB9765 /* KirinScreenHelper.m */; };
-		1A02010914BD025E00CB9765 /* KirinScreenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010614BD025E00CB9765 /* KirinScreenHelper.m */; };
 		1A02010D14BD072C00CB9765 /* KirinServiceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02010E14BD072C00CB9765 /* KirinServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */; };
-		1A02010F14BD072C00CB9765 /* KirinServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */; };
 		1A02011214BD09B000CB9765 /* KirinServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02011514BD130600CB9765 /* KirinServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011314BD130500CB9765 /* KirinServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02011614BD130600CB9765 /* KirinServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011414BD130600CB9765 /* KirinServices.m */; };
-		1A02011714BD130600CB9765 /* KirinServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011414BD130600CB9765 /* KirinServices.m */; };
 		1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011B14BD628300CB9765 /* KirinServiceStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011C14BD628400CB9765 /* KirinServiceStub.m */; };
-		1A02011F14BD628500CB9765 /* KirinServiceStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011C14BD628400CB9765 /* KirinServiceStub.m */; };
 		1A02012114BD658200CB9765 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012014BD658200CB9765 /* Settings.h */; };
 		1A02012414BD782300CB9765 /* KirinPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012214BD782000CB9765 /* KirinPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A02012514BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
-		1A02012614BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
 		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
 		1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C032D14C86AF8000829F2 /* StringDownloader.m */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
-		1AE3FD9014C9AC57009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
+		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +209,8 @@
 		1A8C032D14C86AF8000829F2 /* StringDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloader.m; sourceTree = "<group>"; };
 		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
 		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
+		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
+		1AF8396614CA13FA00E0D436 /* NetworkingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +301,8 @@
 				1A00C97814B2E36500211F34 /* DummyJSContext.m */,
 				1A00C97914B2E36500211F34 /* DummyJSContext.h */,
 				1A00C8C914B2E2FD00211F34 /* Supporting Files */,
+				1AF8396514CA13FA00E0D436 /* NetworkingTest.h */,
+				1AF8396614CA13FA00E0D436 /* NetworkingTest.m */,
 			);
 			path = KirinKitTests;
 			sourceTree = "<group>";
@@ -700,13 +698,7 @@
 				1A00C97C14B2E36500211F34 /* KirinHelperTest.m in Sources */,
 				1A00C97D14B2E36500211F34 /* DummyNativeContext.m in Sources */,
 				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
-				1A02010414BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */,
-				1A02010914BD025E00CB9765 /* KirinScreenHelper.m in Sources */,
-				1A02010F14BD072C00CB9765 /* KirinServiceHelper.m in Sources */,
-				1A02011714BD130600CB9765 /* KirinServices.m in Sources */,
-				1A02011F14BD628500CB9765 /* KirinServiceStub.m in Sources */,
-				1A02012614BD782300CB9765 /* KirinPaths.m in Sources */,
-				1AE3FD9014C9AC57009C2F3B /* KirinState.m in Sources */,
+				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
