@@ -79,20 +79,34 @@ defineModule("kirin", function (require, exports) {
 		}
 		return proxy;
 	}
+		
+	function handleError(during, e) {
+		console.error("Exception found " + during);
+		console.error(e);
+	}
 	
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
 		console.log("Generated proxy for " + moduleName);
-		var module = require(moduleName);
-		module.onLoad(proxy);
+		try {
+			var module = require(moduleName);
+			
+			module.onLoad(proxy);
+		} catch (e) {
+			handleError("loading module " + moduleName, e);
+		}
 	};
 	
 	native2js.unloadProxyForModule = function (moduleName) {
-		var module = require(moduleName);
-		// TODO unrequire
-		module.onUnload();	
+		try {
+			var module = require(moduleName);
+			// TODO unrequire
+			module.onUnload();	
+		} catch (e) {
+			handleError("unloading module", e);
+		}
 	};
-	
+
 	native2js.execMethod = function (moduleName, methodName, argsList) {
 		
 		var module = require(moduleName);
@@ -115,7 +129,7 @@ defineModule("kirin", function (require, exports) {
 				module[methodName]();
 			}
 		} catch (e) {
-			console.error(e);
+			handleError("executing " + moduleName + "." + methodName, e);
 		}
 	};
 	
@@ -127,12 +141,15 @@ defineModule("kirin", function (require, exports) {
 			return;
 		}
 		
-		if (argsList) {
-			callback.apply(null, argsList);		
-		} else {
-			callback();
+		try {
+			if (argsList) {
+				callback.apply(null, argsList);		
+			} else {
+				callback();
+			}
+		} catch (e) {
+			handleError("calling callback " + callbackId + JSON.toString(argsList), e);
 		}
-
 	};
 	
 	/* Once a callback has been finished with, then it should 
