@@ -1,10 +1,12 @@
-#!/usr/local/bin/node
+#!/usr/bin/env node
 "use strict";
-var _ = require("underscore");
-var util = require("util"), path = require("path");
-var fs = require("fs");
-var testtools = require("./building/kirin-testtools.js");
-var buildtools = require("./building/kirin-buildtools.js");
+var _ = require("underscore"),
+	util = require("util"), 
+	path = require("path"),
+	fs = require("fs");
+	
+var testtools = require("./building/kirin-testtools.js"),
+	buildtools = require("./building/kirin-buildtools.js");
 
 var kirinPluginsPath = process.env["KIRIN_PLUGINS"];
 var dryRun = false;
@@ -20,6 +22,8 @@ if (kirinPluginsPath) {
 }	
 kirinPluginsPath.push(path.join(__dirname, "plugins"));
 
+var initialArgs = {};
+
 function buildAll (argv, dir) {
 	var i, max;
 	var run = "help";
@@ -33,7 +37,10 @@ function buildAll (argv, dir) {
 		jslint: true
 	};
 
-	var args = _.extend({dirname: dir}, defaults);
+	var args = initialArgs = {};
+	
+	
+	
 	
 	ARGS: for (i=2, max=argv.length; i<max; i++) {
 		switch (argv[i]) {
@@ -86,7 +93,10 @@ function buildAll (argv, dir) {
 				break ARGS;
 		}
 	}
-	
+
+
+	_.extend(args, defaults);
+	console.dir(args);
 	
 	if (args.noJSBuildDir) {
 		delete args.buildDir;
@@ -274,7 +284,10 @@ function compileNative () {
 			}
 			
 			i++;
-			buildtools.compileNative(env.isApplication, env.cwd, env.platform, env.buildType, env.info, cb, errback);
+
+			var args = _.extend(_.clone(env.info), env.info);
+			_.defaults(args, initialArgs);
+			buildtools.compileNative(env.isApplication, env.cwd, env.platform, env.buildType, args, cb, errback);
 		} else {
 			endBuild();
 		}
