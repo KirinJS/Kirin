@@ -28,7 +28,7 @@
 
 
 - (id) init {
-	return [self initWithWebView:[[UIWebView alloc] init] andNativeContext:nil];
+	return [self initWithWebView:[[[UIWebView alloc] init] autorelease] andNativeContext:nil];
 }
 
 - (id) initWithWebView: (UIWebView*) aWebView andNativeContext: (id<NativeExecutor>) nativeExec {

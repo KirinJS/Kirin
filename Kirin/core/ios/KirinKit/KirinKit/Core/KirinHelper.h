@@ -10,20 +10,15 @@
 #import <KirinKit/JSContext.h>
 #import <KirinKit/NativeContext.h>
 #import <KirinKit/KirinDropbox.h>
+#import <KirinKit/KirinState.h>
 
 @interface KirinHelper : NSObject {
-    NSString* jsModuleName;
-    NSObject* nativeObject;
-    
-    
-    @private
-
 }
 
 @property(retain) NSString* jsModuleName;
 @property(retain) NSObject* nativeObject;
-@property(retain) KirinDropbox* dropbox;
 
+@property(retain) KirinState* state;
 
 
 
@@ -31,7 +26,7 @@
           andNativeObject: (NSObject*) obj 
              andJsContext: (JSContext*) ctx 
          andNativeContext: (NativeContext*) nativeCtx
-               andDropbox: (KirinDropbox*) dropbox;
+                 andState: (KirinState*) state;
 
 /**
  * Call this in places where it makes sense to you lifecycle. 
@@ -73,5 +68,6 @@
 
 - (void) cleanupCallbacks:(NSArray*) callbackIds;
 
+- (KirinDropbox*) dropbox;
 
 @end

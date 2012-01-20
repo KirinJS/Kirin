@@ -9,17 +9,17 @@
 #import "KirinHelper.h"
 #import "JSON.h"
 
-
 @interface KirinHelper () 
 @property(retain) JSContext* jsContext;
 @property(retain) NativeContext* nativeContext;
+
 @end
 
 @implementation KirinHelper
 
 @synthesize jsModuleName;
 @synthesize nativeObject;
-@synthesize dropbox;
+@synthesize state = state_;
 
 @synthesize jsContext = jsContext_;
 @synthesize nativeContext = nativeObject_;
@@ -28,14 +28,14 @@
           andNativeObject: (NSObject*) obj 
              andJsContext: (JSContext*) ctx 
          andNativeContext: (NativeContext*) nativeCtx
-               andDropbox: (KirinDropbox*) dropBox
+                 andState: (KirinState*) state
 
 {
     self = [super init];
 	if (self) {
         self.jsModuleName = moduleName;
         self.nativeObject = obj;
-        self.dropbox = dropBox;
+        self.state = state;
         self.jsContext = ctx;
         self.nativeContext = nativeCtx;
     }
@@ -124,13 +124,17 @@
     [self cleanupCallbacks:callbackIds];
 }
 
+- (KirinDropbox*) dropbox {
+    return self.state.dropbox;
+}
+
 - (void) dealloc {
     self.jsContext = nil;
     self.nativeContext = nil;
     
     self.jsModuleName = nil;
     self.nativeObject = nil;
-    self.dropbox = nil;
+    self.state = nil;
     [super dealloc];
 }
 

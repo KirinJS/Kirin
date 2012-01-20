@@ -25,8 +25,4 @@
 
 - (void) ensureStarted;
 
-// @private
-@property(retain) NSMutableArray* allServices;
-
-
 @end

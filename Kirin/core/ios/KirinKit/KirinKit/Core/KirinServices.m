@@ -11,6 +11,12 @@
 #import "SettingsBackend.h"
 #import "NetworkingBackend.h"
 
+@interface KirinServices()
+
+@property(retain) NSMutableArray* allServices;
+
+@end
+
 @implementation KirinServices
 
 @synthesize isStarted;

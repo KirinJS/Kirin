@@ -10,4 +10,12 @@
 
 @implementation KirinState
 
+@synthesize currentScreen = currentScreen_;
+@synthesize dropbox = dropbox_;
+
++ (KirinState*) initialState {
+    return [[[KirinState alloc] init] autorelease];
+    
+}
+
 @end

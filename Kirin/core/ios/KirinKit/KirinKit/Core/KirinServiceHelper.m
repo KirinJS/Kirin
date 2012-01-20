@@ -19,4 +19,8 @@
     [self jsMethod:@"onStop"];
 }
 
+- (UIViewController*) currentScreen {
+    return self.state.currentScreen;
+}
+
 @end

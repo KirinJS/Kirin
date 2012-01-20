@@ -7,7 +7,7 @@
 //
 
 #import "KirinUiFragmentHelper.h"
-#import "JSON.h"
+#import <KirinKit/JSON.h>
 
 @implementation KirinUiFragmentHelper
 

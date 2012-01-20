@@ -25,6 +25,7 @@
 #import "KirinKit/JSContext.h"
 #import "KirinKit/NativeContext.h"
 
+#import "KirinState.h"
 
 @interface Kirin ()
 
@@ -32,6 +33,8 @@
 
 @property(nonatomic, retain) JSContext* jsContext;
 @property(nonatomic, retain) NativeContext* nativeContext;
+
+@property(nonatomic, retain) KirinState* state;
 
 @end
 
@@ -45,6 +48,8 @@
 
 @synthesize jsContext = jsContext_;
 @synthesize nativeContext = nativeContext_;
+
+@synthesize state = state_;
 
 SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
@@ -61,7 +66,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
         [self.nativeContext registerNativeObject:[[[DebugConsole alloc] init] autorelease] asName:@"DebugConsole"];
         
-        self.dropbox = [[[KirinDropbox alloc] init] autorelease];
+        self.state = [KirinState initialState];
+        self.state.dropbox = [[[KirinDropbox alloc] init] autorelease];
+
+        // TODO deprecate the use of self.dropbox, and pass around KirinState instead.
+        self.dropbox = self.state.dropbox;
+        
         // the webview needs to be able to call out to native using the nativeContext.
         KirinWebViewHolder* webViewHolder = [[[KirinWebViewHolder alloc] initWithWebView:aWebView andNativeContext: self.nativeContext] autorelease];
         
@@ -76,7 +86,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                    andNativeObject:nativeObject 
                                       andJsContext:self.jsContext 
                                   andNativeContext:self.nativeContext
-                                        andDropbox:self.dropbox] autorelease];
+                                        andState:self.state] autorelease];
 }
 
 - (KirinUiFragmentHelper*) bindUiFragment: (id) nativeObject toModule:(NSString*) moduleName {
@@ -85,17 +95,18 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                               andNativeObject:nativeObject 
                                                  andJsContext:self.jsContext 
                                              andNativeContext:self.nativeContext
-                                                   andDropbox:self.dropbox] autorelease];
+                                                   andState:self.state] autorelease];
     
 }
 
 - (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName {
     [self ensureStarted];
+    self.state = nativeObject;
     return [[[KirinScreenHelper alloc] initWithModuleName:moduleName 
                                               andNativeObject:nativeObject 
                                                  andJsContext:self.jsContext 
                                              andNativeContext:self.nativeContext
-                                                   andDropbox:self.dropbox] autorelease];
+                                                   andState:self.state] autorelease];
 
 }
 
@@ -106,7 +117,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                           andNativeObject:nativeObject 
                                              andJsContext:self.jsContext 
                                          andNativeContext:self.nativeContext
-                                               andDropbox:self.dropbox] autorelease];
+                                               andState:self.state] autorelease];
 }
 
 #pragma mark -
