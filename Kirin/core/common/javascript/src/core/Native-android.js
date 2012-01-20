@@ -77,5 +77,11 @@ defineModule("Native", function (require, exports) {
 		EXPOSED_TO_NATIVE[name] = object;
 	};
 	
+	if (console) {
+		console.dir = function (obj) {
+			console.log(JSON.stringify(obj));
+		};
+	}
+	
 	exports.exposeToNative("require", require);
 });

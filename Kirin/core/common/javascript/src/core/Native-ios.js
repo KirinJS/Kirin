@@ -95,6 +95,9 @@ defineModule("Native", function (require, exports) {
 	console.error = function (message) {
 		exec("DebugConsole.log_atLevel_", message, "ERROR");
 	};
+	console.dir = function (obj) {
+		console.log(JSON.stringify(obj));
+	};
 
 	
 	exports.exposeToNative = function (name, object) {
