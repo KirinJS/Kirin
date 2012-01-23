@@ -17,8 +17,19 @@
 
 
 #import "NetworkingBackend.h"
-#import "JSONListDownloader.h"
 #import "FileDownloader.h"
+#import "JSON.h"
+#import "StringDownloader.h"
+
+@interface NetworkingBackend ()
+
+- (void) cleanupCallbacks: (NSDictionary*) config;
+
+// TODO check if these methods need to be declared in the .h file or here.
+- (void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader;
+- (void) handleError: (NSString*) errorMessage withDownloader: (StringDownloader*) downloader;
+
+@end
 
 @implementation NetworkingBackend
 
@@ -26,30 +37,191 @@
     return [super initWithModuleName: @"Networking"];
 }
 
-- (void) downloadJSON: (NSDictionary *) config{
+- (void) cleanupCallbacks: (NSDictionary*) config {
+    [self.kirinHelper cleanupCallback:config withNames:@"envelope", @"each", @"payload", @"onFinish", @"onError", nil];
+}
+
+- (void) handleError: (NSString*) errorMessage withDownloader: (StringDownloader*) downloader {
+    NSDictionary* config = downloader.mConfig;
+    [self.kirinHelper jsCallback:@"onError" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", errorMessage]];
+    [self cleanupCallbacks:config];
+    [downloader release];
+}
+
+#pragma mark -
+#pragma mark Download JSON
+
+
+-(void) downloadJSON: (NSDictionary *) config {
+    NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
+    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
+                                                              andCallback:@selector(handleJSONObject:withDownloader:) 
+                                                               andErrback:@selector(handleError:forConfig:)];
+
+    [downloader retain];
+    [downloader startDownloadWithConfig: config];
+}
+
+-(void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader {
+    NSDictionary* config = downloader.mConfig;
+    NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    [self.kirinHelper jsCallback:@"payload" 
+                      fromConfig:config 
+                    withArgsList:string];
+    [self cleanupCallbacks:config];
+    [downloader release];
+}
     
-    if(1) return;
+
+#pragma mark -
+#pragma mark Download JSON List
+
+-(void) downloadJSONList: (NSDictionary *) config {
+    
+    NSLog(@"[NetworkingBackend] downloadJSONList_: %@", config);
+    
+    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
+                               andCallback:@selector(handleList:withDownloader:) 
+                                andErrback:@selector(handleError:forConfig:)];
+    [downloader retain];    
+    [downloader startDownloadWithConfig: config];
 
 }
 
--(void) downloadJSONList: (NSDictionary *) _config{
+-(void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader {
+    NSDictionary* config = downloader.mConfig;    
+    NSArray* path = [config objectForKey:@"path"];
     
-    NSLog(@"[NetworkingBackend] downloadJSONList_: %@", _config);
+    if(!data) {
+        return;
+    }
     
-    JSONListDownloader* downloader = [JSONListDownloader downloaderWithHelper:self.kirinHelper];
-    [downloader downloadJSONList: _config];
+
+    
+    NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    
+    // Is path empty? If so, ignore envelope.
+    // - is the JSON a list? If so, call back eachToken with each list element as the argument.
+    // If not, extract (and remove) the element from the JSON that the path relates to.
+    // Is the element a list?
+    // -- If so call envelope with the rest of the JSON as the argument.
+    // -- then call eachToken with each element of the list as the argument.
+    
+    NSObject *baseJson = [string JSONValue];
+    
+    int i = 0;
+    
+    if([baseJson isKindOfClass: [NSArray class]]) {
+        
+        NSObject* object;
+        
+        NSEnumerator* e = [((NSArray*)baseJson) objectEnumerator];
+        
+        while((object = [e nextObject])) {
+            @try{
+                [self.kirinHelper jsCallback:@"each" 
+                                  fromConfig:config 
+                                withArgsList:[((NSDictionary*)object)  JSONRepresentation]];
+                
+                ++i;
+                
+            } @catch(NSException* e) {
+                
+                NSLog(@"NetworkingBackend: failed to handle object %@", object);
+                
+            }
+            
+        }
+        
+        
+    } else {
+        // TODO. Not sure if this is the right thing to do. Check with Adrian.
+        [self.kirinHelper jsCallback:@"each" 
+                          fromConfig:config 
+                        withArgsList:[NSString stringWithFormat:@"\"%@\"", string]];
+        
+        i = 1;
+        
+    }
+    
+    
+    if ([path count] != 0) {
+        
+        [NSException raise:@"KirinNetworking" format:@"The iOS core does not yet support downloading json with paths."];
+        
+    }
+    
+    //NSLog(@"NetworkingBackend: OUTPUT: %@", stringy);
+    
+    [self.kirinHelper jsCallback:@"onFinish" 
+                      fromConfig:config 
+                    withArgsList:[NSString stringWithFormat:@"%d", i]];
+    [self cleanupCallbacks: config];
+    [downloader release];
 }
+
+
+
+
+#pragma mark -
+#pragma mark Download File
 
 -(void) downloadFile: (NSDictionary *) config {
     NSLog(@"[NetworkingBackend] downloadFile_: %@", config);
-    FileDownloader* downloader = [FileDownloader downloaderWithHelper:self.kirinHelper];
+    
+    NSString* filename = [config objectForKey:@"filename"];
+    
+    // this shouldn't be specified here.
+    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString* fullPath = [docs stringByAppendingPathComponent:filename];
+    
+    if([[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
+        [self.kirinHelper jsCallback:@"onFinish" 
+                          fromConfig:config 
+                        withArgsList:[NSString stringWithFormat:@"'%@'", fullPath]];
+        return;
+    }
+    
+    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
+                                                              andCallback:@selector(handleAsFile:withDownloader:) 
+                                                               andErrback:@selector(handleError:forConfig:)];
+    [downloader retain];
     [downloader startDownloadWithConfig: config];
 }
+
+- (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader {
+    NSDictionary* config = downloader.mConfig;
+    NSString* imageURL = [config objectForKey:@"url"];
+    NSString* filename = [config objectForKey:@"filename"];
+    
+    // this shouldn't be specified here.
+    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString* fullPath = [docs stringByAppendingPathComponent:filename];
+    
+    NSLog(@"image: %@ // filename: %@", imageURL, fullPath);
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
+        [data writeToFile:fullPath atomically:YES];
+    }
+    
+    [self.kirinHelper jsCallback: @"onFinish" 
+                      fromConfig: config 
+                    withArgsList: [NSString stringWithFormat:@"'%@'", fullPath]];
+    
+    [self cleanupCallbacks: config];
+    [downloader release];
+}
+
+#pragma mark -
+#pragma mark Delete file. 
+
+// TODO put this in file utils.
 
 -(void) deleteDownloadedFile: (NSDictionary *) config {
     NSLog(@"[NetworkingBackend] deleteDownloadedFile_: %@", config);
     FileDownloader* downloader = [FileDownloader downloaderWithHelper:self.kirinHelper];
     [downloader deleteFileWithConfig: config];    
+    [self cleanupCallbacks:config];
 }
 
 @end

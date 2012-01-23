@@ -10,4 +10,12 @@
 
 @interface StringDownloader : NSObject
 
++ (StringDownloader*) downloaderWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback;
+
+
+
+- (void) startDownloadWithConfig: (NSDictionary*) config;
+
+@property(retain, nonatomic) NSDictionary* mConfig;
+
 @end

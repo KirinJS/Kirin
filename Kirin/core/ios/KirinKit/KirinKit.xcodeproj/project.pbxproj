@@ -97,6 +97,7 @@
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
+		1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,8 @@
 		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
 		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
 		1AF8396614CA13FA00E0D436 /* NetworkingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingTest.m; sourceTree = "<group>"; };
+		1AF8396814CA14F400E0D436 /* StringDownloaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloaderTest.h; sourceTree = "<group>"; };
+		1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloaderTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -303,6 +306,8 @@
 				1A00C8C914B2E2FD00211F34 /* Supporting Files */,
 				1AF8396514CA13FA00E0D436 /* NetworkingTest.h */,
 				1AF8396614CA13FA00E0D436 /* NetworkingTest.m */,
+				1AF8396814CA14F400E0D436 /* StringDownloaderTest.h */,
+				1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */,
 			);
 			path = KirinKitTests;
 			sourceTree = "<group>";
@@ -699,6 +704,7 @@
 				1A00C97D14B2E36500211F34 /* DummyNativeContext.m in Sources */,
 				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
 				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
+				1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
