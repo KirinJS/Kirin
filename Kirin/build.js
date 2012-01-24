@@ -187,6 +187,7 @@ function buildAll (argv, dir) {
 	postPluginProcessing(environment);
 }
 
+
 function startMessage (msg) {
 	console.log("# ============================ " + msg);
 }
@@ -236,6 +237,7 @@ function packaging (environment) {
 		var jsFiles = testtools.getLibraryFiles();
 		
 		if (environment.minify) {
+			// TODO wrap the js files with browserify templates
 			jsFiles = buildtools.runCompiler(path.join(environment.buildDir, environment.minifiedJs), continuation, dryRun);
 		} else {
 			jsFiles = testtools.getAllNonTestModuleRelativePathMapping();
@@ -492,6 +494,7 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		dirWalker(resPath, resourceFileWalker);
 		
 		if (!environment.minify) {
+			// TODO wrap the js files with browserify templates
 			var copier = createFileCopier(srcPath, path.join(environment.buildDir, "src"));
 			_.each(_.values(moduleInfo["default"]), copier);
 		}
@@ -569,3 +572,8 @@ function help (err) {
 
 
 exports.build = buildAll;
+
+
+if(require.main === module) {
+	buildAll(process.argv, path.join(__dirname, "core"));
+}
