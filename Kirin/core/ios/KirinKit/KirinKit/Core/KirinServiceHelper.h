@@ -17,4 +17,6 @@
 
 - (void) onStop;
 
+- (UIViewController*) viewController;
+
 @end

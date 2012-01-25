@@ -101,7 +101,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
 - (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName {
     [self ensureStarted];
-    self.state = nativeObject;
+
     return [[[KirinScreenHelper alloc] initWithModuleName:moduleName 
                                               andNativeObject:nativeObject 
                                                  andJsContext:self.jsContext 

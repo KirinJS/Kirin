@@ -7,8 +7,20 @@
 //
 
 #import "KirinScreenHelper.h"
-
+#import <UIKit/UIViewController.h>
 
 @implementation KirinScreenHelper
+
+- (void) onLoad {
+    self.state.currentScreen = (UIViewController*) self.nativeObject;
+    [super onLoad];
+}
+
+- (void) onUnload {
+    if (self.state.currentScreen == self.nativeObject) {
+        self.state.currentScreen = nil;
+    }
+    [super onUnload];
+}
 
 @end

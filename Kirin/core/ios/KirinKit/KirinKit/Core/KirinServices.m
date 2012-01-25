@@ -10,6 +10,7 @@
 
 #import "SettingsBackend.h"
 #import "NetworkingBackend.h"
+#import "KirinImagePicker.h"
 
 @interface KirinServices()
 
@@ -34,7 +35,7 @@
     NSLog(@"Core KirinServices");
     [services registerService:[[[SettingsBackend alloc] init] autorelease]];
     [services registerService:[[[NetworkingBackend alloc] init] autorelease]];
-    
+    [services registerService:[[[KirinImagePicker alloc] init] autorelease]];
     return services;
 }
 
