@@ -111,11 +111,74 @@
     
     int i = 0;
     
-    if([baseJson isKindOfClass: [NSArray class]]) {
+    // find the list. 
+    
+    /*
+     
+     public JSONArray isolateArrayFromObject(JSONObject object, JSONArray path) {
+     
+     JSONArray list = null;
+     JSONObject parent = object;
+     
+     for (int i = 0, max = path.length(); i < max; i++) {
+     
+     String pathSegment = JSONUtils.stringOrNull(path, i, null);
+     if (pathSegment == null) {
+     continue;
+     }
+     
+     Object obj = parent.opt(pathSegment);
+     
+     if (obj == null) {
+     // not found.
+     return null;
+     } else if (obj instanceof JSONArray) {
+     list = (JSONArray) obj;
+     parent.remove(pathSegment);
+     break;
+     } else if (obj instanceof JSONObject) {
+     parent = (JSONObject) obj;
+     } else {
+     // not found
+     return null;
+     }
+     }
+     
+     return list;
+     }*/
+    
+    NSDictionary* parent = nil;
+    NSObject* object = baseJson;
+    NSArray* list = nil;
+    
+    NSString* pathElement = nil;
+    NSEnumerator* pathEnumerator = [path objectEnumerator];
+    while ((pathElement = [pathEnumerator nextObject])) {
         
+        if ([object isKindOfClass: [NSDictionary class]]) {
+            parent = (NSDictionary*) object;
+            object = [parent objectForKey:pathElement];
+        }
+        
+        
+        if ([object isKindOfClass: [NSArray class]]) {
+            list = (NSArray*) object;
+            if ([object isKindOfClass: [NSMutableDictionary class]]) {
+                [((NSMutableDictionary*) parent) removeObjectForKey:pathElement];
+            }
+            break;
+        }
+        
+    }
+    
+    if([list isKindOfClass: [NSArray class]]) {
+        
+        if (parent) {
+            [self.kirinHelper jsCallback:@"envelope" fromConfig:config withArgsList:[parent JSONRepresentation]];
+        }
         NSObject* object;
         
-        NSEnumerator* e = [((NSArray*)baseJson) objectEnumerator];
+        NSEnumerator* e = [((NSArray*)list) objectEnumerator];
         
         while((object = [e nextObject])) {
             @try{
@@ -145,14 +208,6 @@
     }
     
     
-    if ([path count] != 0) {
-        
-        [NSException raise:@"KirinNetworking" format:@"The iOS core does not yet support downloading json with paths."];
-        
-    }
-    
-    //NSLog(@"NetworkingBackend: OUTPUT: %@", stringy);
-    
     [self.kirinHelper jsCallback:@"onFinish" 
                       fromConfig:config 
                     withArgsList:[NSString stringWithFormat:@"%d", i]];
@@ -166,14 +221,20 @@
 #pragma mark -
 #pragma mark Download File
 
+- (NSString*) getResolvedPathForFilename: (NSString*) filename {
+    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    return [docs stringByAppendingPathComponent:filename];
+}
+
 -(void) downloadFile: (NSDictionary *) config {
     NSLog(@"[NetworkingBackend] downloadFile_: %@", config);
     
     NSString* filename = [config objectForKey:@"filename"];
+
+    NSString* fullPath = [self getResolvedPathForFilename:filename];
     
-    // this shouldn't be specified here.
-    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString* fullPath = [docs stringByAppendingPathComponent:filename];
+    // TODO make sure we don't want to overwrite this file. e.g. overwrite = true
+    // TODO make sure we can be downloading in the background.
     
     if([[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
         [self.kirinHelper jsCallback:@"onFinish" 
@@ -194,9 +255,7 @@
     NSString* imageURL = [config objectForKey:@"url"];
     NSString* filename = [config objectForKey:@"filename"];
     
-    // this shouldn't be specified here.
-    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString* fullPath = [docs stringByAppendingPathComponent:filename];
+    NSString* fullPath = [self getResolvedPathForFilename:filename];
     
     NSLog(@"image: %@ // filename: %@", imageURL, fullPath);
     
