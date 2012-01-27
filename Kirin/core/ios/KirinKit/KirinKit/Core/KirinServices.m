@@ -11,6 +11,7 @@
 #import "SettingsBackend.h"
 #import "NetworkingBackend.h"
 #import "KirinImagePicker.h"
+#import "DatabasesBackend.h"
 
 @interface KirinServices()
 
@@ -36,6 +37,7 @@
     [services registerService:[[[SettingsBackend alloc] init] autorelease]];
     [services registerService:[[[NetworkingBackend alloc] init] autorelease]];
     [services registerService:[[[KirinImagePicker alloc] init] autorelease]];
+    [services registerService:[[[DatabasesBackend alloc] init] autorelease]];
     return services;
 }
 

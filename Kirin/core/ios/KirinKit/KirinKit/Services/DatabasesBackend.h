@@ -18,11 +18,12 @@
 
 #import <KirinKit/KirinKit.h>
 #import "DatabasesBackendProtocol.h"
-@class Database;
+#import "Database.h"
+
 
 @interface DatabasesBackend : KirinServiceStub <DatabasesBackendProtocol> {
     
-    Database *db;
+    id<Database> db;
     NSMutableDictionary *connectionsByName;
     NSMutableDictionary *transactionsById;
     

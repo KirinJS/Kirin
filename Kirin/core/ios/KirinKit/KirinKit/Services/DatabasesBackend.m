@@ -418,7 +418,8 @@
                 
                 // put into a drop box for retrieval later on by the ui.
 
-                NSString* token = [self.kirinHelper.dropbox putObject:arg 
+                NSString* token = [[self.kirinHelper dropbox]
+                                   putObject:arg 
                                                       withTokenPrefix:@"resultset"];
 
                 [self.kirinHelper jsCallback:op.onSuccess withArgsList:[NSString stringWithFormat:@"'%@'", token]];
@@ -471,7 +472,7 @@
 #pragma mark Lifecycle
 
 - (id)init {
-    self = [super init];
+    self = [super initWithModuleName:@"Databases"];
     if (self) {
         db = [[SQLiteDatabase alloc] init];
         connectionsByName = [[NSMutableDictionary alloc] init];
