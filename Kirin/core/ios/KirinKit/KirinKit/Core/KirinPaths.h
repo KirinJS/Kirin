@@ -20,4 +20,10 @@
 
 + (NSString*) pathForResource:(NSString*)resourcepath;
 
++ (NSString*) filePathInDocuments: (NSString*) path;
+
++ (NSString*) filePathInTempDir: (NSString*) path;
+
++ (NSString*) filePathInAppAssets: (NSString*) path;
+
 @end
