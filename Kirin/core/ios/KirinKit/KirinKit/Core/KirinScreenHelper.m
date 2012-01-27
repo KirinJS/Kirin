@@ -11,16 +11,22 @@
 
 @implementation KirinScreenHelper
 
-- (void) onLoad {
-    self.state.currentScreen = (UIViewController*) self.nativeObject;
-    [super onLoad];
-}
-
-- (void) onUnload {
+- (void) onPause {
     if (self.state.currentScreen == self.nativeObject) {
         self.state.currentScreen = nil;
     }
-    [super onUnload];
+    [super onPause];
 }
+
+- (void) onResume {
+    self.state.currentScreen = (UIViewController*) self.nativeObject;
+    [super onResume];
+}
+
+- (void) onResumeWithOptions: (NSDictionary*) options {
+    self.state.currentScreen = (UIViewController*) self.nativeObject;
+    [super onResumeWithOptions:options];
+}
+
 
 @end
