@@ -27,8 +27,7 @@
 }
 
 - (void) testExecuteFromUrl {
-    [nativeObjects setValue:jsCtx forKey:@"OBJ"];
-    
+    [nativeCtx registerNativeObject:jsCtx asName:@"OBJ"];
     [nativeCtx executeCommandFromModule:@"OBJ" andMethod:@"js_" andArgsList:@"[\"aNativeArgument\"]"];
     STAssertEqualObjects(@"aNativeArgument", [jsCtx.jsCalls objectAtIndex: 0], @"Method execution");
     
@@ -38,7 +37,7 @@
 }
 
 - (void) testExecuteLog {
-    [nativeObjects setValue:[[DebugConsole alloc] init] forKey:@"Log"];
+    [nativeCtx registerNativeObject:[[DebugConsole alloc] init] asName:@"Log"];
     [nativeCtx executeCommandFromModule:@"Log" andMethod:@"log_atLevel_" andArgsList:@"[\"Test Log message\", \"INFO\"]"];
 }
 
