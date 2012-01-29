@@ -15,6 +15,10 @@
 
 @implementation KirinFileSystem
 
++ (KirinFileSystem*) fileSystem {
+    return [[[KirinFileSystem alloc] init] autorelease];
+}
+
 - (BOOL) mkdir: (NSString*) newDir {
     NSFileManager *filemgr =[NSFileManager defaultManager];
     BOOL ret = YES;
@@ -23,14 +27,12 @@
         // Failed to create directory
         ret = NO;
     }
-    [filemgr release];
     return ret;
 }
 
 - (BOOL) rmForce: (NSString*) fileOrDir {
     NSFileManager *filemgr =[NSFileManager defaultManager];
     BOOL ret = [filemgr removeItemAtPath:fileOrDir error:nil];
-    [filemgr release];
     return ret;
 }
 
@@ -41,11 +43,8 @@
     return [self mkdir: [directoryParts componentsJoinedByString:@"/"]];
 }
 
-- (BOOL) writeData: (NSData*) data toFile: filePath {
-    NSFileManager *filemgr =[NSFileManager defaultManager];
-    BOOL ret = [self mkdirForFile:filePath] && [filemgr createFileAtPath:filePath contents:data attributes:nil];
-    [filemgr release];
-    return ret;
+- (BOOL) writeData: (NSData*) data toFile: (NSString*) filePath {
+    return [self mkdirForFile:filePath] && [data writeToFile:filePath atomically:YES];
 }
 
 - (NSString*) filePath: (NSString*) filePath inArea: (NSString*) fileArea {

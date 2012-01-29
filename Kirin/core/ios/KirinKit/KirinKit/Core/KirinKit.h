@@ -13,5 +13,6 @@
 #import <KirinKit/KirinServiceHelper.h>
 
 #import <KirinKit/KirinServiceProtocol.h>
+#import <KirinKit/KirinServiceWithUI.h>
 #import <KirinKit/KirinServiceStub.h>
 #import <KirinKit/KirinPaths.h>

@@ -56,6 +56,6 @@
 
 - (void)raiseException:(NSString *)_name withReason:(NSString *)_reason;
 
-
+- (dispatch_queue_t) dispatchQueue;
 
 @end

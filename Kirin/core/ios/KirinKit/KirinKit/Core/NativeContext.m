@@ -8,6 +8,7 @@
 
 #import "NativeContext.h"
 #import "JSON.h"
+#import "NativeObjectHolder.h"
 #import <objc/runtime.h>
 
 
@@ -52,7 +53,8 @@
 }
 
 - (void) registerNativeObject: (id) object asName: (NSString*) name {
-    [self.nativeObjects setValue:object forKey:name];
+    [self.nativeObjects setValue:[NativeObjectHolder holderForObject:object] forKey:name];
+//    [self.nativeObjects setValue:object forKey:name];
 }
 
 - (void) unregisterNativeObject: (NSString*) name {
@@ -60,7 +62,8 @@
 }
 
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query {
-    id obj = [self.nativeObjects objectForKey:host];
+    NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
+    id obj = holder.nativeObject;
     NSString* fullMethodName = [[file componentsSeparatedByString:@"_"] componentsJoinedByString:@":"];
     
 	SEL selector = NSSelectorFromString(fullMethodName);
@@ -77,15 +80,24 @@
 //        [arguments getObjects:(id *)argList];        
 //        objc_msgSend(obj, selector, argList);
 //        free(argList);
+
+        void (^block)(void) = ^{
+            int len = [arguments count];
+            if (len == 0) {
+                [obj performSelector:selector];
+            } else if (len == 1) {
+                [obj performSelector:selector withObject:[arguments objectAtIndex:0]];
+            } else if (len == 2) {
+                [obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
+            }
+        };
         
-		int len = [arguments count];
-		if (len == 0) {
-			[obj performSelector:selector];
-		} else if (len == 1) {
-			[obj performSelector:selector withObject:[arguments objectAtIndex:0]];
-		} else if (len == 2) {
-			[obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
-		}
+        dispatch_queue_t queue = holder.dispatchQueue;
+        if (queue) {
+            dispatch_async(queue, block);
+        } else {
+            block();
+        }
 	}
 	else {                
         // There's no method to call, so throw an error.

@@ -95,10 +95,14 @@
 		1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */; };
 		1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */; };
 		1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */; };
-		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; };
+		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61952914D22105004FDD8E /* KirinFileSystem.m */; };
 		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
 		1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C032D14C86AF8000829F2 /* StringDownloader.m */; };
+		1A9FE0A114D5F745008C0565 /* NativeObjectHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */; };
+		1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */; };
+		1A9FE0A514D5FA51008C0565 /* KirinServiceWithUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE0A414D5FA4F008C0565 /* KirinServiceWithUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
@@ -218,6 +222,10 @@
 		1A61952914D22105004FDD8E /* KirinFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinFileSystem.m; sourceTree = "<group>"; };
 		1A8C032C14C86AF7000829F2 /* StringDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloader.h; sourceTree = "<group>"; };
 		1A8C032D14C86AF8000829F2 /* StringDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloader.m; sourceTree = "<group>"; };
+		1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeObjectHolder.h; sourceTree = "<group>"; };
+		1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeObjectHolder.m; sourceTree = "<group>"; };
+		1A9FE0A414D5FA4F008C0565 /* KirinServiceWithUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceWithUI.h; sourceTree = "<group>"; };
+		1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
 		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
 		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
@@ -238,6 +246,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */,
 				1A00C99514B2EC5F00211F34 /* libsqlite3.0.dylib in Frameworks */,
 				1A00C8C014B2E2FD00211F34 /* UIKit.framework in Frameworks */,
 				1A00C8C214B2E2FD00211F34 /* Foundation.framework in Frameworks */,
@@ -251,6 +260,7 @@
 		1A00C8A114B2E2FD00211F34 = {
 			isa = PBXGroup;
 			children = (
+				1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */,
 				1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */,
 				1A00C8B114B2E2FD00211F34 /* KirinKit */,
 				1A00C8C814B2E2FD00211F34 /* KirinKitTests */,
@@ -344,6 +354,7 @@
 				1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */,
 				1A02011B14BD628300CB9765 /* KirinServiceStub.h */,
 				1A02011C14BD628400CB9765 /* KirinServiceStub.m */,
+				1A9FE0A414D5FA4F008C0565 /* KirinServiceWithUI.h */,
 				1A02011014BD08B800CB9765 /* Helpers */,
 				1A0200FE14BCF7A600CB9765 /* Internal */,
 				1A02012214BD782000CB9765 /* KirinPaths.h */,
@@ -407,6 +418,8 @@
 				1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */,
 				1AE3FD8B14C9A41D009C2F3B /* KirinState.h */,
 				1AE3FD8C14C9A41D009C2F3B /* KirinState.m */,
+				1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */,
+				1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */,
 			);
 			name = Internal;
 			sourceTree = "<group>";
@@ -455,11 +468,11 @@
 		1A02011A14BD619600CB9765 /* Databases */ = {
 			isa = PBXGroup;
 			children = (
+				1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */,
 				1A00C8F014B2E32600211F34 /* Connection.h */,
 				1A00C8F114B2E32600211F34 /* Database.h */,
 				1A00C8F214B2E32600211F34 /* DatabasesBackend.h */,
 				1A00C8F314B2E32600211F34 /* DatabasesBackend.m */,
-				1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */,
 				1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */,
 				1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */,
 				1A00C90014B2E32600211F34 /* SQLiteDatabase.h */,
@@ -475,9 +488,9 @@
 		1A8C032614C86534000829F2 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */,
 				1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */,
 				1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */,
-				1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -536,6 +549,8 @@
 				1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */,
 				1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */,
 				1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */,
+				1A9FE0A114D5F745008C0565 /* NativeObjectHolder.h in Headers */,
+				1A9FE0A514D5FA51008C0565 /* KirinServiceWithUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -711,6 +726,7 @@
 				1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */,
 				1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */,
 				1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */,
+				1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,14 +36,19 @@
     [super dealloc];
 }
 
-- (void) js: (NSString*) js {
+- (void) jsOnMainThread: (NSString*) js {
     if (jsExecutor) {
         [self.jsExecutor execJS:js];
     } else {
-        
         NSLog(@"No JSExecutor! javascript: %@", js);
     }
 }
+
+- (void) js: (NSString*) js {
+    [self performSelectorOnMainThread:@selector(jsOnMainThread:) withObject:js waitUntilDone:NO];
+}
+
+
 
 - (void) registerObjectProxy: (NSString*) name withMethods:(NSArray*) methods {
     NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];

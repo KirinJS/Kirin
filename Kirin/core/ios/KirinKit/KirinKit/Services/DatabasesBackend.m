@@ -28,7 +28,19 @@
 
 #define KEY_TRANSACTION_ID @"txId"
 
+@interface DatabasesBackend ()
+
+@property(nonatomic) dispatch_queue_t readOnlyDispatchQueue;
+@property(nonatomic) dispatch_queue_t readWriteDispatchQueue;
+
+- (void) doEndTransaction: (Transaction*) tx;
+
+@end
+
 @implementation DatabasesBackend
+
+@synthesize readOnlyDispatchQueue = readOnlyDispatchQueue_;
+@synthesize readWriteDispatchQueue = readWriteDispatchQueue_;
 
 #pragma mark -
 #pragma mark Database Management Methods
@@ -278,11 +290,22 @@
 
 - (void)endTransaction:(NSString *)txId
 {
-    NSMutableArray* data = [[NSMutableArray alloc] init];
+
     
 	NSLog(@"DatabasesBackend.endTransaction:%@", txId);
-    
+
     Transaction *tx = [transactionsById objectForKey:txId];
+    void (^block)(void) = ^{
+        [self doEndTransaction: tx];
+    };
+    
+    dispatch_async(tx.readOnly ? self.readOnlyDispatchQueue : self.readWriteDispatchQueue, block);    
+}
+
+- (void) doEndTransaction: (Transaction*) tx {
+    
+
+    NSMutableArray* data = [[NSMutableArray alloc] init];
     
     NSEnumerator* enumerator = [[tx operations] objectEnumerator];
     
@@ -477,14 +500,24 @@
         db = [[SQLiteDatabase alloc] init];
         connectionsByName = [[NSMutableDictionary alloc] init];
         transactionsById = [[NSMutableDictionary alloc] init];
+        
+        self.readOnlyDispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        self.readWriteDispatchQueue = dispatch_queue_create("com.futureplatforms.kirin.databases.write", NULL);
+        
     }
     return self;
+}
+
+- (dispatch_queue_t) dispatchQueue {
+    return dispatch_queue_create("com.futureplatforms.kirin.databases", NULL);
 }
 
 - (void)dealloc {
     [connectionsByName release];
     [transactionsById release];
     [db release];
+    self.readOnlyDispatchQueue = nil;
+    self.readWriteDispatchQueue = nil;
     [super dealloc];
 }
 

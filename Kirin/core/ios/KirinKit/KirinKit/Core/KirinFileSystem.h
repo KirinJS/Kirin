@@ -10,9 +10,11 @@
 
 @interface KirinFileSystem : NSObject
 
++ (KirinFileSystem*) fileSystem;
+
 - (NSString*) filePath: (NSString*) filePath inArea: (NSString*) fileArea;
 
-- (BOOL) writeData: (NSData*) data toFile: filePath;
+- (BOOL) writeData: (NSData*) data toFile: (NSString*) filePath;
 
 - (BOOL) mkdirForFile: (NSString*) filePath;
 
