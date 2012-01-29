@@ -9,7 +9,7 @@
 #import "KirinImagePicker.h"
 #import <MobileCoreServices/UTCoreTypes.h>
 #import <UIKit/UIViewController.h>
-
+#import "KirinFileSystem.h"
 
 
 @interface KirinImagePicker ()
@@ -119,7 +119,7 @@
             // Also save the image to the Camera Roll  - NOT REALLY NECESSSARY BUT COULD BE USEFUL
             // This allows the user to then further exploit the image
             // only want to do this with photos from camera
-            UIImageWriteToSavedPhotosAlbum (imageToSave, nil, nil , nil);
+            UIImageWriteToSavedPhotosAlbum (originalImage, nil, nil , nil);
 		}
 
         if (targetWidth != nil && targetHeight != nil) {
@@ -127,13 +127,19 @@
             imageToSave = [self imageByScalingAndCroppingForSize:imageToSave toSize:targetSize];
         }
          
-        
+
         NSString* filename = [self.config objectForKey:@"filename"];
         if (filename) {
-            NSString* err = [self saveImage:imageToSave toFilename:filename];
+            KirinFileSystem* fs = [KirinFileSystem fileSystem];
+            NSString* fileArea = [self.config objectForKey:@"fileArea"];
+            NSString* fullPath = [fs filePath:filename inArea:fileArea];
+            [fs mkdirForFile:fullPath];
+            NSString* err = [self saveImage:imageToSave toFilename:fullPath];
             if (err) {
                 [self.kirinHelper jsCallback:@"onError" fromConfig:self.config withArgsList:[NSString stringWithFormat:@"'%@'", err]];            
                 filename = nil;
+            } else {
+                filename = fullPath;
             }
         } else {
             filename = [[self.kirinHelper dropbox] putObject:imageToSave withTokenPrefix:@"camera."];
