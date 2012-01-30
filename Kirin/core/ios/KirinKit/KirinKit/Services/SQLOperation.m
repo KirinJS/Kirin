@@ -53,15 +53,17 @@
     
     NSError* err = nil;
     
-    NSString* filename = [KirinPaths pathForResource: self.statement];
+    NSLog(@"<SQL OPERATION> using filename: %@", self.statement);
     
-    NSLog(@"<SQL OPPERATION> using file: %@", filename);
+    NSString* filename = [KirinPaths fileInJavascriptDir: self.statement];
+    
+    NSLog(@"<SQL OPERATION> using file: %@", filename);
     
     NSString *string = [NSString stringWithContentsOfFile:filename 
                               encoding:NSUTF8StringEncoding 
                                  error:&err];
     
-    //NSLog(@"<SQL OPPERATION> using sql: %@", string);
+    //NSLog(@"<SQL OPERATION> using sql: %@", string);
     
     
     if(err) {
