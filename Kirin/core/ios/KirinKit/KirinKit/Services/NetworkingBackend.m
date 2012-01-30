@@ -59,7 +59,7 @@
     NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                                               andCallback:@selector(handleString:withDownloader:) 
-                                                               andErrback:@selector(handleError:forConfig:)];
+                                                               andErrback:@selector(handleError:withDownloader:)];
     
     [downloader retain];
     [downloader startDownloadWithConfig: config];
@@ -83,7 +83,7 @@
     NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                                               andCallback:@selector(handleJSONObject:withDownloader:) 
-                                                               andErrback:@selector(handleError:forConfig:)];
+                                                               andErrback:@selector(handleError:withDownloader:)];
 
     [downloader retain];
     [downloader startDownloadWithConfig: config];
@@ -109,7 +109,7 @@
     
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                andCallback:@selector(handleList:withDownloader:) 
-                                andErrback:@selector(handleError:forConfig:)];
+                                andErrback:@selector(handleError:withDownloader:)];
     [downloader retain];    
     [downloader startDownloadWithConfig: config];
 
@@ -236,7 +236,7 @@
     
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                                               andCallback:@selector(handleAsFile:withDownloader:) 
-                                                               andErrback:@selector(handleError:forConfig:)];
+                                                               andErrback:@selector(handleError:withDownloader:)];
     [downloader retain];
     [downloader startDownloadWithConfig: config];
 }
