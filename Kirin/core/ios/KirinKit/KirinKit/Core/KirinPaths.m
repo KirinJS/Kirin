@@ -41,6 +41,10 @@
     return [KirinPaths pathForResource:path];
 }
 
++ (NSString*) fileInJavascriptDir: (NSString*) path {
+    return [KirinPaths pathForResource:path];
+}
+
 + (NSString*) filePathInTempDir: (NSString*) path {
     // cleaned out automatically every 3 days but otherwise persists between application launches and reboots
     return [KirinPaths join:NSTemporaryDirectory() andFilePath:path];

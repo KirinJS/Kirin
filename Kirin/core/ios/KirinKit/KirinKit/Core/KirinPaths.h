@@ -26,4 +26,6 @@
 
 + (NSString*) filePathInAppAssets: (NSString*) path;
 
++ (NSString*) fileInJavascriptDir: (NSString*) path;
+
 @end
