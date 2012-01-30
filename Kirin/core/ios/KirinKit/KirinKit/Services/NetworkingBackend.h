@@ -17,7 +17,7 @@
 #import <KirinKit/KirinKit.h>
 #import "Networking.h"
 
-@interface NetworkingBackend : KirinServiceStub <Networking> {
+@interface NetworkingBackend : KirinServiceStub <Networking, KirinServiceOnMainThread> {
 
 }
 
