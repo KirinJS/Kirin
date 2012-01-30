@@ -94,6 +94,7 @@
         
         dispatch_queue_t queue = holder.dispatchQueue;
         if (queue) {
+//            block();
             dispatch_async(queue, block);
         } else {
             block();

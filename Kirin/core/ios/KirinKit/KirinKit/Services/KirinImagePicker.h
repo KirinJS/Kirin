@@ -13,6 +13,6 @@
 #import "CameraProtocol.h"
 
 
-@interface KirinImagePicker : KirinServiceStub<CameraProtocol, KirinServiceWithUI, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface KirinImagePicker : KirinServiceStub<CameraProtocol, KirinServiceOnMainThread, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @end

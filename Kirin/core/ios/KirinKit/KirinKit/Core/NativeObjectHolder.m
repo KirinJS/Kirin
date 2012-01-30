@@ -8,7 +8,7 @@
 
 #import "NativeObjectHolder.h"
 
-#import <KirinKit/KirinServiceWithUI.h>
+#import <KirinKit/KirinServiceOnMainThread.h>
 #import <UIKit/UIViewController.h>
 
 @implementation NativeObjectHolder
@@ -35,7 +35,7 @@
     if ([nativeObject isKindOfClass:[UIViewController class]]) {
         NSLog(@"Will dispatch to UIViewController %@ on the main thread", [nativeObject class]);
         self.dispatchQueue = nil;//dispatch_get_main_queue();
-    } else if ([nativeObject conformsToProtocol:@protocol(KirinServiceWithUI)]) {
+    } else if ([nativeObject conformsToProtocol:@protocol(KirinServiceOnMainThread)]) {
         NSLog(@"Will dispatch to KirinServiceWithUI %@ on the main thread", [nativeObject class]);
         self.dispatchQueue = nil;//dispatch_get_main_queue();
     } else {
