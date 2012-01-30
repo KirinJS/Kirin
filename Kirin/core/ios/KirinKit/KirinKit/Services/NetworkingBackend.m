@@ -20,6 +20,7 @@
 #import "FileDownloader.h"
 #import "JSON.h"
 #import "StringDownloader.h"
+#import "KirinFileSystem.h"
 
 @interface NetworkingBackend ()
 
@@ -28,7 +29,9 @@
 // TODO check if these methods need to be declared in the .h file or here.
 - (void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader;
 - (void) handleError: (NSString*) errorMessage withDownloader: (StringDownloader*) downloader;
-
+- (void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader;
+- (void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader;
+- (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader;
 @end
 
 @implementation NetworkingBackend
@@ -52,6 +55,30 @@
 #pragma mark Download JSON
 
 
+-(void) downloadString: (NSDictionary *) config {
+    NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
+    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
+                                                              andCallback:@selector(handleString:withDownloader:) 
+                                                               andErrback:@selector(handleError:forConfig:)];
+    
+    [downloader retain];
+    [downloader startDownloadWithConfig: config];
+}
+
+-(void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader {
+    NSDictionary* config = downloader.mConfig;
+    NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    [self.kirinHelper jsCallback:@"payload" 
+                      fromConfig:config 
+                    withArgsList:[NSString stringWithFormat:@"'%@'", string]];
+    [self cleanupCallbacks:config];
+    [downloader release];
+}
+
+#pragma mark -
+#pragma mark Download JSON
+
+
 -(void) downloadJSON: (NSDictionary *) config {
     NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
@@ -62,7 +89,7 @@
     [downloader startDownloadWithConfig: config];
 }
 
--(void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader {
+- (void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;
     NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     [self.kirinHelper jsCallback:@"payload" 
@@ -88,7 +115,7 @@
 
 }
 
--(void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader {
+- (void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;    
     NSArray* path = [config objectForKey:@"path"];
     
@@ -111,42 +138,7 @@
     
     int i = 0;
     
-    // find the list. 
-    
-    /*
-     
-     public JSONArray isolateArrayFromObject(JSONObject object, JSONArray path) {
-     
-     JSONArray list = null;
-     JSONObject parent = object;
-     
-     for (int i = 0, max = path.length(); i < max; i++) {
-     
-     String pathSegment = JSONUtils.stringOrNull(path, i, null);
-     if (pathSegment == null) {
-     continue;
-     }
-     
-     Object obj = parent.opt(pathSegment);
-     
-     if (obj == null) {
-     // not found.
-     return null;
-     } else if (obj instanceof JSONArray) {
-     list = (JSONArray) obj;
-     parent.remove(pathSegment);
-     break;
-     } else if (obj instanceof JSONObject) {
-     parent = (JSONObject) obj;
-     } else {
-     // not found
-     return null;
-     }
-     }
-     
-     return list;
-     }*/
-    
+    // find the list.     
     NSDictionary* parent = nil;
     NSObject* object = baseJson;
     NSArray* list = nil;
@@ -221,20 +213,19 @@
 #pragma mark -
 #pragma mark Download File
 
-- (NSString*) getResolvedPathForFilename: (NSString*) filename {
-    NSString* docs = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    return [docs stringByAppendingPathComponent:filename];
-}
-
 -(void) downloadFile: (NSDictionary *) config {
     NSLog(@"[NetworkingBackend] downloadFile_: %@", config);
     
+    NSString* fileArea = [config objectForKey:@"fileArea"];
     NSString* filename = [config objectForKey:@"filename"];
-
-    NSString* fullPath = [self getResolvedPathForFilename:filename];
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    
+    NSString* fullPath = [fs filePath:filename inArea:fileArea];
     
     // TODO make sure we don't want to overwrite this file. e.g. overwrite = true
     // TODO make sure we can be downloading in the background.
+    
+    
     
     if([[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
         [self.kirinHelper jsCallback:@"onFinish" 
@@ -253,14 +244,16 @@
 - (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;
     NSString* imageURL = [config objectForKey:@"url"];
+    NSString* fileArea = [config objectForKey:@"fileArea"];
     NSString* filename = [config objectForKey:@"filename"];
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
     
-    NSString* fullPath = [self getResolvedPathForFilename:filename];
+    NSString* fullPath = [fs filePath:filename inArea:fileArea];
     
     NSLog(@"image: %@ // filename: %@", imageURL, fullPath);
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
-        [data writeToFile:fullPath atomically:YES];
+        [fs writeData:data toFile:fullPath];
     }
     
     [self.kirinHelper jsCallback: @"onFinish" 
