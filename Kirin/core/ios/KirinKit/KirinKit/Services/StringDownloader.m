@@ -93,56 +93,77 @@
     NSString* contentType = [config objectForKey:@"contentType"];
 
     
-    NSData* postData = nil;
     
-    if (postDataString && [postDataString length] > 0) {
-        postData = [postDataString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    }
-    
-
-
     if (!files || [files count] == 0) {
+        // so we're not doing file upload.
+        NSData* postData = nil;
+    
+        if (postDataString && [postDataString length] > 0) {
+            postData = [postDataString dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+        }
+    
         [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
         return postData;
     }
     
+
     
     NSString* boundary = [NSString stringWithFormat: @"----BOUNDARY_%d", [NSDate timeIntervalSinceReferenceDate]];
 
 
 	[request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
-    NSMutableData* bodyData = [NSData data];
-    
-    if (postData) {
-        [bodyData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] 
-                              dataUsingEncoding:NSUTF8StringEncoding]];
-        NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: %@; name=\"form-data\"; filename=\"\"\r\n", contentType];
-        
-        [bodyData appendData:[headerPreamble dataUsingEncoding:NSUTF8StringEncoding]];
-        [bodyData appendData:postData];
-    }
-    
 
-       
     
-    
+    NSMutableData* bodyData = [NSMutableData data];
+
+    void (^appendString)(NSString*) = ^(NSString* str) {
+        [bodyData appendData:[str dataUsingEncoding:NSUTF8StringEncoding]];
+    };
+
+    void (^appendBoundary)(void) = ^() {
+        appendString([NSString stringWithFormat:@"\r\n--%@\r\n", boundary]);
+    };
     
     for (int i=0, max=[files count]; i<max; i++) {
-        NSString* fullPath = [files objectAtIndex:i];
+        NSDictionary* file = [files objectAtIndex:i];
         
-        [bodyData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        NSString* fullPath = [file objectForKey:@"filename"];
         
-        NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"upload=%d\"; filename=\"%@\"\r\n", i, fullPath];
+        NSString* name = [file objectForKey:@"name"];
+        if (!name) {
+            name = [NSString stringWithFormat:@"upload-%d", i];
+        }
         
-        [bodyData appendData:[headerPreamble dataUsingEncoding:NSUTF8StringEncoding]];
+        appendBoundary();
         
-        NSString* mimeType = [self mimeTypeForFileAtPath:fullPath];
-        NSString* mimeTypePreamble = [NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType];
+        NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", name, fullPath];
+        appendString(headerPreamble);
         
-        [bodyData appendData:[mimeTypePreamble dataUsingEncoding:NSUTF8StringEncoding]];
+        NSString* mimeType = [file objectForKey:@"contentType"];
+        if (!mimeType) {
+            mimeType = [self mimeTypeForFileAtPath:fullPath];
+        }
+        
+        appendString([NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]);
+
         [bodyData appendData:[NSData dataWithContentsOfFile:fullPath]];
     }
     
+    NSDictionary* paramMap = [config objectForKey:@"paramMap"];
+    if (paramMap) {
+        for (NSString* key in paramMap) {
+            id value = [paramMap objectForKey:key];
+            appendBoundary();
+            NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key];
+            appendString(headerPreamble);
+            
+            appendString([NSString stringWithFormat:@"%@", value]);
+        }
+    }
+    
+    // final boundary.
+    appendString([NSString stringWithFormat:@"\r\n--%@--\r\n", boundary]);
+       
     return bodyData;
 }
 
@@ -159,8 +180,7 @@
         request = [NSURLRequest requestWithURL:url];
     } else {
         NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
-        NSLog(@"Method is %@, request is %@, url is %@", method, r, url);
-        
+
         NSData* postData = [self prepareRequest: r withData: config];
         NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
         

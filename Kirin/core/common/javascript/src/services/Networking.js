@@ -17,16 +17,25 @@
 defineServiceModule("Networking", function (require, exports) {
 
 	var backend;
+
+	var api, 
+		kirin;
 	
 	exports.onLoad = function (nativeObject) {
 		backend = nativeObject;
+		
+		api = require("api-utils");
+		kirin = require("kirin");
 	};
 
 	exports.onUnload = function () {
 		backend = null;
+		
+		api = null;
+		kirin = null;
 	};
 
-	var kirin = require("kirin");
+
     var wrapCallbacks = function (config) {
         var key;
         for (var i=1, max=arguments.length; i<max; i++) {
@@ -82,21 +91,39 @@ defineServiceModule("Networking", function (require, exports) {
 	 */
 	var configureParams = function(config) {
 		var hasParams = (typeof config.params === 'object');
+		var hasFiles = _.isArray(config.attachments);
 		
 		if('GET' === config.method) {
 			if(hasParams) {
 				config.url = addParams(config.url, config.params);
 			}
+			if (hasFiles) {
+				throw new Error("Cannot upload files with a GET request");
+			}	
 		} else if('POST' === config.method) {
 			if(typeof config.postData !== "undefined") {
 				// We have raw POST data to send up so we give it no further treatment.
 				config.params = config.postData;
+			} else if (hasFiles) {
+				if (hasParams) {
+					config.paramMap = config.params;
+					_.each(config.attachments, function (filestats) {
+						api.normalizeAPI({    
+							'string': {
+								mandatory: ['filename'],
+								optional: ['contentType', 'name']
+							}
+						}, filestats);
+					});
+				}
 			} else if(hasParams) {
 				// We have a bunch of key/values, so we need to encode each of them.
 				// A string like a posted form is created. e.g. "param1key=param1value&param2key=param2value"
 				var paramsWithQuestion = addParams('', config.params);
 				config.params = paramsWithQuestion.substring(1); // Lop off the '?' at the head
 			}
+			
+
 		}
 	};
 	
@@ -152,7 +179,7 @@ defineServiceModule("Networking", function (require, exports) {
 	 * The envelope function?? TODO: Document the envelope function 
 	 */
     exports.downloadJSONList = function (config) {
-        var api = require("api-utils");
+
         
         api.normalizeAPI({    
             'string': {
@@ -185,7 +212,9 @@ defineServiceModule("Networking", function (require, exports) {
         
         api.normalizeAPI({    
             'string': {
-                mandatory: ['url', 'filename']
+                mandatory: ['url', 'filename', 'fileArea'],
+                defaults: {'method': 'GET', 'contentType': "application/x-www-form-urlencoded"},
+				optional: ['postData']
             },
             'function': {
                 optional: ['onFinish', 'onError']
