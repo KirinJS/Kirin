@@ -9,6 +9,7 @@
 #import "StringDownloader.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
+
 @interface StringDownloader ()
 
 @property(nonatomic) SEL callback;
@@ -108,7 +109,7 @@
     
 
     
-    NSString* boundary = [NSString stringWithFormat: @"----BOUNDARY_%d", [NSDate timeIntervalSinceReferenceDate]];
+    NSString* boundary = [NSString stringWithFormat: @"-_-_-_-_-_-_-_-_%d", [NSDate timeIntervalSinceReferenceDate]];
 
 
 	[request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];
@@ -120,8 +121,12 @@
         [bodyData appendData:[str dataUsingEncoding:NSUTF8StringEncoding]];
     };
 
+    void (^appendCR)(void) = ^ {
+        appendString(@"\r\n");
+    };
+
     void (^appendBoundary)(void) = ^() {
-        appendString([NSString stringWithFormat:@"\r\n--%@\r\n", boundary]);
+        appendString([NSString stringWithFormat:@"--%@\r\n", boundary]);
     };
     
     for (int i=0, max=[files count]; i<max; i++) {
@@ -136,7 +141,8 @@
         
         appendBoundary();
         
-        NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", name, fullPath];
+        NSString* headerPreamble = 
+            [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"%@\"\r\n", name, fullPath];
         appendString(headerPreamble);
         
         NSString* mimeType = [file objectForKey:@"contentType"];
@@ -147,6 +153,7 @@
         appendString([NSString stringWithFormat:@"Content-Type: %@\r\n\r\n", mimeType]);
 
         [bodyData appendData:[NSData dataWithContentsOfFile:fullPath]];
+        appendCR();
     }
     
     NSDictionary* paramMap = [config objectForKey:@"paramMap"];
@@ -158,11 +165,12 @@
             appendString(headerPreamble);
             
             appendString([NSString stringWithFormat:@"%@", value]);
+            appendCR();
         }
     }
     
     // final boundary.
-    appendString([NSString stringWithFormat:@"\r\n--%@--\r\n", boundary]);
+    appendString([NSString stringWithFormat:@"--%@--\r\n", boundary]);
        
     return bodyData;
 }

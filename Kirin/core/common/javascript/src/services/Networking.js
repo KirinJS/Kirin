@@ -106,7 +106,15 @@ defineServiceModule("Networking", function (require, exports) {
 				config.params = config.postData;
 			} else if (hasFiles) {
 				if (hasParams) {
-					config.paramMap = config.params;
+					config.paramMap = _.clone(config.params);
+					_.each(config.paramMap, function (num, key) {
+						var value = config.paramMap[key];
+						if (value === null) {
+							delete config.paramMap[key];
+						}
+					});
+					
+					delete config.params;
 					_.each(config.attachments, function (filestats) {
 						api.normalizeAPI({    
 							'string': {
@@ -115,6 +123,7 @@ defineServiceModule("Networking", function (require, exports) {
 							}
 						}, filestats);
 					});
+					
 				}
 			} else if(hasParams) {
 				// We have a bunch of key/values, so we need to encode each of them.
