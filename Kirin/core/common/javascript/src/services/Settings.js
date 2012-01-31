@@ -23,19 +23,30 @@ defineServiceModule("Settings", function (require, exports) {
 	
 	exports.onLoad = function (proxy) {
 		backend = proxy;
-		exports.initializeSettings(function () {
-			console.log("Settings now are: " + keyValuePairs);
-			try {
-				require("Environment");
-			} catch (e) {
-				console.warn("No Environment.js module is loaded");
-			}
-			
-		});
+	};
+	
+	exports.resetEnvironment = function () {
+		console.log("Before environment, Settings are: " + JSON.stringify(keyValuePairs));	
+		try {
+			require("Environment");
+		} catch (e) {
+			console.warn("No Environment.js module is loaded");
+		}
+		console.log("After  environment, Settings are: " + JSON.stringify(keyValuePairs));	
+	};
+	
+	exports.mergeOrOverwrite = function (newValues) {
+		
+		if (keyValuePairs === null) {
+			console.log("Initializing settings");
+			keyValuePairs = {};
+		}
+		_.extend(keyValuePairs, newValues);
 	};
 	
 	exports.onUnload = function () {
 		backend = null;
+		keyValuePairs = {};
 	};
 
 	var makeKey = function (string) {
@@ -43,7 +54,6 @@ defineServiceModule("Settings", function (require, exports) {
 	};
 	
 	exports.commit = function () {
-//		var backend = kirin.proxy("Settings-backend");
 		backend.updateContents_withDeletes_(keyValuePairs, deletedKeys);
 		if (deletedKeys.length > 0) {
 			deletedKeys = [];
@@ -84,10 +94,6 @@ defineServiceModule("Settings", function (require, exports) {
 	
 	var updateJS = function (newValues, callback) {
 		keyValuePairs = _.clone(newValues);
-		console.log("keyValuePairs: ");
-		_.each(keyValuePairs, function (i, key) {
-			console.log("\t" + key + ": " + keyValuePairs[key]);
-		});
 		if (deletedKeys.length > 0) {
 			deletedKeys = [];
 		}

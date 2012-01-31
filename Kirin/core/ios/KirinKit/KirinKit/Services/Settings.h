@@ -25,5 +25,5 @@
  * (NSArray *)deletedKeys
  */
 - (void) updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes;
-    
+- (void) requestPopulateJSWithCallback:(NSString *)updateCallback;
 @end

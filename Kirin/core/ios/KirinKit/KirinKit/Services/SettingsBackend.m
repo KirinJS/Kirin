@@ -20,10 +20,24 @@
 #import "Kirin.h"
 #import "JSON.h"
 
+@interface SettingsBackend ()
+
+- (void) initSettingsFileLocationIfNeeded;
+- (void) openSettingsFileIfNeeded;
+
+@end
+
 @implementation SettingsBackend
 
 - (id) init {
     return [super initWithModuleName:@"Settings"];
+}
+
+- (void) onLoad {
+    [super onLoad];
+    [self openSettingsFileIfNeeded];
+    [self.kirinHelper jsMethod:@"mergeOrOverwrite" withArgsList:[settings JSONRepresentation]];
+    [self.kirinHelper jsMethod:@"resetEnvironment"];
 }
 
 #pragma mark -
@@ -31,7 +45,7 @@
 
 -(void) initSettingsFileLocationIfNeeded{
     
-    NSLog(@"        [SettingsBackend] init settings files");
+    NSLog(@"[SettingsBackend] init settings files");
     
     if(settingsFileName) return;
     
@@ -43,14 +57,12 @@
                         stringByAppendingPathComponent:@"settingsFile.plist"];
     
     [settingsFileName retain];
-    
-    NSLog(@"        [SettingsBackend] settings file: %@", settingsFileName);
 
 }
 
--(void) openSettingsFileIfNeeded{
+- (void) openSettingsFileIfNeeded {
     
-    NSLog(@"    [SettingsBackend] open files");
+    NSLog(@"[SettingsBackend] open files");
     
     if(settings != nil) return;
         
@@ -68,13 +80,10 @@
 
 }
 
--(void) writeToSettingsFile{
-    
-    NSLog(@"    [SettingsBackend] write files READY");
+- (void) writeToSettingsFile {
+    NSLog(@"[SettingsBackend] Writing settings file");
     [self initSettingsFileLocationIfNeeded];
     [settings writeToFile:settingsFileName atomically:YES];
-    NSLog(@"    [SettingsBackend] write files DONE");
-    
 }
 
 
@@ -83,20 +92,13 @@
 
 - (void)requestPopulateJSWithCallback:(NSString *)updateCallback
 {
-    NSLog(@"[SettingsBackend] Request made for settings with callback: %@", updateCallback);
-    
     [self openSettingsFileIfNeeded];
-    
-    NSLog(@"[SettingsBackend] have a settings.json file called: %@", settings);
-
     [self.kirinHelper jsCallback:updateCallback withArgsList:[settings JSONRepresentation]];
-//	[KIRIN fireEventIntoJS:[NSString stringWithFormat:@"initializeSettings(%@)", [settings JSONRepresentation]]];
-
 }
 
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
 {
-    NSLog(@"[SettingsBackend] Request made for settings update: %@, %@", adds, deletes);
+    NSLog(@"[SettingsBackend] Request to commit settings: %@, %@", adds, deletes);
     
     [self openSettingsFileIfNeeded];
     
@@ -106,23 +108,20 @@
         
     } else if([adds isKindOfClass:[NSDictionary class]]) {
         
-        NSLog(@"[SettingsBackend] adding, was %d and about to add %d adds", [settings count], [adds count]);
         [settings addEntriesFromDictionary: adds];
-        NSLog(@"[SettingsBackend] added, now %d", [settings count]);
         
     } else {
         
         NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
-        
+    
     }
     
-    NSLog(@"[SettingsBackend] deletes ready");
+    
     //modify settings object
     [settings removeObjectsForKeys: deletes];
     
     //write them out to the file
     [self writeToSettingsFile];
-    NSLog(@"[SettingsBackend] written");
 }
 
 #pragma mark -
