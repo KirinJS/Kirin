@@ -80,7 +80,6 @@
 
 
 -(void) downloadJSON: (NSDictionary *) config {
-    NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                                               andCallback:@selector(handleJSONObject:withDownloader:) 
                                                                andErrback:@selector(handleError:withDownloader:)];
@@ -104,9 +103,6 @@
 #pragma mark Download JSON List
 
 -(void) downloadJSONList: (NSDictionary *) config {
-    
-    NSLog(@"[NetworkingBackend] downloadJSONList_: %@", config);
-    
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                andCallback:@selector(handleList:withDownloader:) 
                                 andErrback:@selector(handleError:withDownloader:)];
@@ -214,8 +210,6 @@
 #pragma mark Download File
 
 -(void) downloadFile: (NSDictionary *) config {
-    NSLog(@"[NetworkingBackend] downloadFile_: %@", config);
-    
     NSString* fileArea = [config objectForKey:@"fileArea"];
     NSString* filename = [config objectForKey:@"filename"];
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
