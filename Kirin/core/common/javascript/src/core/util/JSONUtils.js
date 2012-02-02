@@ -51,6 +51,8 @@ defineModule("JSONUtils", function (require, exports) {
 	
 	exports.findList = _.bind(findThingInObject, this, _.isArray, []);
 	
+	exports.findArray = exports.findList;
+	
 	exports.findObject = _.bind(findThingInObject, this, isMap, {});
 	
 	exports.findFunction = _.bind(findThingInObject, this, _.isFunction, function () {});
