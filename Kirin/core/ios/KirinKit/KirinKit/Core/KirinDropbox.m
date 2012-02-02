@@ -30,11 +30,13 @@
     [dropbox setObject:object forKey:token];
     
     dropboxCounter++;
-    NSLog(@"Token is %@", token);
     return token;
 }
 
 - (NSObject*) consumeObjectWithToken:(NSString*) token {
+    if (!token) {
+        return nil;
+    }
     NSObject* obj = [[[dropbox objectForKey:token] retain] autorelease];
     [dropbox removeObjectForKey:token];
     return obj;

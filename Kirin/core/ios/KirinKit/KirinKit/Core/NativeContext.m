@@ -58,7 +58,9 @@
 }
 
 - (void) unregisterNativeObject: (NSString*) name {
-    [self.nativeObjects removeObjectForKey:name];
+    if (name) {
+        [self.nativeObjects removeObjectForKey:name];
+    }
 }
 
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query {
