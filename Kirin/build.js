@@ -6,13 +6,23 @@ var _ = require("underscore"),
 	fs = require("fs");
 	
 var testtools = require("./building/kirin-testtools.js"),
-	buildtools = require("./building/kirin-buildtools.js");
+	buildtools = require("./building/kirin-buildtools.js"),
+	fileUtils = require("./building/fileUtils.js");
 
 var kirinPluginsPath = process.env["KIRIN_PLUGINS"];
 var dryRun = false;
-var pathSep = ":";
+var verbose = false;
+
+
+var tempDirRoot;
+var tempDir = null;
+var pathSep;
 if (process.platform === "windows") {
 	pathSep = ";";
+	tempDirRoot = process.env["TEMP"];
+} else {
+	pathSep = ":";
+	tempDirRoot = process.env["TMPDIR"];
 }
 
 if (kirinPluginsPath) {
@@ -72,9 +82,20 @@ function buildAll (argv, dir) {
 			case "--native":
 				args.compileNative = true;
 				break;
+			case "--ios": 
+				args.platform = "ios";
+				args.compileNative = true;
+				break;
 			case "--ios-configuration":
 				args["ios.configuration"] = argv[i+1];
 				i++;
+				break;
+			case "--initialize":
+				args.projectInit = true;
+				args.compileNative = false;
+				args.noJSBuildDir = true;
+				args.jslint = false;
+				args.testing = [];
 				break;
 			case "--dry-run":
 				args.dryRun = dryRun = true;
@@ -88,12 +109,18 @@ function buildAll (argv, dir) {
 			case "--no-js-build":
 				args.noJSBuildDir = true;
 				break;
+			case "-v":
+			case "--verbose":
+				verbose = args.verbose = true;
+				break;
 			default:
 				run = "help";
 				break ARGS;
 		}
 	}
-
+	
+	fileUtils.setDryRun(args.dryRun);
+	fileUtils.setVerbose(args.verbose);
 
 	_.extend(args, defaults);
 	console.dir(args);
@@ -151,15 +178,18 @@ function buildAll (argv, dir) {
 	}
 	
 
-	
+	var info = loadInfo(dir);	
 	if (environment.noJSBuildDir) {
 		environment.minify = false;
+		environment.jslint = false;
 	} else if (!environment.buildDir) {
-		var info = loadInfo(dir);
+
 		environment.cwd = dir;
-		console.dir(info);
+
 		environment.buildDir = buildtools.deriveBuildPath(environment.platform, dir, info);
 	}
+	
+
 	
 	if (args.buildType === "none") {
 		// noop build type.
@@ -180,7 +210,7 @@ function buildAll (argv, dir) {
 
 
 
-	preBuild(environment);
+	preBuild(info, environment);
  
 	buildModule(null, environment, dir);	
 
@@ -189,20 +219,25 @@ function buildAll (argv, dir) {
 
 
 function startMessage (msg) {
-	console.log("# ============================ " + msg);
+	if (dryRun || verbose) {
+		console.log("# ============================ " + msg);
+	}
 }
 
-function preBuild(env) {
-
+function preBuild(info, env) {
+	//if (env.buildDir) {
+	//	tempDir = env.tempDir = fileUtils.mkdirTemp(tempDirRoot, info.name + "-", "-build");
+	//}
 
 
 	var dir = env.buildDir;
 	if (dir) {
+		env.tempDir = dir;
 		startMessage("Preparing destination directory");
 		if (path.existsSync(dir)) {
-			rmForce(dir);
+			fileUtils.rmForce(dir, dryRun);
 		}
-		mkdirs(dir);
+		fileUtils.mkdirs(dir, dryRun);
 	}
 	// the first module will always be the application?
 	env.isApplication = true;
@@ -210,9 +245,13 @@ function preBuild(env) {
 
 function postPluginProcessing(environment) {
 	
+	if (environment.projectInit) {
+		buildtools.initializeProject(environment.platform, environment, buildOrder);
+	}
+	
 	if (environment.jslint) {
 		startMessage("JSLint");
-		if (!buildtools.runJSLint(dryRun)) {
+		if (!buildtools.runJSLint(dryRun, verbose)) {
 			endBuildBadly("Too many JSLint errors.");
 		}
 	}
@@ -256,7 +295,9 @@ function packaging (environment) {
 		if (!dryRun) {
 			indexBuilder.buildIndexFile(jsFiles, environment.buildDir); 
 		} else {
-			console.log("# creating index file from Javascript files");
+			if (verbose) {
+				console.log("# creating index file from Javascript files");
+			}
 		}
 		
 		if (environment.minify) {
@@ -272,7 +313,9 @@ function packaging (environment) {
 
 function compileNative () {
 	startMessage("Compiling native projects");
-
+	
+	// TODO make sure we can compile workspaces.
+	
 	var i = 0; 
 	var env;
 	var errback = endBuildBadly;
@@ -304,73 +347,20 @@ function postPackaging (environment) {
 }
 
 function endBuildBadly (err) {
+	if (tempDir) {
+		fileUtils.rmForce(tempDir);
+	}
 	console.error(err);
 	process.exit(1);
 }
 
 function endBuild () {
+	if (tempDir) {
+		fileUtils.rmForce(tempDir);
+	}
 	console.log("DONE");
 	process.exit(0);	
 }
-
-function callCallback (callbacks, name, filepath) {
-	var cb = callbacks[name];
-	if (_.isFunction(cb)) {
-		return cb(filepath);
-	} else {
-		return true;
-	}
-}
-
-function dirWalker (filepath, callbacks) {
-	if (!path.existsSync(filepath)) {
-		return;
-	}
-	var info = fs.statSync(filepath);
-	if (info.isDirectory()) {	
-		if (callCallback(callbacks, "preTraversal", filepath)) {
-			var files = fs.readdirSync(filepath);
-			_.each(files, function (file) {
-				dirWalker(path.join(filepath, file), callbacks);
-			});
-			callCallback(callbacks, "postTraversal", filepath);
-		}
-	} else if (callCallback(callbacks, "testFile", filepath)) {
-		callCallback(callbacks, "perFile", filepath);
-	}
-}
-
-function rmForce(dir) {
-	console.log("rm -Rf " + dir);
-	if (dryRun) {
-		return;
-	}
-	dirWalker(dir, {
-		perFile: function (file) {
-			fs.unlinkSync(file);
-		},
-		postTraversal: function (dir) {
-			fs.rmdirSync(dir);
-		}
-	});
-}
-
-function mkdirs(dirname) {
-
-	var path = require("path");
-	
-	if (path.existsSync(dirname)) {
-		return true;
-	} else {
-		mkdirs(path.dirname(dirname));
-		console.log("mkdir " + dirname);
-		if (!dryRun) {
-			fs.mkdirSync(dirname, "0755");
-		}
-		return true;
-	}
-}
-
 
 function loadJSON(dir, file) {
 	var myPath = path.join(dir, file);
@@ -389,15 +379,32 @@ function loadInfo(dir) {
 	}
 	
 	if (!info) {
-		throw new Error("Can't find an info.js in " + dir);
+		throw new Error("Can't find a valid info.js in " + dir);
 	}
-	
+
+	function mergeWithPrefix(prefix, src, dest) {
+		_.each(src, function (i, key) {
+			dest[prefix + key] = src[key];
+		});
+		return dest;
+	}
+
+	_.each(_.keys(info), function (key) {
+		var value = info[key];
+		if (typeof value === 'object' && !_.isArray(value)) {
+			mergeWithPrefix(key + ".", value, info);
+			delete info[key];
+		}
+	});
 	return info;
 }
 
 var pluginModules = {};
 var libraryModules = {};
 var buildOrder = [];
+
+
+
 function buildModule (pluginName, inheritedEnvironment, dir) {
 
 
@@ -422,53 +429,9 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	environment.isApplication = isApplication;
 	buildOrder.push(environment);
 	startMessage("Gathering " + pluginName);
-	var createFilteredWalker = function (extensionPattern, exclusionsPattern) {
-		extensionPattern = extensionPattern || /\.*$/;
-		exclusionsPattern = exclusionsPattern || /(\.git|\.svn)$/;
 
-		var extensionFunction = extensionPattern;
-		if (_.isRegExp(extensionPattern)) {
-			extensionFunction = function (filepath) {
-				return extensionPattern.test(filepath);
-			};
-		}
-		
-		return {
-			preTraversal: function (dirpath) {
-				return !exclusionsPattern.test(dirpath);
-			},
-			postTraversal: function (dirpath) {
-							
-			},
-			testFile: function (filepath) {
-				if (!extensionFunction(filepath)) {
-					return true;
-				}
-				
-				if (!environment.allVariantsRegexp.test(filepath)) {
-					return true;
-				}
-				
-				return environment.includeRegexp.test(filepath);
-			}
-			
-		};
-	};
-	
-	var createFileCopier = function (srcPath, destPath) {
-		return function (filepath) {
-			var newFilepath = filepath.replace(srcPath, destPath);
-			mkdirs(path.dirname(newFilepath));
-			console.log("cp " + filepath + " " + newFilepath);
-			if (!dryRun) {
-				fs.linkSync(filepath, newFilepath);
-			}
-		};
-	}
-	
-	
-	var javascriptFileWalker = createFilteredWalker(/\.js$/);
-
+	var javascriptFileWalker = fileUtils.walkDirectory.createFilteredWalker(/\.js$/);
+	javascriptFileWalker.createSpecificFileTest(environment);
 	
 	var javascriptFiles = [];
 	javascriptFileWalker.perFile = function (filepath) {
@@ -479,7 +442,7 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	var resPath = path.join(dir, info["common.resources"] || "common/resources");	
 	var libPath = path.join(dir, info["javascript.lib"] || "common/lib");	
 
-	dirWalker(srcPath, javascriptFileWalker);
+	fileUtils.walkDirectory(srcPath, javascriptFileWalker);
 
 
 	var moduleInfo = testtools.addPlugin(pluginName, javascriptFiles, srcPath);	
@@ -488,20 +451,27 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	
 	
 	if (environment.buildDir) {
-		var resourceFileWalker = createFilteredWalker(/\.(sql|txt|json|css|properties|html)$/);
-
-		resourceFileWalker.perFile = createFileCopier(resPath, path.join(environment.buildDir, "resources"));		
-		dirWalker(resPath, resourceFileWalker);
+		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(/\.(sql|txt|json|css|properties|html)$/);
+		resourceFileWalker.createSpecificFileTest(environment);
+		
+		resourceFileWalker.perFile = fileUtils.walkDirectory.createFileCopier(resPath, path.join(environment.buildDir, "resources"));		
+		fileUtils.walkDirectory(resPath, resourceFileWalker);
 		
 		if (!environment.minify) {
 			// TODO wrap the js files with browserify templates
-			var copier = createFileCopier(srcPath, path.join(environment.buildDir, "src"));
+			var copier = fileUtils.walkDirectory.createFileCopier(srcPath, path.join(environment.tempDir, "src"));
 			_.each(_.values(moduleInfo["default"]), copier);
+			
+			// we have a list of files that we'd like to 
+			// a) if not minifying then we should copy to a directory, changing the name as we go, preserving the file paths. We should also add the browserify templates. client-modules should be a browserify template.
+			// b) if minifying, we should copy a tmp directory, changing the name as we go, preserving the file paths. We should not add the browserify templates. 
+			// c) if testing, we should preserve in place and change the way we call tests, and by replacing require.
+			
 		}
 		
 		var isMinified = /-min\.js$/;
 		var isJs = /\.js$/;
-		var libWalker = createFilteredWalker();
+		var libWalker = fileUtils.walkDirectory.createFilteredWalker();
 		libWalker.testFile = function (filepath) {
 			if (environment.minify) {
 				return isMinified.test(filepath);
@@ -509,14 +479,14 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 				return isJs.test(filepath) && !isMinified.test(filepath);
 			}
 		};
-		libWalker.perFile = createFileCopier(libPath, path.join(environment.buildDir, "lib"));		
-		dirWalker(libPath, libWalker);
+		libWalker.perFile = fileUtils.walkDirectory.createFileCopier(libPath, path.join(environment.buildDir, "lib"));		
+		fileUtils.walkDirectory(libPath, libWalker);
 		
 		libWalker.perFile = function (filepath) {
 			var filename = filepath.replace(libPath, "lib");
 			libraryModules[filename] = 1;
 		}
-		dirWalker(libPath, libWalker);
+		fileUtils.walkDirectory(libPath, libWalker);
 		
 		
 	}
@@ -550,6 +520,17 @@ function buildDependency (moduleName, info) {
 		if (path.existsSync(pluginPath)) {	
 			found = true;
 			buildModule(moduleName, info, pluginPath);
+			return;
+		}
+		
+		var infojs = path.join(pluginsDir, "info.js");
+		if (path.existsSync(infojs)) {
+			var newInfo = loadInfo(pluginsDir);
+			if (newInfo.name === moduleName) {
+				found = true;
+				buildModule(moduleName, info, pluginsDir);
+				return;
+			}
 		}
 	});
 	

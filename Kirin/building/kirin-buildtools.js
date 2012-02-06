@@ -60,7 +60,7 @@ function pushAll (l, r) {
 }
 
 
-exports.runJSLint = function (dryRun) {
+exports.runJSLint = function (dryRun, verbose) {
 	var lintPath = require("path").join(__dirname, "./tools/jslint/lib/fulljslint_export.js");
 	var JSLINT = require("./tools/jslint/lib/fulljslint_export.js").JSLINT;
 	// TODO put these into a seperate file. 
@@ -79,11 +79,10 @@ exports.runJSLint = function (dryRun) {
 			return;
 		}
 
+
 		if (!JSLINT(code.toString("utf8"), jslint_config.jslintConfig)) {
-			console.error("---------------------------------------");
+			var lines = [];
 			var errors = JSLINT.errors;
-			
-			console.error(filepath + ": ");
 			_.each(errors, function (e) {
 				if (e) {
 					var sev;
@@ -93,9 +92,19 @@ exports.runJSLint = function (dryRun) {
 						numErrors ++;
 						sev = "E";
 					}
-					console.error(" " + sev + " " + e.line + "," + e.character + ": " + e.reason);
+					if (sev === "E" || verbose) {
+						lines.push(" " + sev + " " + e.line + "," + e.character + ": " + e.reason);
+					}
 				}
 			});
+			if (!_.isEmpty(lines)) {
+				console.error("---------------------------------------");
+				console.error(filepath + ": ");
+				_.each(lines, function (line) {
+					// not sure why I can't use console.error directly in the each argument
+					console.error(line);
+				});
+			}
 		}
 		
 	
@@ -181,26 +190,31 @@ exports.runTests = function (callback, errback, dryRun) {
 	}
 };
 
-exports.compileNative = function (isApplication, dir, platform, buildType, environment, callback, errback) {
+function requireNativeBuildTools(platform) {
 	try {
-		var nativeBuilder = require("./kirin-buildtools-" + platform + ".js");
-		if (isApplication) {
-			nativeBuilder.compileApplication(environment, dir, buildType, callback, errback);
-		} else {
-			nativeBuilder.compileDependency(environment, dir, callback, errback);
-		}
+		return require("./kirin-buildtools-" + platform + ".js");
 	} catch (e) {
 		console.error("Native building is not supported on " + platform, e);
+		process.exit(1);
+	}
+}
+
+exports.compileNative = function (isApplication, dir, platform, buildType, environment, callback, errback) {
+	var nativeBuilder = requireNativeBuildTools(platform);
+	if (isApplication) {
+		nativeBuilder.compileApplication(environment, dir, buildType, callback, errback);
+	} else {
+		nativeBuilder.compileDependency(environment, dir, callback, errback);
 	}
 };
 
+
+
 exports.deriveBuildPath = function (platform, dir, environment) {
-	try {
-		var nativeBuilder = require("./kirin-buildtools-" + platform + ".js");
-		var dir = nativeBuilder.deriveBuildPath(dir, environment);
-		
-		return dir;
-	} catch (e) {
-		console.error("Native building is not supported on " + environment.platform, e);
-	}
+	var nativeBuilder = requireNativeBuildTools(platform);
+	return nativeBuilder.deriveBuildPath(dir, environment);
+};
+
+exports.initializeProject = function (platform, environment, subProjects) {
+	requireNativeBuildTools(platform).initializeProject(environment, subProjects);
 };

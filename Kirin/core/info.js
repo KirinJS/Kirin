@@ -1,5 +1,9 @@
 {
 	"name": "kirin-core",
-	"ios.dir": "./ios/KirinKit",
-	"ios.target": "KirinKit"
+	"ios": {
+		"isFramework": true,
+		"dir": "./ios/KirinKit",
+		"target": "KirinKit",
+		"project": "KirinKit.xcodeproj"
+	}
 }

@@ -7,7 +7,7 @@ exports.templateLine = "<script type='text/javascript' src='%FILENAME%' ></scrip
 exports.buildIndexFile = function (moduleNames, dir) {
 	var path = require("path");
 	var fs = require("fs");
-	var templateFilepath = path.join(process.env["KIRIN_HOME"], "core", "common", "index", exports.templateFile);
+	var templateFilepath = path.join(__dirname, "..", "core", "common", "index", exports.templateFile);
 	
 	if (!path.existsSync(templateFilepath)) {
 		throw new Error("Can't find an existing template file " + templateFilepath);
