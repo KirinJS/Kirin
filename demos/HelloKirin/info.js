@@ -1,4 +1,9 @@
 {
 	"name": "HelloKirin",
-	"plugins": ["kirin-core"]
+	"plugins": ["kirin-core"],
+        "ios": {
+                "dir": "ios",
+                "project": "HelloKirin-iOS.xcodeproj",
+                "target": "HelloKirin-iOS"
+        }
 }

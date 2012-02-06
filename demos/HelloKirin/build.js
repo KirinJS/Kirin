@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var kirin_home = process.env["KIRIN_HOME"] || __dirname + "/../../Kirin";
 if (kirin_home) {
 	process.env["KIRIN_HOME"] = kirin_home;
