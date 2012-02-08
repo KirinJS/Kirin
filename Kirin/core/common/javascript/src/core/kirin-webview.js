@@ -47,6 +47,9 @@ defineModule("kirin", function (require, exports) {
 	})();
 	
 	var wrapCallback = function (callback, jsName, methodName) {
+		if (typeof callback !== 'function') {
+			return null;
+		}
 		var token = tokenGenerator(jsName, methodName);
 		callbacks[token] = callback;
 		return token;
@@ -135,7 +138,10 @@ defineModule("kirin", function (require, exports) {
 	
 	native2js.execCallback = function (callbackId, argsList) {
 		var callback = callbacks[callbackId];
-		
+		if (!callback) {
+			console.warn("Callback " + callbackId + " doesn't exist");
+			return;
+		}
 		if (typeof callback !== 'function') {
 			console.error("Problem calling callback '" + callbackId + "'");
 			return;

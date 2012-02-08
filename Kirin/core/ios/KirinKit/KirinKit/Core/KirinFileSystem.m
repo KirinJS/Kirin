@@ -63,5 +63,16 @@
     return [KirinPaths filePathInTempDir:filePath];
 }
 
+- (NSString*) readString: (NSString*) filePath {
+    NSMutableData* data = [NSData dataWithContentsOfFile:filePath];
+    return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+}
+
+- (BOOL) copyFrom: (NSString*) srcFilePath to:(NSString*) destFilePath {
+    [self mkdirForFile:destFilePath];
+    NSFileManager *filemgr =[NSFileManager defaultManager];
+    return [filemgr copyItemAtPath:srcFilePath toPath:destFilePath error:nil];
+}
+
 
 @end

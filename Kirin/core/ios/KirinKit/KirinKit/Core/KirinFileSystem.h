@@ -22,4 +22,8 @@
 
 - (BOOL) mkdir: (NSString*) newDir;
 
+- (NSString*) readString: (NSString*) filePath;
+
+- (BOOL) copyFrom: (NSString*) srcFilePath to:(NSString*) destFilePath; 
+
 @end
