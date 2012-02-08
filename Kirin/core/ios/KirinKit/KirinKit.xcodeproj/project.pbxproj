@@ -1,0 +1,973 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A00C8B614B2E2FD00211F34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A00C8B414B2E2FD00211F34 /* InfoPlist.strings */; };
+		1A00C8C014B2E2FD00211F34 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A00C8BF14B2E2FD00211F34 /* UIKit.framework */; };
+		1A00C8C214B2E2FD00211F34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A00C8C114B2E2FD00211F34 /* Foundation.framework */; };
+		1A00C8C414B2E2FD00211F34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A00C8C314B2E2FD00211F34 /* CoreGraphics.framework */; };
+		1A00C8C714B2E2FD00211F34 /* KirinKit.framework in Resources */ = {isa = PBXBuildFile; fileRef = 1A00C8AF14B2E2FD00211F34 /* KirinKit.framework */; };
+		1A00C8CD14B2E2FD00211F34 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A00C8CB14B2E2FD00211F34 /* InfoPlist.strings */; };
+		1A00C91A14B2E32600211F34 /* DebugConsole.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8DC14B2E32600211F34 /* DebugConsole.h */; };
+		1A00C91B14B2E32600211F34 /* DebugConsole.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8DD14B2E32600211F34 /* DebugConsole.m */; };
+		1A00C92014B2E32600211F34 /* JSContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E014B2E32600211F34 /* JSContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C92114B2E32600211F34 /* JSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8E114B2E32600211F34 /* JSContext.m */; };
+		1A00C92314B2E32600211F34 /* JSExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E214B2E32600211F34 /* JSExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C92414B2E32600211F34 /* Kirin.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E314B2E32600211F34 /* Kirin.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C92514B2E32600211F34 /* Kirin.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8E414B2E32600211F34 /* Kirin.m */; };
+		1A00C92714B2E32600211F34 /* KirinDropbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E514B2E32600211F34 /* KirinDropbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C92814B2E32600211F34 /* KirinDropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8E614B2E32600211F34 /* KirinDropbox.m */; };
+		1A00C92A14B2E32600211F34 /* KirinHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E714B2E32600211F34 /* KirinHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C92B14B2E32600211F34 /* KirinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8E814B2E32600211F34 /* KirinHelper.m */; };
+		1A00C92D14B2E32600211F34 /* KirinWebViewHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8E914B2E32600211F34 /* KirinWebViewHolder.h */; };
+		1A00C92E14B2E32600211F34 /* KirinWebViewHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8EA14B2E32600211F34 /* KirinWebViewHolder.m */; };
+		1A00C93014B2E32600211F34 /* NativeContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8EB14B2E32600211F34 /* NativeContext.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C93114B2E32600211F34 /* NativeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8EC14B2E32600211F34 /* NativeContext.m */; };
+		1A00C93314B2E32600211F34 /* NativeExecutor.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8ED14B2E32600211F34 /* NativeExecutor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C93414B2E32600211F34 /* SynthesizeSingleton.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C93514B2E32600211F34 /* Connection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F014B2E32600211F34 /* Connection.h */; };
+		1A00C93614B2E32600211F34 /* Database.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F114B2E32600211F34 /* Database.h */; };
+		1A00C93714B2E32600211F34 /* DatabasesBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F214B2E32600211F34 /* DatabasesBackend.h */; };
+		1A00C93814B2E32600211F34 /* DatabasesBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F314B2E32600211F34 /* DatabasesBackend.m */; };
+		1A00C93A14B2E32600211F34 /* DatabasesBackendProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */; };
+		1A00C93B14B2E32600211F34 /* FileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F514B2E32600211F34 /* FileDownloader.h */; };
+		1A00C93C14B2E32600211F34 /* FileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F614B2E32600211F34 /* FileDownloader.m */; };
+		1A00C93E14B2E32600211F34 /* JSONListDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F714B2E32600211F34 /* JSONListDownloader.h */; };
+		1A00C93F14B2E32600211F34 /* JSONListDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F814B2E32600211F34 /* JSONListDownloader.m */; };
+		1A00C94114B2E32600211F34 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F914B2E32600211F34 /* Networking.h */; };
+		1A00C94214B2E32600211F34 /* NetworkingBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */; };
+		1A00C94314B2E32600211F34 /* NetworkingBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */; };
+		1A00C94514B2E32600211F34 /* SettingsBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8FC14B2E32600211F34 /* SettingsBackend.h */; };
+		1A00C94614B2E32600211F34 /* SettingsBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8FD14B2E32600211F34 /* SettingsBackend.m */; };
+		1A00C94814B2E32600211F34 /* SQLiteConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */; };
+		1A00C94914B2E32600211F34 /* SQLiteConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */; };
+		1A00C94B14B2E32600211F34 /* SQLiteDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90014B2E32600211F34 /* SQLiteDatabase.h */; };
+		1A00C94C14B2E32600211F34 /* SQLiteDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90114B2E32600211F34 /* SQLiteDatabase.m */; };
+		1A00C94E14B2E32600211F34 /* SQLOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90214B2E32600211F34 /* SQLOperation.h */; };
+		1A00C94F14B2E32600211F34 /* SQLOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90314B2E32600211F34 /* SQLOperation.m */; };
+		1A00C95114B2E32600211F34 /* Transaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90414B2E32600211F34 /* Transaction.h */; };
+		1A00C95214B2E32600211F34 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90514B2E32600211F34 /* Transaction.m */; };
+		1A00C95414B2E32600211F34 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90714B2E32600211F34 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C95514B2E32600211F34 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90814B2E32600211F34 /* NSObject+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A00C95614B2E32600211F34 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90914B2E32600211F34 /* NSObject+JSON.m */; };
+		1A00C95814B2E32600211F34 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90A14B2E32600211F34 /* SBJsonParser.h */; };
+		1A00C95914B2E32600211F34 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90B14B2E32600211F34 /* SBJsonParser.m */; };
+		1A00C95B14B2E32600211F34 /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90C14B2E32600211F34 /* SBJsonStreamParser.h */; };
+		1A00C95C14B2E32600211F34 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90D14B2E32600211F34 /* SBJsonStreamParser.m */; };
+		1A00C95E14B2E32600211F34 /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90E14B2E32600211F34 /* SBJsonStreamParserAdapter.h */; };
+		1A00C95F14B2E32600211F34 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90F14B2E32600211F34 /* SBJsonStreamParserAdapter.m */; };
+		1A00C96114B2E32600211F34 /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C91014B2E32600211F34 /* SBJsonStreamParserState.h */; };
+		1A00C96214B2E32600211F34 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C91114B2E32600211F34 /* SBJsonStreamParserState.m */; };
+		1A00C96414B2E32600211F34 /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C91214B2E32600211F34 /* SBJsonStreamWriter.h */; };
+		1A00C96514B2E32600211F34 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C91314B2E32600211F34 /* SBJsonStreamWriter.m */; };
+		1A00C96714B2E32600211F34 /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C91414B2E32600211F34 /* SBJsonStreamWriterState.h */; };
+		1A00C96814B2E32600211F34 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C91514B2E32600211F34 /* SBJsonStreamWriterState.m */; };
+		1A00C96A14B2E32600211F34 /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C91614B2E32600211F34 /* SBJsonTokeniser.h */; };
+		1A00C96B14B2E32600211F34 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C91714B2E32600211F34 /* SBJsonTokeniser.m */; };
+		1A00C96D14B2E32600211F34 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C91814B2E32600211F34 /* SBJsonWriter.h */; };
+		1A00C96E14B2E32600211F34 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C91914B2E32600211F34 /* SBJsonWriter.m */; };
+		1A00C97A14B2E36500211F34 /* NativeContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97014B2E36500211F34 /* NativeContextTest.m */; };
+		1A00C97B14B2E36500211F34 /* KirinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97214B2E36500211F34 /* KirinTests.m */; };
+		1A00C97C14B2E36500211F34 /* KirinHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97414B2E36500211F34 /* KirinHelperTest.m */; };
+		1A00C97D14B2E36500211F34 /* DummyNativeContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97614B2E36500211F34 /* DummyNativeContext.m */; };
+		1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C97814B2E36500211F34 /* DummyJSContext.m */; };
+		1A00C99514B2EC5F00211F34 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+		1A00C99A14B2EE8900211F34 /* KirinKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C99814B2EE8800211F34 /* KirinKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010214BCFFED00CB9765 /* KirinUiFragmentHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010314BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */; };
+		1A02010714BD025E00CB9765 /* KirinScreenHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010514BD025E00CB9765 /* KirinScreenHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010814BD025E00CB9765 /* KirinScreenHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010614BD025E00CB9765 /* KirinScreenHelper.m */; };
+		1A02010D14BD072C00CB9765 /* KirinServiceHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02010E14BD072C00CB9765 /* KirinServiceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */; };
+		1A02011214BD09B000CB9765 /* KirinServiceProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011514BD130600CB9765 /* KirinServices.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011314BD130500CB9765 /* KirinServices.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011614BD130600CB9765 /* KirinServices.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011414BD130600CB9765 /* KirinServices.m */; };
+		1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02011B14BD628300CB9765 /* KirinServiceStub.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02011C14BD628400CB9765 /* KirinServiceStub.m */; };
+		1A02012114BD658200CB9765 /* Settings.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012014BD658200CB9765 /* Settings.h */; };
+		1A02012414BD782300CB9765 /* KirinPaths.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A02012214BD782000CB9765 /* KirinPaths.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A02012514BD782300CB9765 /* KirinPaths.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A02012314BD782200CB9765 /* KirinPaths.m */; };
+		1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */; };
+		1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */; };
+		1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */; };
+		1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B514E2CAE00012CD5A /* FileSystem.h */; };
+		1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */; };
+		1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
+		1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
+		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61952914D22105004FDD8E /* KirinFileSystem.m */; };
+		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
+		1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C032D14C86AF8000829F2 /* StringDownloader.m */; };
+		1A9FE0A114D5F745008C0565 /* NativeObjectHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */; };
+		1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */; };
+		1A9FE0A514D5FA51008C0565 /* KirinServiceOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */; };
+		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
+		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
+		1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1A00C8C514B2E2FD00211F34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1A00C8A314B2E2FD00211F34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1A00C8AE14B2E2FD00211F34;
+			remoteInfo = KirinKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A00C8AF14B2E2FD00211F34 /* KirinKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KirinKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A00C8B314B2E2FD00211F34 /* KirinKit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KirinKit-Info.plist"; sourceTree = "<group>"; };
+		1A00C8B514B2E2FD00211F34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A00C8B714B2E2FD00211F34 /* KirinKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KirinKit-Prefix.pch"; sourceTree = "<group>"; };
+		1A00C8BD14B2E2FD00211F34 /* KirinKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KirinKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A00C8BF14B2E2FD00211F34 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A00C8C114B2E2FD00211F34 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A00C8C314B2E2FD00211F34 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1A00C8CA14B2E2FD00211F34 /* KirinKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "KirinKitTests-Info.plist"; sourceTree = "<group>"; };
+		1A00C8CC14B2E2FD00211F34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A00C8CE14B2E2FD00211F34 /* KirinKitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KirinKitTests-Prefix.pch"; sourceTree = "<group>"; };
+		1A00C8DC14B2E32600211F34 /* DebugConsole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugConsole.h; sourceTree = "<group>"; };
+		1A00C8DD14B2E32600211F34 /* DebugConsole.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugConsole.m; sourceTree = "<group>"; };
+		1A00C8E014B2E32600211F34 /* JSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSContext.h; sourceTree = "<group>"; };
+		1A00C8E114B2E32600211F34 /* JSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSContext.m; sourceTree = "<group>"; };
+		1A00C8E214B2E32600211F34 /* JSExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSExecutor.h; sourceTree = "<group>"; };
+		1A00C8E314B2E32600211F34 /* Kirin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Kirin.h; sourceTree = "<group>"; };
+		1A00C8E414B2E32600211F34 /* Kirin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Kirin.m; sourceTree = "<group>"; };
+		1A00C8E514B2E32600211F34 /* KirinDropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinDropbox.h; sourceTree = "<group>"; };
+		1A00C8E614B2E32600211F34 /* KirinDropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinDropbox.m; sourceTree = "<group>"; };
+		1A00C8E714B2E32600211F34 /* KirinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinHelper.h; sourceTree = "<group>"; };
+		1A00C8E814B2E32600211F34 /* KirinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinHelper.m; sourceTree = "<group>"; };
+		1A00C8E914B2E32600211F34 /* KirinWebViewHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinWebViewHolder.h; sourceTree = "<group>"; };
+		1A00C8EA14B2E32600211F34 /* KirinWebViewHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinWebViewHolder.m; sourceTree = "<group>"; };
+		1A00C8EB14B2E32600211F34 /* NativeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeContext.h; sourceTree = "<group>"; };
+		1A00C8EC14B2E32600211F34 /* NativeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeContext.m; sourceTree = "<group>"; };
+		1A00C8ED14B2E32600211F34 /* NativeExecutor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeExecutor.h; sourceTree = "<group>"; };
+		1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		1A00C8F014B2E32600211F34 /* Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Connection.h; sourceTree = "<group>"; };
+		1A00C8F114B2E32600211F34 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		1A00C8F214B2E32600211F34 /* DatabasesBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesBackend.h; sourceTree = "<group>"; };
+		1A00C8F314B2E32600211F34 /* DatabasesBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabasesBackend.m; sourceTree = "<group>"; };
+		1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesBackendProtocol.h; sourceTree = "<group>"; };
+		1A00C8F514B2E32600211F34 /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
+		1A00C8F614B2E32600211F34 /* FileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloader.m; sourceTree = "<group>"; };
+		1A00C8F714B2E32600211F34 /* JSONListDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONListDownloader.h; sourceTree = "<group>"; };
+		1A00C8F814B2E32600211F34 /* JSONListDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONListDownloader.m; sourceTree = "<group>"; };
+		1A00C8F914B2E32600211F34 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
+		1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingBackend.h; sourceTree = "<group>"; };
+		1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingBackend.m; sourceTree = "<group>"; };
+		1A00C8FC14B2E32600211F34 /* SettingsBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsBackend.h; sourceTree = "<group>"; };
+		1A00C8FD14B2E32600211F34 /* SettingsBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsBackend.m; sourceTree = "<group>"; };
+		1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteConnection.h; sourceTree = "<group>"; };
+		1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteConnection.m; sourceTree = "<group>"; };
+		1A00C90014B2E32600211F34 /* SQLiteDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLiteDatabase.h; sourceTree = "<group>"; };
+		1A00C90114B2E32600211F34 /* SQLiteDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLiteDatabase.m; sourceTree = "<group>"; };
+		1A00C90214B2E32600211F34 /* SQLOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQLOperation.h; sourceTree = "<group>"; };
+		1A00C90314B2E32600211F34 /* SQLOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQLOperation.m; sourceTree = "<group>"; };
+		1A00C90414B2E32600211F34 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		1A00C90514B2E32600211F34 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		1A00C90714B2E32600211F34 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		1A00C90814B2E32600211F34 /* NSObject+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+JSON.h"; sourceTree = "<group>"; };
+		1A00C90914B2E32600211F34 /* NSObject+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+JSON.m"; sourceTree = "<group>"; };
+		1A00C90A14B2E32600211F34 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		1A00C90B14B2E32600211F34 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		1A00C90C14B2E32600211F34 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		1A00C90D14B2E32600211F34 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		1A00C90E14B2E32600211F34 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		1A00C90F14B2E32600211F34 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		1A00C91014B2E32600211F34 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		1A00C91114B2E32600211F34 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		1A00C91214B2E32600211F34 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		1A00C91314B2E32600211F34 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		1A00C91414B2E32600211F34 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		1A00C91514B2E32600211F34 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		1A00C91614B2E32600211F34 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		1A00C91714B2E32600211F34 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		1A00C91814B2E32600211F34 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		1A00C91914B2E32600211F34 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		1A00C97014B2E36500211F34 /* NativeContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeContextTest.m; sourceTree = "<group>"; };
+		1A00C97114B2E36500211F34 /* NativeContextTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeContextTest.h; sourceTree = "<group>"; };
+		1A00C97214B2E36500211F34 /* KirinTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinTests.m; sourceTree = "<group>"; };
+		1A00C97314B2E36500211F34 /* KirinTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinTests.h; sourceTree = "<group>"; };
+		1A00C97414B2E36500211F34 /* KirinHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinHelperTest.m; sourceTree = "<group>"; };
+		1A00C97514B2E36500211F34 /* KirinHelperTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinHelperTest.h; sourceTree = "<group>"; };
+		1A00C97614B2E36500211F34 /* DummyNativeContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyNativeContext.m; sourceTree = "<group>"; };
+		1A00C97714B2E36500211F34 /* DummyNativeContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyNativeContext.h; sourceTree = "<group>"; };
+		1A00C97814B2E36500211F34 /* DummyJSContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyJSContext.m; sourceTree = "<group>"; };
+		1A00C97914B2E36500211F34 /* DummyJSContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyJSContext.h; sourceTree = "<group>"; };
+		1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1A00C99814B2EE8800211F34 /* KirinKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KirinKit.h; path = Core/KirinKit.h; sourceTree = "<group>"; };
+		1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinUiFragmentHelper.h; sourceTree = "<group>"; };
+		1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinUiFragmentHelper.m; sourceTree = "<group>"; };
+		1A02010514BD025E00CB9765 /* KirinScreenHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinScreenHelper.h; sourceTree = "<group>"; };
+		1A02010614BD025E00CB9765 /* KirinScreenHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinScreenHelper.m; sourceTree = "<group>"; };
+		1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceHelper.h; sourceTree = "<group>"; };
+		1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServiceHelper.m; sourceTree = "<group>"; };
+		1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceProtocol.h; sourceTree = "<group>"; };
+		1A02011314BD130500CB9765 /* KirinServices.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServices.h; sourceTree = "<group>"; };
+		1A02011414BD130600CB9765 /* KirinServices.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServices.m; sourceTree = "<group>"; };
+		1A02011B14BD628300CB9765 /* KirinServiceStub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceStub.h; sourceTree = "<group>"; };
+		1A02011C14BD628400CB9765 /* KirinServiceStub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinServiceStub.m; sourceTree = "<group>"; };
+		1A02012014BD658200CB9765 /* Settings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Settings.h; sourceTree = "<group>"; };
+		1A02012214BD782000CB9765 /* KirinPaths.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinPaths.h; sourceTree = "<group>"; };
+		1A02012314BD782200CB9765 /* KirinPaths.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinPaths.m; sourceTree = "<group>"; };
+		1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinImagePicker.m; sourceTree = "<group>"; };
+		1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinImagePicker.h; sourceTree = "<group>"; };
+		1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraProtocol.h; sourceTree = "<group>"; };
+		1A4384B514E2CAE00012CD5A /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
+		1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemBackend.h; sourceTree = "<group>"; };
+		1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemBackend.m; sourceTree = "<group>"; };
+		1A61952814D22105004FDD8E /* KirinFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinFileSystem.h; sourceTree = "<group>"; };
+		1A61952914D22105004FDD8E /* KirinFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinFileSystem.m; sourceTree = "<group>"; };
+		1A8C032C14C86AF7000829F2 /* StringDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloader.h; sourceTree = "<group>"; };
+		1A8C032D14C86AF8000829F2 /* StringDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloader.m; sourceTree = "<group>"; };
+		1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeObjectHolder.h; sourceTree = "<group>"; };
+		1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeObjectHolder.m; sourceTree = "<group>"; };
+		1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceOnMainThread.h; sourceTree = "<group>"; };
+		1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
+		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
+		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
+		1AF8396614CA13FA00E0D436 /* NetworkingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingTest.m; sourceTree = "<group>"; };
+		1AF8396814CA14F400E0D436 /* StringDownloaderTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloaderTest.h; sourceTree = "<group>"; };
+		1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloaderTest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A00C8AA14B2E2FD00211F34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A00C8B914B2E2FD00211F34 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */,
+				1A00C99514B2EC5F00211F34 /* libsqlite3.0.dylib in Frameworks */,
+				1A00C8C014B2E2FD00211F34 /* UIKit.framework in Frameworks */,
+				1A00C8C214B2E2FD00211F34 /* Foundation.framework in Frameworks */,
+				1A00C8C414B2E2FD00211F34 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A00C8A114B2E2FD00211F34 = {
+			isa = PBXGroup;
+			children = (
+				1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */,
+				1A00C99414B2EC5F00211F34 /* libsqlite3.0.dylib */,
+				1A00C8B114B2E2FD00211F34 /* KirinKit */,
+				1A00C8C814B2E2FD00211F34 /* KirinKitTests */,
+				1A00C8BE14B2E2FD00211F34 /* Frameworks */,
+				1A00C8B014B2E2FD00211F34 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A00C8B014B2E2FD00211F34 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8AF14B2E2FD00211F34 /* KirinKit.framework */,
+				1A00C8BD14B2E2FD00211F34 /* KirinKitTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A00C8B114B2E2FD00211F34 /* KirinKit */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C99814B2EE8800211F34 /* KirinKit.h */,
+				1A00C8DB14B2E32600211F34 /* Core */,
+				1A00C8EF14B2E32600211F34 /* Services */,
+				1A00C90614B2E32600211F34 /* JSON */,
+				1A00C8B214B2E2FD00211F34 /* Supporting Files */,
+			);
+			path = KirinKit;
+			sourceTree = "<group>";
+		};
+		1A00C8B214B2E2FD00211F34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8B314B2E2FD00211F34 /* KirinKit-Info.plist */,
+				1A00C8B414B2E2FD00211F34 /* InfoPlist.strings */,
+				1A00C8B714B2E2FD00211F34 /* KirinKit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A00C8BE14B2E2FD00211F34 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8BF14B2E2FD00211F34 /* UIKit.framework */,
+				1A00C8C114B2E2FD00211F34 /* Foundation.framework */,
+				1A00C8C314B2E2FD00211F34 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A00C8C814B2E2FD00211F34 /* KirinKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C97014B2E36500211F34 /* NativeContextTest.m */,
+				1A00C97114B2E36500211F34 /* NativeContextTest.h */,
+				1A00C97214B2E36500211F34 /* KirinTests.m */,
+				1A00C97314B2E36500211F34 /* KirinTests.h */,
+				1A00C97414B2E36500211F34 /* KirinHelperTest.m */,
+				1A00C97514B2E36500211F34 /* KirinHelperTest.h */,
+				1A00C97614B2E36500211F34 /* DummyNativeContext.m */,
+				1A00C97714B2E36500211F34 /* DummyNativeContext.h */,
+				1A00C97814B2E36500211F34 /* DummyJSContext.m */,
+				1A00C97914B2E36500211F34 /* DummyJSContext.h */,
+				1A00C8C914B2E2FD00211F34 /* Supporting Files */,
+				1AF8396514CA13FA00E0D436 /* NetworkingTest.h */,
+				1AF8396614CA13FA00E0D436 /* NetworkingTest.m */,
+				1AF8396814CA14F400E0D436 /* StringDownloaderTest.h */,
+				1AF8396914CA14F400E0D436 /* StringDownloaderTest.m */,
+			);
+			path = KirinKitTests;
+			sourceTree = "<group>";
+		};
+		1A00C8C914B2E2FD00211F34 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8CA14B2E2FD00211F34 /* KirinKitTests-Info.plist */,
+				1A00C8CB14B2E2FD00211F34 /* InfoPlist.strings */,
+				1A00C8CE14B2E2FD00211F34 /* KirinKitTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1A00C8DB14B2E32600211F34 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8E314B2E32600211F34 /* Kirin.h */,
+				1A00C8E414B2E32600211F34 /* Kirin.m */,
+				1A00C8E514B2E32600211F34 /* KirinDropbox.h */,
+				1A00C8E614B2E32600211F34 /* KirinDropbox.m */,
+				1A02011314BD130500CB9765 /* KirinServices.h */,
+				1A02011414BD130600CB9765 /* KirinServices.m */,
+				1A02011114BD09B000CB9765 /* KirinServiceProtocol.h */,
+				1A02011B14BD628300CB9765 /* KirinServiceStub.h */,
+				1A02011C14BD628400CB9765 /* KirinServiceStub.m */,
+				1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */,
+				1A02011014BD08B800CB9765 /* Helpers */,
+				1A0200FE14BCF7A600CB9765 /* Internal */,
+				1A02012214BD782000CB9765 /* KirinPaths.h */,
+				1A02012314BD782200CB9765 /* KirinPaths.m */,
+				1A61952814D22105004FDD8E /* KirinFileSystem.h */,
+				1A61952914D22105004FDD8E /* KirinFileSystem.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1A00C8EF14B2E32600211F34 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1A8C032614C86534000829F2 /* Camera */,
+				1A02011A14BD619600CB9765 /* Databases */,
+				1A02011914BD617700CB9765 /* Networking */,
+				1A02011814BD615700CB9765 /* Settings */,
+				1A4384B814E2CAE70012CD5A /* FileSystem */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		1A00C90614B2E32600211F34 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C90714B2E32600211F34 /* JSON.h */,
+				1A00C90814B2E32600211F34 /* NSObject+JSON.h */,
+				1A00C90914B2E32600211F34 /* NSObject+JSON.m */,
+				1A00C90A14B2E32600211F34 /* SBJsonParser.h */,
+				1A00C90B14B2E32600211F34 /* SBJsonParser.m */,
+				1A00C90C14B2E32600211F34 /* SBJsonStreamParser.h */,
+				1A00C90D14B2E32600211F34 /* SBJsonStreamParser.m */,
+				1A00C90E14B2E32600211F34 /* SBJsonStreamParserAdapter.h */,
+				1A00C90F14B2E32600211F34 /* SBJsonStreamParserAdapter.m */,
+				1A00C91014B2E32600211F34 /* SBJsonStreamParserState.h */,
+				1A00C91114B2E32600211F34 /* SBJsonStreamParserState.m */,
+				1A00C91214B2E32600211F34 /* SBJsonStreamWriter.h */,
+				1A00C91314B2E32600211F34 /* SBJsonStreamWriter.m */,
+				1A00C91414B2E32600211F34 /* SBJsonStreamWriterState.h */,
+				1A00C91514B2E32600211F34 /* SBJsonStreamWriterState.m */,
+				1A00C91614B2E32600211F34 /* SBJsonTokeniser.h */,
+				1A00C91714B2E32600211F34 /* SBJsonTokeniser.m */,
+				1A00C91814B2E32600211F34 /* SBJsonWriter.h */,
+				1A00C91914B2E32600211F34 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		1A0200FE14BCF7A600CB9765 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8DC14B2E32600211F34 /* DebugConsole.h */,
+				1A00C8DD14B2E32600211F34 /* DebugConsole.m */,
+				1A00C8E014B2E32600211F34 /* JSContext.h */,
+				1A00C8E114B2E32600211F34 /* JSContext.m */,
+				1A00C8E214B2E32600211F34 /* JSExecutor.h */,
+				1A00C8E914B2E32600211F34 /* KirinWebViewHolder.h */,
+				1A00C8EA14B2E32600211F34 /* KirinWebViewHolder.m */,
+				1A00C8EB14B2E32600211F34 /* NativeContext.h */,
+				1A00C8EC14B2E32600211F34 /* NativeContext.m */,
+				1A00C8ED14B2E32600211F34 /* NativeExecutor.h */,
+				1A00C8EE14B2E32600211F34 /* SynthesizeSingleton.h */,
+				1AE3FD8B14C9A41D009C2F3B /* KirinState.h */,
+				1AE3FD8C14C9A41D009C2F3B /* KirinState.m */,
+				1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */,
+				1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */,
+			);
+			name = Internal;
+			sourceTree = "<group>";
+		};
+		1A02011014BD08B800CB9765 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8E714B2E32600211F34 /* KirinHelper.h */,
+				1A00C8E814B2E32600211F34 /* KirinHelper.m */,
+				1A02010014BCFFED00CB9765 /* KirinUiFragmentHelper.h */,
+				1A02010114BCFFED00CB9765 /* KirinUiFragmentHelper.m */,
+				1A02010514BD025E00CB9765 /* KirinScreenHelper.h */,
+				1A02010614BD025E00CB9765 /* KirinScreenHelper.m */,
+				1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */,
+				1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		1A02011814BD615700CB9765 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				1A02012014BD658200CB9765 /* Settings.h */,
+				1A00C8FC14B2E32600211F34 /* SettingsBackend.h */,
+				1A00C8FD14B2E32600211F34 /* SettingsBackend.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		1A02011914BD617700CB9765 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8F914B2E32600211F34 /* Networking.h */,
+				1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */,
+				1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */,
+				1A00C8F514B2E32600211F34 /* FileDownloader.h */,
+				1A00C8F614B2E32600211F34 /* FileDownloader.m */,
+				1A00C8F714B2E32600211F34 /* JSONListDownloader.h */,
+				1A00C8F814B2E32600211F34 /* JSONListDownloader.m */,
+				1A8C032C14C86AF7000829F2 /* StringDownloader.h */,
+				1A8C032D14C86AF8000829F2 /* StringDownloader.m */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		1A02011A14BD619600CB9765 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */,
+				1A00C8F014B2E32600211F34 /* Connection.h */,
+				1A00C8F114B2E32600211F34 /* Database.h */,
+				1A00C8F214B2E32600211F34 /* DatabasesBackend.h */,
+				1A00C8F314B2E32600211F34 /* DatabasesBackend.m */,
+				1A00C8FE14B2E32600211F34 /* SQLiteConnection.h */,
+				1A00C8FF14B2E32600211F34 /* SQLiteConnection.m */,
+				1A00C90014B2E32600211F34 /* SQLiteDatabase.h */,
+				1A00C90114B2E32600211F34 /* SQLiteDatabase.m */,
+				1A00C90214B2E32600211F34 /* SQLOperation.h */,
+				1A00C90314B2E32600211F34 /* SQLOperation.m */,
+				1A00C90414B2E32600211F34 /* Transaction.h */,
+				1A00C90514B2E32600211F34 /* Transaction.m */,
+			);
+			name = Databases;
+			sourceTree = "<group>";
+		};
+		1A4384B814E2CAE70012CD5A /* FileSystem */ = {
+			isa = PBXGroup;
+			children = (
+				1A4384B514E2CAE00012CD5A /* FileSystem.h */,
+				1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */,
+				1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */,
+			);
+			name = FileSystem;
+			sourceTree = "<group>";
+		};
+		1A8C032614C86534000829F2 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */,
+				1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */,
+				1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */,
+			);
+			name = Camera;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1A00C8AB14B2E2FD00211F34 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A00C92414B2E32600211F34 /* Kirin.h in Headers */,
+				1A00C92714B2E32600211F34 /* KirinDropbox.h in Headers */,
+				1A00C92A14B2E32600211F34 /* KirinHelper.h in Headers */,
+				1A00C95414B2E32600211F34 /* JSON.h in Headers */,
+				1A00C95514B2E32600211F34 /* NSObject+JSON.h in Headers */,
+				1A00C91A14B2E32600211F34 /* DebugConsole.h in Headers */,
+				1A00C92014B2E32600211F34 /* JSContext.h in Headers */,
+				1A00C92314B2E32600211F34 /* JSExecutor.h in Headers */,
+				1A00C92D14B2E32600211F34 /* KirinWebViewHolder.h in Headers */,
+				1A00C93014B2E32600211F34 /* NativeContext.h in Headers */,
+				1A00C93314B2E32600211F34 /* NativeExecutor.h in Headers */,
+				1A00C93414B2E32600211F34 /* SynthesizeSingleton.h in Headers */,
+				1A00C93514B2E32600211F34 /* Connection.h in Headers */,
+				1A00C93614B2E32600211F34 /* Database.h in Headers */,
+				1A00C93714B2E32600211F34 /* DatabasesBackend.h in Headers */,
+				1A00C93A14B2E32600211F34 /* DatabasesBackendProtocol.h in Headers */,
+				1A00C93B14B2E32600211F34 /* FileDownloader.h in Headers */,
+				1A00C93E14B2E32600211F34 /* JSONListDownloader.h in Headers */,
+				1A00C94114B2E32600211F34 /* Networking.h in Headers */,
+				1A00C94214B2E32600211F34 /* NetworkingBackend.h in Headers */,
+				1A00C94514B2E32600211F34 /* SettingsBackend.h in Headers */,
+				1A00C94814B2E32600211F34 /* SQLiteConnection.h in Headers */,
+				1A00C94B14B2E32600211F34 /* SQLiteDatabase.h in Headers */,
+				1A00C94E14B2E32600211F34 /* SQLOperation.h in Headers */,
+				1A00C95114B2E32600211F34 /* Transaction.h in Headers */,
+				1A00C95814B2E32600211F34 /* SBJsonParser.h in Headers */,
+				1A00C95B14B2E32600211F34 /* SBJsonStreamParser.h in Headers */,
+				1A00C95E14B2E32600211F34 /* SBJsonStreamParserAdapter.h in Headers */,
+				1A00C96114B2E32600211F34 /* SBJsonStreamParserState.h in Headers */,
+				1A00C96414B2E32600211F34 /* SBJsonStreamWriter.h in Headers */,
+				1A00C96714B2E32600211F34 /* SBJsonStreamWriterState.h in Headers */,
+				1A00C96A14B2E32600211F34 /* SBJsonTokeniser.h in Headers */,
+				1A00C96D14B2E32600211F34 /* SBJsonWriter.h in Headers */,
+				1A00C99A14B2EE8900211F34 /* KirinKit.h in Headers */,
+				1A02010214BCFFED00CB9765 /* KirinUiFragmentHelper.h in Headers */,
+				1A02010714BD025E00CB9765 /* KirinScreenHelper.h in Headers */,
+				1A02010D14BD072C00CB9765 /* KirinServiceHelper.h in Headers */,
+				1A02011214BD09B000CB9765 /* KirinServiceProtocol.h in Headers */,
+				1A02011514BD130600CB9765 /* KirinServices.h in Headers */,
+				1A02011D14BD628500CB9765 /* KirinServiceStub.h in Headers */,
+				1A02012114BD658200CB9765 /* Settings.h in Headers */,
+				1A02012414BD782300CB9765 /* KirinPaths.h in Headers */,
+				1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */,
+				1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */,
+				1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */,
+				1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */,
+				1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */,
+				1A9FE0A114D5F745008C0565 /* NativeObjectHolder.h in Headers */,
+				1A9FE0A514D5FA51008C0565 /* KirinServiceOnMainThread.h in Headers */,
+				1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */,
+				1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1A00C8AE14B2E2FD00211F34 /* KirinKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A00C8D514B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKit" */;
+			buildPhases = (
+				1A00C8A814B2E2FD00211F34 /* Run Script */,
+				1A00C8A914B2E2FD00211F34 /* Sources */,
+				1A00C8AA14B2E2FD00211F34 /* Frameworks */,
+				1A00C8AB14B2E2FD00211F34 /* Headers */,
+				1A00C8AC14B2E2FD00211F34 /* Resources */,
+				1A00C8AD14B2E2FD00211F34 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KirinKit;
+			productName = KirinKit;
+			productReference = 1A00C8AF14B2E2FD00211F34 /* KirinKit.framework */;
+			productType = "com.apple.product-type.bundle";
+		};
+		1A00C8BC14B2E2FD00211F34 /* KirinKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A00C8D814B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKitTests" */;
+			buildPhases = (
+				1A00C8B814B2E2FD00211F34 /* Sources */,
+				1A00C8B914B2E2FD00211F34 /* Frameworks */,
+				1A00C8BA14B2E2FD00211F34 /* Resources */,
+				1A00C8BB14B2E2FD00211F34 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1A00C8C614B2E2FD00211F34 /* PBXTargetDependency */,
+			);
+			name = KirinKitTests;
+			productName = KirinKitTests;
+			productReference = 1A00C8BD14B2E2FD00211F34 /* KirinKitTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A00C8A314B2E2FD00211F34 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Future Platforms";
+			};
+			buildConfigurationList = 1A00C8A614B2E2FD00211F34 /* Build configuration list for PBXProject "KirinKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A00C8A114B2E2FD00211F34;
+			productRefGroup = 1A00C8B014B2E2FD00211F34 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A00C8AE14B2E2FD00211F34 /* KirinKit */,
+				1A00C8BC14B2E2FD00211F34 /* KirinKitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A00C8AC14B2E2FD00211F34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A00C8B614B2E2FD00211F34 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A00C8BA14B2E2FD00211F34 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A00C8C714B2E2FD00211F34 /* KirinKit.framework in Resources */,
+				1A00C8CD14B2E2FD00211F34 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A00C8A814B2E2FD00211F34 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n\tUFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version  from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && \\\n   [[ -f \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && \\\n   [[ ! \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Clean other platform if needed\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n\techo \"Platform \\\"$UFW_SDK_PLATFORM\\\" was cleaned recently. Cleaning \\\"$UFW_OTHER_PLATFORM\\\" as well\"\n\techo xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\n\txcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" clean\nfi\n\n\n# Make sure we are building from fresh binaries\n\nrm -rf \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nrm -rf \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\n";
+		};
+		1A00C8AD14B2E2FD00211F34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\n\nset +u\nif [[ $UFW_MASTER_SCRIPT_RUNNING ]]\nthen\n    # Nothing for the slave script to do\n    exit 0\nfi\nset -u\nexport UFW_MASTER_SCRIPT_RUNNING=1\n\n\n# Functions\n\n## List files in the specified directory, storing to the specified array.\n#\n# @param $1 The path to list\n# @param $2 The name of the array to fill\n#\n##\nlist_files ()\n{\n    filelist=$(ls \"$1\")\n    while read line\n    do\n        eval \"$2[\\${#$2[*]}]=\\\"\\$line\\\"\"\n    done <<< \"$filelist\"\n}\n\n\n# Sanity check\n\nif [[ ! -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]]\nthen\n    echo \"Framework target \\\"${TARGET_NAME}\\\" had no source files to build from. Make sure your source files have the correct target membership\"\n    exit 1\nfi\n\n\n# Gather information\n\nif [[ \"$SDK_NAME\" =~ ([A-Za-z]+) ]]\nthen\n    UFW_SDK_PLATFORM=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find platform name from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$SDK_NAME\" =~ ([0-9]+.*$) ]]\nthen\n    UFW_SDK_VERSION=${BASH_REMATCH[1]}\nelse\n    echo \"Could not find sdk version from SDK_NAME: $SDK_NAME\"\n    exit 1\nfi\n\nif [[ \"$UFW_SDK_PLATFORM\" = \"iphoneos\" ]]\nthen\n    UFW_OTHER_PLATFORM=iphonesimulator\nelse\n    UFW_OTHER_PLATFORM=iphoneos\nfi\n\nif [[ \"$BUILT_PRODUCTS_DIR\" =~ (.*)$UFW_SDK_PLATFORM$ ]]\nthen\n    UFW_OTHER_BUILT_PRODUCTS_DIR=\"${BASH_REMATCH[1]}${UFW_OTHER_PLATFORM}\"\nelse\n    echo \"Could not find $UFW_SDK_PLATFORM in $BUILT_PRODUCTS_DIR\"\n    exit 1\nfi\n\n\n# Short-circuit if all binaries are up to date.\n# We already checked the other platform in the prerun script.\n\nif [[ -f \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" ]] && [[ -f \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]] && [[ ! \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -nt \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/${EXECUTABLE_PATH}\" ]]\nthen\n    exit 0\nfi\n\n\n# Make sure the other platform gets built\n\necho \"Build other platform\"\n\necho xcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\nxcodebuild -project \"${PROJECT_FILE_PATH}\" -target \"${TARGET_NAME}\" -configuration \"${CONFIGURATION}\" -sdk ${UFW_OTHER_PLATFORM}${UFW_SDK_VERSION} BUILD_DIR=\"${BUILD_DIR}\" CONFIGURATION_TEMP_DIR=\"${PROJECT_TEMP_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\" $ACTION\n\n\n# Build the fat static library binary\n\necho \"Create universal static library\"\n\necho \"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\"$PLATFORM_DEVELOPER_BIN_DIR/libtool\" -static \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" \"${UFW_OTHER_BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\" -o \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\"\n\necho mv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\nmv \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}.temp\" \"${BUILT_PRODUCTS_DIR}/${EXECUTABLE_PATH}\"\n\n\n# Build framework structure\n\necho \"Build symlinks\"\n\necho ln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\nln -sf A \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Versions/Current\"\necho ln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\nln -sf Versions/Current/Headers \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Headers\"\necho ln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\nln -sf Versions/Current/Resources \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Resources\"\necho ln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\nln -sf \"Versions/Current/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/${EXECUTABLE_NAME}\"\n\n\n# Link to binary for unit tests\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework\"\nln -sf \"../${WRAPPER_NAME}/${EXECUTABLE_NAME}\" \"${BUILT_PRODUCTS_DIR}/.fake_fw_testing.framework/.fake_fw_testing\"\n\n\n# Build embedded framework structure\n\necho \"Build Embedded Framework\"\n\necho rm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\nrm -rf \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework\"\necho mkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\nmkdir -p \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources\"\necho cp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\ncp -a \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/\"\n\ndeclare -a UFW_FILE_LIST\nlist_files \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}\" UFW_FILE_LIST\nfor filename in \"${UFW_FILE_LIST[@]}\"\ndo\n    if [[ \"${filename}\" != \"Info.plist\" ]] && [[ ! \"${filename}\" =~ .*\\.lproj$ ]]\n    then\n        echo ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n        ln -sf \"../${WRAPPER_NAME}/Resources/${filename}\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.embeddedframework/Resources/${filename}\"\n    fi\ndone\n\n\n# Replace other platform's framework with a copy of this one (so that both have the same universal binary)\n\necho \"Copy from $UFW_SDK_PLATFORM to $UFW_OTHER_PLATFORM\"\n\necho rm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\nrm -rf \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\necho cp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\ncp -a \"${BUILD_DIR}/${CONFIGURATION}-${UFW_SDK_PLATFORM}\" \"${BUILD_DIR}/${CONFIGURATION}-${UFW_OTHER_PLATFORM}\"\n";
+		};
+		1A00C8BB14B2E2FD00211F34 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A00C8A914B2E2FD00211F34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A00C91B14B2E32600211F34 /* DebugConsole.m in Sources */,
+				1A00C92114B2E32600211F34 /* JSContext.m in Sources */,
+				1A00C92514B2E32600211F34 /* Kirin.m in Sources */,
+				1A00C92814B2E32600211F34 /* KirinDropbox.m in Sources */,
+				1A00C92B14B2E32600211F34 /* KirinHelper.m in Sources */,
+				1A00C92E14B2E32600211F34 /* KirinWebViewHolder.m in Sources */,
+				1A00C93114B2E32600211F34 /* NativeContext.m in Sources */,
+				1A00C93814B2E32600211F34 /* DatabasesBackend.m in Sources */,
+				1A00C93C14B2E32600211F34 /* FileDownloader.m in Sources */,
+				1A00C93F14B2E32600211F34 /* JSONListDownloader.m in Sources */,
+				1A00C94314B2E32600211F34 /* NetworkingBackend.m in Sources */,
+				1A00C94614B2E32600211F34 /* SettingsBackend.m in Sources */,
+				1A00C94914B2E32600211F34 /* SQLiteConnection.m in Sources */,
+				1A00C94C14B2E32600211F34 /* SQLiteDatabase.m in Sources */,
+				1A00C94F14B2E32600211F34 /* SQLOperation.m in Sources */,
+				1A00C95214B2E32600211F34 /* Transaction.m in Sources */,
+				1A00C95614B2E32600211F34 /* NSObject+JSON.m in Sources */,
+				1A00C95914B2E32600211F34 /* SBJsonParser.m in Sources */,
+				1A00C95C14B2E32600211F34 /* SBJsonStreamParser.m in Sources */,
+				1A00C95F14B2E32600211F34 /* SBJsonStreamParserAdapter.m in Sources */,
+				1A00C96214B2E32600211F34 /* SBJsonStreamParserState.m in Sources */,
+				1A00C96514B2E32600211F34 /* SBJsonStreamWriter.m in Sources */,
+				1A00C96814B2E32600211F34 /* SBJsonStreamWriterState.m in Sources */,
+				1A00C96B14B2E32600211F34 /* SBJsonTokeniser.m in Sources */,
+				1A00C96E14B2E32600211F34 /* SBJsonWriter.m in Sources */,
+				1A02010314BCFFED00CB9765 /* KirinUiFragmentHelper.m in Sources */,
+				1A02010814BD025E00CB9765 /* KirinScreenHelper.m in Sources */,
+				1A02010E14BD072C00CB9765 /* KirinServiceHelper.m in Sources */,
+				1A02011614BD130600CB9765 /* KirinServices.m in Sources */,
+				1A02011E14BD628500CB9765 /* KirinServiceStub.m in Sources */,
+				1A02012514BD782300CB9765 /* KirinPaths.m in Sources */,
+				1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */,
+				1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */,
+				1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */,
+				1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */,
+				1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */,
+				1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1A00C8B814B2E2FD00211F34 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A00C97A14B2E36500211F34 /* NativeContextTest.m in Sources */,
+				1A00C97B14B2E36500211F34 /* KirinTests.m in Sources */,
+				1A00C97C14B2E36500211F34 /* KirinHelperTest.m in Sources */,
+				1A00C97D14B2E36500211F34 /* DummyNativeContext.m in Sources */,
+				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
+				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
+				1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */,
+				1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1A00C8C614B2E2FD00211F34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1A00C8AE14B2E2FD00211F34 /* KirinKit */;
+			targetProxy = 1A00C8C514B2E2FD00211F34 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1A00C8B414B2E2FD00211F34 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A00C8B514B2E2FD00211F34 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A00C8CB14B2E2FD00211F34 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A00C8CC14B2E2FD00211F34 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A00C8D314B2E2FD00211F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(VALID_ARCHS)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1A00C8D414B2E2FD00211F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(VALID_ARCHS)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		1A00C8D614B2E2FD00211F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				DEAD_CODE_STRIPPING = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KirinKit/KirinKit-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "KirinKit/KirinKit-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		1A00C8D714B2E2FD00211F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CONTENTS_FOLDER_PATH = "$(WRAPPER_NAME)/Versions/$(FRAMEWORK_VERSION)";
+				DEAD_CODE_STRIPPING = NO;
+				DEPLOYMENT_POSTPROCESSING = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KirinKit/KirinKit-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "KirinKit/KirinKit-Info.plist";
+				INFOPLIST_PATH = "$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/Info.plist";
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				LINK_WITH_STANDARD_LIBRARIES = NO;
+				MACH_O_TYPE = mh_object;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				UNLOCALIZED_RESOURCES_FOLDER_PATH = "$(CONTENTS_FOLDER_PATH)/Resources";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1A00C8D914B2E2FD00211F34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KirinKitTests/KirinKitTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "KirinKitTests/KirinKitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					.fake_fw_testing,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1A00C8DA14B2E2FD00211F34 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "KirinKitTests/KirinKitTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "KirinKitTests/KirinKitTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					.fake_fw_testing,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A00C8A614B2E2FD00211F34 /* Build configuration list for PBXProject "KirinKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A00C8D314B2E2FD00211F34 /* Debug */,
+				1A00C8D414B2E2FD00211F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A00C8D514B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A00C8D614B2E2FD00211F34 /* Debug */,
+				1A00C8D714B2E2FD00211F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A00C8D814B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A00C8D914B2E2FD00211F34 /* Debug */,
+				1A00C8DA14B2E2FD00211F34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A00C8A314B2E2FD00211F34 /* Project object */;
+}
