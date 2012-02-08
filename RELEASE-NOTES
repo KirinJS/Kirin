@@ -15,6 +15,17 @@
  * limitations under the License.
  */
 
+                    Kirin 0.6.0
+                    ===========
+
+  Overview
+  --------
+ * Fragments. Cleaner way of associating native code with Javascript, principally useful for handling Android fragments.
+   - this is currently iOS only, and even then this isn't complete yet.
+ * Modularizing the build. This is to allow optional components; principally this is affects Javascript
+   - build script no longer has a dependedency on Cygwin on Windows - it's all written in node.js Javascript.
+   - the build script is much faster now. 
+
                     Kirin 0.5.0
                     ===========
 
