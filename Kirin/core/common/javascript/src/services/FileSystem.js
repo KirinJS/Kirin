@@ -5,7 +5,7 @@ defineModule("FileSystem", function (require, exports) {
 	exports.onLoad = function (nativeObj) {
 		backend = nativeObj;
 		wrapCallback = require("kirin").wrapCallback;
-	}
+	};
 	
 	exports.onUnload = function () {
 		backend = null;
@@ -32,12 +32,8 @@ defineModule("FileSystem", function (require, exports) {
 			errback: wrapCallback(errback, "FileSytem", "readStringErr.")
 		});
 	};
-	
-	readString("external", "/path/to/file", function (str) {
-		console.log(str);
-	
-	});
 
+	
 	exports.readJson = function (fileArea, filename, callback, errback) {
 		if (arguments.length < 3) {
 			throw new Error("There has to be at least a fileArea, filename and callback for readJson");
@@ -82,6 +78,6 @@ defineModule("FileSystem", function (require, exports) {
 	 		callback: wrapCallback(callback, "FileSytem", "copyCb."),
 			errback: wrapCallback(errback, "FileSytem", "copyErr.")
 	 	});
-	}
+	};
 
 });
