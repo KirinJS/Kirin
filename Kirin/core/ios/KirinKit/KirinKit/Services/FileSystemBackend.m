@@ -9,6 +9,7 @@
 #import "FileSystemBackend.h"
 
 #import "KirinFileSystem.h"
+#import "JSON.h"
 
 @interface FileSystemBackend ()
 
@@ -29,9 +30,12 @@
     NSString* str = [self readStringOrNilFromConfig:config];
     
     if (str != nil) {
+        
+        NSArray* lines = [str componentsSeparatedByString:@"\n"];
+        
         [self.kirinHelper jsCallback:@"callback" 
                           fromConfig:config 
-                        withArgsList:[NSString stringWithFormat:@"'%@'", str]];
+                        withArgsList:[lines JSONRepresentation]];
     }
     
     [self cleanupConfig:config];
@@ -43,7 +47,7 @@
         // currently assumes that this is JSON.
         [self.kirinHelper jsCallback:@"callback" 
                           fromConfig:config 
-                        withArgsList:str];
+                        withArgsList:[[str JSONValue] JSONRepresentation]];
     }
     
     [self cleanupConfig:config];
@@ -110,14 +114,22 @@
 }
 
 - (void) fileListFromConfig: (NSDictionary*) config {
-    NSMutableArray* fileObjectList = [[NSMutableArray arrayWithCapacity:1] autorelease];
-    
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     NSString* filePath = [fs filePathFromConfig:config];
     
+    if (filePath == nil) {
+        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:@"'Problem finding directory to list'"];
+    } else {
     
+        NSArray* files = [fs list:filePath];
 
-    
+        if (files == nil) {
+            [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'Problem listing directory at %@'", filePath]];        
+        
+         } else {
+             [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[files JSONRepresentation]]; 
+         }
+    }
     [self cleanupConfig:config];
 }
 

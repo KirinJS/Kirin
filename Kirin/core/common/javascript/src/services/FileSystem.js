@@ -28,7 +28,10 @@ defineModule("FileSystem", function (require, exports) {
 		backend.readStringWithConfig_({
 			fileArea: fileArea, 
 			filename: filename, 
-			callback: wrapCallback(callback, "FileSystem", ".readStringCb."),
+			callback: wrapCallback(
+				function (list) { 
+					callback(list.join("\n")); 
+				}, "FileSystem", ".readStringCb."),
 			errback: wrapCallback(errback, "FileSystem", ".readStringErr.")
 		});
 	};
