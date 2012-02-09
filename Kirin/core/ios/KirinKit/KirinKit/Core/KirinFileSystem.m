@@ -73,7 +73,7 @@
     return [filemgr copyItemAtPath:srcFilePath toPath:destFilePath error:nil];
 }
 
-- (BOOL) exists: (NSString*) filePath {
+- (BOOL) fileExists: (NSString*) filePath {
     NSFileManager *filemgr =[NSFileManager defaultManager];
     return [filemgr fileExistsAtPath:filePath];
 }

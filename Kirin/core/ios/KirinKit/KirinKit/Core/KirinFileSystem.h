@@ -30,4 +30,10 @@
 
 - (NSString*) filePathFromConfig: (NSDictionary*) config;
 
+- (NSArray*) list: (NSString*) filePath;
+
+- (BOOL) fileExists: (NSString*) filePath;
+
+
+
 @end
