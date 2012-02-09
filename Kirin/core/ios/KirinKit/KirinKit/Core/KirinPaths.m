@@ -34,6 +34,7 @@
     [directoryParts removeLastObject];
 	
     NSString *directoryStr = [NSString stringWithFormat:@"%@%@", [self javascriptDirectory], [directoryParts componentsJoinedByString:@"/"]];
+    NSLog(@"Looking for %@/%@", directoryStr, filename);
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
 }
 

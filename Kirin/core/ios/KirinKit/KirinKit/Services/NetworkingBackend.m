@@ -210,11 +210,9 @@
 #pragma mark Download File
 
 -(void) downloadFile: (NSDictionary *) config {
-    NSString* fileArea = [config objectForKey:@"fileArea"];
-    NSString* filename = [config objectForKey:@"filename"];
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     
-    NSString* fullPath = [fs filePath:filename inArea:fileArea];
+    NSString* fullPath = [fs filePathFromConfig:config];
     
     // TODO make sure we don't want to overwrite this file. e.g. overwrite = true
     // TODO make sure we can be downloading in the background.

@@ -26,4 +26,8 @@
 
 - (BOOL) copyFrom: (NSString*) srcFilePath to:(NSString*) destFilePath; 
 
+- (NSString*) filePathFromConfig: (NSDictionary*) config withPrefix:(NSString*) prefix;
+
+- (NSString*) filePathFromConfig: (NSDictionary*) config;
+
 @end

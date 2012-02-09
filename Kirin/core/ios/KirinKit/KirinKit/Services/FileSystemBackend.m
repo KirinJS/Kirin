@@ -51,9 +51,9 @@
 
 - (NSString*) readStringOrNilFromConfig: (NSDictionary*) config {
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
-    NSString* filePath = [fs filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
+    NSString* filePath = [fs filePathFromConfig:config];
     
-    
+
     // TODO check if the file exists.
     
     NSString* str = [fs readString:filePath];
@@ -84,15 +84,15 @@
      });
      */
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
-    NSString* srcFilePath = [fs filePath:[config objectForKey:@"fromFilename"] inArea:[config objectForKey:@"fromFileArea"]];
-    NSString* destFilePath = [fs filePath:[config objectForKey:@"toFilename"] inArea:[config objectForKey:@"toFileArea"]];
+    NSString* srcFilePath = [fs filePathFromConfig:config withPrefix:@"from"];
+    NSString* destFilePath = [fs filePathFromConfig:config withPrefix:@"to"];
     
         // TODO check if the src file exists,
     
     [fs copyFrom:srcFilePath to:destFilePath];
     
     
-    [self.kirinHelper jsCallback:@"callback" fromConfig:config];
+    [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", destFilePath]];
     
 
     [self cleanupConfig:config]; 
@@ -113,7 +113,7 @@
     NSMutableArray* fileObjectList = [[NSMutableArray arrayWithCapacity:1] autorelease];
     
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
-    NSString* filePath = [fs filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
+    NSString* filePath = [fs filePathFromConfig:config];
     
     
 

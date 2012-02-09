@@ -112,4 +112,21 @@
     
 }
 
+- (NSString*) filePathFromConfig: (NSDictionary*) config {
+    NSString* path = [config objectForKey:@"filePath"];
+    if (path) {
+        return path;
+    }
+    
+    return [self filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
+}
+
+- (NSString*) filePathFromConfig: (NSDictionary*) config withPrefix:(NSString*) prefix {
+    NSString* path = [config objectForKey:[NSString stringWithFormat:@"%@FilePath", prefix]];
+    if (path) {
+        return path;
+    }
+    
+    return [self filePath:[config objectForKey:[NSString stringWithFormat:@"%@Filename", prefix]] inArea:[config objectForKey:[NSString stringWithFormat:@"%@FileArea", prefix]]];    
+}
 @end
