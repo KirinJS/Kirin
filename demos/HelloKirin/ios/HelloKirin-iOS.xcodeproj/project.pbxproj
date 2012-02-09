@@ -22,6 +22,7 @@
 		1A61E4831431236C00A2E0DB /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4811431236C00A2E0DB /* RootViewController.xib */; };
 		1A61E48A1431272A00A2E0DB /* DumbTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4881431272900A2E0DB /* DumbTableCell.xib */; };
 		1A61E4941431EAE300A2E0DB /* generated-javascript in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4931431EAE300A2E0DB /* generated-javascript */; };
+		1ABC0BB814E3E659001B227A /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABC0BB714E3E659001B227A /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -57,6 +58,7 @@
 		1A61E4821431236C00A2E0DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
 		1A61E4891431272A00A2E0DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DumbTableCell.xib; sourceTree = "<group>"; };
 		1A61E4931431EAE300A2E0DB /* generated-javascript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "generated-javascript"; sourceTree = "<group>"; };
+		1ABC0BB714E3E659001B227A /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1ABC0BB814E3E659001B227A /* MobileCoreServices.framework in Frameworks */,
 				1A00C9A514B2F4CD00211F34 /* libsqlite3.0.dylib in Frameworks */,
 				1A4A0F361430C12E0010EF83 /* UIKit.framework in Frameworks */,
 				1A4A0F381430C12E0010EF83 /* Foundation.framework in Frameworks */,
@@ -78,6 +81,7 @@
 		1A4A0F261430C12E0010EF83 = {
 			isa = PBXGroup;
 			children = (
+				1ABC0BB714E3E659001B227A /* MobileCoreServices.framework */,
 				1A00C9A414B2F4CD00211F34 /* libsqlite3.0.dylib */,
 				1A61E4931431EAE300A2E0DB /* generated-javascript */,
 				1A4A0F3B1430C12E0010EF83 /* HelloKirin-iOS */,
