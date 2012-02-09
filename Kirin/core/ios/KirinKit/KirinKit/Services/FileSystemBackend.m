@@ -29,7 +29,7 @@
      */
     NSString* filePath = [fs filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
     
-
+    NSLog(@"Reading file at %@",filePath);
     // TODO check if the file exists.
     
     NSString* str = [fs readString:filePath];
@@ -76,7 +76,7 @@
     [fs copyFrom:srcFilePath to:destFilePath];
     
     
-    [self.kirinHelper jsCallback:@"callback" fromConfig:config];
+    [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", destFilePath]];
     
     [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
      
