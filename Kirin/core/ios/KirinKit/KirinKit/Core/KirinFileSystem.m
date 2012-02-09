@@ -32,8 +32,7 @@
 
 - (BOOL) rmForce: (NSString*) fileOrDir {
     NSFileManager *filemgr =[NSFileManager defaultManager];
-    BOOL ret = [filemgr removeItemAtPath:fileOrDir error:nil];
-    return ret;
+    return [filemgr removeItemAtPath:fileOrDir error:nil];
 }
 
 - (BOOL) mkdirForFile: (NSString*) filePath {
@@ -74,5 +73,43 @@
     return [filemgr copyItemAtPath:srcFilePath toPath:destFilePath error:nil];
 }
 
+- (BOOL) exists: (NSString*) filePath {
+    NSFileManager *filemgr =[NSFileManager defaultManager];
+    return [filemgr fileExistsAtPath:filePath];
+}
+
+- (NSArray*) list: (NSString*) filePath {
+    NSFileManager *filemgr =[NSFileManager defaultManager];
+    NSArray* filenames = [filemgr contentsOfDirectoryAtPath:filePath error:nil];
+    
+    if (filenames == nil) {
+        return nil;
+    }
+    
+    NSMutableArray* files = [NSMutableArray arrayWithCapacity:[filenames count]];
+    
+    for (NSString* filename in filenames) {
+        NSDictionary* attributes = [filemgr attributesOfItemAtPath:filename error:nil];
+        NSMutableDictionary* forJs = nil;
+        if ([attributes fileType] == NSFileTypeRegular) {
+            forJs = [NSMutableDictionary dictionary];
+            [forJs setObject:@"file" forKey:@"fileType"];
+            [forJs setObject:[NSNumber numberWithLong:[attributes fileSize]] forKey:@"fileSize"];
+        } else if ([attributes fileType] == NSFileTypeDirectory) {
+            [forJs setObject:@"directory" forKey:@"fileType"];
+            
+        }
+        
+        if (forJs != nil) {
+            [forJs setObject:[NSNumber numberWithBool:[attributes fileType] == NSFileTypeDirectory] forKey: @"isDirectory"];
+            [forJs setObject:filename forKey:@"name"];
+            [forJs setObject: [NSNumber numberWithBool:[filemgr isWritableFileAtPath:filename]] forKey:@"isWriteable"];
+            [files addObject:forJs];
+        }
+    }
+    
+    return files;
+    
+}
 
 @end

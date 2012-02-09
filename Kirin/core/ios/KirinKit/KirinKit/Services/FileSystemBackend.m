@@ -10,6 +10,14 @@
 
 #import "KirinFileSystem.h"
 
+@interface FileSystemBackend ()
+
+- (NSString*) readStringOrNilFromConfig: (NSDictionary*) config;
+
+- (void) cleanupConfig: (NSDictionary*) config;
+
+@end
+
 @implementation FileSystemBackend
 
 - (id) init {
@@ -17,19 +25,35 @@
 }
 
 - (void) readStringWithConfig: (NSDictionary*) config {
-    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+
+    NSString* str = [self readStringOrNilFromConfig:config];
     
-    /*
-     backend.readStringWithConfig_({
-     fileArea: fileArea, 
-     filename: filename, 
-     callback: wrapCallback(callback, "FileSytem", "readStringCb."),
-     errback: wrapCallback(errback, "FileSytem", "readStringErr.")
-     });
-     */
+    if (str != nil) {
+        [self.kirinHelper jsCallback:@"callback" 
+                          fromConfig:config 
+                        withArgsList:[NSString stringWithFormat:@"'%@'", str]];
+    }
+    
+    [self cleanupConfig:config];
+}
+
+- (void) readJsonWithConfig: (NSDictionary*) config {
+    NSString* str = [self readStringOrNilFromConfig: config];
+    if (str != nil) {
+        // currently assumes that this is JSON.
+        [self.kirinHelper jsCallback:@"callback" 
+                          fromConfig:config 
+                        withArgsList:str];
+    }
+    
+    [self cleanupConfig:config];
+}
+
+- (NSString*) readStringOrNilFromConfig: (NSDictionary*) config {
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
     NSString* filePath = [fs filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
     
-
+    
     // TODO check if the file exists.
     
     NSString* str = [fs readString:filePath];
@@ -37,23 +61,15 @@
     // TODO: we _need_ a KirinStringUtils.
     
     
-
+    
     if (!str) {
-        
-        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:@"'There is no spoon'"];
+        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'The file %@ is empty'", filePath]];
     }
     
-    
-    [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", str]];
-    
-    
-    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
-}
-
-- (void) readJsonWithConfig: (NSDictionary*) config {
+    return str;
 
 }
-    
+
 - (void) copyItemWithConfig: (NSDictionary*) config {
     /*
      backend.copyItemWithConfig_({
@@ -78,12 +94,31 @@
     
     [self.kirinHelper jsCallback:@"callback" fromConfig:config];
     
+
+    [self cleanupConfig:config]; 
+}
+
+
+- (void) cleanupConfig: (NSDictionary*) config {
     [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
-     
+    
 }
 
 - (void) deleteItemWithConfig: (NSDictionary*) config {
     
+    [self cleanupConfig:config];
+}
+
+- (void) fileListFromConfig: (NSDictionary*) config {
+    NSMutableArray* fileObjectList = [[NSMutableArray arrayWithCapacity:1] autorelease];
+    
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    NSString* filePath = [fs filePath:[config objectForKey:@"filename"] inArea:[config objectForKey:@"fileArea"]];
+    
+    
+
+    
+    [self cleanupConfig:config];
 }
 
 @end
