@@ -18,4 +18,6 @@
 
 - (void) deleteItemWithConfig: (NSDictionary*) config; 
 
+- (void) writeStringWithConfig: (NSDictionary*) config;
+
 @end

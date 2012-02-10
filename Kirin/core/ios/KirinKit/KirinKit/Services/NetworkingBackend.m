@@ -17,7 +17,7 @@
 
 
 #import "NetworkingBackend.h"
-#import "FileDownloader.h"
+
 #import "JSON.h"
 #import "StringDownloader.h"
 #import "KirinFileSystem.h"
@@ -236,11 +236,9 @@
 - (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;
     NSString* imageURL = [config objectForKey:@"url"];
-    NSString* fileArea = [config objectForKey:@"fileArea"];
-    NSString* filename = [config objectForKey:@"filename"];
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     
-    NSString* fullPath = [fs filePath:filename inArea:fileArea];
+    NSString* fullPath = [fs filePathFromConfig:config];
     
     NSLog(@"image: %@ // filename: %@", imageURL, fullPath);
     
@@ -254,18 +252,6 @@
     
     [self cleanupCallbacks: config];
     [downloader release];
-}
-
-#pragma mark -
-#pragma mark Delete file. 
-
-// TODO put this in file utils.
-
--(void) deleteDownloadedFile: (NSDictionary *) config {
-    NSLog(@"[NetworkingBackend] deleteDownloadedFile_: %@", config);
-    FileDownloader* downloader = [FileDownloader downloaderWithHelper:self.kirinHelper];
-    [downloader deleteFileWithConfig: config];    
-    [self cleanupCallbacks:config];
 }
 
 @end

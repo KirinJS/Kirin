@@ -23,5 +23,5 @@
 -(void) downloadJSON: (NSDictionary *) config;
 -(void) downloadJSONList: (NSDictionary *) config;
 -(void) downloadFile: (NSDictionary *) config;
--(void) deleteDownloadedFile: (NSDictionary *) config;
+
 @end

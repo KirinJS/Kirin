@@ -21,9 +21,15 @@
 
 @implementation FileSystemBackend
 
+#pragma mark -
+#pragma mark Constructors 
+
 - (id) init {
     return [super initWithModuleName:@"FileSystem"];
 }
+
+#pragma mark -
+#pragma mark Protocol methods. 
 
 - (void) readStringWithConfig: (NSDictionary*) config {
 
@@ -53,26 +59,6 @@
     [self cleanupConfig:config];
 }
 
-- (NSString*) readStringOrNilFromConfig: (NSDictionary*) config {
-    KirinFileSystem* fs = [KirinFileSystem fileSystem];
-    NSString* filePath = [fs filePathFromConfig:config];
-    
-
-    // TODO check if the file exists.
-    
-    NSString* str = [fs readString:filePath];
-    
-    // TODO: we _need_ a KirinStringUtils.
-    
-    
-    
-    if (!str) {
-        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'The file %@ is empty'", filePath]];
-    }
-    
-    return str;
-
-}
 
 - (void) copyItemWithConfig: (NSDictionary*) config {
     /*
@@ -102,13 +88,35 @@
     [self cleanupConfig:config]; 
 }
 
-
-- (void) cleanupConfig: (NSDictionary*) config {
-    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
+- (void) writeStringWithConfig:(NSDictionary *)config {
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    NSString* string = (NSString*) [config objectForKey:@"contents"];
+    NSData* data = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
+    NSString* filePath = [fs filePathFromConfig: config];
+    if ([fs writeData:data toFile:filePath]) {
+        [self.kirinHelper jsCallback:@"callback" 
+                          fromConfig:config 
+                        withArgsList:[NSString stringWithFormat:@"'%@'", filePath]];
+    } else {
+        [self.kirinHelper jsCallback:@"errback" 
+                          fromConfig:config                        
+                        withArgsList:[NSString stringWithFormat:@"Could not save file to %@", filePath]];
+    }
     
+    
+    
+    [self cleanupConfig:config];
 }
 
 - (void) deleteItemWithConfig: (NSDictionary*) config {
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    NSString* filePath = [fs filePathFromConfig:config];
+    
+    if ([fs rmForce:filePath]) {
+        [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", filePath]];
+    } else {
+        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'Problem deleting %@'", filePath]];
+    }
     
     [self cleanupConfig:config];
 }
@@ -131,6 +139,35 @@
          }
     }
     [self cleanupConfig:config];
+}
+
+#pragma mark -
+#pragma mark Helper methods.
+
+- (NSString*) readStringOrNilFromConfig: (NSDictionary*) config {
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    NSString* filePath = [fs filePathFromConfig:config];
+    
+    
+    // TODO check if the file exists.
+    
+    NSString* str = [fs readString:filePath];
+    
+    // TODO: we _need_ a KirinStringUtils.
+    
+    
+    
+    if (!str) {
+        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[NSString stringWithFormat:@"'The file %@ is empty'", filePath]];
+    }
+    
+    return str;
+    
+}
+
+- (void) cleanupConfig: (NSDictionary*) config {
+    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
+    
 }
 
 @end
