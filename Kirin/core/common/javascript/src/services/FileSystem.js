@@ -1,10 +1,10 @@
 defineModule("FileSystem", function (require, exports) {
 
 	var backend;
-	var wrapCallback;
+	var wrapCallbacks;
 	exports.onLoad = function (nativeObj) {
 		backend = nativeObj;
-		wrapCallback = require("kirin").wrapCallback;
+		wrapCallbacks = require("kirin").wrapCallbacks;
 	};
 	
 	exports.onUnload = function () {
@@ -25,28 +25,46 @@ defineModule("FileSystem", function (require, exports) {
 		if (arguments.length < 3) {
 			throw new Error("There has to be at least a fileArea, filename and callback for readString");
 		}
-		backend.readStringWithConfig_({
+
+		backend.readStringWithConfig_(wrapCallbacks({
 			fileArea: fileArea, 
 			filename: filename, 
-			callback: wrapCallback(
-				function (list) { 
+			callback: function (list) { 
 					callback(list.join("\n")); 
-				}, "FileSystem", ".readStringCb."),
-			errback: wrapCallback(errback, "FileSystem", ".readStringErr.")
-		});
+			},
+			errback: errback
+		}, "FileSystem"));
 	};
 
+    exports.writeString = function (config) {
+        var api = require("api-utils");
+        
+        api.normalizeAPI({
+            string: {
+                mandatory: ['contents'],
+                oneOf: ['fileArea', 'filename', 'filePath']
+            },
+            'function': {
+                optional: ['callback', 'errback']
+            }
+        }, config);
+        wrapCallbacks(config, "FileSystem");
+
+        
+        console.log("About to save contents to file");
+        backend.writeStringWithConfig_(config);        
+    };
 	
 	exports.readJson = function (fileArea, filename, callback, errback) {
 		if (arguments.length < 3) {
 			throw new Error("There has to be at least a fileArea, filename and callback for readJson");
 		}
-		backend.readJsonWithConfig_({
+		backend.readJsonWithConfig_(wrapCallbacks({
 			fileArea: fileArea, 
 			filename: filename, 
-			callback: wrapCallback(callback, "FileSytem", "readJsonCb."),
-			errback: wrapCallback(errback, "FileSytem", "readJsonErr.")
-		});	
+			callback: callback,
+			errback: errback
+		}, "FileSytem"));	
 	};
 	
 	/**
@@ -71,16 +89,33 @@ defineModule("FileSystem", function (require, exports) {
 			throw new Error("There has to be at least a fromFileArea, fromFilename, toFileArea, toFilename for copy");
 		}	
 	 // - (void) copyItemWithConfig: (NSDictionary*) config;
-	 	backend.copyItemWithConfig_({
+	 	backend.copyItemWithConfig_(wrapCallbacks({
 	 		fromFileArea: fromFileArea, 
 	 		fromFilename: fromFilename,
 	 		
 	 		toFileArea: toFileArea, 
 	 		toFilename: toFilename,
 	 		
-	 		callback: wrapCallback(callback, "FileSytem", "copyCb."),
-			errback: wrapCallback(errback, "FileSytem", "copyErr.")
-	 	});
+	 		callback: callback,
+			errback: errback
+			
+	 	}, "FileSytem"));
 	};
+
+    exports.listDir = function (config) {
+        var api = require("api-utils");
+        
+        api.normalizeAPI({
+            'function': {
+                mandatory: ['callback'],
+                optional: ['errback']
+            },
+            string: {
+                oneOf: ['fileArea', 'filename', 'filePath']
+            }
+        }, config);
+        
+        backend.fileListFromConfig_(wrapCallbacks(config, "FileSystem"));
+    };
 
 });
