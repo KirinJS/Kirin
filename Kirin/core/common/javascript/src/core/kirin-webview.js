@@ -55,6 +55,26 @@ defineModule("kirin", function (require, exports) {
 		return token;
 	};
 	
+	var wrapCallbacks = function (config, moduleName) {
+		if (typeof config !== 'object') {
+			throw new Error("First argument of wrapCallbacks should be an object");
+		}
+		if (typeof moduleName !== 'string') {
+			moduleName = "anonymousModule";
+		}
+		moduleName += ".";
+		var key, value;
+		for (key in config) {
+			if (config.hasOwnProperty(key)) {
+				value = config[key];
+				if (typeof value === 'function') {
+					config[key] = wrapCallback(value, moduleName, key);
+				}
+			}
+		}
+		return config;
+	};
+	
 	var createWrappingCall = function (jsName, methodName) {
 		return function () {
 			var args = slice.call(arguments, 0);
@@ -85,7 +105,16 @@ defineModule("kirin", function (require, exports) {
 		
 	function handleError(during, e) {
 		console.error("Exception found " + during);
-		console.error(e);
+		console.dir(e);
+		var stack = e.stack || e.stacktrace;
+
+		if (stack) {
+			console.error("" + stack);
+			console.error(stack());
+		} else {
+			
+			console.log("No stack trace");
+		}
 	}
 	
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
@@ -171,34 +200,6 @@ defineModule("kirin", function (require, exports) {
 			delete callbacks[args[i]];
 		}
 	};
-	
-	
-	/**
-	 * Native tells Javascript that this is the screen we're on. 
-	 * Typically, the Native screen will call this method 
-	 * in the onResume() or viewWillAppear: method.
-	 * Native should use registerScreenProxy followed by setCurrentScreenProxy.
-	 */
-	 /*
-	native2js.setCurrentScreenProxy = function (className) {
-		exports.js2nativeScreenProxy = services.NativeScreenObject;
-		
-		// having this happen with require makes unloading the className problematic (eventually)
-		// TODO review memory usage.
-		Native.exposeToNative("native2jsScreenProxy", require(className));
-	};
-	*/
-	
-	native2js.initializeApplicationLifecycle = function () {
-		var appLifecycle = require("ApplicationLifecycle");
-		Native.exposeToNative("ApplicationLifecycle", appLifecycle);
-		appLifecycle.onApplicationResume();
-	};
-	
-	native2js.require = function (className) {
-		require(className);
-	};
-	
 	
 	/**
 	 * Let native see all these functions.
