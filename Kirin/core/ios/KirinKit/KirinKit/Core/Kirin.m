@@ -120,6 +120,16 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
                                                andState:self.state] autorelease];
 }
 
+- (KirinAppDelegateHelper*) bindAppDelegate: (id) nativeObject toModule: (NSString*) moduleName {
+    [self ensureStarted];
+    
+    return [[[KirinAppDelegateHelper alloc] initWithModuleName:moduleName 
+                                          andNativeObject:nativeObject 
+                                             andJsContext:self.jsContext 
+                                         andNativeContext:self.nativeContext
+                                                 andState:self.state] autorelease];
+}
+
 #pragma mark -
 #pragma mark Managing Services
 

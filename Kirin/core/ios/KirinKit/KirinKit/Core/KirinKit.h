@@ -11,6 +11,7 @@
 #import <KirinKit/KirinUiFragmentHelper.h>
 #import <KirinKit/KirinScreenHelper.h>
 #import <KirinKit/KirinServiceHelper.h>
+#import <KirinKit/KirinAppDelegateHelper.h>
 
 #import <KirinKit/KirinServiceProtocol.h>
 #import <KirinKit/KirinServiceOnMainThread.h>

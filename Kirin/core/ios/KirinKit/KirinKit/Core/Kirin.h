@@ -22,6 +22,7 @@
 #import <KirinKit/KirinUiFragmentHelper.h>
 #import <KirinKit/KirinScreenHelper.h>
 #import <KirinKit/KirinServiceHelper.h>
+#import <KirinKit/KirinAppDelegateHelper.h>
 #import <KirinKit/KirinServices.h>
 
 #import <KirinKit/KirinDropbox.h>
@@ -47,6 +48,8 @@
 - (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName;
 
 - (KirinServiceHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName;
+
+- (KirinAppDelegateHelper*) bindAppDelegate: (id) nativeObject toModule: (NSString*) moduleName;
 
 SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 
