@@ -9,6 +9,8 @@
 #import "StringDownloader.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 
+#import "KirinFileSystem.h"
+
 
 @interface StringDownloader ()
 
@@ -72,12 +74,12 @@
     }
     // Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], NULL);
-    CFStringRef MIMEType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
+    CFStringRef mimeType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
     CFRelease(UTI);
-    if (!MIMEType) {
+    if (!mimeType) {
         return @"application/octet-stream";
     }
-    return NSMakeCollectable([(NSString *)MIMEType autorelease]);
+    return NSMakeCollectable([(NSString *)mimeType autorelease]);
 }
 
 - (void) failWithError: (NSString*) errorMessage {
@@ -129,10 +131,11 @@
         appendString([NSString stringWithFormat:@"--%@\r\n", boundary]);
     };
     
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
     for (int i=0, max=[files count]; i<max; i++) {
         NSDictionary* file = [files objectAtIndex:i];
         
-        NSString* fullPath = [file objectForKey:@"filename"];
+        NSString* fullPath = [fs filePathFromConfig:file];
         
         NSString* name = [file objectForKey:@"name"];
         if (!name) {
