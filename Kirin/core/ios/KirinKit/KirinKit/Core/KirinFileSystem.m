@@ -55,6 +55,8 @@
             return [KirinPaths filePathInTempDir:filePath];
         } else if ([@"external" isEqualToString:fileArea]) {
             return [KirinPaths filePathInDocuments:filePath];
+        } else if ([@"internal" isEqualToString:fileArea]) {
+            return [KirinPaths filePathInDocuments:filePath];
         }
     }
     
