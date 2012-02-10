@@ -35,10 +35,6 @@
 		1A00C93714B2E32600211F34 /* DatabasesBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F214B2E32600211F34 /* DatabasesBackend.h */; };
 		1A00C93814B2E32600211F34 /* DatabasesBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F314B2E32600211F34 /* DatabasesBackend.m */; };
 		1A00C93A14B2E32600211F34 /* DatabasesBackendProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */; };
-		1A00C93B14B2E32600211F34 /* FileDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F514B2E32600211F34 /* FileDownloader.h */; };
-		1A00C93C14B2E32600211F34 /* FileDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F614B2E32600211F34 /* FileDownloader.m */; };
-		1A00C93E14B2E32600211F34 /* JSONListDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F714B2E32600211F34 /* JSONListDownloader.h */; };
-		1A00C93F14B2E32600211F34 /* JSONListDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8F814B2E32600211F34 /* JSONListDownloader.m */; };
 		1A00C94114B2E32600211F34 /* Networking.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8F914B2E32600211F34 /* Networking.h */; };
 		1A00C94214B2E32600211F34 /* NetworkingBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */; };
 		1A00C94314B2E32600211F34 /* NetworkingBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */; };
@@ -107,6 +103,9 @@
 		1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */; };
 		1A9FE0A514D5FA51008C0565 /* KirinServiceOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */; };
+		1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
+		1AB1252514E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
@@ -157,10 +156,6 @@
 		1A00C8F214B2E32600211F34 /* DatabasesBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesBackend.h; sourceTree = "<group>"; };
 		1A00C8F314B2E32600211F34 /* DatabasesBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabasesBackend.m; sourceTree = "<group>"; };
 		1A00C8F414B2E32600211F34 /* DatabasesBackendProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabasesBackendProtocol.h; sourceTree = "<group>"; };
-		1A00C8F514B2E32600211F34 /* FileDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDownloader.h; sourceTree = "<group>"; };
-		1A00C8F614B2E32600211F34 /* FileDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDownloader.m; sourceTree = "<group>"; };
-		1A00C8F714B2E32600211F34 /* JSONListDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONListDownloader.h; sourceTree = "<group>"; };
-		1A00C8F814B2E32600211F34 /* JSONListDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONListDownloader.m; sourceTree = "<group>"; };
 		1A00C8F914B2E32600211F34 /* Networking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Networking.h; sourceTree = "<group>"; };
 		1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingBackend.h; sourceTree = "<group>"; };
 		1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingBackend.m; sourceTree = "<group>"; };
@@ -233,6 +228,8 @@
 		1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeObjectHolder.m; sourceTree = "<group>"; };
 		1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceOnMainThread.h; sourceTree = "<group>"; };
 		1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinAppDelegateHelper.h; sourceTree = "<group>"; };
+		1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinAppDelegateHelper.m; sourceTree = "<group>"; };
 		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
 		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
 		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
@@ -443,6 +440,8 @@
 				1A02010614BD025E00CB9765 /* KirinScreenHelper.m */,
 				1A02010B14BD072C00CB9765 /* KirinServiceHelper.h */,
 				1A02010C14BD072C00CB9765 /* KirinServiceHelper.m */,
+				1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */,
+				1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -463,10 +462,6 @@
 				1A00C8F914B2E32600211F34 /* Networking.h */,
 				1A00C8FA14B2E32600211F34 /* NetworkingBackend.h */,
 				1A00C8FB14B2E32600211F34 /* NetworkingBackend.m */,
-				1A00C8F514B2E32600211F34 /* FileDownloader.h */,
-				1A00C8F614B2E32600211F34 /* FileDownloader.m */,
-				1A00C8F714B2E32600211F34 /* JSONListDownloader.h */,
-				1A00C8F814B2E32600211F34 /* JSONListDownloader.m */,
 				1A8C032C14C86AF7000829F2 /* StringDownloader.h */,
 				1A8C032D14C86AF8000829F2 /* StringDownloader.m */,
 			);
@@ -536,8 +531,6 @@
 				1A00C93614B2E32600211F34 /* Database.h in Headers */,
 				1A00C93714B2E32600211F34 /* DatabasesBackend.h in Headers */,
 				1A00C93A14B2E32600211F34 /* DatabasesBackendProtocol.h in Headers */,
-				1A00C93B14B2E32600211F34 /* FileDownloader.h in Headers */,
-				1A00C93E14B2E32600211F34 /* JSONListDownloader.h in Headers */,
 				1A00C94114B2E32600211F34 /* Networking.h in Headers */,
 				1A00C94214B2E32600211F34 /* NetworkingBackend.h in Headers */,
 				1A00C94514B2E32600211F34 /* SettingsBackend.h in Headers */,
@@ -571,6 +564,7 @@
 				1A9FE0A514D5FA51008C0565 /* KirinServiceOnMainThread.h in Headers */,
 				1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */,
 				1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */,
+				1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,8 +713,6 @@
 				1A00C92E14B2E32600211F34 /* KirinWebViewHolder.m in Sources */,
 				1A00C93114B2E32600211F34 /* NativeContext.m in Sources */,
 				1A00C93814B2E32600211F34 /* DatabasesBackend.m in Sources */,
-				1A00C93C14B2E32600211F34 /* FileDownloader.m in Sources */,
-				1A00C93F14B2E32600211F34 /* JSONListDownloader.m in Sources */,
 				1A00C94314B2E32600211F34 /* NetworkingBackend.m in Sources */,
 				1A00C94614B2E32600211F34 /* SettingsBackend.m in Sources */,
 				1A00C94914B2E32600211F34 /* SQLiteConnection.m in Sources */,
@@ -748,6 +740,7 @@
 				1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */,
 				1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */,
 				1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
+				1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -763,6 +756,7 @@
 				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
 				1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */,
 				1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
+				1AB1252514E4819A00933949 /* KirinAppDelegateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
