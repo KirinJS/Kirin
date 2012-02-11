@@ -42,7 +42,7 @@
 
 @synthesize mConnection = mConnection_;
 @synthesize mData = mData_;
-
+@synthesize statusCode = statusCode_;
 
 + (StringDownloader*) downloaderWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback {
     return [[[StringDownloader alloc] initWithTarget:target andCallback:callback andErrback:errback] autorelease];
@@ -226,6 +226,11 @@
     
     // receivedData is an instance variable declared elsewhere.
     NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response");
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse* resp = (NSHTTPURLResponse*) response;
+        self.statusCode = [resp statusCode];
+        [resp allHeaderFields];
+    }
     self.mData.length = 0;
 }
 
@@ -249,7 +254,7 @@
     NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
           [error localizedDescription],
           [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-    
+
     [self failWithError:[error localizedDescription]];
 }
 
@@ -263,8 +268,8 @@
 
     // release the connection, and the data object
     self.mConnection = nil;
-    
     self.mData = nil;
+    self.statusCode = 0;
     
 }
 

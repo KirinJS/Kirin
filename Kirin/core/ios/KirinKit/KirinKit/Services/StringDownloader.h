@@ -18,4 +18,6 @@
 
 @property(retain, nonatomic) NSDictionary* mConfig;
 
+@property(nonatomic) int statusCode;
+
 @end
