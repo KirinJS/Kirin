@@ -28,4 +28,6 @@
 
 + (NSString*) fileInJavascriptDir: (NSString*) path;
 
++ (NSString*) join: (NSString*) prefix andFilePath: (NSString*) suffix;
+
 @end

@@ -23,6 +23,8 @@
 + (NSString*) join: (NSString*) areaPath andFilePath: (NSString*) filePath {
     NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[areaPath componentsSeparatedByString:@"/"]];
     [directoryParts addObjectsFromArray:[filePath componentsSeparatedByString:@"/"]];
+
+    // TODO make sure we can put in leading paths or not.
     
     return [directoryParts componentsJoinedByString:@"/"];
 }
@@ -31,10 +33,9 @@
     NSBundle * mainBundle = [NSBundle mainBundle];
     NSMutableArray *directoryParts = [NSMutableArray arrayWithArray:[resourcepath componentsSeparatedByString:@"/"]];
     NSString       *filename       = [directoryParts lastObject];
-    [directoryParts removeLastObject];
-	
-    NSString *directoryStr = [NSString stringWithFormat:@"%@%@", [self javascriptDirectory], [directoryParts componentsJoinedByString:@"/"]];
-    NSLog(@"Looking for %@/%@", directoryStr, filename);
+    [directoryParts removeLastObject];	
+    NSString *directoryStr = [KirinPaths join: [self javascriptDirectory] andFilePath:[directoryParts componentsJoinedByString:@"/"]];
+
     return [mainBundle pathForResource:filename ofType:@"" inDirectory:directoryStr];
 }
 
