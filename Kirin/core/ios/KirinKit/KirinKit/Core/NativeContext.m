@@ -69,7 +69,7 @@
     NSString* fullMethodName = [[file componentsSeparatedByString:@"_"] componentsJoinedByString:@":"];
     
 	SEL selector = NSSelectorFromString(fullMethodName);
-	if ([obj respondsToSelector:selector]) {
+	if (obj != nil && [obj respondsToSelector:selector]) {
         NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
         NSMutableArray* arguments = [argsJSON JSONValue];
@@ -101,8 +101,7 @@
         } else {
             block();
         }
-	}
-	else {                
+	} else {                
         // There's no method to call, so throw an error.
         NSString* className = [[obj class] description];
         if (!className) {
