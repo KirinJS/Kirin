@@ -17,4 +17,6 @@
 
 - (void) onUnload;
 
+- (NSString*) moduleName;
+
 @end
