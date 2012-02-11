@@ -73,7 +73,7 @@
 }
 
 - (void) jsCallback: (NSString*) callbackId withArgsList:(NSString*) argsList {
-    if (!callbackId) {
+    if (!callbackId || [callbackId isKindOfClass:[NSNull class]]) {
         return;
     }
     if (argsList == nil || [argsList length] == 0) {
@@ -116,7 +116,7 @@
     va_start(args, callbackName);
     for (NSString *arg = callbackName; arg != nil; arg = va_arg(args, NSString*)) {
         NSString* callbackId = [config objectForKey:arg];
-        if (callbackId) {
+        if (callbackId && ![callbackId isKindOfClass:[NSNull class]]) {
             [callbackIds addObject:callbackId];
         }
     }
