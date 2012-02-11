@@ -89,11 +89,13 @@
 }
 
 - (void) writeStringWithConfig:(NSDictionary *)config {
+
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     NSString* string = (NSString*) [config objectForKey:@"contents"];
     NSData* data = [string dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     NSString* filePath = [fs filePathFromConfig: config];
-    if ([fs writeData:data toFile:filePath]) {
+    NSLog(@"FileSystemBackend: Saving file to disk %@", filePath);
+    if (filePath != nil && [fs writeData:data toFile:filePath]) {
         [self.kirinHelper jsCallback:@"callback" 
                           fromConfig:config 
                         withArgsList:[NSString stringWithFormat:@"'%@'", filePath]];
@@ -124,7 +126,6 @@
 - (void) fileListFromConfig: (NSDictionary*) config {
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     NSString* filePath = [fs filePathFromConfig:config];
-    
     if (filePath == nil) {
         [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:@"'Problem finding directory to list'"];
     } else {

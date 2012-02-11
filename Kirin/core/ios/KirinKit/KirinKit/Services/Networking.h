@@ -20,8 +20,9 @@
 
 @protocol Networking <NSObject>
 
--(void) downloadJSON: (NSDictionary *) config;
--(void) downloadJSONList: (NSDictionary *) config;
--(void) downloadFile: (NSDictionary *) config;
+- (void) downloadJSON: (NSDictionary *) config;
+- (void) downloadJSONList: (NSDictionary *) config;
+- (void) downloadFile: (NSDictionary *) config;
+- (void) downloadString: (NSDictionary*) config;
 
 @end

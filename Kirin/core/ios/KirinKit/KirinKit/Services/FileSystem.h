@@ -20,4 +20,6 @@
 
 - (void) writeStringWithConfig: (NSDictionary*) config;
 
+- (void) fileListFromConfig: (NSDictionary*) config;
+
 @end

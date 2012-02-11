@@ -21,6 +21,7 @@
 #import "JSON.h"
 #import "StringDownloader.h"
 #import "KirinFileSystem.h"
+#import "KirinArgs.h"
 
 @interface NetworkingBackend ()
 
@@ -56,7 +57,7 @@
 
 
 -(void) downloadString: (NSDictionary *) config {
-    NSLog(@"[NetworkingBackend] downloadJSON_: %@", config);
+//    NSLog(@"[NetworkingBackend] downloadString_: %@", config);
     StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
                                                               andCallback:@selector(handleString:withDownloader:) 
                                                                andErrback:@selector(handleError:withDownloader:)];
@@ -68,9 +69,10 @@
 -(void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;
     NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSArray* lines = [string componentsSeparatedByString:@"\n"];
     [self.kirinHelper jsCallback:@"payload" 
                       fromConfig:config 
-                    withArgsList:[NSString stringWithFormat:@"'%@'", string]];
+                    withArgsList:[lines JSONRepresentation]];
     [self cleanupCallbacks:config];
     [downloader release];
 }
@@ -189,7 +191,7 @@
         // TODO. Not sure if this is the right thing to do. Check with Adrian.
         [self.kirinHelper jsCallback:@"each" 
                           fromConfig:config 
-                        withArgsList:[NSString stringWithFormat:@"\"%@\"", string]];
+                        withArgsList:[KirinArgs string:string]];
         
         i = 1;
         
@@ -198,7 +200,7 @@
     
     [self.kirinHelper jsCallback:@"onFinish" 
                       fromConfig:config 
-                    withArgsList:[NSString stringWithFormat:@"%d", i]];
+                    withArgsList:[KirinArgs integer:i]];
     [self cleanupCallbacks: config];
     [downloader release];
 }
@@ -214,15 +216,12 @@
     
     NSString* fullPath = [fs filePathFromConfig:config];
     
-    // TODO make sure we don't want to overwrite this file. e.g. overwrite = true
-    // TODO make sure we can be downloading in the background.
-    
-    
-    
-    if([[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
+    BOOL overwrite = [[config objectForKey:@"overwrite"] boolValue];
+    NSLog(@"Overwrite is %d", overwrite);
+    if(!overwrite && [[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
         [self.kirinHelper jsCallback:@"onFinish" 
                           fromConfig:config 
-                        withArgsList:[NSString stringWithFormat:@"'%@'", fullPath]];
+                        withArgsList:[KirinArgs string:fullPath]];
         return;
     }
     
@@ -248,7 +247,7 @@
     
     [self.kirinHelper jsCallback: @"onFinish" 
                       fromConfig: config 
-                    withArgsList: [NSString stringWithFormat:@"'%@'", fullPath]];
+                    withArgsList: [KirinArgs string:fullPath]];
     
     [self cleanupCallbacks: config];
     [downloader release];
