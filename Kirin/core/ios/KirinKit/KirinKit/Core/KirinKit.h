@@ -17,3 +17,4 @@
 #import <KirinKit/KirinServiceOnMainThread.h>
 #import <KirinKit/KirinServiceStub.h>
 #import <KirinKit/KirinPaths.h>
+#import <KirinKit/KirinFileSystem.h>
