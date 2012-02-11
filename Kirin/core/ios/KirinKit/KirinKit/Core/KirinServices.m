@@ -33,7 +33,6 @@
 
 + (KirinServices*) coreServices {
     KirinServices* services = [KirinServices empty];
-    
     NSLog(@"Core KirinServices");
     [services registerService:[[[SettingsBackend alloc] init] autorelease]];
     [services registerService:[[[FileSystemBackend alloc] init] autorelease]];
@@ -53,6 +52,7 @@
 }
 
 - (void) registerService: (id<KirinServiceProtocol>) service {
+    [self.allServices addObject:service];
     [service onLoad];
     if (self.isStarted && [service respondsToSelector:@selector(onStart)]) {
         [service onStart];
@@ -63,10 +63,7 @@
     if (self.isStarted) {
         return;
     }
-    self.isStarted = YES;
-    
-    
-    
+    self.isStarted = YES;    
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
         id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
