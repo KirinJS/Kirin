@@ -91,6 +91,9 @@
 		1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */; };
 		1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */; };
 		1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */; };
+		1A21D87F14E5EE4000723C20 /* KirinArgs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A21D87D14E5EE4000723C20 /* KirinArgs.h */; };
+		1A21D88014E5EE4000723C20 /* KirinArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21D87E14E5EE4000723C20 /* KirinArgs.m */; };
+		1A21D88114E5EE4000723C20 /* KirinArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21D87E14E5EE4000723C20 /* KirinArgs.m */; };
 		1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B514E2CAE00012CD5A /* FileSystem.h */; };
 		1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */; };
 		1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
@@ -217,6 +220,8 @@
 		1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinImagePicker.m; sourceTree = "<group>"; };
 		1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinImagePicker.h; sourceTree = "<group>"; };
 		1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraProtocol.h; sourceTree = "<group>"; };
+		1A21D87D14E5EE4000723C20 /* KirinArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinArgs.h; sourceTree = "<group>"; };
+		1A21D87E14E5EE4000723C20 /* KirinArgs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinArgs.m; sourceTree = "<group>"; };
 		1A4384B514E2CAE00012CD5A /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
 		1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemBackend.h; sourceTree = "<group>"; };
 		1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemBackend.m; sourceTree = "<group>"; };
@@ -365,6 +370,8 @@
 				1A02012314BD782200CB9765 /* KirinPaths.m */,
 				1A61952814D22105004FDD8E /* KirinFileSystem.h */,
 				1A61952914D22105004FDD8E /* KirinFileSystem.m */,
+				1A21D87D14E5EE4000723C20 /* KirinArgs.h */,
+				1A21D87E14E5EE4000723C20 /* KirinArgs.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -565,6 +572,7 @@
 				1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */,
 				1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */,
 				1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */,
+				1A21D87F14E5EE4000723C20 /* KirinArgs.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +749,7 @@
 				1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */,
 				1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
 				1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */,
+				1A21D88014E5EE4000723C20 /* KirinArgs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +766,7 @@
 				1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */,
 				1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
 				1AB1252514E4819A00933949 /* KirinAppDelegateHelper.m in Sources */,
+				1A21D88114E5EE4000723C20 /* KirinArgs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
