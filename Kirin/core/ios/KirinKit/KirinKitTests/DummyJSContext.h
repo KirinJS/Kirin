@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <KirinKit/JSContext.h>
+#import <KirinKit/KirinServiceOnMainThread.h>
 
-@interface DummyJSContext : JSContext {
+@interface DummyJSContext : JSContext <KirinServiceOnMainThread> {
     NSMutableArray* jsCalls;
 }
 

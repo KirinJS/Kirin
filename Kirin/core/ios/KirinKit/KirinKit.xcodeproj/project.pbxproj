@@ -91,13 +91,11 @@
 		1A06437614CF0DB500FB7EE3 /* KirinImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */; };
 		1A06437714CF0DB500FB7EE3 /* KirinImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */; };
 		1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */; };
-		1A21D87F14E5EE4000723C20 /* KirinArgs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A21D87D14E5EE4000723C20 /* KirinArgs.h */; };
+		1A21D87F14E5EE4000723C20 /* KirinArgs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A21D87D14E5EE4000723C20 /* KirinArgs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A21D88014E5EE4000723C20 /* KirinArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21D87E14E5EE4000723C20 /* KirinArgs.m */; };
-		1A21D88114E5EE4000723C20 /* KirinArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21D87E14E5EE4000723C20 /* KirinArgs.m */; };
 		1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B514E2CAE00012CD5A /* FileSystem.h */; };
 		1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */; };
 		1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
-		1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
 		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61952914D22105004FDD8E /* KirinFileSystem.m */; };
 		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
@@ -108,7 +106,6 @@
 		1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */; };
 		1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
-		1AB1252514E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
@@ -764,9 +761,6 @@
 				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
 				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
 				1AF8396A14CA14F500E0D436 /* StringDownloaderTest.m in Sources */,
-				1A4384BD14E2CCA40012CD5A /* FileSystemBackend.m in Sources */,
-				1AB1252514E4819A00933949 /* KirinAppDelegateHelper.m in Sources */,
-				1A21D88114E5EE4000723C20 /* KirinArgs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
