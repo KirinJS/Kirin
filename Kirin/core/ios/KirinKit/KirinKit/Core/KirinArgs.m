@@ -13,11 +13,15 @@
 @implementation KirinArgs
 
 + (NSString*) string: (NSString*) string {
+    return [NSString stringWithFormat:@"'%@'", string];
+}
+
++ (NSString*) untaintedForDisplay: (NSString*) string {
     // TODO ensure quotes are correct.
     return [NSString stringWithFormat:@"'%@'", string];
 }
 
-+ (NSString*) safeString: (NSString*) string {
++ (NSString*) taintedForJs: (NSString*) string {
     // TODO ensure quotes are correct.
     return [NSString stringWithFormat:@"'%@'", string];
 }
@@ -35,7 +39,7 @@
 }
 
 + (NSString*) number: (NSNumber*) number {
-    return [NSString stringWithFormat:@"%@", number];
+    return [number stringValue];
 }
 
 + (NSString*) boolean: (BOOL) boolean {

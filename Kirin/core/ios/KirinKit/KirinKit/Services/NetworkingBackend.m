@@ -20,8 +20,8 @@
 
 #import "JSON.h"
 #import "StringDownloader.h"
-#import "KirinFileSystem.h"
-#import "KirinArgs.h"
+#import <KirinKit/KirinFileSystem.h>
+#import <KirinKit/KirinArgs.h>
 
 @interface NetworkingBackend ()
 

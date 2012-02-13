@@ -13,6 +13,10 @@
 
 + (NSString*) string: (NSString*) string;
 
++ (NSString*) untaintedForDisplay: (NSString*) string;
+
++ (NSString*) taintedForJs: (NSString*) string;
+
 + (NSString*) object: (NSDictionary*) object;
 
 + (NSString*) array: (NSArray*) array;
