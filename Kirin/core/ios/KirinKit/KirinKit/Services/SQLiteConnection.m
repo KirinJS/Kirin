@@ -92,10 +92,10 @@
         object = [_parameters objectAtIndex:i];
         
         if ([object isKindOfClass: [NSNumber class]]) {
-            
             NSNumber* number = object;
             resultCode = sqlite3_bind_int(pst, i+1, [number intValue]);
-            
+            // TODO unsure how to put floating point numbers in. 
+
         }
         else if ([object isKindOfClass: [NSString class]]) {
             
@@ -103,9 +103,12 @@
             resultCode = sqlite3_bind_text(pst, i+1, [teh UTF8String], -1, NULL);
             
         }
-        else {
-         
-            NSLog(@"<SQLLITE> Can't deal with this type: %@", [object class]);
+        else if ([object isKindOfClass: [NSNull class]]) {
+            resultCode = sqlite3_bind_null(pst, i+1);
+
+        } else {
+
+            NSLog(@"[DatabasesBackend] Can't deal with this type: %@", [object class]);
             
         }
         
