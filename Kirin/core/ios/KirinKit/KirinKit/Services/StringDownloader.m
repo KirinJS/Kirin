@@ -69,17 +69,18 @@
 }
 
 - (NSString*) mimeTypeForFileAtPath: (NSString *) path {
-    if (![[[[NSFileManager alloc] init] autorelease] fileExistsAtPath:path]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return nil;
     }
-    // Borrowed from http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
+    // Borrowed from http://stackoverflow.com/questions/5996797/determine-mime-type-of-nsdata-loaded-from-a-file
+    // itself, derived from  http://stackoverflow.com/questions/2439020/wheres-the-iphone-mime-type-database
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (CFStringRef)[path pathExtension], NULL);
     CFStringRef mimeType = UTTypeCopyPreferredTagWithClass (UTI, kUTTagClassMIMEType);
     CFRelease(UTI);
     if (!mimeType) {
         return @"application/octet-stream";
     }
-    return NSMakeCollectable([(NSString *)mimeType autorelease]);
+    return [NSMakeCollectable((NSString *)mimeType) autorelease];
 }
 
 - (void) failWithError: (NSString*) errorMessage {
