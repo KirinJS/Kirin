@@ -110,9 +110,7 @@ defineModule("kirin", function (require, exports) {
 
 		if (stack) {
 			console.error("" + stack);
-			console.error(stack());
 		} else {
-			
 			console.log("No stack trace");
 		}
 	}

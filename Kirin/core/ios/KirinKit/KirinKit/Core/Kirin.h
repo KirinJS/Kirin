@@ -30,6 +30,12 @@
 #import <KirinKit/SynthesizeSingleton.h>
 #import <UIKit/UIWebView.h>
 
+#ifdef __APPLE__
+#include "TargetConditionals.h"
+#endif
+
+
+
 
 @interface Kirin : NSObject {
 }

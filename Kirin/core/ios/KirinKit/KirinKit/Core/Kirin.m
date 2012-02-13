@@ -75,7 +75,12 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
         // the webview needs to be able to call out to native using the nativeContext.
         KirinWebViewHolder* webViewHolder = [[[KirinWebViewHolder alloc] initWithWebView:aWebView andNativeContext: self.nativeContext] autorelease];
         
-        self.jsContext = [[[JSContext alloc] initWithJSExecutor: webViewHolder] autorelease];       
+        self.jsContext = [[[JSContext alloc] initWithJSExecutor: webViewHolder] autorelease];     
+        // Debug on port 9999
+        // http://atnan.com/blog/2011/11/17/enabling-remote-debugging-via-private-apis-in-mobile-safari/
+#if defined(__APPLE__) && TARGET_IPHONE_SIMULATOR
+        [NSClassFromString(@"WebView") _enableRemoteInspector];
+#endif
 	}
 	return self;
 }   
