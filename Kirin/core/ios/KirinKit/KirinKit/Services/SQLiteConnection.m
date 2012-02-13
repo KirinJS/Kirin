@@ -152,30 +152,28 @@
             int type;
             
             switch(type = sqlite3_column_type(s, b)) {
-                    
-                case SQLITE_TEXT:{
-                    
-                    NSString* text = [[NSString alloc] initWithUTF8String: (char*) sqlite3_column_text(s, b)];
-                    
+
+                case SQLITE_TEXT: {
+                    NSString* text = [NSString stringWithUTF8String:(char*) sqlite3_column_text(s, b)];
                     [data setObject:text forKey:n];
-                    
-                    [text release];
-                    
                     break;
-                    
                 }
-                case SQLITE_INTEGER:{
-                    
-                    NSNumber* number = [[NSNumber alloc] initWithInt: sqlite3_column_int(s, b)];
-                    
+                case SQLITE_INTEGER: {                    
+                    NSNumber* number = [NSNumber numberWithInt: sqlite3_column_int(s, b)];
                     [data setObject:number forKey:n];
-                    
-                    [number release];
-                    
                     break;
-                    
-                } default: {
-                    NSLog(@"<SQLITE CONNECTION> skipped data of type %d", type);
+                }
+                case SQLITE_FLOAT: {
+                    NSNumber* number = [NSNumber numberWithDouble: sqlite3_column_double(s, b)];
+                    [data setObject:number forKey:n];
+                    break;
+                }
+                case SQLITE_NULL: {
+                    [data setObject:[NSNull null] forKey: n];
+                    break;
+                }
+                default: {
+                    NSLog(@"[SQLConnection] skipped data of type %d", type);
                 }
                     
             }
