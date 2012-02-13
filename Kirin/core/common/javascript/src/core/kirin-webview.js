@@ -181,7 +181,7 @@ defineModule("kirin", function (require, exports) {
 				callback();
 			}
 		} catch (e) {
-			handleError("calling callback " + callbackId + JSON.toString(argsList), e);
+			handleError("calling callback " + callbackId + JSON.stringify(argsList), e);
 		}
 	};
 	
