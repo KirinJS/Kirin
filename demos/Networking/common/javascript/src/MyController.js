@@ -66,7 +66,7 @@ defineModule("MyController", function (require, exports) {
 		net.cancelAllRequests(backgroundListenerId);
 		
 		var go = function () {		
-			net.sendReliably({
+			net.backgroundRequest({
 				url: url,
 				method: "GET",
 				listenerId: backgroundListenerId,
@@ -91,7 +91,7 @@ defineModule("MyController", function (require, exports) {
 				return;
 			}	
 			console.log("Requesting " + obj.url_l);
-			net.sendReliably({
+			net.backgroundRequest({
 				listenerId: backgroundImageListenerId,
 				url: obj.url_l,
 				fileArea: "external",
