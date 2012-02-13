@@ -20,6 +20,7 @@
 
 @synthesize downloadButton = _downloadButton;
 @synthesize urlTextField = _urlTextField;
+@synthesize backgroundImage = _backgroundImage;
 
 @synthesize kirinHelper = _kirinHelper;
 
@@ -35,6 +36,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.urlTextField.delegate = self;
     
     self.kirinHelper = [KIRIN bindScreen:self toModule:@"MyScreen"];
     [self.kirinHelper onLoad];
@@ -84,11 +87,19 @@
     }
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    [self.kirinHelper jsMethod:@"startDownload" withArgsList:[KirinArgs taintedForJs:self.urlTextField.text]];
+    return YES;
+}
+
+
 #pragma mark -
 #pragma mark Respond to UI events
 
 - (IBAction) downloadNow: (UIButton*) button {
-    [self.kirinHelper jsMethod:@"startDownload" withArgsList:[NSString stringWithFormat:@"'%@'", self.urlTextField.text]];
+    [self textFieldShouldReturn: self.urlTextField];
 }
 
 #pragma mark -
@@ -115,5 +126,8 @@
     }
 }
 
+- (void) changeImage: (NSString*) filePath {
+    self.backgroundImage.image = [UIImage imageWithContentsOfFile:filePath];
+}
 
 @end

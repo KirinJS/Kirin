@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KDViewController : UIViewController
+@interface KDViewController : UIViewController <UITextFieldDelegate>
 
+#pragma mark -
+#pragma mark IBOutlets
 @property(retain, nonatomic) IBOutlet UITextField* urlTextField;
 @property(retain, nonatomic) IBOutlet UIButton* downloadButton;
+@property(retain, nonatomic) IBOutlet UIImageView* backgroundImage;
 
+#pragma mark -
+#pragma mark IBActions
 - (IBAction) downloadNow: (UIButton*) button;
 
 
