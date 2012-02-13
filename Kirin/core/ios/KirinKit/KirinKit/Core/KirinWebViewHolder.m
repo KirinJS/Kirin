@@ -140,6 +140,10 @@
 	}
 }
 
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    NSLog(@"[ERROR] %@", error);
+}
+
 - (void)dealloc {
     [self.webView setDelegate:nil];
     [self.webView stopLoading];

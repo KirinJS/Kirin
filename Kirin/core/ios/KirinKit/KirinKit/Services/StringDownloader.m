@@ -225,7 +225,7 @@
     // redirect, so each time we reset the data.
     
     // receivedData is an instance variable declared elsewhere.
-    NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response");
+    //NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response");
     if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse* resp = (NSHTTPURLResponse*) response;
         self.statusCode = [resp statusCode];
@@ -238,7 +238,7 @@
 {
     // Append the new data to receivedData.
     // receivedData is an instance variable declared elsewhere.
-    NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data");
+    //NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data");
     [self.mData appendData:data];
 }
 
