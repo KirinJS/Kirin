@@ -258,7 +258,7 @@ defineServiceModule("Networking", function (require, exports) {
     exports.downloadFile = exports.downloadFileToDisk;
     
     
-    // TODO Needs implementing on Android and iOS
+    // TODO Needs implementing on Android
     exports.downloadString = function(config) {
         var api = require("api-utils");
         api.normalizeAPI({
@@ -292,6 +292,19 @@ defineServiceModule("Networking", function (require, exports) {
     var webHooksFileArea = "internal";
     var webHooksDir = "/kirin/networking/webhooks/";
 
+	/**
+	 * Register a listener for the given id for completion 
+	 * of a successful download.
+	 * 
+	 * The arguments passed to the listener will be whatever context is passed 
+	 * to the initial <code>backgroundRequest</code> method that initiates the download.
+	 * 
+	 * The listener will be called with two arguments: context, response. The context is set at the time 
+	 * of the request; the response comes from the http request itself.
+	 * 
+	 * It is recommended that the registration of background listeners is done very early 
+	 * on in the lifecycle of the app.
+	 */ 
     exports.registerBackgroundListener = function (listenerId, listener, timeoutListener) {
         if (!_.isString(listenerId) || !_.isFunction(listener)) {
             throw new Error("ListenerId should be a string, listener should be a function");
@@ -302,14 +315,25 @@ defineServiceModule("Networking", function (require, exports) {
             
         backgroundListeners[listenerId] = [listener, timeoutListener];
         
-        // TODO we should start trying to recover.
+        waitForNetworkAvailability();
     };
     
+    /**
+     * Remove the background listener with the given download.
+     *
+     * This will not cancel requests that are in-flight, and will not prevent 
+     * already saved requests from being re-sent if this is reregistered. 
+     */
     exports.unregisterBackgroundListener = function (listenerId) {
         delete backgroundListeners[listenerId];
     };
    
-   	exports.cancelAllRequests = function (listenerId, callback, errback) {
+    /*
+     * This will remove all previously saved requests for this listenerId. 
+     * It will not cancel requests that are being made right now (a.k.a. in-flight requests).
+     * The callback and errback are called once the requests have been removed.
+     */
+   	exports.cancelAllBackgroundRequests = function (listenerId, callback, errback) {
 		var fs = require("FileSystem");
 		fs.remove({
 			fileArea: webHooksFileArea, 
@@ -322,11 +346,11 @@ defineServiceModule("Networking", function (require, exports) {
     var execDifferentialDownload = function (config, callback) {
 
         var listenerId = config.listenerId;
-		var payload = function (string) {
+		var payload = function (response) {
             if (callback) {
                 callback();
             }
-            backgroundListeners[listenerId][0](config.context, string);
+            backgroundListeners[listenerId][0](config.context, response);
         };
 
         if (config.binary) {
@@ -423,8 +447,29 @@ defineServiceModule("Networking", function (require, exports) {
     };
     
 
-    
-    exports.sendReliably = function (config) {
+    /**
+     * Send an HTTP Request reliably. 
+     *
+     * If the request does not return successfully, then it is stashed for a later attempt.
+     * On success, the listener registered with <code>registerBackgroundListener</code> 
+     * with the id given by <code>listenerId</code>.
+     * 
+     * If the app is put into the background, then the request is shelved, ready for 
+     * when the app comes back into foreground.
+     * 
+     * Mandatory arguments: 
+     *  * listenerId - the id of the listener that will be fired on success.
+     * Optional arguments: 
+     *  * context - the object that will be persisted along side the rest of the request. This will be passed to 
+     *  the background listener on completion. This will go through a JSON stringify and parse, so cannot contain functions.
+     *  * maxAgeSeconds - the amount of time in seconds while an unsuccessful request 
+     * will be retried. Default is 60 * 60 * 24 * 365 (i.e. 1 year).
+     *  * binary - boolean flag to suggest that the response data is saved onto disk. If <code>true</code>, 
+     * then <code>downloadFileToDisk</code> is used. Otherwise, <code>downloadString</code> is used. By default, this is false.
+     * 
+     * Other arguments that are not functions will be necessary to drive the backing methods.
+     */
+    exports.backgroundRequest = function (config) {
 
         var api = require("api-utils");
         var fs = require("FileSystem");
