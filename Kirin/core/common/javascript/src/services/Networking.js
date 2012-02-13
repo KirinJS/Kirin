@@ -309,6 +309,16 @@ defineServiceModule("Networking", function (require, exports) {
         delete backgroundListeners[listenerId];
     };
    
+   	exports.cancelAllRequests = function (listenerId, callback, errback) {
+		var fs = require("FileSystem");
+		fs.remove({
+			fileArea: webHooksFileArea, 
+			filename: webHooksDir + listenerId,
+			callback: callback,
+			errback: errback
+		});
+   	};
+   
     var execDifferentialDownload = function (config, callback) {
 
         var listenerId = config.listenerId;
@@ -382,7 +392,7 @@ defineServiceModule("Networking", function (require, exports) {
 
 		function perhapsStopPolling () {
 			numDirectories --;
-			if (numDirectories === 0 && numFiles === 0) {
+			if (numDirectories === 0 && numFiles === 0 && backgroundIntervalTimer) {
 				require("Timers").clearInterval(backgroundIntervalTimer);
 				backgroundIntervalTimer = null;
 			}		
@@ -408,7 +418,7 @@ defineServiceModule("Networking", function (require, exports) {
     waitForNetworkAvailability = function () {
         if (backgroundIntervalTimer === null) {
             var timers = require("Timers");
-            backgroundIntervalTimer = timers.setInterval(exports.networkIsAvailable, 5 * 1000);
+            backgroundIntervalTimer = timers.setInterval(exports.networkIsAvailable, 60 * 1000);
         }
     };
     
