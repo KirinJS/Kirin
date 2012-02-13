@@ -13,6 +13,8 @@
 #import <KirinKit/KirinServiceHelper.h>
 #import <KirinKit/KirinAppDelegateHelper.h>
 
+#import <KirinKit/KirinArgs.h>
+
 #import <KirinKit/KirinServiceProtocol.h>
 #import <KirinKit/KirinServiceOnMainThread.h>
 #import <KirinKit/KirinServiceStub.h>
