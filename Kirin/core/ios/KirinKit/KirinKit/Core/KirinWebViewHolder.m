@@ -68,7 +68,9 @@
 }
 
 - (void) _execJSImmediately: (NSString*) js {
-	NSLog(@"Javascript: %@", js);
+    if (DEBUG_JS) {
+        NSLog(@"Javascript: %@", js);
+    }
     [self.webView stringByEvaluatingJavaScriptFromString:js];
 }
 

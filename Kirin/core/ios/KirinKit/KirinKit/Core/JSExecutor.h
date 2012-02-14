@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#define DEBUG_JS NO
 
 @protocol JSExecutor <NSObject>
 - (void) execJS: (NSString*) js;
