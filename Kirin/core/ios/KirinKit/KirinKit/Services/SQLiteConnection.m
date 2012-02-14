@@ -62,12 +62,15 @@
     
     // A pointer to the statment struct if prepare succeeds, otherwise NULL.
     sqlite3_stmt *pst;
-    
+
     int resultCode = sqlite3_prepare_v2(db, [sql UTF8String], -1, &pst, NULL);
     
     if (resultCode != SQLITE_OK) {
+
+        NSString* errorMessage = [NSString stringWithCString:sqlite3_errmsg(db) encoding:NSUTF8StringEncoding];
+        NSString *reason = [NSString stringWithFormat:@"Couldn't create a SQLite prepared statement in database %@. SQL \"%@\". Error: %@.", name, sql, errorMessage];
         
-        NSString *reason = [NSString stringWithFormat:@"Couldn't create a SQLite prepared statement in database %@. SQL \"%@\", sqlite3 error code %d.", name, sql, resultCode];
+
         
         [self raiseException:@"SQLException" withReason:reason];
         
@@ -84,7 +87,8 @@
     int i;
     
     id object;
-    
+    // consider replacing with code from https://billweinman.wordpress.com/2010/09/27/10/
+    // if we really haven't got time to replace with FMDB.
     int resultCode = SQLITE_OK;
     
     for (i=0; i<[_parameters count]; ++i) {
@@ -113,8 +117,8 @@
         }
         
         if (resultCode != SQLITE_OK) {
-        
-            [self raiseException:@"SQLException" withReason:[NSString stringWithFormat: @"Failed to bind with error code: %d", sqlite3_errcode(db)]];
+            NSString* errorMessage = [NSString stringWithCString:sqlite3_errmsg(db) encoding:NSUTF8StringEncoding];
+            [self raiseException:@"SQLException" withReason:[NSString stringWithFormat: @"Failed to bind with error: %@", errorMessage]];
             
         }
         
@@ -190,12 +194,10 @@
         
         [allData removeAllObjects];
         allData = nil;
-        
-        [self raiseException:@"SQLException" withReason:[NSString stringWithFormat: @"Failed with error code: %d", sqlite3_errcode(db)]];
+        NSString* errorMessage = [NSString stringWithCString:sqlite3_errmsg(db) encoding:NSUTF8StringEncoding];
+        [self raiseException:@"SQLException" withReason:[NSString stringWithFormat: @"Failed with error: %@", errorMessage]];
         
     }
-    
-    //NSLog(@"<SQLITE CONNETION> DONE: %d", value);
     
     return allData;
     
@@ -206,7 +208,7 @@
     
     sqlite3_exec(db, [sql UTF8String], NULL, NULL, NULL);
     
-    NSLog(@"<SQLITE CONNECTION> executed: %@", sql);
+    NSLog(@"[DatabasesBackend] executed: %@", sql);
     
 }
 
@@ -242,7 +244,7 @@
     
     if (resultCode != SQLITE_OK) {
         
-        NSLog(@"<SQLITE CONNECTION> failed to close");
+        NSLog(@"[DatabasesBackend] failed to close");
         
     }
     
