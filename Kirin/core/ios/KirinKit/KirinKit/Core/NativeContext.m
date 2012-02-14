@@ -84,13 +84,24 @@
 //        free(argList);
 
         void (^block)(void) = ^{
-            int len = [arguments count];
-            if (len == 0) {
-                [obj performSelector:selector];
-            } else if (len == 1) {
-                [obj performSelector:selector withObject:[arguments objectAtIndex:0]];
-            } else if (len == 2) {
-                [obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
+            @try {
+                int len = [arguments count];
+                if (len == 0) {
+                    [obj performSelector:selector];
+                } else if (len == 1) {
+                    [obj performSelector:selector withObject:[arguments objectAtIndex:0]];
+                } else if (len == 2) {
+                    [obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
+                }
+            } @catch (NSException* exception) {
+                NSLog(@"Exception while executing %@.%@", host, file);
+                
+                // Create a string based on the exception
+                NSString *exceptionMessage = [NSString stringWithFormat:@"%@\nReason: %@\nUser Info: %@", [exception name], [exception reason], [exception userInfo]];
+                
+                // Always log to console for history
+                NSLog(@"Exception raised:\n%@", exceptionMessage);
+                NSLog(@"Backtrace: %@", [exception callStackSymbols]);
             }
         };
         
