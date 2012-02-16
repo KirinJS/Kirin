@@ -109,21 +109,40 @@ defineModule("FileSystem", function (require, exports) {
      * 
      */
     exports.copy = function (fromFileArea, fromFilename, toFileArea, toFilename, callback, errback) {
-        if (arguments.length < 4) {
-            throw new Error("There has to be at least a fromFileArea, fromFilename, toFileArea, toFilename for copy");
-        }    
-     // - (void) copyItemWithConfig: (NSDictionary*) config;
-         backend.copyItemWithConfig_(wrapCallbacks({
-             fromFileArea: fromFileArea, 
-             fromFilename: fromFilename,
-             
-             toFileArea: toFileArea, 
-             toFilename: toFilename,
-             
-             callback: callback,
-            errback: errback
+        var config;
+        if (_.isString(fromFileArea)) {
+            if (arguments.length < 4) {
+                throw new Error("There has to be at least a fromFileArea, fromFilename, toFileArea, toFilename for copy");
+            }
             
-         }, "FileSytem"));
+            config = {
+                fromFileArea: fromFileArea, 
+                fromFilename: fromFilename,
+             
+                toFileArea: toFileArea, 
+                toFilename: toFilename,
+             
+                callback: callback,
+                errback: errback
+            };
+        
+        } else {
+        
+            config = fromFileArea;
+        }
+        
+        require("api-utils").normalizeAPI({
+            'string': {
+                oneof: ['fromFileArea', 'fromFilePath', 'fromFilename', 'toFileArea', 'toFilename', 'toFilePath']
+            },
+            'function': {
+                optional: ['callback', 'errback']
+            }
+        
+        
+        }, config);
+        
+         backend.copyItemWithConfig_(wrapCallbacks(config, "FileSytem.copy"));
     };
 
     exports.listDir = function (config) {
