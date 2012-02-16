@@ -14,6 +14,6 @@
 
 - (void) cameraPicture: (NSDictionary*) config;
 
-
+- (void) transform: (NSString*) transformType withConfig: (NSDictionary*) config;
 
 @end

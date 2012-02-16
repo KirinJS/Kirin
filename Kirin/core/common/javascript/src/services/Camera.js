@@ -7,6 +7,28 @@ defineModule("Camera", function (require, exports) {
 		console.dir(_.keys(nativeObject));
 	};
 	
+	function getFileTypeFromExtension (name) {
+		var re = /\.(png|jpg|jpeg)$/;
+		var match = re.test(name);
+		
+		var type = "png";
+		
+		if (match) {
+		
+		    switch (match[1]) {
+		
+        		case "png":
+					type = "png";
+					break;
+				case "jpeg":
+				case "jpg":
+					type = "jpeg";
+					break;
+			}
+		}	
+		return type;
+	}
+	
 	function prepareConfig(config) {
 	    var api = require("api-utils");
         api.normalizeAPI({    
@@ -33,26 +55,8 @@ defineModule("Camera", function (require, exports) {
         	}
         });
         
-		if (config.filename) {
-			var re = /\.(png|jpg|jpeg)$/;
-			var match = re.test(config.filename);
-			var type = "png";
-			if (match) {
-				switch (match[1]) {
-					case "png":
-						type = "png";
-						break;
-					case "jpeg":
-					case "jpg":
-						type = "jpeg";
-						break;
-				}
-			}
-			config.fileType = type;
-			
-			
-		}
-        
+		config.fileType = getFileTypeFromExtension(config.filePath || config.filename);
+		
         return config;
 	}
 	
@@ -64,5 +68,27 @@ defineModule("Camera", function (require, exports) {
 		mNative.galleryPicture_(prepareConfig(config));
 	};
 
-
+    exports.transformSize = function (config) {
+	    var api = require("api-utils");
+        api.normalizeAPI({
+            "function": {
+                mandatory: ['callback'],
+                optional: ['errback']
+            },
+            
+            'string': {
+                oneof: ['fromFileArea', 'fromFilename', 'fromFilepath', 
+                        'toFileArea', 'toFilename', 'toFilepath' ]
+            },
+            
+            'number': {
+                mandatory: ['height', 'width']
+            }
+            
+        }, config);        
+        config.fileType = getFileTypeFromExtension(config.toFilePath || config.toFilename);
+        require('kirin').wrapCallbacks(config, "Camera.transformSize");
+        
+        mNative.transform_withConfig_("size", config);
+    };
 });

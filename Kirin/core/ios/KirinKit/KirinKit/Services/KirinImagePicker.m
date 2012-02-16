@@ -18,7 +18,7 @@
 - (void) getPicture: (NSDictionary*) config fromSource: (UIImagePickerControllerSourceType) sourceType;
 - (void) presentModalViewController: picker;
 
-- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename;
+- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename andFileType: (NSString*) fileType;
 
 - (UIImage*)imageCorrectedForCaptureOrientation:(UIImage*)anImage;
 - (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize;
@@ -50,6 +50,41 @@
     [self getPicture:config fromSource:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 }
 
+- (void) transform: (NSString*) transformType withConfig: (NSDictionary*) config {
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+    BOOL supported = NO;
+    if ([transformType isEqualToString:@"size"]) {
+        NSString* fromImageFilepath = [fs filePathFromConfig:config withPrefix:@"from"]; 
+        NSString* toFilepath = [fs filePathFromConfig:config withPrefix:@"to"];
+        UIImage* image = [UIImage imageWithContentsOfFile:fromImageFilepath];
+
+        
+        CGFloat width = [[config objectForKey:@"width"] floatValue];
+        CGFloat height = [[config objectForKey:@"height"] floatValue];
+        UIImage* toImage = [self imageByScalingAndCroppingForSize: image toSize:CGSizeMake(width, height)];
+        if ([self saveImage:toImage toFilename:toFilepath andFileType:[config objectForKey:@"fileType"]] == nil) {
+            [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
+        
+        } else {
+            [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
+            
+            
+        }
+        supported = YES;
+        return;
+    }
+    
+    if (!supported) {
+        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[KirinArgs string: @"Unsupported transform type"]];
+     }
+    
+    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];   
+    
+}
+
+#pragma mark - 
+#pragma Utility methods.
+
 - (void) getPicture: (NSDictionary*) config fromSource: (UIImagePickerControllerSourceType) sourceType {
     self.config = config;
     
@@ -68,13 +103,18 @@
     // trimming movies. To instead show the controls, use YES.
     picker.allowsEditing = YES;
     picker.delegate = self;
+
     [self performSelectorOnMainThread:@selector(presentModalViewController:) withObject:picker waitUntilDone:NO];
-//    [self presentModalViewController:picker];
 }
 
 - (void) presentModalViewController: (UIImagePickerController*) picker {
     NSLog(@"Starting the image picker or camera on Main Thread: %@", [self.kirinHelper viewController]);
     [[self.kirinHelper viewController] presentModalViewController: picker animated: YES]; 
+}
+
+- (void) dismissModalViewController: (UIImagePickerController*) picker {
+    UIViewController* vc = [self.kirinHelper viewController];
+    [vc dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Image delegate
@@ -83,8 +123,10 @@
 {
     UIViewController* vc = [self.kirinHelper viewController];
 	if([vc parentViewController] != nil || ![vc respondsToSelector:@selector(presentingViewController)]) {
-        [[picker parentViewController] dismissModalViewControllerAnimated: YES];
+        NSLog(@"dismiss parentViewController");
+        [self performSelectorOnMainThread:@selector(dismissModalViewController:) withObject:picker waitUntilDone:NO];
     } else {
+        NSLog(@"dismiss parentViewController");
         [[picker presentingViewController] dismissModalViewControllerAnimated: YES];
     } 
     [self.kirinHelper jsCallback:@"onCancel" fromConfig:self.config];
@@ -134,7 +176,7 @@
             NSString* fileArea = [self.config objectForKey:@"fileArea"];
             NSString* fullPath = [fs filePath:filename inArea:fileArea];
             [fs mkdirForFile:fullPath];
-            NSString* err = [self saveImage:imageToSave toFilename:fullPath];
+            NSString* err = [self saveImage:imageToSave toFilename:fullPath andFileType:[self.config objectForKey:@"fileType"]];
             if (err) {
                 [self.kirinHelper jsCallback:@"onError" fromConfig:self.config withArgsList:[NSString stringWithFormat:@"'%@'", err]];            
                 filename = nil;
@@ -156,23 +198,35 @@
     [picker release];
 }
 
-- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename {
+#pragma mark - 
+#pragma mark Image manipulation.
+
+- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename andFileType: (NSString*) fileType {
     NSData* data = nil;
-    NSString* fileType = [self.config objectForKey:@"fileType"];
     if ([fileType isEqualToString:@"png"]) {
         data = UIImagePNGRepresentation(image);
     } else if ([fileType isEqualToString:@"jpeg"]) {
         data = UIImageJPEGRepresentation(image, 1.0f);
     }
-    NSError* err = nil;
-    if (![data writeToFile: filename options: NSAtomicWrite error: &err]){
-        return [err localizedDescription];
+
+    
+    KirinFileSystem* fs = [KirinFileSystem fileSystem];
+
+    if ([fs mkdirForFile:filename]) {
+        NSError* err = nil;
+        
+        if (![data writeToFile:filename options:NSDataWritingAtomic error:&err]) {
+            return [err localizedDescription];
+        }
+    } else {
+        return [NSString stringWithFormat:@"Could not create a directory to put %@ in", filename];
     }
+    
+
     return nil;
 }
 
-- (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize
-{
+- (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize {
     UIImage *sourceImage = anImage;
     UIImage *newImage = nil;        
     CGSize imageSize = sourceImage.size;
