@@ -57,6 +57,7 @@
     NSString* toFilepath = [fs filePathFromConfig:config withPrefix:@"to"];
     
     if (![[config objectForKey:@"overwrite"] boolValue] && [fs fileExists:toFilepath]) {
+        supported = YES;
         [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
     } else if ([transformType isEqualToString:@"size"]) {
 
