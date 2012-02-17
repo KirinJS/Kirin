@@ -83,6 +83,12 @@ defineModule("Camera", function (require, exports) {
             
             'number': {
                 mandatory: ['height', 'width']
+            },
+            
+            'boolean': {
+                defaults: {
+                    overwrite: true
+                }
             }
             
         }, config);        

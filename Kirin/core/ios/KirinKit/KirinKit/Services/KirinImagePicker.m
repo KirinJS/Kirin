@@ -53,9 +53,13 @@
 - (void) transform: (NSString*) transformType withConfig: (NSDictionary*) config {
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     BOOL supported = NO;
-    if ([transformType isEqualToString:@"size"]) {
-        NSString* fromImageFilepath = [fs filePathFromConfig:config withPrefix:@"from"]; 
-        NSString* toFilepath = [fs filePathFromConfig:config withPrefix:@"to"];
+    NSString* fromImageFilepath = [fs filePathFromConfig:config withPrefix:@"from"]; 
+    NSString* toFilepath = [fs filePathFromConfig:config withPrefix:@"to"];
+    
+    if (![[config objectForKey:@"overwrite"] boolValue] && [fs fileExists:toFilepath]) {
+        [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
+    } else if ([transformType isEqualToString:@"size"]) {
+
         UIImage* image = [UIImage imageWithContentsOfFile:fromImageFilepath];
 
         
