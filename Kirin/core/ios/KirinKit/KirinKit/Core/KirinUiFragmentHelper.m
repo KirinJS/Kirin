@@ -19,8 +19,8 @@
     [self jsMethod:@"onResume"];
 }
 
-- (void) onResumeWithOptions: (NSDictionary*) options {
-    [self jsMethod: @"onResume" withArgsList: [options JSONRepresentation]];
+- (void) onResumeWithArgsList: (NSString*) argsList {
+    [self jsMethod: @"onResume" withArgsList: argsList];
 }
 
 @end

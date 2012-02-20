@@ -23,9 +23,9 @@
     [super onResume];
 }
 
-- (void) onResumeWithOptions: (NSDictionary*) options {
+- (void) onResumeWithArgsList: (NSString*) argsList {
     self.state.currentScreen = (UIViewController*) self.nativeObject;
-    [super onResumeWithOptions:options];
+    [super onResumeWithArgsList:argsList];
 }
 
 
