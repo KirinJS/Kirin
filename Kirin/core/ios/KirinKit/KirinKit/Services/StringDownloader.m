@@ -8,6 +8,7 @@
 
 #import "StringDownloader.h"
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "JSON.h"
 
 #import "KirinFileSystem.h"
 
@@ -163,12 +164,17 @@
     NSDictionary* paramMap = [config objectForKey:@"paramMap"];
     if (paramMap) {
         for (NSString* key in paramMap) {
-            id value = [paramMap objectForKey:key];
+            NSObject* value = [paramMap objectForKey:key];
             appendBoundary();
             NSString* headerPreamble = [NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", key];
             appendString(headerPreamble);
-            
-            appendString([NSString stringWithFormat:@"%@", value]);
+            if ([value isKindOfClass:[NSDictionary class]]) {
+                appendString([(NSDictionary*) value JSONRepresentation]);
+            } else if ([value isKindOfClass:[NSArray class]]) {
+                appendString([(NSArray*) value JSONRepresentation]);
+            } else {
+                appendString([NSString stringWithFormat:@"%@", value]);
+            }
             appendCR();
         }
     }
