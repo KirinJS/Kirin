@@ -87,7 +87,11 @@ defineServiceModule("Networking", function (require, exports) {
         }
         
         _.each(_.keys(paramsObj), function(paramName) {
-            url = addParam(url, encodeURIComponent(paramName), encodeURIComponent(paramsObj[paramName]));
+            var string = paramsObj[paramName];
+            if (typeof string === 'object') {
+                string = JSON.stringify(string);
+            }
+            url = addParam(url, encodeURIComponent(paramName), encodeURIComponent(string));
         });
         
         return url;
