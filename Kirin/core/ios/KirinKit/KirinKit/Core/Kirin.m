@@ -79,7 +79,11 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
         // Debug on port 9999
         // http://atnan.com/blog/2011/11/17/enabling-remote-debugging-via-private-apis-in-mobile-safari/
 #if defined(__APPLE__) && TARGET_IPHONE_SIMULATOR
-        [NSClassFromString(@"WebView") _enableRemoteInspector];
+        if ([[[UIDevice currentDevice] systemVersion] floatValue] > 5.0) {
+            // turn on Safari debugging, in iOS 5.0+ on the simulator.
+            [NSClassFromString(@"WebView") _enableRemoteInspector];
+        }
+
 #endif
 	}
 	return self;
