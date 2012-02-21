@@ -22,6 +22,13 @@ For the UI, you build in whatever tools the platform provides, to produce respon
 
 i.e. *Javascript logic, native UI*
 
+
+Sightings
+---------
+The only outing it has in the market place was for the Glastonbury 2011 app – a single app for sure, but it's winning awards, and was featured in [Apple's AppStore](http://itunes.apple.com/us/app/glastonbury-2011/id377852148?mt=8&ls=1), the [Android Market](https://market.android.com/details?id=com.orange.glastonbury), and the Ovi market place.
+
+Once we had written the common application logic, each app took only 50% of the time it took to write the comparative fully native app.
+
 Current Status
 --------------
 Kirin provides the tools to: 
@@ -31,14 +38,13 @@ Kirin provides the tools to:
  * facilitate bi-directional communication between native (Android & Objective-C) and Javascript.
  * access the device APIs. 
 
-Kirin is currently considered stable, but incomplete. 
+Kirin is currently under heavy development. The HEAD branch represents the version that was written and deployed for the Glastonbury app. This version is unlikely to be maintained, and will not be forward compatible with future versions.
 
+The [kirin-fragments branch](https://github.com/kirinjs/kirin/tree/kirin-fragments) is currently where all the action is happening. It is still in a branch because it only has an iOS implementation.
 
-Sightings
----------
-The only outing it has in the market place was for the Glastonbury 2011 app – a single app for sure, but it's winning awards, and was featured in [Apple's AppStore](http://itunes.apple.com/us/app/glastonbury-2011/id377852148?mt=8&ls=1), the [Android Market](https://market.android.com/details?id=com.orange.glastonbury), and the Ovi market place.
-
-Once we had written the common application logic, each app took only 50% of the time it took to write the comparative fully native app.
+News
+----
+The best way to keep up is either on [the blog](http://hugman.posterous.com/tag/kirin) or on [my twitter feed](http://twitter.com/jhugman) where I post periodically about Kirin.
 
 LICENSE
 =======
