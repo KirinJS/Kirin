@@ -17,13 +17,12 @@
 }
 
 + (NSString*) untaintedForDisplay: (NSString*) string {
-    // TODO ensure quotes are correct.
-    return [NSString stringWithFormat:@"\"%@\"", string];
+    return [string stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 + (NSString*) taintedForJs: (NSString*) string {
-    // TODO ensure quotes are correct.
-    return [NSString stringWithFormat:@"\"%@\"", string];
+    return [NSString stringWithFormat:@"\"%@\"", 
+            [string stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
 }
 
 + (NSString*) array: (NSArray*) object {
