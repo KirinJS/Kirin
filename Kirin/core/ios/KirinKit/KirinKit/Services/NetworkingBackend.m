@@ -69,10 +69,10 @@
 -(void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader {
     NSDictionary* config = downloader.mConfig;
     NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    NSArray* lines = [string componentsSeparatedByString:@"\n"];
+
     [self.kirinHelper jsCallback:@"payload" 
                       fromConfig:config 
-                    withArgsList:[lines JSONRepresentation]];
+                    withArgsList:[KirinArgs taintedForJs:string]];
     [self cleanupCallbacks:config];
     [downloader release];
 }

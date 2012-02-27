@@ -50,8 +50,8 @@ defineServiceModule("Networking", function (require, exports) {
     };
 
 
-    var wrapCallbacks = function (config) {
-    	return kirin.wrapCallbacks(config, "Networking");
+    var wrapCallbacks = function (config, methodName) {
+    	return kirin.wrapCallbacks(config, "Networking." + methodName);
     };
     
     // Simply adds a key=value parameter on to the query string of the URL.
@@ -195,7 +195,7 @@ defineServiceModule("Networking", function (require, exports) {
         
         configureParams(config);
         
-        wrapCallbacks(config, "payload", "onError");
+        wrapCallbacks(config, "donwloadJSON");
         backend.downloadJSON_(config);
     };
         
@@ -228,7 +228,7 @@ defineServiceModule("Networking", function (require, exports) {
         configureParams(config);
         
         // TODO this needs to be in a util method.
-        wrapCallbacks(config, "each", "onFinish", "onError", "envelope");
+        wrapCallbacks(config, "downloadJSONList");
         
         backend.downloadJSONList_(config);
     };
@@ -255,7 +255,7 @@ defineServiceModule("Networking", function (require, exports) {
             }
         } , config);
         
-        wrapCallbacks(config, "onFinish", "onError");
+        wrapCallbacks(config, "downloadFileToDisk");
         
         backend.downloadFile_(config);
     };
@@ -286,9 +286,9 @@ defineServiceModule("Networking", function (require, exports) {
         configureParams(config);
 		var payload = config.payload;
 		config.payload = function (lines) {
-			payload(lines.join("\n"));
+			payload(decodeURIComponent(lines));
 		};
-        wrapCallbacks(config, "payload", "onError");
+        wrapCallbacks(config, "downloadString");
         backend.downloadString_(config);
     };
     
@@ -354,7 +354,17 @@ defineServiceModule("Networking", function (require, exports) {
             if (callback) {
                 callback();
             }
-            backgroundListeners[listenerId][0](config.context, response);
+            var callbacks = backgroundListeners[listenerId];
+            if (callbacks) {
+            	try {
+					callbacks[0](config.context, response);
+				} catch (e) {
+					console.dir(e);
+					throw new Error("Networking.backgroundRequest: Error found calling callback for listener id: " + listenerId);
+				}
+			} else {
+				throw new Error("Networking.backgroundRequest: Cannot find a callback for listener id: " + listenerId);
+			}
         };
 
         if (config.binary) {

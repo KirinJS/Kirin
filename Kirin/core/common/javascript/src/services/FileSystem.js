@@ -44,8 +44,8 @@ defineModule("FileSystem", function (require, exports) {
             config = {
                 fileArea: fileArea, 
                 filename: filename, 
-                callback: function (list) { 
-                        callback(list.join("\n")); 
+                callback: function (string) { 
+                        callback(decodeURIComponent(string)); 
                 },
                 errback: errback
             };

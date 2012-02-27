@@ -37,11 +37,9 @@
     
     if (str != nil) {
         
-        NSArray* lines = [str componentsSeparatedByString:@"\n"];
-        
         [self.kirinHelper jsCallback:@"callback" 
                           fromConfig:config 
-                        withArgsList:[lines JSONRepresentation]];
+                        withArgsList:[KirinArgs taintedForJs:str]];
     }
     
     [self cleanupConfig:config];
@@ -54,6 +52,7 @@
         [self.kirinHelper jsCallback:@"callback" 
                           fromConfig:config 
                         withArgsList:[[str JSONValue] JSONRepresentation]];
+        // we parse this then give a canonical source so as to make sure it's all on one line.
     }
     
     [self cleanupConfig:config];
