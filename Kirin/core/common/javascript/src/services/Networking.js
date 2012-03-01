@@ -351,13 +351,16 @@ defineServiceModule("Networking", function (require, exports) {
 
         var listenerId = config.listenerId;
 		var payload = function (response) {
-            if (callback) {
-                callback();
+            if (!callback) {
+	            var callbacks = backgroundListeners[listenerId];
+
+    	        if (callbacks) {
+        	    	callback = callbacks[0];
+            	}
             }
-            var callbacks = backgroundListeners[listenerId];
-            if (callbacks) {
+            if (callback) {
             	try {
-					callbacks[0](config.context, response);
+					callback(config.context, response);
 				} catch (e) {
 					console.dir(e);
 					throw new Error("Networking.backgroundRequest: Error found calling callback for listener id: " + listenerId);
