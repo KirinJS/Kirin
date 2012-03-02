@@ -76,7 +76,6 @@
             
         }
         supported = YES;
-        return;
     }
     
     if (!supported) {
