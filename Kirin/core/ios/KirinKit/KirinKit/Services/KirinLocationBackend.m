@@ -72,6 +72,14 @@
 #pragma mark - 
 #pragma mark Called by Javascript.
 
+- (void) denyAccess {
+    [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string:@"denied"]];
+}
+
+- (void) failWithMessage: (NSString*) message {
+    [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string:message]];
+}
+
 - (void) startWithCallback: (NSString*) callback andErrback: (NSString*) errback {
     self.callback = callback;
     self.errback = errback;
@@ -80,6 +88,37 @@
     if (self.locationManager.location) {
         [self sendLocation:self.locationManager.location];
     }
+
+    
+    if (![CLLocationManager locationServicesEnabled]) {
+        // the device has location services switched off.
+        NSLog(@"Location services aren't on");
+        // starting updates will ask the user to switch it on 
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+        NSLog(@"Location services are on, but we've been denied before");
+        [self denyAccess];
+        return;
+    }
+    
+    CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
+    
+    switch (status) {
+        case kCLAuthorizationStatusDenied:
+            NSLog(@"Location authorization denied");
+            break;
+        case kCLAuthorizationStatusRestricted:
+            NSLog(@"Location authorization restricted");
+            // the user can't change this. Parental settings need to change.
+            [self denyAccess];
+            return;
+        case kCLAuthorizationStatusNotDetermined:
+            NSLog(@"Location authorization not determined");
+            break;
+        case kCLAuthorizationStatusAuthorized:
+            NSLog(@"Location authorization already given");
+            break;
+    }
+
     
     [self.locationManager startUpdatingLocation];
 }
@@ -109,8 +148,30 @@
     
 }
 
+
+
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"%@ %@: Location failed: %@", __PRETTY_FUNCTION__, __LINE__, [error localizedDescription]);
     [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string: [error localizedDescription]]];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusDenied:
+            NSLog(@"User has denied location authorization");
+            [self denyAccess];
+            break;
+        case kCLAuthorizationStatusRestricted:
+            NSLog(@"User has restricted location authorization");
+            [self denyAccess];
+            break;
+        case kCLAuthorizationStatusAuthorized:
+            NSLog(@"User has given location authorization");
+            break;
+        case kCLAuthorizationStatusNotDetermined:
+            NSLog(@"User has somehow managed to not determine location authorization");
+            break;
+    }
 }
 
 #pragma mark - 

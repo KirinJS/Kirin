@@ -15,6 +15,13 @@ defineModule("Location", function (require, exports) {
         backend = null;
     };
     
+    function stopListening () {
+        backend.stop();
+        callbacks = [];
+        errbacks = [];
+    }
+
+    
     function onLocationUpdate (newLocation) {
         latestLocation = newLocation;
         _.each(callbacks, function (cb) {
@@ -24,8 +31,11 @@ defineModule("Location", function (require, exports) {
 
     function onLocationError (err) {
         _.each(errbacks, function (eb) {
-            
+            eb(err);
         });
+    	if (err === "denied") {
+    		//stopListening();
+    	}
     }
     
     exports.registerLocationListener = function (listener) {
@@ -51,18 +61,25 @@ defineModule("Location", function (require, exports) {
             );
             
         }
+    };
+    
+    exports.registerLocationErrorListener = function (errback) {
+    	if (!_.isFunction(errback)) {
+            throw new Error("LocationErrorListener is not a function");
+        }    	
+    	
+    	var index = _.indexOf(errbacks, errback);
+        if (index >= 0) {
+        	return;
+        }
         
-
+        errbacks.push(errback);
     };
 
     exports.refreshLocation = function () {
         backend.forceRefresh();
     };
 
-    function stopListening () {
-        backend.stop();
-        callbacks = [];
-    }
 
     exports.unregisterAllListeners = stopListening;
     
@@ -75,25 +92,21 @@ defineModule("Location", function (require, exports) {
         list.splice(index, 1);
         return true;
     }
-    
-    
 
-    
     exports.unregisterLocationListener = function (listener) {
-        console.log("Removing listener from location update");
         if (!removeFromList(callbacks, listener)) {
-            return;
+            return false;
         }
-        
-        console.log("There is still " + callbacks.length + " functions listening");
-        
         if (callbacks.length === 0) {
             stopListening();
         }
         
-        
+        return true;
     };
     
+    exports.registerLocationErrorListener = function (errback) {
+    	return removeFromList(errbacks, errback);
+    };
     
 
 });
