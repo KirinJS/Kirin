@@ -318,7 +318,9 @@ defineServiceModule("Networking", function (require, exports) {
         }
             
         backgroundListeners[listenerId] = [listener, timeoutListener];
-        
+        if (backgroundIntervalTimer === null) {
+        	exports.networkIsAvailable();
+        }
         waitForNetworkAvailability();
     };
     
