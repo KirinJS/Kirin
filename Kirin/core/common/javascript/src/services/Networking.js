@@ -32,8 +32,7 @@ defineServiceModule("Networking", function (require, exports) {
     };
 
 	exports.onStart = function () {
-		// start trying to ping the webhooks that have been saved.
-		waitForNetworkAvailability();
+		// nop
 	};
 	
 	exports.onStop = function ()  {
@@ -42,6 +41,14 @@ defineServiceModule("Networking", function (require, exports) {
 		}
 	};
 
+	exports.onResume = function () {
+		// start trying to ping the webhooks that have been saved.
+		if (!backgroundIntervalTimer) {
+			exports.networkIsAvailable();
+		}
+		waitForNetworkAvailability();
+	};
+	
     exports.onUnload = function () {
         backend = null;
         
@@ -318,10 +325,6 @@ defineServiceModule("Networking", function (require, exports) {
         }
             
         backgroundListeners[listenerId] = [listener, timeoutListener];
-        if (backgroundIntervalTimer === null) {
-        	exports.networkIsAvailable();
-        }
-        waitForNetworkAvailability();
     };
     
     /**
