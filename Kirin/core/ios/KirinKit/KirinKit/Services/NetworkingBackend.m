@@ -28,11 +28,9 @@
 - (void) cleanupCallbacks: (NSDictionary*) config;
 
 // TODO check if these methods need to be declared in the .h file or here.
-- (void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader;
-- (void) handleError: (NSString*) errorMessage withDownloader: (StringDownloader*) downloader;
-- (void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader;
-- (void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader;
-- (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader;
+
+- (void) handleList: (NSData*) data withConfig: (NSDictionary*) config;
+- (void) handleAsFile: (NSData*) data withConfig: (NSDictionary*) config;
 @end
 
 @implementation NetworkingBackend
@@ -45,36 +43,35 @@
     [self.kirinHelper cleanupCallback:config withNames:@"envelope", @"each", @"payload", @"onFinish", @"onError", nil];
 }
 
-- (void) handleError: (NSString*) errorMessage withDownloader: (StringDownloader*) downloader {
-    NSDictionary* config = downloader.mConfig;
+- (void) handleError: (NSString*) errorMessage andConfig: (NSDictionary*) config {
     [self.kirinHelper jsCallback:@"onError" fromConfig:config withArgsList:[NSString stringWithFormat:@"'%@'", errorMessage]];
-    [self cleanupCallbacks:config];
-    [downloader release];
+    [self cleanupCallbacks:config];    
 }
+
 
 #pragma mark -
 #pragma mark Download JSON
 
 
 -(void) downloadString: (NSDictionary *) config {
-//    NSLog(@"[NetworkingBackend] downloadString_: %@", config);
-    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
-                                                              andCallback:@selector(handleString:withDownloader:) 
-                                                               andErrback:@selector(handleError:withDownloader:)];
+    StringDownloader* downloader = [[StringDownloader alloc] init];
+    downloader.successBlock = ^(NSData* data) {
+        NSLog(@"Enter success block");
+        NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        
+        [self.kirinHelper jsCallback:@"payload" 
+                          fromConfig:config 
+                        withArgsList:[KirinArgs taintedForJs:string]];
+        [self cleanupCallbacks:config];
+        [downloader release];
+    };
     
-    [downloader retain];
+    downloader.errorBlock = ^(NSString* errorMessage) {
+        [self handleError:errorMessage andConfig:config];
+        [downloader release];
+    };
+    
     [downloader startDownloadWithConfig: config];
-}
-
--(void) handleString: (NSData*) data withDownloader: (StringDownloader*) downloader {
-    NSDictionary* config = downloader.mConfig;
-    NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-
-    [self.kirinHelper jsCallback:@"payload" 
-                      fromConfig:config 
-                    withArgsList:[KirinArgs taintedForJs:string]];
-    [self cleanupCallbacks:config];
-    [downloader release];
 }
 
 #pragma mark -
@@ -82,22 +79,23 @@
 
 
 -(void) downloadJSON: (NSDictionary *) config {
-    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
-                                                              andCallback:@selector(handleJSONObject:withDownloader:) 
-                                                               andErrback:@selector(handleError:withDownloader:)];
-
-    [downloader retain];
+    
+    StringDownloader* downloader = [[StringDownloader alloc] init];
+    downloader.successBlock = ^(NSData* data) {
+        NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+        [self.kirinHelper jsCallback:@"payload" 
+                          fromConfig:config 
+                        withArgsList:string];
+        [self cleanupCallbacks:config];
+        [downloader release];
+    };
+    
+    downloader.errorBlock = ^(NSString* errorMessage) {
+        [self handleError:errorMessage andConfig:config];
+        [downloader release];
+    };
+    
     [downloader startDownloadWithConfig: config];
-}
-
-- (void) handleJSONObject: (NSData*) data withDownloader: (StringDownloader*) downloader {
-    NSDictionary* config = downloader.mConfig;
-    NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
-    [self.kirinHelper jsCallback:@"payload" 
-                      fromConfig:config 
-                    withArgsList:string];
-    [self cleanupCallbacks:config];
-    [downloader release];
 }
     
 
@@ -105,16 +103,23 @@
 #pragma mark Download JSON List
 
 -(void) downloadJSONList: (NSDictionary *) config {
-    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
-                               andCallback:@selector(handleList:withDownloader:) 
-                                andErrback:@selector(handleError:withDownloader:)];
-    [downloader retain];    
+    StringDownloader* downloader = [[StringDownloader alloc] init];
+    downloader.successBlock = ^(NSData* data) {
+        [self handleList:data withConfig:config];
+        [self cleanupCallbacks:config];
+        [downloader release];
+    };
+    
+    downloader.errorBlock = ^(NSString* errorMessage) {
+        [self handleError:errorMessage andConfig:config];
+        [downloader release];
+    };
+    
     [downloader startDownloadWithConfig: config];
-
 }
 
-- (void) handleList: (NSData*) data withDownloader: (StringDownloader*) downloader {
-    NSDictionary* config = downloader.mConfig;    
+- (void) handleList: (NSData*) data withConfig: (NSDictionary*) config {
+
     NSArray* path = [config objectForKey:@"path"];
     
     if(!data) {
@@ -201,8 +206,7 @@
     [self.kirinHelper jsCallback:@"onFinish" 
                       fromConfig:config 
                     withArgsList:[KirinArgs integer:i]];
-    [self cleanupCallbacks: config];
-    [downloader release];
+
 }
 
 
@@ -225,15 +229,22 @@
         return;
     }
     
-    StringDownloader* downloader = [StringDownloader downloaderWithTarget:self 
-                                                              andCallback:@selector(handleAsFile:withDownloader:) 
-                                                               andErrback:@selector(handleError:withDownloader:)];
-    [downloader retain];
+    StringDownloader* downloader = [[StringDownloader alloc] init];
+    downloader.successBlock = ^(NSData* data) {
+        [self handleList:data withConfig:config];
+        [self cleanupCallbacks:config];
+        [downloader release];
+    };
+    
+    downloader.errorBlock = ^(NSString* errorMessage) {
+        [self handleError:errorMessage andConfig:config];
+        [downloader release];
+    };
+    
     [downloader startDownloadWithConfig: config];
 }
 
-- (void) handleAsFile: (NSData*) data withDownloader: (StringDownloader*) downloader {
-    NSDictionary* config = downloader.mConfig;
+- (void) handleAsFile: (NSData*) data withConfig: (NSDictionary*) config {
     NSString* imageURL = [config objectForKey:@"url"];
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     
@@ -248,9 +259,6 @@
     [self.kirinHelper jsCallback: @"onFinish" 
                       fromConfig: config 
                     withArgsList: [KirinArgs string:fullPath]];
-    
-    [self cleanupCallbacks: config];
-    [downloader release];
 }
 
 @end

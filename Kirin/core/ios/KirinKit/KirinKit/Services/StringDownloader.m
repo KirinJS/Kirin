@@ -15,17 +15,8 @@
 
 @interface StringDownloader ()
 
-@property(nonatomic) SEL callback;
-@property(nonatomic) SEL errback;
-
-@property(retain, nonatomic) id<NSObject> mTarget;
-
-
-
 @property(retain, nonatomic) NSURLConnection* mConnection;
 @property(retain, nonatomic) NSMutableData* mData;
-
-- (id) initWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback;
 
 - (void) failWithError: (NSString*) errorMessage;
 
@@ -36,36 +27,19 @@
 
 @implementation StringDownloader
 
-@synthesize callback = callback_;
-@synthesize errback = errback_;
-@synthesize mTarget = mTarget_;
-@synthesize mConfig = mConfig_;
+
+@synthesize successBlock = successBlock_;
+@synthesize errorBlock = errorBlock_;
 
 @synthesize mConnection = mConnection_;
 @synthesize mData = mData_;
 @synthesize statusCode = statusCode_;
 
-+ (StringDownloader*) downloaderWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback {
-    return [[[StringDownloader alloc] initWithTarget:target andCallback:callback andErrback:errback] autorelease];
-}
-
-- (id) initWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback {
-    self = [super init];
-    if (self) {
-        self.callback = callback;
-        self.errback = errback;
-        self.mTarget = target;
-    }
-    return self;
-}
-
 - (void) dealloc {
-    self.errback = nil;
-    self.callback = nil;
-    self.mTarget = nil;
     self.mData = nil;
     self.mConnection = nil;
-    self.mConfig = nil;
+    self.successBlock = nil;
+    self.errorBlock = nil;
     [super dealloc];
 }
 
@@ -85,11 +59,12 @@
 }
 
 - (void) failWithError: (NSString*) errorMessage {
-    [self.mTarget performSelector:self.errback withObject:errorMessage withObject:self];
+    self.errorBlock(errorMessage);
 }
 
 - (void) succeed {
-    [self.mTarget performSelector:self.callback withObject:self.mData withObject:self];
+    NSLog(@"About to call successBlock");
+    self.successBlock(self.mData);
 }
 
 - (NSData*) prepareRequest: (NSMutableURLRequest*) request withData: (NSDictionary*) config {
@@ -186,9 +161,6 @@
 }
 
 - (void)startDownloadWithConfig:(NSDictionary *)config {
-    
-    self.mConfig = config;
-    
     NSURLRequest* request;
     
     NSURL* url = [NSURL URLWithString:[config objectForKey:@"url"] ];

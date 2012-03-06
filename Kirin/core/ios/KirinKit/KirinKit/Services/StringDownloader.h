@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef void (^SuccessBlock)(NSData* data);
+typedef void (^ErrorBlock)(NSString* data);
+
 @interface StringDownloader : NSObject
-
-+ (StringDownloader*) downloaderWithTarget:(id<NSObject>) target andCallback:(SEL)callback andErrback:(SEL)errback;
-
-
 
 - (void) startDownloadWithConfig: (NSDictionary*) config;
 
-@property(retain, nonatomic) NSDictionary* mConfig;
+@property(readwrite, copy, nonatomic) SuccessBlock successBlock; 
+@property(readwrite, copy, nonatomic) ErrorBlock errorBlock;
 
 @property(nonatomic) int statusCode;
 
