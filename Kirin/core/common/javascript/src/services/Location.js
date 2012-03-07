@@ -23,6 +23,7 @@ defineModule("Location", function (require, exports) {
 
     
     function onLocationUpdate (newLocation) {
+    	console.log("Location: onLocationUpdate");
         latestLocation = newLocation;
         _.each(callbacks, function (cb) {
             cb(newLocation);
@@ -30,11 +31,12 @@ defineModule("Location", function (require, exports) {
     }
 
     function onLocationError (err) {
+    	console.log("Location: onLocationError");
         _.each(errbacks, function (eb) {
             eb(err);
         });
     	if (err === "denied") {
-    		//stopListening();
+    		stopListening();
     	}
     }
     
@@ -95,6 +97,8 @@ defineModule("Location", function (require, exports) {
 
     exports.unregisterLocationListener = function (listener) {
         if (!removeFromList(callbacks, listener)) {
+        	
+        	console.log("Location listener not removed because it wasn't registered");
             return false;
         }
         if (callbacks.length === 0) {

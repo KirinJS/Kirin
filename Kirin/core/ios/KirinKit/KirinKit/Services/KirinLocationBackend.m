@@ -73,7 +73,11 @@
 #pragma mark Called by Javascript.
 
 - (void) denyAccess {
+    NSLog(@"Denying access to Location Services: ");
+    NSLog(@"Errback is : %@ ", self.errback);
+    self.locationManager.delegate = nil;
     [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string:@"denied"]];
+    NSLog(@"Errback is called");
 }
 
 - (void) failWithMessage: (NSString*) message {
@@ -119,8 +123,10 @@
             break;
     }
 
-    
+//    [self.locationManager setDistanceFilter:50.0];
+    NSLog(@"Location: starting updating location");
     [self.locationManager startUpdatingLocation];
+    NSLog(@"Location: now listening for updates");
 }
 
 - (void) stop {
@@ -143,9 +149,7 @@
 
 
 - (void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    
-    [self.kirinHelper jsCallback:self.callback withArgsList:[KirinArgs object:[self dictionaryFromLocation:newLocation]]];
-    
+    [self sendLocation:newLocation];
 }
 
 
@@ -172,13 +176,13 @@
             NSLog(@"User has somehow managed to not determine location authorization");
             break;
     }
+
 }
 
 #pragma mark - 
 #pragma mark Memory management.
 
 - (void) dealloc {
-    
     self.errback = nil;
     self.callback = nil;
     self.locationManager = nil;
