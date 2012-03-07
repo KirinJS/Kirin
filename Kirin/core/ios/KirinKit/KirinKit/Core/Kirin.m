@@ -81,7 +81,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 #if defined(__APPLE__) && TARGET_IPHONE_SIMULATOR
         if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0) {
             // turn on Safari debugging, in iOS 5.0+ on the simulator.
-            [NSClassFromString(@"WebView") _enableRemoteInspector];
+            [NSClassFromString(@"WebView") performSelector:@selector(_enableRemoteInspector)];
         }
 
 #endif

@@ -58,6 +58,7 @@ static classname *shared##classname = nil; \
 	return self; \
 } \
  \
+/*\
 - (id)retain \
 { \
 	return self; \
@@ -75,7 +76,7 @@ static classname *shared##classname = nil; \
 - (id)autorelease \
 { \
 	return self; \
-}
+}*/
 
 #define SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(classname) \
 + (classname *)shared##classname ; \
