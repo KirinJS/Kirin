@@ -31,11 +31,12 @@ defineModule("Location", function (require, exports) {
     }
 
     function onLocationError (err) {
-    	console.log("Location: onLocationError");
+    	console.log("Location: onLocationError: " + err);
         _.each(errbacks, function (eb) {
             eb(err);
         });
     	if (err === "denied") {
+    		console.log("Location: Stopping listening");
     		stopListening();
     	}
     }
@@ -56,7 +57,7 @@ defineModule("Location", function (require, exports) {
         if (callbacks.length === 1) {
             
             var wrapCallback = require("kirin").wrapCallback;
-            
+            console.log("Location: Starting the Location Services");
             backend.startWithCallback_andErrback_(
                 wrapCallback(onLocationUpdate, "Location.", "callback."),
                 wrapCallback(onLocationError, "Location.", "errback.")
@@ -74,10 +75,9 @@ defineModule("Location", function (require, exports) {
         if (index >= 0) {
         	return;
         }
-        
         errbacks.push(errback);
     };
-
+    
     exports.refreshLocation = function () {
         backend.forceRefresh();
     };
@@ -97,8 +97,6 @@ defineModule("Location", function (require, exports) {
 
     exports.unregisterLocationListener = function (listener) {
         if (!removeFromList(callbacks, listener)) {
-        	
-        	console.log("Location listener not removed because it wasn't registered");
             return false;
         }
         if (callbacks.length === 0) {
@@ -108,7 +106,7 @@ defineModule("Location", function (require, exports) {
         return true;
     };
     
-    exports.registerLocationErrorListener = function (errback) {
+    exports.unregisterLocationErrorListener = function (errback) {
     	return removeFromList(errbacks, errback);
     };
     
