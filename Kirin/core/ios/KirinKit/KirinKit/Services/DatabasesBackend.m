@@ -81,7 +81,6 @@
 
 -(void)db:(NSString *)name openOrCreate:(NSDictionary *)args
 {
-    NSLog(@"DatabasesBackend.db:%@ openOrCreate:%@", name, args);
     
     NSString *filename = [args objectForKey:@"filename"];
     NSNumber *schemaVersionToOpenWith = [args objectForKey:@"version"];
@@ -204,7 +203,6 @@
 
 - (void)beginTransaction:(NSDictionary *)details
 {
-	NSLog(@"DatabasesBackend.beginTransaction:%@", details);
     
     NSString *txId = [details objectForKey:@"txId"];
     
@@ -214,9 +212,7 @@
     NSString *onError = [details objectForKey:@"onErrorToken"];
     bool readOnly = [details objectForKey:@"readOnly"];
     NSString *databaseName = [details objectForKey:@"dbName"];
-    
-    NSLog(@"onSuccess=%@, onError=%@, readOnly=%d, databaseName=%@, txId=%@", onSuccess, onError, readOnly, databaseName, txId);
-    
+
     if (txId == nil) {
         
         NSLog(@"Asked to begin a transaction with no \"id\" parameter: %@", details);
@@ -227,13 +223,10 @@
     
     id <Connection> connection = [connectionsByName objectForKey:databaseName];
     
-    NSLog(@"connection for %@ = %@", databaseName, connection);
-    
     Transaction *tx = [[[Transaction alloc] initWithTxId:txId onConnection:connection forWriting:!readOnly onSuccessCall:onSuccess onErrorCall:onError] autorelease];
     
     [transactionsById setObject:tx forKey:txId];
     
-    NSLog(@"Put tx %@ into the dictionary under key %@", tx, txId);
     
 }
 
@@ -290,10 +283,6 @@
 
 - (void)endTransaction:(NSString *)txId
 {
-
-    
-	NSLog(@"DatabasesBackend.endTransaction:%@", txId);
-
     Transaction *tx = [transactionsById objectForKey:txId];
     void (^block)(void) = ^{
         [self doEndTransaction: tx];
@@ -322,7 +311,7 @@
             
             NSString* sql =  [op sql];
             
-            NSLog(@"[DatabasesBackend] exe: %@", sql);
+            //NSLog(@"[DatabasesBackend] exe: %@", sql);
             
             if(op.type == file) {
             
@@ -373,13 +362,10 @@
         
         if (![op.onError isKindOfClass:[NSNull class]]) {
             [self.kirinHelper jsCallback:op.onError withArgsList:@"'SQL problem'"];
-//            [KIRIN runCallbackWithoutDelete:op.onError withArgument:@"'SQL problem'"];
-
         }
 
         if (![tx.onError isKindOfClass:[NSNull class]]) {
-            [self.kirinHelper jsCallback:op.onError withArgsList:@"'SQL problem'"];            
-//            [KIRIN runCallbackWithoutDelete:tx.onError withArgument:@"'SQL problem'"];
+            [self.kirinHelper jsCallback:op.onError withArgsList:@"'SQL problem'"];
             
         }
         
@@ -435,22 +421,15 @@
             }
             else if (op.type == array) {
                 [self.kirinHelper jsCallback:op.onSuccess withArgsList:[arg JSONRepresentation]];                
-//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [arg JSONRepresentation]];
-                
             } else if (op.type == rowset) {
                 
                 // put into a drop box for retrieval later on by the ui.
 
-                NSString* token = [[self.kirinHelper dropbox]
-                                   putObject:arg 
-                                                      withTokenPrefix:@"resultset"];
+                NSString* token = [[self.kirinHelper dropbox] putObject:arg 
+                                                        withTokenPrefix:@"queryResult"];
 
                 [self.kirinHelper jsCallback:op.onSuccess withArgsList:[NSString stringWithFormat:@"'%@'", token]];
                 
-                // NSString* token = [KIRIN dropboxPut:arg withTokenPrefix:@"resultset"];
-//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [NSString stringWithFormat:@"'%@'", token]];
-                
-//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [arg JSONRepresentation]];
                 
             }
             

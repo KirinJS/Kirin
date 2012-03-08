@@ -19,6 +19,8 @@
 #import "SQLiteDatabase.h"
 #import "sqlite3.h"
 #import "SQLiteConnection.h"
+#import "KirinPaths.h"
+
 
 @implementation SQLiteDatabase
 
@@ -26,14 +28,10 @@
 {
     sqlite3 *db;
     
-    NSString* homePath = NSHomeDirectory();
-    NSString* documentsPath = [homePath stringByAppendingPathComponent:@"Documents"];
-    NSString* filePath = [documentsPath stringByAppendingPathComponent:filename];
+    NSString* filePath = [KirinPaths filePathInDocuments:filename]; 
     
     if ([connectionsByName objectForKey:name] != nil) {
-        
-        // TODO: Raise an exception - already have an open connection.
-        
+        return [connectionsByName objectForKey:name];
     }
     
     // TODO: Check if the database file exists.
@@ -51,7 +49,7 @@
         
     }
     
-    NSLog(@"Opened or created a SQLite database with name %@ backed by file %@.", name, filePath);
+//    NSLog(@"Opened or created a SQLite database with name %@ backed by file %@.", name, filePath);
     
     SQLiteConnection *c = [[SQLiteConnection alloc] initWithName:name backedByFile:filePath atVersion:nil withConnection:db];
     

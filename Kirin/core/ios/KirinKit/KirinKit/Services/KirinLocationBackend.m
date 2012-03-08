@@ -74,10 +74,8 @@
 
 - (void) denyAccess {
     NSLog(@"Denying access to Location Services: ");
-    NSLog(@"Errback is : %@ ", self.errback);
     self.locationManager.delegate = nil;
     [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string:@"denied"]];
-    NSLog(@"Errback is called");
 }
 
 - (void) failWithMessage: (NSString*) message {
@@ -108,6 +106,7 @@
     
     switch (status) {
         case kCLAuthorizationStatusDenied:
+            
             NSLog(@"Location authorization denied");
             break;
         case kCLAuthorizationStatusRestricted:
@@ -130,6 +129,7 @@
 }
 
 - (void) stop {
+    NSLog(@"Location services: stopping listening");
     [self.kirinHelper cleanupCallback:self.callback, self.errback, nil];
     
     [self.locationManager stopUpdatingLocation];

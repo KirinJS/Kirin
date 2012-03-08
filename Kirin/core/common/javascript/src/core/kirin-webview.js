@@ -117,7 +117,7 @@ defineModule("kirin", function (require, exports) {
 	
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
-		console.log("Generated proxy for " + moduleName);
+		//console.log("Generated proxy for " + moduleName);
 		try {
 			var module = require(moduleName);
 			
@@ -148,7 +148,7 @@ defineModule("kirin", function (require, exports) {
 		}
 
 		if (typeof module[methodName] !== 'function') {
-			console.error("Module " + moduleName + " does not have a method " + methodName);
+			console.warn("Module " + moduleName + " does not have a method " + methodName);
 			return;
 		}
 			

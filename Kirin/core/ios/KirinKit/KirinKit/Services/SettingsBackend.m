@@ -62,8 +62,6 @@
 
 - (void) openSettingsFileIfNeeded {
     
-    NSLog(@"[SettingsBackend] open files");
-    
     if(settings != nil) return;
         
     [self initSettingsFileLocationIfNeeded];
@@ -81,7 +79,6 @@
 }
 
 - (void) writeToSettingsFile {
-    NSLog(@"[SettingsBackend] Writing settings file");
     [self initSettingsFileLocationIfNeeded];
     [settings writeToFile:settingsFileName atomically:YES];
 }
@@ -98,22 +95,12 @@
 
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
 {
-    NSLog(@"[SettingsBackend] Request to commit settings: %@, %@", adds, deletes);
-    
     [self openSettingsFileIfNeeded];
     
-    if([adds isKindOfClass:[NSString class]]) {
-        
-        NSLog(@"[SettingsBackend] Was a string and shouldn't be");
-        
-    } else if([adds isKindOfClass:[NSDictionary class]]) {
-        
+    if([adds isKindOfClass:[NSDictionary class]]) {
         [settings addEntriesFromDictionary: adds];
-        
     } else {
-        
         NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
-    
     }
     
     

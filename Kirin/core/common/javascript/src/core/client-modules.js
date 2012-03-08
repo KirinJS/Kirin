@@ -34,10 +34,8 @@ var require = (function() {
 		var exports = {};
 		// memoize before executing module for cyclic dependencies
 		exportsObjects[name] = exports;
-		if (typeof (modules[name]) === 'undefined') {
-			console.log("Module '" + name + "' has not been loaded (doesn't exist)");
-		} else {
-			console.debug("require(" + name + ")");
+		if (modules[name]) {
+			//console.debug("require(" + name + ")");
 			var returned = modules[name](require, exports);
 			if (typeof returned !== 'undefined') {
 				// return object will be used instead of the object. 
@@ -45,6 +43,8 @@ var require = (function() {
 				exportsObjects[name] = returned;
 				return returned;
 			}
+		} else {
+			console.log("Module '" + name + "' has not been loaded (doesn't exist)");
 		}
 		return exports;
 	};

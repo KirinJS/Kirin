@@ -26,13 +26,13 @@ defineServiceModule("Settings", function (require, exports) {
 	};
 	
 	exports.resetEnvironment = function () {
-		console.log("Before environment, Settings are: " + JSON.stringify(keyValuePairs));	
+			
 		try {
 			require("Environment");
 		} catch (e) {
 			console.warn("No Environment.js module is loaded");
 		}
-		console.log("After  environment, Settings are: " + JSON.stringify(keyValuePairs));	
+			
 	};
 	
 	exports.mergeOrOverwrite = function (newValues) {

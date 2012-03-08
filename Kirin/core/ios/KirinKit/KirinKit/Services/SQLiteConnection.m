@@ -205,11 +205,7 @@
 
 - (void) executeBlock:(NSString *)sql
 {
-    
     sqlite3_exec(db, [sql UTF8String], NULL, NULL, NULL);
-    
-    NSLog(@"[DatabasesBackend] executed: %@", sql);
-    
 }
 
 - (NSArray*) execute:(NSString *)sql withParameters:(NSArray *)parameters
