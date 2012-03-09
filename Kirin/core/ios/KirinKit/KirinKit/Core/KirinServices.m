@@ -14,7 +14,7 @@
 #import "KirinImagePicker.h"
 #import "DatabasesBackend.h"
 #import "KirinLocationBackend.h"
-
+#import "KirinImageTransformer.h"
 
 @interface KirinServices()
 
@@ -42,6 +42,7 @@
     [services registerService:[[[KirinImagePicker alloc] init] autorelease]];
     [services registerService:[[[DatabasesBackend alloc] init] autorelease]];
     [services registerService:[KirinLocationBackend instance]];
+    [services registerService:[KirinImageTransformer instance]];
     return services;
 }
 

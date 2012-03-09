@@ -107,6 +107,8 @@
 		1A9FE0A214D5F745008C0565 /* NativeObjectHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */; };
 		1A9FE0A514D5FA51008C0565 /* KirinServiceOnMainThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A9FE0A714D5FF21008C0565 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */; };
+		1AA97D1E150921C5001F557E /* KirinImageTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AA97D1C150921C5001F557E /* KirinImageTransformer.h */; };
+		1AA97D1F150921C5001F557E /* KirinImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA97D1D150921C5001F557E /* KirinImageTransformer.m */; };
 		1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -236,6 +238,9 @@
 		1A9FE0A014D5F745008C0565 /* NativeObjectHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NativeObjectHolder.m; sourceTree = "<group>"; };
 		1A9FE0A414D5FA4F008C0565 /* KirinServiceOnMainThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinServiceOnMainThread.h; sourceTree = "<group>"; };
 		1A9FE0A614D5FF21008C0565 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		1AA97D1C150921C5001F557E /* KirinImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinImageTransformer.h; sourceTree = "<group>"; };
+		1AA97D1D150921C5001F557E /* KirinImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinImageTransformer.m; sourceTree = "<group>"; };
+		1AA97D2015092413001F557E /* ImageTransformProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageTransformProtocol.h; sourceTree = "<group>"; };
 		1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinAppDelegateHelper.h; sourceTree = "<group>"; };
 		1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinAppDelegateHelper.m; sourceTree = "<group>"; };
 		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
@@ -525,6 +530,9 @@
 				1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */,
 				1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */,
 				1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */,
+				1AA97D2015092413001F557E /* ImageTransformProtocol.h */,
+				1AA97D1C150921C5001F557E /* KirinImageTransformer.h */,
+				1AA97D1D150921C5001F557E /* KirinImageTransformer.m */,
 			);
 			name = Camera;
 			sourceTree = "<group>";
@@ -589,6 +597,7 @@
 				1A2EF3CD14FA9B9300D00DE2 /* SBJsonWriter.h in Headers */,
 				1A7B90C914FFDA390090DF19 /* KirinLocation.h in Headers */,
 				1A7B90CA14FFDA390090DF19 /* KirinLocationBackend.h in Headers */,
+				1AA97D1E150921C5001F557E /* KirinImageTransformer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +776,7 @@
 				1A2EF3CC14FA9B9300D00DE2 /* SBJsonTokeniser.m in Sources */,
 				1A2EF3CE14FA9B9300D00DE2 /* SBJsonWriter.m in Sources */,
 				1A7B90CB14FFDA390090DF19 /* KirinLocationBackend.m in Sources */,
+				1AA97D1F150921C5001F557E /* KirinImageTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

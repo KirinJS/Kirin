@@ -18,10 +18,10 @@
 - (void) getPicture: (NSDictionary*) config fromSource: (UIImagePickerControllerSourceType) sourceType;
 - (void) presentModalViewController: picker;
 
-- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename andFileType: (NSString*) fileType;
+
 
 - (UIImage*)imageCorrectedForCaptureOrientation:(UIImage*)anImage;
-- (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize;
+
 
 @property(retain, nonatomic) NSDictionary* config;
 
@@ -50,41 +50,7 @@
     [self getPicture:config fromSource:UIImagePickerControllerSourceTypeSavedPhotosAlbum];
 }
 
-- (void) transform: (NSString*) transformType withConfig: (NSDictionary*) config {
-    KirinFileSystem* fs = [KirinFileSystem fileSystem];
-    BOOL supported = NO;
-    NSString* fromImageFilepath = [fs filePathFromConfig:config withPrefix:@"from"]; 
-    NSString* toFilepath = [fs filePathFromConfig:config withPrefix:@"to"];
-    
-    if (![[config objectForKey:@"overwrite"] boolValue] && [fs fileExists:toFilepath]) {
-        supported = YES;
-        [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
-    } else if ([transformType isEqualToString:@"size"]) {
 
-        UIImage* image = [UIImage imageWithContentsOfFile:fromImageFilepath];
-
-        
-        CGFloat width = [[config objectForKey:@"width"] floatValue];
-        CGFloat height = [[config objectForKey:@"height"] floatValue];
-        UIImage* toImage = [self imageByScalingAndCroppingForSize: image toSize:CGSizeMake(width, height)];
-        if ([self saveImage:toImage toFilename:toFilepath andFileType:[config objectForKey:@"fileType"]] == nil) {
-            [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
-        
-        } else {
-            [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[KirinArgs string:toFilepath]];
-            
-            
-        }
-        supported = YES;
-    }
-    
-    if (!supported) {
-        [self.kirinHelper jsCallback:@"errback" fromConfig:config withArgsList:[KirinArgs string: @"Unsupported transform type"]];
-     }
-    
-    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];   
-    
-}
 
 #pragma mark - 
 #pragma Utility methods.

@@ -15,4 +15,7 @@
 
 @interface KirinImagePicker : KirinServiceStub<CameraProtocol, KirinServiceOnMainThread, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
+- (NSString*) saveImage: (UIImage*) image toFilename: (NSString*) filename andFileType: (NSString*) fileType;
+- (UIImage*)imageByScalingAndCroppingForSize:(UIImage*)anImage toSize:(CGSize)targetSize;
+
 @end
