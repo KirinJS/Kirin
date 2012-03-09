@@ -231,7 +231,7 @@
     
     StringDownloader* downloader = [[StringDownloader alloc] init];
     downloader.successBlock = ^(NSData* data) {
-        [self handleList:data withConfig:config];
+        [self handleAsFile:data withConfig:config];
         [self cleanupCallbacks:config];
         [downloader release];
     };
