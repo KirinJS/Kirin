@@ -232,14 +232,7 @@
 
 - (void)tx:(NSString *)txId appendToTransactionScript:(NSArray *)log
 {
-	//NSLog(@"DatabasesBackend.tx:%@ appendToTransactionScript:%@", txId, log);
-    
-    
-    
-    [self tx:txId appendToScript:log];
-    
-    //NSLog(@"Added SQL operations %@ to transaction %@.", log, txId);
-    
+    [self tx:txId appendToScript:log];    
 }
 
 
@@ -253,29 +246,28 @@
     
     while((op = [enumerator nextObject])){
         // check if we have an onSuccess callback to cleanup
-        if (![op.onSuccess isKindOfClass:[NSNull class]]) {
+        if (op.onSuccess && ![op.onSuccess isKindOfClass:[NSNull class]]) {
             [callbacks addObject:op.onSuccess];
         }
         
         // check if we have an onError callback to cleanup.
-        if (![op.onError isKindOfClass:[NSNull class]]) {
+        if (op.onError && ![op.onError isKindOfClass:[NSNull class]]) {
             [callbacks addObject:op.onError];
         }
     }
 
     // check if we have an onSuccess callback to cleanup
-    if (![tx.onSuccess isKindOfClass:[NSNull class]]) {
+    if (tx.onSuccess && ![tx.onSuccess isKindOfClass:[NSNull class]]) {
         [callbacks addObject:tx.onSuccess];
     }
     
     // check if we have an onError callback to cleanup.
-    if (![tx.onError isKindOfClass:[NSNull class]]) {
+    if (tx.onError && ![tx.onError isKindOfClass:[NSNull class]]) {
         [callbacks addObject:tx.onError];        
     }
     
     // call deleteCallback once with all callbacks that need to be deleted.
     [self.kirinHelper cleanupCallbacks:callbacks];
-//    [KIRIN fireEventIntoJS:[NSString stringWithFormat:@"native2js.deleteCallback('%@')", [callbacks componentsJoinedByString:@"', '"]]];
     
     [transactionsById removeObjectForKey:tx.txId];
 
@@ -414,7 +406,7 @@
                 }
                 
                 [self.kirinHelper jsCallback:op.onSuccess withArgsList:[[arg objectAtIndex:0] JSONRepresentation]];
-//                [KIRIN runCallbackWithoutDelete:op.onSuccess withArgument: [[arg objectAtIndex:0] JSONRepresentation]];
+
                     
                 
                 
@@ -451,7 +443,6 @@
     
     if (![tx.onSuccess isKindOfClass:[NSNull class]]) {
         [self.kirinHelper jsCallback:tx.onSuccess];
-//        [KIRIN runCallback:tx.onSuccess withArgument:nil];
     }
     [self cleanupAfterEndTransaction: tx];
     
