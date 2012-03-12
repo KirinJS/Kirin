@@ -184,15 +184,33 @@
 
     NSLog(@"Method is %@, request is %@", method, request);
     
-	self.mConnection= [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
-    
-    if (self.mConnection) {
-        self.mData = [NSMutableData data];
-        [self.mConnection start];
+    if (YES) {
+        NSURLResponse* response = nil;
+        NSError* error = nil;
+        self.mData = (NSMutableData*) [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        if (self.mData) {
+            [self succeed];
+        } else if (error) {
+            NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
+                  [error localizedDescription],
+                  [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+            [self failWithError:[error description]];
+        } else {
+            [self failWithError:@"noData"];
+        }
+        
     } else {
-        [self failWithError:[NSString stringWithFormat: @"NetworkingBackend: Couldn't init connection: %@", request]];
+        self.mConnection= [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+
+        if (self.mConnection) {
+            self.mData = [NSMutableData data];
+            [self.mConnection start];
+        } else {
+            
+            [self failWithError:[NSString stringWithFormat: @"NetworkingBackend: Couldn't init connection: %@", request]];
+        }
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
