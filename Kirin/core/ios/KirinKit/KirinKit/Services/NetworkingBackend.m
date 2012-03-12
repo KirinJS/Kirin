@@ -221,7 +221,7 @@
     NSString* fullPath = [fs filePathFromConfig:config];
     
     BOOL overwrite = [[config objectForKey:@"overwrite"] boolValue];
-    NSLog(@"Overwrite is %d", overwrite);
+
     if(!overwrite && [[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
         [self.kirinHelper jsCallback:@"onFinish" 
                           fromConfig:config 
@@ -245,12 +245,9 @@
 }
 
 - (void) handleAsFile: (NSData*) data withConfig: (NSDictionary*) config {
-    NSString* imageURL = [config objectForKey:@"url"];
     KirinFileSystem* fs = [KirinFileSystem fileSystem];
     
     NSString* fullPath = [fs filePathFromConfig:config];
-    
-    NSLog(@"image: %@ // filename: %@", imageURL, fullPath);
     
     if(![[NSFileManager defaultManager] fileExistsAtPath:fullPath]){
         [fs writeData:data toFile:fullPath];
