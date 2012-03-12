@@ -152,7 +152,6 @@
     
     BOOL isAuthorized = ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized);
     [result setObject: isAuthorized ? true_ : false_ forKey: @"authorized"];
-    NSLog(@"KirinLocation: %@", result);
     [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs object:result]];
     [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
 }
