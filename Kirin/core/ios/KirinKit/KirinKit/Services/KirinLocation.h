@@ -16,4 +16,6 @@
 
 - (void) forceRefresh;
 
+- (void) updatePermissions: (NSDictionary*) config;
+
 @end

@@ -59,9 +59,8 @@
     
     [d setObject:[NSNumber numberWithDouble:l.coordinate.latitude] forKey:@"latitude"];
     [d setObject:[NSNumber numberWithDouble:l.coordinate.longitude] forKey:@"longitude"];
-    
     [d setObject:[NSNumber numberWithDouble:[l.timestamp timeIntervalSince1970]] forKey:@"timestamp"];
-    
+    [d setObject:[NSNumber numberWithDouble:l.horizontalAccuracy] forKey:@"horizontalAccuracy"];
     return d;
 }
 
@@ -76,6 +75,7 @@
     NSLog(@"Denying access to Location Services: ");
     self.locationManager.delegate = nil;
     [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string:@"denied"]];
+    [self.locationManager stopUpdatingLocation];
 }
 
 - (void) failWithMessage: (NSString*) message {
@@ -122,10 +122,10 @@
             break;
     }
 
-//    [self.locationManager setDistanceFilter:50.0];
-    NSLog(@"Location: starting updating location");
+    [self.locationManager setDistanceFilter:50.0];
+ 
     [self.locationManager startUpdatingLocation];
-    NSLog(@"Location: now listening for updates");
+ 
 }
 
 - (void) stop {
@@ -144,6 +144,19 @@
     [self.locationManager startUpdatingLocation];
 }
 
+- (void) updatePermissions: (NSDictionary*) config {
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    NSNumber* true_ = [NSNumber numberWithInt: 1];
+    NSNumber* false_ = [NSNumber numberWithInt: 0];
+    
+    BOOL isAuthorized = ([CLLocationManager locationServicesEnabled] && [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorized);
+    [result setObject: isAuthorized ? true_ : false_ forKey: @"authorized"];
+    NSLog(@"KirinLocation: %@", result);
+    [self.kirinHelper jsCallback:@"callback" fromConfig:config withArgsList:[KirinArgs object:result]];
+    [self.kirinHelper cleanupCallback:config withNames:@"callback", @"errback", nil];
+}
+
 #pragma mark - 
 #pragma mark CoreLocation delegate methods.
 
@@ -156,7 +169,13 @@
 
 - (void) locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@ %@: Location failed: %@", __PRETTY_FUNCTION__, __LINE__, [error localizedDescription]);
-    [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string: [error localizedDescription]]];
+    if (error.code == kCLErrorDenied) {
+        [self denyAccess];
+    } else if (error.code != kCLErrorLocationUnknown) {
+        [self.kirinHelper jsCallback:self.errback withArgsList:[KirinArgs string: [error localizedDescription]]];
+    }
+
+    
 }
 
 - (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {

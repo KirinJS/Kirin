@@ -110,5 +110,9 @@ defineModule("Location", function (require, exports) {
     	return removeFromList(errbacks, errback);
     };
     
+    exports.getLocationPermissions = function (callback) {
+    	var wrapCallback = require("kirin").wrapCallback;
+    	backend.updatePermissions_({callback:wrapCallback(callback)});
+    };
 
 });
