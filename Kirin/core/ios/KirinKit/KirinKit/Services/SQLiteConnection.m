@@ -80,47 +80,59 @@
     
 }
 
-- (void) bindParameters:(NSArray *)_parameters toStatement:(sqlite3_stmt *)pst
+- (void) bindParameters:(NSArray *)_parameters toStatement:(sqlite3_stmt *)statement
 {
     if(!_parameters || [_parameters isKindOfClass: [NSNull class]]) return;
     
     int i;
     
-    id object;
+    id o;
     // consider replacing with code from https://billweinman.wordpress.com/2010/09/27/10/
     // if we really haven't got time to replace with FMDB.
     int resultCode = SQLITE_OK;
     
     for (i=0; i<[_parameters count]; ++i) {
         
-        object = [_parameters objectAtIndex:i];
+        o = [_parameters objectAtIndex:i];
         
-        if ([object isKindOfClass: [NSNumber class]]) {
-            NSNumber* number = object;
-            resultCode = sqlite3_bind_int(pst, i+1, [number intValue]);
-            // TODO unsure how to put floating point numbers in. 
+        
+        // code derived from https://billweinman.wordpress.com/2010/09/27/10/
+        // TODO code review. I think this works, and is better than before: 
+        // it handles ints and doubles differently, which is a good thing
+        // but I don't know how numbers are dealt with by JSON.h
 
-        }
-        else if ([object isKindOfClass: [NSString class]]) {
-            
-            NSString* teh = object;
-            resultCode = sqlite3_bind_text(pst, i+1, [teh UTF8String], -1, NULL);
-            
-        }
-        else if ([object isKindOfClass: [NSNull class]]) {
-            resultCode = sqlite3_bind_null(pst, i+1);
-
+        // determine the type of the argument
+        if ([o respondsToSelector:@selector(objCType)]) {
+            if (strchr("islISLB", *[o objCType])) { // integer
+                // TODO unsure what comes out of JSON -> NSNumber
+                resultCode = sqlite3_bind_int(statement, i + 1, [o intValue]);
+            } else if (strchr("fd", *[o objCType])) {   // double
+                // TODO unsure what comes out of JSON -> NSNumber
+                resultCode = sqlite3_bind_double(statement, i + 1, [o doubleValue]);
+            } else {    // unhandled types
+                NSLog(@"[DatabasesBackend] Unhandled objCType: %s", [o objCType]);
+                resultCode = SQLITE_ERROR;
+            }
+        } else if ([o respondsToSelector:@selector(UTF8String)]) {
+            // string
+            resultCode = sqlite3_bind_text(statement, i + 1, [o UTF8String], -1, SQLITE_TRANSIENT);
+        } else if ([o isKindOfClass: [NSNull class]]) {
+            // null
+            resultCode = sqlite3_bind_null(statement, i+1);
         } else {
-
-            NSLog(@"[DatabasesBackend] Can't deal with this type: %@", [object class]);
-            
+            NSLog(@"[DatabasesBackend] Unhandled parameter type: %@", [o class]);
+            resultCode = SQLITE_ERROR;
         }
+        
+        
         
         if (resultCode != SQLITE_OK) {
             NSString* errorMessage = [NSString stringWithCString:sqlite3_errmsg(db) encoding:NSUTF8StringEncoding];
             [self raiseException:@"SQLException" withReason:[NSString stringWithFormat: @"Failed to bind with error: %@", errorMessage]];
             
         }
+        
+        
         
     }
     
