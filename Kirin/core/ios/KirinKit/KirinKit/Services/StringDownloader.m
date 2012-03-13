@@ -15,9 +15,6 @@
 
 @interface StringDownloader ()
 
-@property(retain, nonatomic) NSURLConnection* mConnection;
-@property(retain, nonatomic) NSMutableData* mData;
-
 - (void) failWithError: (NSString*) errorMessage;
 
 - (NSString*) mimeTypeForFileAtPath: (NSString *) path;
@@ -31,13 +28,9 @@
 @synthesize successBlock = successBlock_;
 @synthesize errorBlock = errorBlock_;
 
-@synthesize mConnection = mConnection_;
-@synthesize mData = mData_;
 @synthesize statusCode = statusCode_;
 
 - (void) dealloc {
-    self.mData = nil;
-    self.mConnection = nil;
     self.successBlock = nil;
     self.errorBlock = nil;
     [super dealloc];
@@ -62,9 +55,9 @@
     self.errorBlock(errorMessage);
 }
 
-- (void) succeed {
+- (void) succeed: (NSData*) data {
     NSLog(@"About to call successBlock");
-    self.successBlock(self.mData);
+    self.successBlock(data);
 }
 
 - (NSData*) prepareRequest: (NSMutableURLRequest*) request withData: (NSDictionary*) config {
@@ -182,92 +175,21 @@
         request = r;
     }
 
-    NSLog(@"Method is %@, request is %@", method, request);
-    
-    if (YES) {
-        NSURLResponse* response = nil;
-        NSError* error = nil;
-        self.mData = (NSMutableData*) [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSURLResponse* response = nil;
+    NSError* error = nil;
+    NSData* data = (NSMutableData*) [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
-        if (self.mData) {
-            [self succeed];
-        } else if (error) {
-            NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
-                  [error localizedDescription],
-                  [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-            [self failWithError:[error description]];
-        } else {
-            [self failWithError:@"noData"];
-        }
-        
+    if (data) {
+        [self succeed: data];
+    } else if (error) {
+        NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
+              [error localizedDescription],
+              [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
+        [self failWithError:[error description]];
     } else {
-        self.mConnection= [[[NSURLConnection alloc] initWithRequest:request delegate:self] autorelease];
-
-        if (self.mConnection) {
-            self.mData = [NSMutableData data];
-            [self.mConnection start];
-        } else {
-            
-            [self failWithError:[NSString stringWithFormat: @"NetworkingBackend: Couldn't init connection: %@", request]];
-        }
+        [self failWithError:@"noData"];
     }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    // This method is called when the server has determined that it
-    // has enough information to create the NSURLResponse.
-    
-    // It can be called multiple times, for example in the case of a
-    // redirect, so each time we reset the data.
-    
-    // receivedData is an instance variable declared elsewhere.
-    //NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response");
-    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-        NSHTTPURLResponse* resp = (NSHTTPURLResponse*) response;
-        self.statusCode = [resp statusCode];
-        [resp allHeaderFields];
-    }
-    self.mData.length = 0;
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    // Append the new data to receivedData.
-    // receivedData is an instance variable declared elsewhere.
-    //NSLog(@"- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data");
-    [self.mData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error");
-    // release the connection, and the data object
-    self.mConnection = nil;
-    // receivedData is declared as a method instance elsewhere
-    self.mData = nil;
-    
-    // inform the user
-    NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
-          [error localizedDescription],
-          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-
-    [self failWithError:[error localizedDescription]];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    // do something with the data
-    // receivedData is declared as a method instance elsewhere
-    NSLog(@"NetworkingBackend Succeeded! Received %d bytes of data", self.mData.length);
-    
-    [self succeed];
-
-    // release the connection, and the data object
-    self.mConnection = nil;
-    self.mData = nil;
-    self.statusCode = 0;
-    
+        
 }
 
 
