@@ -528,8 +528,8 @@
 			isa = PBXGroup;
 			children = (
 				1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */,
-				1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */,
 				1A06437214CF0DB500FB7EE3 /* KirinImagePicker.h */,
+				1A06437114CF0DB500FB7EE3 /* KirinImagePicker.m */,
 				1AA97D2015092413001F557E /* ImageTransformProtocol.h */,
 				1AA97D1C150921C5001F557E /* KirinImageTransformer.h */,
 				1AA97D1D150921C5001F557E /* KirinImageTransformer.m */,
