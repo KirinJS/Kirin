@@ -41,12 +41,22 @@ defineServiceModule("Networking", function (require, exports) {
 		}
 	};
 
+	var backgroundListeners = {};
+	var noopListenerId = "__NOP__";
+	
 	exports.onResume = function () {
 		// start trying to ping the webhooks that have been saved.
+		
+    	if (!backgroundListeners[noopListenerId]) {
+    		var nop = function () {};
+    		exports.registerBackgroundListener(noopListenerId, nop, nop);
+    	}
+		
 		if (!backgroundIntervalTimer) {
 			exports.networkIsAvailable();
 		}
 		waitForNetworkAvailability();
+		console.debug("Networking has been resumed");
 	};
 	
     exports.onUnload = function () {
@@ -299,7 +309,7 @@ defineServiceModule("Networking", function (require, exports) {
         backend.downloadString_(config);
     };
     
-    var backgroundListeners = {};
+    
     var webHooksFileArea = "internal";
     var webHooksDir = "/kirin/networking/webhooks/";
 
@@ -501,9 +511,10 @@ defineServiceModule("Networking", function (require, exports) {
      * Other arguments that are not functions will be necessary to drive the backing methods.
      */
     exports.backgroundRequest = function (config) {
-
+    	
         var api = require("api-utils");
         var fs = require("FileSystem");
+        config.listenerId = config.listenerId || noopListenerId;
         api.normalizeAPI({
             'string': {
                 mandatory: ['listenerId']
@@ -528,12 +539,13 @@ defineServiceModule("Networking", function (require, exports) {
 
         // NB we will be using the downloadString API, so the config should conform to that too. 
         var listenerId = config.listenerId;
-
+        if (listenerId === noopListenerId) {
+        	console.warn("A default background listener has been used where none was specified.");
+        }
         
         config.lastAttempt = Date.now() + config.maxAgeSeconds * 1000;
         
         config.onError = function (err, statusCode) {
-            console.error("Found an error uploading. Will save for later: " + err);
             fs.writeString({
                 fileArea: webHooksFileArea,
                 filename: webHooksDir + "/" + listenerId + "/" + listenerId + Date.now() + ".json",
