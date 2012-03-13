@@ -82,27 +82,25 @@
     [[self.kirinHelper viewController] presentModalViewController: picker animated: YES]; 
 }
 
-- (void) dismissModalViewController: (UIImagePickerController*) picker {
-    UIViewController* vc = [self.kirinHelper viewController];
-    [vc dismissModalViewControllerAnimated:YES];
-}
 
 #pragma mark - Image delegate
 // For responding to the user tapping Cancel.
 - (void) imagePickerControllerDidCancel: (UIImagePickerController *) picker 
 {
+    NSLog(@"imagePickerControllerDidCancel");
+    picker.delegate = nil;
+    
     UIViewController* vc = [self.kirinHelper viewController];
-	if([vc parentViewController] != nil || ![vc respondsToSelector:@selector(presentingViewController)]) {
+	if([vc parentViewController] != nil && [vc respondsToSelector:@selector(presentingViewController)]) {
         NSLog(@"dismiss parentViewController");
-        [self performSelectorOnMainThread:@selector(dismissModalViewController:) withObject:picker waitUntilDone:NO];
+        [vc dismissModalViewControllerAnimated:YES];
     } else {
-        NSLog(@"dismiss parentViewController");
+        NSLog(@"dismiss presentingViewController");
         [[picker presentingViewController] dismissModalViewControllerAnimated: YES];
     } 
     [self.kirinHelper jsCallback:@"onCancel" fromConfig:self.config];
     [self cleanup];
-    picker.delegate = nil;
-    [picker release];
+    
 }
 
 // For responding to the user accepting a newly-captured picture or movie
