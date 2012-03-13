@@ -352,17 +352,17 @@ defineServiceModule("Networking", function (require, exports) {
 		});
    	};
    
-    var execDifferentialDownload = function (config, callback) {
+    var execDifferentialDownload = function (config, systemCallback) {
 
         var listenerId = config.listenerId;
 		var payload = function (response) {
-            if (!callback) {
-	            var callbacks = backgroundListeners[listenerId];
+            var callback;
+			var callbacks = backgroundListeners[listenerId];
 
-    	        if (callbacks) {
-        	    	callback = callbacks[0];
-            	}
+    	   	if (callbacks) {
+        	   	callback = callbacks[0];
             }
+            
             if (callback) {
             	try {
 					callback(config.context, response);
@@ -373,6 +373,15 @@ defineServiceModule("Networking", function (require, exports) {
 			} else {
 				throw new Error("Networking.backgroundRequest: Cannot find a callback for listener id: " + listenerId);
 			}
+            
+            if (systemCallback) {
+            	try {
+            		systemCallback();
+            	} catch (e1) {
+            		console.dir(e1);
+					throw new Error("Networking.backgroundRequest: Error found calling callback for listener id: " + listenerId);
+            	}
+            }
         };
 
         if (config.binary) {
