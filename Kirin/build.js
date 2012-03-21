@@ -122,7 +122,7 @@ function buildAll (argv, dir) {
 	fileUtils.setDryRun(args.dryRun);
 	fileUtils.setVerbose(args.verbose);
 
-	_.extend(args, defaults);
+	_.defaults(args, defaults);
 	console.dir(args);
 	
 	if (args.noJSBuildDir) {
