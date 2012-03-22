@@ -71,7 +71,7 @@ walkDirectory.createFilteredWalker = function (extensionPattern, exclusionsPatte
 	walker.createSpecificFileTest = function (environment) {
 		walker.testFile = function (filepath) {
 			if (!extensionFunction(filepath)) {
-				return true;
+				return false;
 			}
 			
 			if (!environment.allVariantsRegexp.test(filepath)) {

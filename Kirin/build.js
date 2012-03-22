@@ -456,10 +456,14 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 		
 		resourceFileWalker.perFile = fileUtils.walkDirectory.createFileCopier(resPath, path.join(environment.buildDir, "resources"));		
 		fileUtils.walkDirectory(resPath, resourceFileWalker);
+		resourceFileWalker.perFile = fileUtils.walkDirectory.createFileCopier(srcPath, path.join(environment.tempDir, "src"));		
+	    fileUtils.walkDirectory(srcPath, resourceFileWalker);	
 		
 		if (!environment.minify) {
 			// TODO wrap the js files with browserify templates
 			var copier = fileUtils.walkDirectory.createFileCopier(srcPath, path.join(environment.tempDir, "src"));
+			// do the copying here.
+			console.dir(moduleInfo["default"]);
 			_.each(_.values(moduleInfo["default"]), copier);
 			
 			// we have a list of files that we'd like to 
