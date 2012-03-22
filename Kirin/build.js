@@ -451,7 +451,12 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	
 	
 	if (environment.buildDir) {
-		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(/\.(sql|txt|json|css|properties|html)$/);
+//		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(/\.(sql|txt|json|css|properties|html)$/);
+		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(
+		        function (filepath) {
+			            return ! /\.js/.test(filepath);
+		        }
+		);
 		resourceFileWalker.createSpecificFileTest(environment);
 		
 		resourceFileWalker.perFile = fileUtils.walkDirectory.createFileCopier(resPath, path.join(environment.buildDir, "resources"));		
