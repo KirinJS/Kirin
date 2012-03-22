@@ -73,12 +73,10 @@
     // trimming movies. To instead show the controls, use YES.
     picker.allowsEditing = YES;
     picker.delegate = self;
-
-    [self performSelectorOnMainThread:@selector(presentModalViewController:) withObject:picker waitUntilDone:NO];
+    [self presentModalViewController:picker];
 }
 
 - (void) presentModalViewController: (UIImagePickerController*) picker {
-    NSLog(@"Starting the image picker or camera on Main Thread: %@", [self.kirinHelper viewController]);
     [[self.kirinHelper viewController] presentModalViewController: picker animated: YES]; 
 }
 
@@ -91,12 +89,10 @@
     picker.delegate = nil;
     
     UIViewController* vc = [self.kirinHelper viewController];
-	if([vc parentViewController] != nil && [vc respondsToSelector:@selector(presentingViewController)]) {
-        NSLog(@"dismiss parentViewController");
-        [vc dismissModalViewControllerAnimated:YES];
-    } else {
-        NSLog(@"dismiss presentingViewController");
+	if([picker respondsToSelector:@selector(presentingViewController)]) {
         [[picker presentingViewController] dismissModalViewControllerAnimated: YES];
+    } else {
+        [picker dismissModalViewControllerAnimated:YES];
     } 
     [self.kirinHelper jsCallback:@"onCancel" fromConfig:self.config];
     [self cleanup];
