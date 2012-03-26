@@ -88,7 +88,6 @@
     NSLog(@"imagePickerControllerDidCancel");
     picker.delegate = nil;
     
-    UIViewController* vc = [self.kirinHelper viewController];
 	if([picker respondsToSelector:@selector(presentingViewController)]) {
         [[picker presentingViewController] dismissModalViewControllerAnimated: YES];
     } else {
