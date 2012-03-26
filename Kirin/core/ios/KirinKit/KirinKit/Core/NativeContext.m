@@ -37,17 +37,21 @@
 
 - (NSArray*) methodNamesFor: (id) obj {
 	NSMutableArray* selectorNames = [[[NSMutableArray alloc] init] autorelease];
-	int i=0;
-	unsigned int mc = 0;
-	Method * mlist = class_copyMethodList(object_getClass(obj), &mc);
+    Class class = object_getClass(obj);
+    while (class) {
+        int i=0;
+        unsigned int mc = 0;
+        Method * mlist = class_copyMethodList(class, &mc);
     
-	for(i=0;i<mc;i++) {
-		[selectorNames addObject:[NSString stringWithFormat:@"%s", sel_getName(method_getName(mlist[i]))]];
-	}
+        for(i=0;i<mc;i++) {
+            [selectorNames addObject:[NSString stringWithFormat:@"%s", sel_getName(method_getName(mlist[i]))]];
+        }
 	
-	/* note mlist needs to be freed */
-	free(mlist);
+        /* note mlist needs to be freed */
+        free(mlist);
 	
+        class = class_getSuperclass(class);
+    }
     return selectorNames;
 	
 }
@@ -65,11 +69,11 @@
 
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query {
     NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
-    id obj = holder.nativeObject;
+    id obj = holder ? holder.nativeObject : nil;
     NSString* fullMethodName = [[file componentsSeparatedByString:@"_"] componentsJoinedByString:@":"];
     
 	SEL selector = NSSelectorFromString(fullMethodName);
-	if (obj != nil && [obj respondsToSelector:selector]) {
+	if (obj && [obj respondsToSelector:selector]) {
         NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
         NSMutableArray* arguments = [argsJSON JSONValue];
@@ -114,7 +118,9 @@
         }
 	} else {                
         // There's no method to call, so throw an error.
-        NSString* className = [[obj class] description];
+
+         NSString* className = NSStringFromClass([obj class]);
+
         if (!className) {
             className = host;
         }
