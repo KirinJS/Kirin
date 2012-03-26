@@ -451,7 +451,6 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 	
 	
 	if (environment.buildDir) {
-//		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(/\.(sql|txt|json|css|properties|html)$/);
 		var resourceFileWalker = fileUtils.walkDirectory.createFilteredWalker(
 		        function (filepath) {
 			            return ! /\.js/.test(filepath);
@@ -468,13 +467,25 @@ function buildModule (pluginName, inheritedEnvironment, dir) {
 			// TODO wrap the js files with browserify templates
 			var copier = fileUtils.walkDirectory.createFileCopier(srcPath, path.join(environment.tempDir, "src"));
 			// do the copying here.
-			console.dir(moduleInfo["default"]);
-			_.each(_.values(moduleInfo["default"]), copier);
+			var files = _.values(moduleInfo["default"]);
+			_.each(files, copier);
 			
 			// we have a list of files that we'd like to 
 			// a) if not minifying then we should copy to a directory, changing the name as we go, preserving the file paths. We should also add the browserify templates. client-modules should be a browserify template.
 			// b) if minifying, we should copy a tmp directory, changing the name as we go, preserving the file paths. We should not add the browserify templates. 
 			// c) if testing, we should preserve in place and change the way we call tests, and by replacing require.
+			
+		} else {
+		    // we're only going to copy the generated javascript from src here.
+			var copier = fileUtils.walkDirectory.createFileCopier(srcPath, path.join(environment.tempDir, "src"));
+			var files = _.values(moduleInfo["default"]);
+			var re = /generated/;
+			files = _.filter(files, function (filename) { 
+			    return re.test(filename);
+			});
+			console.dir(files);
+			_.each(files, copier);
+			
 			
 		}
 		

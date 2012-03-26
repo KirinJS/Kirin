@@ -5,15 +5,15 @@ var _ = require("underscore");
 exports.buildTypes = ['prod', 'dev', 'qa', 'stage', 'uitest'];
 
 exports.supportedPlatforms = {
-		"ios": ["webview"],
-		"android": ["webview"],
-		"wp7": ["webview"],
-		"qt": ["javascript", "js"],
-		"html": ["webview", "fakeNative"],
-		"node": ["fakeNative"]
-	};
-	
-exports.supportedPlatformClasses = ["webview", "javascript", "js", "fakeNative"];
+        "ios": ["webview", "webkit", "safari"],
+        "android": ["webview", "webkit"],
+        "wp7": ["webview", "ie"],
+        "qt": ["javascript", "js"],
+        "html": ["webview", "fakeNative"],
+        "node": ["fakeNative"]
+    };
+
+exports.supportedPlatformClasses = _.unique(_.flatten(_.values(exports.supportedPlatforms)));
 
 exports.allKeywords = _.union(exports.buildTypes, 
 								_.keys(exports.supportedPlatforms),
@@ -68,12 +68,15 @@ exports.runJSLint = function (dryRun, verbose) {
 	var testtools = require("./kirin-testtools.js");
 	var fs = require("fs");
 	var numErrors = 0;
+	var reDontCompress = /generated|lib|-min\.js/;
 	_.each(testtools.getAllNonTestModulePathMapping(), function (filepath) {
 		var code = fs.readFileSync(filepath);
 		if (filepath.indexOf(".js") < 0) {
 			return;
 		}
-
+        if (reDontCompress.test(filepath)) {
+            return;
+        }
 		if (dryRun) {
 			console.log("node " + lintPath + " " + filepath);
 			return;
@@ -121,7 +124,8 @@ exports.runCompiler = function (outputFilepath, callback, dryRun) {
 	}
 	var testtools = require("./kirin-testtools.js");
 	var reDontCompress = /generated|lib|-min\.js/;
-	var files = _.filter(_.values(testtools.getAllNonTestModulePathMapping()), function (f) {return !reDontCompress.test(f);});
+	var allFiles = _.values(testtools.getAllNonTestModulePathMapping());
+	var files = _.filter(allFiles, function (f) {return !reDontCompress.test(f);});
 	var file = files.join(" --js ");
 	
 	var javaPath = "java";
@@ -144,11 +148,11 @@ exports.runCompiler = function (outputFilepath, callback, dryRun) {
 		  }          
 		}); 
     }
-    var files = testtools.getAllNonTestModuleRelativePathMapping();
+    allFiles = testtools.getAllNonTestModuleRelativePathMapping();
 
-    files = _.filter(files, function (f) {return /(\/lib\/)|-min\.js/.test(f);});
+    files = _.filter(allFiles, function (f) {return /(\/lib\/)|-min\.js/.test(f);});
     files.push(path.basename(outputFilepath));
-	files = _.union(files, _.filter(files, function (f) {return /generated/.test(f);}));    
+	files = _.union(files, _.filter(allFiles, function (f) {return /generated/.test(f);}));    
     return files;
 	
 };
