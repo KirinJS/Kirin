@@ -178,14 +178,23 @@
     NSURLResponse* response = nil;
     NSError* error = nil;
     NSData* data = (NSMutableData*) [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
-    if (data) {
-        [self succeed: data];
-    } else if (error) {
+
+    int statusCode = 200;
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        statusCode = [((NSHTTPURLResponse*) response) statusCode];
+    }
+
+    if (error) {
         NSLog(@"NetworkingBackend Connection failed! Error - %@ %@",
               [error localizedDescription],
               [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
         [self failWithError:[error description]];
+    } else if (data) {
+        if (statusCode < 300) {
+            [self succeed: data];
+        } else {
+            [self failWithError:[NSString stringWithFormat:@"%d", statusCode]];
+        }
     } else {
         [self failWithError:@"noData"];
     }
