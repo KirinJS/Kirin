@@ -44,7 +44,7 @@
         Method * mlist = class_copyMethodList(class, &mc);
     
         for(i=0;i<mc;i++) {
-            [selectorNames addObject:[NSString stringWithFormat:@"%s", sel_getName(method_getName(mlist[i]))]];
+            [selectorNames addObject:[NSString stringWithUTF8String: sel_getName(method_getName(mlist[i]))]];
         }
 	
         /* note mlist needs to be freed */
