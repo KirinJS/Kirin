@@ -212,7 +212,7 @@ defineServiceModule("Networking", function (require, exports) {
         
         configureParams(config);
         
-        wrapCallbacks(config, "donwloadJSON");
+        wrapCallbacks(config, "downloadJSON");
         backend.downloadJSON_(config);
     };
         
@@ -312,7 +312,7 @@ defineServiceModule("Networking", function (require, exports) {
     
     var webHooksFileArea = "internal";
     var webHooksDir = "/kirin/networking/webhooks/";
-
+    var nopFunction = function () {};
 	/**
 	 * Register a listener for the given id for completion 
 	 * of a successful download.
@@ -327,6 +327,8 @@ defineServiceModule("Networking", function (require, exports) {
 	 * on in the lifecycle of the app.
 	 */ 
     exports.registerBackgroundListener = function (listenerId, listener, timeoutListener) {
+    	listener = listener || nopFunction;
+    	timeoutListener = timeoutListener || nopFunction;
         if (!_.isString(listenerId) || !_.isFunction(listener)) {
             throw new Error("ListenerId should be a string, listener should be a function");
         }
