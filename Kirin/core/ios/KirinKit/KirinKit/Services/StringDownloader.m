@@ -56,7 +56,6 @@
 }
 
 - (void) succeed: (NSData*) data {
-    NSLog(@"About to call successBlock");
     self.successBlock(data);
 }
 
