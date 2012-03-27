@@ -154,7 +154,7 @@ defineModule("kirin", function (require, exports) {
 			
 		try {
 			if (argsList) {
-				module[methodName].apply(null, argsList);
+				module[methodName].apply(module, argsList);
 			} else {
 				module[methodName]();
 			}
