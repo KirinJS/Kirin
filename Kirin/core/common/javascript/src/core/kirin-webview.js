@@ -19,7 +19,8 @@ defineModule("kirin", function (require, exports) {
 		slice = Array.prototype.slice,
 		native2js = {},
 		callbacks = {},
-		services = {};
+		services = {},
+		gwt = {};
 	
 	/**********************************************************************/
 	/* Utility methods to help calling native from Javascript and vice versa.
@@ -115,12 +116,24 @@ defineModule("kirin", function (require, exports) {
 		}
 	}
 	
+	function giesPeace(moduleName) {
+		var mod;
+		try {
+			if (gwt[moduleName]) {
+				return gwt[moduleName];
+			} else {
+				gwt[moduleName] = mod = new window.screens[moduleName]();
+			}
+		} catch (e) {
+			mod = require(moduleName);
+		}
+		return mod;
+	}
+
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
-		//console.log("Generated proxy for " + moduleName);
 		try {
-			var module = require(moduleName);
-			
+			var module = giesPeace(moduleName);
 			module.onLoad(proxy);
 		} catch (e) {
 			handleError("loading module " + moduleName, e);
@@ -129,7 +142,7 @@ defineModule("kirin", function (require, exports) {
 	
 	native2js.unloadProxyForModule = function (moduleName) {
 		try {
-			var module = require(moduleName);
+			var module = giesPeace(moduleName);
 			// TODO unrequire
 			module.onUnload();	
 		} catch (e) {
@@ -138,9 +151,7 @@ defineModule("kirin", function (require, exports) {
 	};
 
 	native2js.execMethod = function (moduleName, methodName, argsList) {
-		
-		var module = require(moduleName);
-
+		var module = giesPeace(moduleName);
 
 		if (!module) {
 			console.error("No such module " + moduleName);
@@ -224,6 +235,8 @@ defineModule("kirin", function (require, exports) {
 	 * @deprecated
 	 */
 	exports.proxy = function (name) {
+		console.log("howdy");
+		
 		var service = services[name];
 		
 		if (typeof service === 'undefined') {
