@@ -19,8 +19,9 @@ defineModule("kirin", function (require, exports) {
 		slice = Array.prototype.slice,
 		native2js = {},
 		callbacks = {},
-		services = {},
-		gwt = {};
+		gwtObjects = {}, 
+		// XXX 'screens' is set by GWT-Exporter. 
+		gwtClasses = window.screens;
 	
 	/**********************************************************************/
 	/* Utility methods to help calling native from Javascript and vice versa.
@@ -116,24 +117,22 @@ defineModule("kirin", function (require, exports) {
 		}
 	}
 	
-	function giesPeace(moduleName) {
-		var mod;
-		try {
-			if (gwt[moduleName]) {
-				return gwt[moduleName];
-			} else {
-				gwt[moduleName] = mod = new window.screens[moduleName]();
+	function resolveModule(moduleName) {
+		if (gwtClasses) {
+			if (gwtObjects[moduleName]) {
+				return gwtObjects[moduleName];
+			} else if (gwtClasses[moduleName]) {
+				gwtObjects[moduleName] = new gwtClasses[moduleName]();
+				return gwtObjects[moduleName]; 
 			}
-		} catch (e) {
-			mod = require(moduleName);
 		}
-		return mod;
+		return require(moduleName);
 	}
 
 	native2js.loadProxyForModule = function (moduleName, methodNames) {
 		var proxy = createProxy(moduleName, methodNames);
 		try {
-			var module = giesPeace(moduleName);
+			var module = resolveModule(moduleName);
 			module.onLoad(proxy);
 		} catch (e) {
 			handleError("loading module " + moduleName, e);
@@ -142,7 +141,7 @@ defineModule("kirin", function (require, exports) {
 	
 	native2js.unloadProxyForModule = function (moduleName) {
 		try {
-			var module = giesPeace(moduleName);
+			var module = resolveModule(moduleName);
 			// TODO unrequire
 			module.onUnload();	
 		} catch (e) {
@@ -151,7 +150,7 @@ defineModule("kirin", function (require, exports) {
 	};
 
 	native2js.execMethod = function (moduleName, methodName, argsList) {
-		var module = giesPeace(moduleName);
+		var module = resolveModule(moduleName);
 
 		if (!module) {
 			console.error("No such module " + moduleName);
@@ -225,33 +224,8 @@ defineModule("kirin", function (require, exports) {
 	/**********************************************************************/
 	/* Expose the proxies to Javascript.
 	 **********************************************************************/
-			
-	/**
-	 * For Javascript side to call. This is to let Javascript 
-	 * access native backend components.
-	 * Any call to registerProxy will dump things into the services object.
-	 * Currently, the only proxy is "NativeScreenObject", 
-	 * which is used for the communicating with the screen.
-	 * @deprecated
-	 */
-	exports.proxy = function (name) {
-		console.log("howdy");
-		
-		var service = services[name];
-		
-		if (typeof service === 'undefined') {
-			throw new Error("Native proxy is not available yet: " + name);
-		}
-		
-		return service;
-	};
 	
 	exports.wrapCallback = wrapCallback;
 	exports.wrapCallbacks = wrapCallbacks;
 	exports.exposeToNative = Native.exposeToNative;
-	
-	/*
-	// for documentation purposes:
-	exports.js2nativeScreenProxy = null;
-	*/
 });
