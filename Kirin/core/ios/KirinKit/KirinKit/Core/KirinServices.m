@@ -66,7 +66,8 @@
     if (self.isStarted) {
         return;
     }
-    self.isStarted = YES;    
+ 
+    self.isStarted = YES;   
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
         id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
@@ -75,6 +76,21 @@
         }
     }
     
+}
+
+- (void) unloadServices {
+    if (!self.isStarted) {
+        return;
+    }
+    
+    for (int i=0, max=[self.allServices count]; i<max; i++) {
+        id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
+        if ([service respondsToSelector:@selector(onUnload)]) {
+            [service onUnload];
+        }
+    }
+    
+    self.isStarted = NO;
 }
 
 - (void) dealloc {

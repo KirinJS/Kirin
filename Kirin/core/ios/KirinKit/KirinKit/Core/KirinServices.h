@@ -25,4 +25,6 @@
 
 - (void) ensureStarted;
 
+- (void) unloadServices;
+
 @end

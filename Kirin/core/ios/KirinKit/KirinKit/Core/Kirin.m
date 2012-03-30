@@ -166,6 +166,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
     return kirinServices_;
 }
 
+- (void) unload {
+    [self.kirinServices unloadServices];
+}
+
 #pragma mark -
 #pragma mark Memory managment
 - (void)dealloc
