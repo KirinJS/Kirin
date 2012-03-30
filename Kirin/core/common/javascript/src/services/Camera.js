@@ -3,8 +3,6 @@ defineModule("Camera", function (require, exports) {
 	var mNative;
 	exports.onLoad = function (nativeObject) {
 		mNative = nativeObject;
-		console.log("Camera object loaded: ");
-		console.dir(_.keys(nativeObject));
 	};
 	
 
