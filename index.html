@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640" />
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Kirin by KirinJS</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/KirinJS/Kirin">Fork Me on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Kirin</h1>
+            <h2></h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/KirinJS/Kirin/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/KirinJS/Kirin/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+      <span class="banner-fix"></span>
+
+      <section id="main_content">
+        <p>Kirin is a set of frameworks designed to help writing cross platform mobile apps.</p>
+
+<p>It hasn't been out very long, and so has very little documentation.</p>
+
+<p>However, you may want to download it and try building it with XCode or Eclipse+ADT.</p>
+
+<h2>Helicopter view</h2>
+
+<p>We've been looking around at the alternatives out there: in particular, <a href="http://caniuse.com">HTML5</a> + <a href="http://www.phonegap.com/">PhoneGap</a> and <a href="https://www.appcelerator.com/products/titanium-mobile-application-development/">Titanium</a>.</p>
+
+<p>The biggest problem for each of these cross-platform solutions is the UI. For a cross platform framework, the problem of delivering great UIs that are appropriate for the platform boils down to how to provide a set of tools to the developer that is not only as good as the platform vendor provides i.e. Google and Apple – but also able to translate between the two platforms.</p>
+
+<p>We think this is intractable.</p>
+
+<p>Kirin steps away from this problem, giving the developer the freedom to construct as elaborate a user-interface as the native SDK and tooling can provide.</p>
+
+<p>The non-UI parts of your app – the business logic – is written in Javascript, using APIs provided by Kirin to access the rest of the device. The Javascript runs in an invisible WebView (or UIWebView) using whatever Javascript engine is available to that webview.</p>
+
+<p>For the UI, you build in whatever tools the platform provides, to produce responsive, platform-appropriate and respectful UIs that are driven by a common business logic.</p>
+
+<p>i.e. <em>Javascript logic, native UI</em></p>
+
+<h2>Sightings</h2>
+
+<p>The only outing it has in the market place was for the Glastonbury 2011 app – a single app for sure, but it's winning awards, and was featured in <a href="http://itunes.apple.com/us/app/glastonbury-2011/id377852148?mt=8&amp;ls=1">Apple's AppStore</a>, the <a href="https://market.android.com/details?id=com.orange.glastonbury">Android Market</a>, and the Ovi market place.</p>
+
+<p>Once we had written the common application logic, each app took only 50% of the time it took to write the comparative fully native app.</p>
+
+<h2>Current Status</h2>
+
+<p>Kirin provides the tools to: </p>
+
+<ul>
+<li>modularize your Javascript with Common JS Modules.</li>
+<li>test, minify and package the Javascript, using the Google Closure Compiler.</li>
+<li>facilitate bi-directional communication between native (Android &amp; Objective-C) and Javascript.</li>
+<li>access the device APIs. </li>
+</ul><p>Kirin is currently under heavy development. The HEAD branch represents the version that was written and deployed for the Glastonbury app. This version is unlikely to be maintained, and will not be forward compatible with future versions.</p>
+
+<p>The <a href="https://github.com/kirinjs/kirin/tree/kirin-fragments">kirin-fragments branch</a> is currently where all the action is happening. It is still in a branch because it only has an iOS implementation.</p>
+
+<h2>News</h2>
+
+<p>The best way to keep up is either on <a href="http://hugman.posterous.com/tag/kirin">the blog</a> or on <a href="http://twitter.com/jhugman">my twitter feed</a> where I post periodically about Kirin.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/KirinJS">KirinJS</a> can be found on <a href="https://github.com/KirinJS/Kirin">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
