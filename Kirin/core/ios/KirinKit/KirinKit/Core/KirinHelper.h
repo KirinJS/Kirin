@@ -70,4 +70,12 @@
 
 - (KirinDropbox*) dropbox;
 
+/**
+ * Get an object that conforms to the given protocol. 
+ *
+ * Calling methods on this protocol will call a corresponding method on the javascript module this KirinHelper is 
+ * bound to.
+ */
+- (id) proxyForJavascriptObject: (Protocol*) protocol;
+
 @end

@@ -8,21 +8,22 @@
 
 #import "KirinHelper.h"
 #import "JSON.h"
+#import "KirinProxy.h"
 
 @interface KirinHelper () 
 @property(retain) JSContext* jsContext;
 @property(retain) NativeContext* nativeContext;
-
+@property(retain) KirinProxy* proxyForJSModule;
 @end
 
 @implementation KirinHelper
 
-@synthesize jsModuleName;
-@synthesize nativeObject;
+@synthesize jsModuleName = jsModuleName_;
+@synthesize nativeObject = nativeObject_;
 @synthesize state = state_;
-
+@synthesize proxyForJSModule = proxyForJSModule_;
 @synthesize jsContext = jsContext_;
-@synthesize nativeContext = nativeObject_;
+@synthesize nativeContext = nativeContext_;
 
 - (id) initWithModuleName: (NSString*) moduleName 
           andNativeObject: (NSObject*) obj 
@@ -43,16 +44,16 @@
 }
 
 - (void) onLoad {
-    [self.nativeContext registerNativeObject:self.nativeObject asName:jsModuleName];
-    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[self.nativeContext methodNamesFor: nativeObject]];
+    [self.nativeContext registerNativeObject:self.nativeObject asName:self.jsModuleName];
+    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[self.nativeContext methodNamesFor: self.nativeObject]];
 }
 
 - (void) onUnload {
     
-    [self.jsContext unregisterObjectProxy:jsModuleName];
+    [self.jsContext unregisterObjectProxy:self.jsModuleName];
     
     // possible race condition here. We should disallow any calls in onUnload() to native.
-    [self.nativeContext unregisterNativeObject:jsModuleName];
+    [self.nativeContext unregisterNativeObject:self.jsModuleName];
 
 }
 
@@ -128,10 +129,17 @@
     return self.state.dropbox;
 }
 
+- (id) proxyForJavascriptObject: (Protocol*) protocol {
+    if (!self.proxyForJSModule) {
+        self.proxyForJSModule = [KirinProxy proxyWithProtocol:protocol andModuleName:self.jsModuleName andExecutor:self.jsContext];
+    }
+    return self.proxyForJSModule;
+}
+
 - (void) dealloc {
     self.jsContext = nil;
     self.nativeContext = nil;
-    
+    self.proxyForJSModule = nil;
     self.jsModuleName = nil;
     self.nativeObject = nil;
     self.state = nil;
