@@ -9,8 +9,11 @@
 #import "DummyJSContext.h"
 
 
+
+
 @implementation DummyJSContext
 @synthesize jsCalls;
+@synthesize lastCall;
 
 - (id) init {
     self = [super init];
@@ -20,8 +23,13 @@
     return self;
 }
 
+- (void) execJS:(NSString *)js {
+    [self js:js];
+}
+
 - (void) js: (NSString*) js {
     NSLog(@"javascript: %@", js);
+    self.lastCall = js;
     [jsCalls addObject:js];
 }
 
@@ -36,6 +44,7 @@
 }
 
 - (void) reset {
+    self.lastCall = nil;
     [self.jsCalls removeAllObjects];
 }
 

@@ -10,7 +10,8 @@
 #import "JSExecutor.h"
 
 
-@interface JSContext : NSObject {
+
+@interface JSContext : NSObject<JSExecutor> {
 }
 
 @property(retain) id<JSExecutor> jsExecutor;

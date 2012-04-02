@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+
+#import "JSExecutor.h"
+
 @interface KirinProxy : NSObject
+
++ (KirinProxy*) proxyWithProtocol: (Protocol*) protocol andModuleName: (NSString*) moduleName andExecutor: (id<JSExecutor>) executor;
 
 @end

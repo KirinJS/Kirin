@@ -32,7 +32,7 @@
 
 - (void) testHelperLifecycle 
 {
-    STAssertEquals(@"TestModule", helper.jsModuleName, @"Helper's module name is wrong");
+    STAssertEqualObjects(@"TestModule", helper.jsModuleName, @"Helper's module name is wrong");
     
     [helper onLoad];
     

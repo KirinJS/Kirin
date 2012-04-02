@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
-@interface KirinProxyTest : NSObject
+#import <SenTestingKit/SenTestingKit.h>
+
+
+@interface KirinProxyTest : SenTestCase
 
 @end

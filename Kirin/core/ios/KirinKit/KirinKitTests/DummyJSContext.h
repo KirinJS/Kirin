@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <KirinKit/JSContext.h>
 #import <KirinKit/KirinServiceOnMainThread.h>
+#import <KirinKit/JSExecutor.h>
 
-@interface DummyJSContext : JSContext <KirinServiceOnMainThread> {
-    NSMutableArray* jsCalls;
+@interface DummyJSContext : JSContext <KirinServiceOnMainThread, JSExecutor> {
 }
 
+@property(retain) NSString* lastCall;
+        
 @property(retain) NSMutableArray* jsCalls;
 
 - (void) reset;

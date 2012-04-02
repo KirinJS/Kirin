@@ -44,6 +44,10 @@
     }
 }
 
+- (void) execJS:(NSString *)js {
+    [self js:js];
+}
+
 - (void) js: (NSString*) js {
     [self performSelectorOnMainThread:@selector(jsOnMainThread:) withObject:js waitUntilDone:NO];
 }
