@@ -10,6 +10,12 @@
 
 #define DEBUG_JS NO
 
+#define EXECUTE_METHOD_JS @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@')"
+#define EXECUTE_METHOD_WITH_ARGS_JS @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@', [%@])"
+
+#define EXECUTE_CALLBACK_JS @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')"
+#define EXECUTE_CALLBACK_WITH_ARGS_JS @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])"
+
 @protocol JSExecutor <NSObject>
 - (void) execJS: (NSString*) js;
 @end

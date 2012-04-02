@@ -62,9 +62,9 @@
 
 - (void) jsMethod:(NSString *)methodName withArgsList:(NSString*) argsList {
     if (argsList == nil || [argsList length] == 0) {
-        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@')", self.jsModuleName, methodName]];
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_JS, self.jsModuleName, methodName]];
     } else {
-        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execMethod('%@', '%@', [%@])", self.jsModuleName, methodName, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_WITH_ARGS_JS, self.jsModuleName, methodName, argsList]];
     }
 }
 
@@ -77,9 +77,9 @@
         return;
     }
     if (argsList == nil || [argsList length] == 0) {
-        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')", callbackId]];
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_JS, callbackId]];
     } else {
-        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])", callbackId, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, argsList]];
     }    
 }
 
