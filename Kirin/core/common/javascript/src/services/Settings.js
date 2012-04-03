@@ -82,9 +82,14 @@ defineServiceModule("Settings", function (require, exports) {
 		// return undefined.
 	};
 	
-	exports.put = function (key, value) {
-		keyValuePairs[makeKey(key)] = value;
-	};
+    exports.put = function (key, value) {
+        if (value === null || typeof value === 'undefined') {
+            console.warn("Removing null value for " + key);
+            exports.remove(key);
+        } else {
+            keyValuePairs[makeKey(key)] = value;
+        }
+    };
 	
 	exports.remove = function (key) {
 		key = makeKey(key);
