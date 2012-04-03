@@ -63,6 +63,8 @@ defineModule("Analytics", function (require, exports) {
     exports.isTracking = function () {
         return isStarted && isTrackingAllowed();
     };
+    
+    exports.isTrackingAllowed = isTrackingAllowed;
 
     exports.trackPageview = function (pageName) {
         if (!checkIfTracking()) {
