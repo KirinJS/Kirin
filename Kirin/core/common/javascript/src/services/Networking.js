@@ -364,28 +364,32 @@ defineServiceModule("Networking", function (require, exports) {
 		});
    	};
    
+   	function callBackgroundListener (listenerId, context, response) {
+        var callback;
+        var callbacks = backgroundListeners[listenerId];
+
+        if (callbacks) {
+            callback = callbacks[0];
+        }
+        
+        if (callback) {
+            try {
+                callback(context, response);
+            } catch (e) {
+                console.dir(e);
+                throw new Error("Networking.backgroundRequest: Error found calling callback for listener id: " + listenerId);
+            }
+        } else {
+            throw new Error("Networking.backgroundRequest: Cannot find a callback for listener id: " + listenerId);
+        }
+   	}
+   	exports.callBackgroundListener = callBackgroundListener;
+   	
     var execDifferentialDownload = function (config, systemCallback) {
 
         var listenerId = config.listenerId;
 		var payload = function (response) {
-            var callback;
-			var callbacks = backgroundListeners[listenerId];
-
-    	   	if (callbacks) {
-        	   	callback = callbacks[0];
-            }
-            
-            if (callback) {
-            	try {
-					callback(config.context, response);
-				} catch (e) {
-					console.dir(e);
-					throw new Error("Networking.backgroundRequest: Error found calling callback for listener id: " + listenerId);
-				}
-			} else {
-				throw new Error("Networking.backgroundRequest: Cannot find a callback for listener id: " + listenerId);
-			}
-            
+		    callBackgroundListener(listenerId, config.context, response);
             if (systemCallback) {
             	try {
             		systemCallback();
