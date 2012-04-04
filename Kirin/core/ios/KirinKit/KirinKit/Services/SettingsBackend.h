@@ -20,12 +20,6 @@
 #import "Settings.h"
 
 @interface SettingsBackend : KirinServiceStub <Settings> {
-    
-    @private
-    NSString* settingsFileName;
-    
-    @private
-    NSMutableDictionary* settings;
 }
 
 @end

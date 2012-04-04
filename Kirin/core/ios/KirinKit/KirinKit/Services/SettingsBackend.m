@@ -22,8 +22,7 @@
 
 @interface SettingsBackend ()
 
-- (void) initSettingsFileLocationIfNeeded;
-- (void) openSettingsFileIfNeeded;
+- (NSDictionary*) settingsAsDictionary;
 
 @end
 
@@ -35,89 +34,50 @@
 
 - (void) onLoad {
     [super onLoad];
-    [self openSettingsFileIfNeeded];
-    [self.kirinHelper jsMethod:@"mergeOrOverwrite" withArgsList:[settings JSONRepresentation]];
+
+    [self.kirinHelper jsMethod:@"mergeOrOverwrite" withArgsList:[[self settingsAsDictionary] JSONRepresentation]];
     [self.kirinHelper jsMethod:@"resetEnvironment"];
 }
 
 #pragma mark -
 #pragma mark Interal Methods
 
--(void) initSettingsFileLocationIfNeeded{
-    
-    NSLog(@"[SettingsBackend] init settings files");
-    
-    if(settingsFileName) return;
-    
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-                                                         NSUserDomainMask, YES); 
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    
-    settingsFileName = [documentsDirectory 
-                        stringByAppendingPathComponent:@"settingsFile.plist"];
-    
-    [settingsFileName retain];
-
+- (NSDictionary*) settingsAsDictionary {
+    return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
 }
-
-- (void) openSettingsFileIfNeeded {
-    
-    if(settings != nil) return;
-        
-    [self initSettingsFileLocationIfNeeded];
-    
-    if([[NSFileManager defaultManager] fileExistsAtPath:settingsFileName]){
-        
-        settings = [[NSMutableDictionary alloc] initWithContentsOfFile: settingsFileName];
-        
-    } else {
-        
-        settings = [[NSMutableDictionary alloc] initWithCapacity: 5];
-        
-    }
-
-}
-
-- (void) writeToSettingsFile {
-    [self initSettingsFileLocationIfNeeded];
-    [settings writeToFile:settingsFileName atomically:YES];
-}
-
 
 #pragma mark -
 #pragma mark External Interface Methods
 
-- (void)requestPopulateJSWithCallback:(NSString *)updateCallback
-{
-    [self openSettingsFileIfNeeded];
-    [self.kirinHelper jsCallback:updateCallback withArgsList:[settings JSONRepresentation]];
+- (void)requestPopulateJSWithCallback:(NSString *)updateCallback {
+    [self.kirinHelper jsCallback:updateCallback withArgsList:[[self settingsAsDictionary] JSONRepresentation]];
 }
 
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
 {
-    [self openSettingsFileIfNeeded];
+    NSUserDefaults* userSettings = [NSUserDefaults standardUserDefaults];
     
     if([adds isKindOfClass:[NSDictionary class]]) {
-        [settings addEntriesFromDictionary: adds];
+        [userSettings setValuesForKeysWithDictionary:adds];
     } else {
         NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
     }
+
+    if([deletes isKindOfClass:[NSArray class]]) {
+        for (id key in deletes) {
+            [userSettings removeObjectForKey:key];
+        }        
+    } else {
+        NSLog(@"[SettingsBackend] didn't expect a %@", [deletes class]);
+    }
     
-    
-    //modify settings object
-    [settings removeObjectsForKeys: deletes];
-    
-    //write them out to the file
-    [self writeToSettingsFile];
+    [userSettings synchronize];
 }
 
 #pragma mark -
 #pragma mark lifecycle
 
 - (void)dealloc {
-    
-    [settingsFileName release];
-    [settings release];
     [super dealloc];
 }
 
