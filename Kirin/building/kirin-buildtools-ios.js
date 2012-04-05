@@ -41,6 +41,14 @@ function compileProject (environment, dir, callback, errback) {
 		args.push("-project " + environment["ios.project"]);		
 	}
 	
+	if (environment["ios.scheme"]) {
+		args.push("-scheme " + environment["ios.scheme"]);
+	}
+	
+	if (environment["ios.workspace"]) {
+		args.push("-workspace " + environment["ios.workspace"]);
+	}
+	
 	if (environment["ios.target"]) {
 		args.push("-target " + environment["ios.target"]);	
 	}
