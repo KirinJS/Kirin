@@ -400,6 +400,11 @@ defineServiceModule("Networking", function (require, exports) {
             }
         };
 
+        config.onError = function (err) {
+            console.error("Networking: " + err + " URL: " + config.url);
+            console.error(config);
+        };
+        
         if (config.binary) {
         	config.onFinish = payload;
         	exports.downloadFile(config);
