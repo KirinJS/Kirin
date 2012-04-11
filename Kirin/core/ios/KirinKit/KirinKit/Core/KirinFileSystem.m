@@ -64,7 +64,7 @@
     return [KirinPaths filePathInTempDir:filePath];
 }
 
-- (NSString*) readString: (NSString*) filePath {
+- (NSString*) readStringFromFilepath: (NSString*) filePath {
     NSMutableData* data = [NSData dataWithContentsOfFile:filePath];
     return [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
 }

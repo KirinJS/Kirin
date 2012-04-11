@@ -151,7 +151,7 @@
     
     // TODO check if the file exists.
     
-    NSString* str = [fs readString:filePath];
+    NSString* str = [fs readStringFromFilepath:filePath];
     
     // TODO: we _need_ a KirinStringUtils.
     
