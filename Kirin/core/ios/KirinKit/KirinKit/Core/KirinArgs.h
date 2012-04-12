@@ -28,4 +28,6 @@
 + (NSString*) args: (NSString*) arg, ... 
 NS_REQUIRES_NIL_TERMINATION;
 
++ (BOOL) isNull: (id) arg;
+
 @end

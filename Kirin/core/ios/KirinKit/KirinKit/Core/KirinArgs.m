@@ -56,4 +56,8 @@
     return [argStringList componentsJoinedByString:@", "];
 }
 
++ (BOOL) isNull: (id) arg {
+    return arg == nil || [arg isKindOfClass:[NSNull class]];
+}
+
 @end
