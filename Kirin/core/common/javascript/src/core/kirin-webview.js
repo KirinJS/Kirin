@@ -105,13 +105,34 @@ defineModule("kirin", function (require, exports) {
 		return proxy;
 	}
 		
+	
 	function handleError(during, e) {
+		
+		
+		/*
+		 *    {
+                "message": "Can't find variable: cardObject",
+                "line": 505,
+                "sourceId": 250182872,
+                "sourceURL": "file:///Users/james/Library/Application%20Support/iPhone%20Simulator/4.3.2/Applications/ADE774FF-B033-46A2-9CBA-DD362196E1F7/Moo.app/generated-javascript//src/controller/CardController.js",
+                "expressionBeginOffset": 22187,
+                "expressionCaretOffset": 22197,
+                "expressionEndOffset": 22197
+            }
+		 */
+		console.error("-------------------------------------------------");
 		console.error("Exception found " + during);
-		console.dir(e);
+		console.error("Message: " + e.message);
+		console.error("at     : " + e.line);
+		var filename = e.sourceURL || "unknown";
+		filename = filename.replace(/.*generated-javascript\//, "");
+		console.error("file   : " + filename);
+		console.error("url    : " + e.sourceURL);
+		
 		var stack = e.stack || e.stacktrace;
 
 		if (stack) {
-			console.error("" + stack);
+			console.error(stack);
 		} else {
 			console.log("No stack trace");
 		}
