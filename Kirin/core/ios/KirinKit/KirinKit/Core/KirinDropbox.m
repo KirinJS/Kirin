@@ -33,6 +33,11 @@
     return token;
 }
 
+- (NSString*) putObject:(id) object withToken:(NSString*) token {
+    [dropbox setObject:object forKey:token];
+    return token;
+}
+
 - (NSObject*) consumeObjectWithToken:(NSString*) token {
     if (!token) {
         return nil;
