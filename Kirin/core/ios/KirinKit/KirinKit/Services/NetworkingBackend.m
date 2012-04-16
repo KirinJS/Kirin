@@ -56,7 +56,6 @@
 -(void) downloadString: (NSDictionary *) config {
     StringDownloader* downloader = [[StringDownloader alloc] init];
     downloader.successBlock = ^(NSData* data) {
-        NSLog(@"Enter success block");
         NSString* string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
         
         [self.kirinHelper jsCallback:@"payload" 
