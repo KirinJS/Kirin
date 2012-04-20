@@ -57,7 +57,7 @@
 
 - (KirinAppDelegateHelper*) bindAppDelegate: (id) nativeObject toModule: (NSString*) moduleName;
 
-- (void) unload;
+- (void) unloadKirin;
 
 SYNTHESIZE_SINGLETON_HEADER_FOR_CLASS(Kirin)
 
