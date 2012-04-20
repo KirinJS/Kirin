@@ -85,6 +85,13 @@
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
         id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
+        if ([service respondsToSelector:@selector(onStop)]) {
+            [service onStop];
+        }
+    }
+    
+    for (int i=0, max=[self.allServices count]; i<max; i++) {
+        id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
         if ([service respondsToSelector:@selector(onUnload)]) {
             [service onUnload];
         }
