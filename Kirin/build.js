@@ -90,6 +90,11 @@ function buildAll (argv, dir) {
 				args["ios.configuration"] = argv[i+1];
 				i++;
 				break;
+			case "--android":
+				args.platform = "android";
+				args.compileNative = true;
+				break;
+				break;				
 			case "--initialize":
 				args.projectInit = true;
 				args.compileNative = false;
