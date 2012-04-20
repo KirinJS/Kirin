@@ -51,6 +51,7 @@
 
 - (void)requestPopulateJSWithCallback:(NSString *)updateCallback {
     [self.kirinHelper jsCallback:updateCallback withArgsList:[[self settingsAsDictionary] JSONRepresentation]];
+    [self.kirinHelper cleanupCallback:updateCallback, nil];
 }
 
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
