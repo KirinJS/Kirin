@@ -182,20 +182,6 @@ function buildAll (argv, dir) {
 		}
 	}
 	
-
-	var info = loadInfo(dir);	
-	if (environment.noJSBuildDir) {
-		environment.minify = false;
-		environment.jslint = false;
-	} else if (!environment.buildDir) {
-
-		environment.cwd = dir;
-
-		environment.buildDir = buildtools.deriveBuildPath(environment.platform, dir, info);
-	}
-	
-
-	
 	if (args.buildType === "none") {
 		// noop build type.
 		return;
@@ -207,6 +193,19 @@ function buildAll (argv, dir) {
 		help("Not a valid platform and/or buildtype");
 	}
 	
+
+	var info = loadInfo(dir);	
+	if (environment.noJSBuildDir) {
+		environment.minify = false;
+		environment.jslint = false;
+	} else if (!environment.buildDir) {
+		environment.cwd = dir;
+		environment.buildDir = buildtools.deriveBuildPath(environment.platform, dir, info);
+	}
+	
+
+	
+
 	
 	var filters = buildtools.filters(args.platform, args.buildType);
 	environment.excludeRegexp = new RegExp("-" + filters.negative.join("|-"));
