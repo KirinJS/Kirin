@@ -15,6 +15,8 @@
 
 - (void) onStart;
 
+- (void) onStop;
+
 - (void) onUnload;
 
 - (NSString*) moduleName;
