@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.databases;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,6 +3,7 @@ package com.futureplatforms.kirin.helpers;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.futureplatforms.kirin.extensions.IKirinExtension;
 import com.futureplatforms.kirin.internal.IJsContext;
 import com.futureplatforms.kirin.internal.INativeContext;
 
@@ -29,7 +30,12 @@ public class KirinScreenHelper extends KirinUiFragmentHelper {
 	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO 
+		IKirinExtension extension = getAppState().getActiveExtension();
+		if (extension != null) {
+			extension.onActivityResult(requestCode, resultCode, data);
+			// TODO what happens if there is a chain of extensions?
+			getAppState().setActiveExtension(null);
+		}
 	}	
 	
 }

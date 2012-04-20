@@ -15,18 +15,15 @@
 */
 
 
-package com.futureplatforms.kirin;
+package com.futureplatforms.kirin.extensions.settings;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-public interface IJava2Js {
-    void callCallback(String callback, Object... args);
-    void deleteCallback(String... callbacks);
-    
-    void callJS(String pattern, Object... args);
-    
-    IKirinDropbox getDropbox();
-    
-    String getPathToJavascriptDir();
-    
-    Object getService(String proxyName);
+public interface ISettingsBackend {
+
+    public abstract void updateContents_withDeletes_(JSONObject contents, JSONArray deletes);
+
+    public abstract void requestPopulateJSWithCallback_(String callbackToken);
+
 }

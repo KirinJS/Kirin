@@ -15,16 +15,18 @@
 */
 
 
-package com.futureplatforms.kirin.api;
+package com.futureplatforms.kirin.extensions.networking;
 
 import org.json.JSONObject;
 
-import com.futureplatforms.kirin.services.IPlatformService;
+import com.futureplatforms.kirin.extensions.IKirinExtension;
 
-public interface IFacebookBackend extends IPlatformService {
-	void procureAccessToken_(JSONObject params);
+public interface INetworkingBackend extends IKirinExtension {
+    void downloadJSONList_(JSONObject config);
 
-	void handlePostRequest_(JSONObject params);
+    void downloadJSON_(JSONObject config);
 
-	void showErrorMessage_(String title, String msg);
+    void downloadFile_(JSONObject config);
+
+    void deleteDownloadedFile_(JSONObject config);
 }

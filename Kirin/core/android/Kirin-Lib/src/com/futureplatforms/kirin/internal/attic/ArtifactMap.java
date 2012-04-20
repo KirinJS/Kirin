@@ -20,7 +20,7 @@ package com.futureplatforms.kirin.internal.attic;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.futureplatforms.kirin.IArtifacts;
+import com.futureplatforms.kirin.attic.IArtifacts;
 
 public class ArtifactMap implements IArtifacts {
 

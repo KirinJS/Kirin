@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.localnotifications;
 
 import java.util.Map;
 
@@ -41,10 +41,9 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.api.ILocalNotificationsBackend;
-import com.futureplatforms.kirin.external.LocalNotificationAlarmReceiver;
+import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 
-public class LocalNotificationsBackend implements ILocalNotificationsBackend {
+public class LocalNotificationsBackend extends KirinExtensionAdapter implements ILocalNotificationsBackend {
 
     private static final String PREFS_PREFIX = "localNotification.";
     private static final UriMatcher URI_MATCHER;
@@ -72,12 +71,13 @@ public class LocalNotificationsBackend implements ILocalNotificationsBackend {
     }
 
     public LocalNotificationsBackend(Context context, SharedPreferences prefs) {
+    	super(context, "LocalNotifications");
         mContext = context;
         mPrefs = prefs;
     }
 
     @Override
-    public void onAdditionToWebView() {
+    public void onLoad() {
         // check we're on external storage. 
         // if we are, we probably want to reschedule these alarms.
         int flags = mContext.getApplicationInfo().flags;

@@ -62,6 +62,9 @@ public class NativeContext implements INativeContext {
 				logThread(object, "custom background");
 			}
 			objectHolder = new DefaultObjectHandler(executor, object);
+		} else {
+			logThread(object, "default background");
+			objectHolder = new DefaultObjectHandler(mDefaultExecutorService, object);
 		}
 		mObjectHolders.put(moduleName, objectHolder);
 	}

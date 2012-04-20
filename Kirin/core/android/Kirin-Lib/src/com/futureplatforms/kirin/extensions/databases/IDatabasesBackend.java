@@ -15,19 +15,23 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.databases;
 
-import android.util.Log;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
-import com.futureplatforms.kirin.C;
+import com.futureplatforms.kirin.extensions.IKirinExtension;
 
-public class DebugConsole implements IPlatformService {
-    public void log_atLevel_(String message, String level) {
-        Log.i(C.JS_TAG, message);
-    }
+public interface IDatabasesBackend extends IKirinExtension {
+    void db_openOrCreate_(String dbName, JSONObject config);
 
-    @Override
-    public void onAdditionToWebView() {
-        // don't need to do anything.
-    }
+    void beginTransaction_(JSONObject config);
+
+    void tx_appendToTransactionScript_(String txId, JSONArray log);
+
+    void tx_appendToOpenerScript_(String txId, JSONArray log);
+
+    void endTransaction_(String txId);
+
+    void diposeToken_(String token);
 }

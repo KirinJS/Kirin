@@ -38,7 +38,7 @@ public class SDCardFileUtils {
     private boolean mBaseDirAvailable = false;
 
     public SDCardFileUtils(String path) {
-        mBaseDir = new File(path);
+    	mBaseDir = new File(path);
     }
 
     public void checkStorageAvailable() throws IOException {
@@ -111,11 +111,12 @@ public class SDCardFileUtils {
         return in;
     }
 
-    public void deleteFiles(Context context, Set<String> filenames) {
+    public int deleteFiles(Context context, Set<String> filenames) {
         int count = 0;
         for (String filename : filenames) {
             count += deleteFile(context, filename);
         }
+        return count;
     }
 
     public int deleteFile(Context context, String filename) {

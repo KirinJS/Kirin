@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.settings;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -24,22 +24,36 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 
-import com.futureplatforms.kirin.IJava2Js;
-import com.futureplatforms.kirin.api.ISettingsBackend;
+import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 
-public class SettingsBackend implements IPlatformService, ISettingsBackend {
+public class SettingsBackend extends KirinExtensionAdapter implements ISettingsBackend {
 
     private SharedPreferences mPreferences;
-    private IJava2Js mJS;
 
-    public SettingsBackend(IJava2Js js, SharedPreferences preferences) {
-        mJS = js;
+    public SettingsBackend(Context context) {
+    	this(context, null);
+    }
+    
+    public SettingsBackend(Context context, SharedPreferences preferences) {
+    	super(context, "Settings");
+    	if (preferences == null) {
+    		preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    	}
         mPreferences = preferences;
     }
 
+    @Override
+    public void onLoad() {
+    	super.onLoad();
+        mKirinHelper.jsMethod("mergeOrOverwrite", mPreferences.getAll());
+        mKirinHelper.jsMethod("resetEnvironment");
+    }
+    
     /* (non-Javadoc)
      * @see com.futureplatforms.android.jscore.services.ISettingsBackend#updateContents_withDeletes_(org.json.JSONObject, org.json.JSONArray)
      */
@@ -83,15 +97,8 @@ public class SettingsBackend implements IPlatformService, ISettingsBackend {
         Map<String, ?> copy = mPreferences.getAll();
         JSONObject obj = new JSONObject(copy);
 
-        mJS.callCallback(callbackToken, obj);
-        mJS.deleteCallback(callbackToken);
-
+        mKirinHelper.jsCallback(callbackToken, obj);
+        mKirinHelper.cleanupCallback(callbackToken);
     }
 
-    @Override
-    public void onAdditionToWebView() {
-        Map<String, ?> copy = mPreferences.getAll();
-        JSONObject obj = new JSONObject(copy);
-        mJS.callJS("initializeSettings({0})", obj.toString());
-    }
 }

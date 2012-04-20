@@ -15,13 +15,19 @@
 */
 
 
-package com.futureplatforms.kirin.api;
+package com.futureplatforms.kirin.attic;
 
-import org.json.JSONArray;
+import com.futureplatforms.kirin.IKirinDropbox;
 
-import com.futureplatforms.kirin.services.IPlatformService;
 
-public interface ILocalNotificationsBackend extends IPlatformService {
-    void scheduleNotifications_(JSONArray notifications);
-    void cancelNotifications_(JSONArray notificationIds);
+public interface IJava2Js {
+    void callCallback(String callback, Object... args);
+    void deleteCallback(String... callbacks);
+    
+    void callJS(String pattern, Object... args);
+    
+    IKirinDropbox getDropbox();
+    
+    String getPathToJavascriptDir();
+    
 }

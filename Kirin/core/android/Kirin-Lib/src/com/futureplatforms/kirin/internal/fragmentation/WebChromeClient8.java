@@ -19,6 +19,7 @@ package com.futureplatforms.kirin.internal.fragmentation;
 
 import java.text.MessageFormat;
 
+import android.annotation.TargetApi;
 import android.util.Log;
 import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
@@ -26,6 +27,7 @@ import android.webkit.WebChromeClient;
 
 import com.futureplatforms.kirin.C;
 
+@TargetApi(8)
 public class WebChromeClient8 extends WebChromeClient {
 
     // this will die on SDK < 8

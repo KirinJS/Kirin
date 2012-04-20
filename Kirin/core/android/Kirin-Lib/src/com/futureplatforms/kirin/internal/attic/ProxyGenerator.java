@@ -21,33 +21,11 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.futureplatforms.kirin.IJava2Js;
+import com.futureplatforms.kirin.helpers.IKirinHelper;
 
 public class ProxyGenerator {
 
-    private final IJava2Js mJava2Js;
-    
-    private final String mJSMethodCallPattern;
-    
-    public ProxyGenerator(IJava2Js js, String methodPattern) {
-    	mJava2Js = js;
-       	mJSMethodCallPattern = methodPattern;
-    }
-    
-    private String toString(Object obj) {
-        if (obj instanceof String) {
-            return '"' + obj.toString() + '"';
-        } else if (obj instanceof Long) {
-            return Long.toString(((Long) obj).longValue());
-        } else if (obj instanceof Integer) {
-            return Integer.toString(((Integer) obj).intValue());
-        } else if (obj instanceof Short) {
-            return Short.toString(((Short) obj).shortValue());
-        }
-        return obj.toString();
-    }
-    
-    public <T> T generate(Class<T> baseInterface, Class<?>... otherClasses) {
+    public <T> T generate(final IKirinHelper kirinHelper, Class<T> baseInterface, Class<?>... otherClasses) {
         Class<?>[] allClasses;
         
         if (otherClasses.length == 0) {
@@ -57,23 +35,10 @@ public class ProxyGenerator {
             allClasses[0] = baseInterface;
             System.arraycopy(otherClasses, 0, allClasses, 1, otherClasses.length);
         }
-        InvocationHandler h = new InvocationHandler() {
-            
+        InvocationHandler h = new InvocationHandler() {            
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
-                String methodName = method.getName();
-                StringBuilder sb = new StringBuilder();
-                boolean isFirst = true;
-                for (Object arg : args) {
-                    if (isFirst) {
-                        isFirst = false;
-                    } else {
-                        sb.append(",");
-                    }
-                    sb.append(ProxyGenerator.this.toString(arg));
-                }
-              mJava2Js.callJS(mJSMethodCallPattern, methodName, sb);
+            	kirinHelper.jsMethod(method.getName(), (Object[]) args);
                 return null;
             }
         };

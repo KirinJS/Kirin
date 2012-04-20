@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.networking;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -39,17 +40,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
+import android.os.Environment;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.IJava2Js;
 import com.futureplatforms.kirin.R;
-import com.futureplatforms.kirin.api.INetworkingBackend;
+import com.futureplatforms.kirin.attic.IJava2Js;
+import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
 import com.futureplatforms.kirin.internal.attic.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.SDCardFileUtils;
 
-public class NetworkingBackend implements INetworkingBackend {
+public class NetworkingBackend extends KirinExtensionAdapter implements INetworkingBackend {
 
 	private final Context mContext;
 
@@ -63,13 +65,24 @@ public class NetworkingBackend implements INetworkingBackend {
 
 	private HttpClient mHttpClient;
 
+	
+	
 	public NetworkingBackend(Context context, IJava2Js js,
 			String saveFileLocation) {
+		super(context, "Networking");
 		mContext = context;
 
-		mDownloadingCount = new AtomicInteger(0);
-		mFileUtils = new SDCardFileUtils(saveFileLocation);
+		
+        String packageName = mContext.getPackageName();
+        String sdCardPrefix = Environment.getExternalStorageDirectory().getPath();
+        String path = sdCardPrefix + MessageFormat.format("/Android/data/{0}/files", packageName);
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
+		mFileUtils = new SDCardFileUtils(path);
 		mJS = js;
+		
+		mDownloadingCount = new AtomicInteger(0);
 	}
 
 	protected String downloadString(JSONObject config) throws IOException {
@@ -338,7 +351,7 @@ public class NetworkingBackend implements INetworkingBackend {
 	}
 
 	@Override
-	public void onAdditionToWebView() {
+	public void onLoad() {
 
 	}
 

@@ -3,12 +3,17 @@ package com.futureplatforms.kirin.internal;
 import android.app.Activity;
 
 import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.extensions.IKirinExtension;
 import com.futureplatforms.kirin.helpers.IKirinState;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
 
 public class KirinAppState implements IKirinState {
 
 	private final IKirinDropbox mDropbox;
+	
+	private Activity mCurrentActivity;
+	
+	private IKirinExtension mCurrentExtension;
 	
 	public KirinAppState() {
 		this(null);
@@ -20,12 +25,6 @@ public class KirinAppState implements IKirinState {
 		}
 		mDropbox = dropbox;
 	}
-	
-	@Override
-	public Activity getActivity() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public IKirinDropbox getDropbox() {
@@ -34,8 +33,23 @@ public class KirinAppState implements IKirinState {
 
 	@Override
 	public void setActivity(Activity activity) {
-		// TODO Auto-generated method stub
-		
+		mCurrentActivity = activity;
 	}
+
+	@Override
+	public Activity getActivity() {
+		return mCurrentActivity;
+	}
+	
+	@Override
+	public void setActiveExtension(IKirinExtension extension) {
+		mCurrentExtension = extension;
+	}
+
+	@Override
+	public IKirinExtension getActiveExtension() {
+		return mCurrentExtension;
+	}
+
 
 }

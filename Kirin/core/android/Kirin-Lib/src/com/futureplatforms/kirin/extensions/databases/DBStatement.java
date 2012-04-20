@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.databases;
 
 import org.json.JSONArray;
 

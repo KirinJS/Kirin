@@ -15,13 +15,13 @@
 */
 
 
-package com.futureplatforms.kirin.api;
+package com.futureplatforms.kirin.extensions.localnotifications;
 
-/**
- * Marker interface to help Proguard not munge our methods.
- * @author james
- *
- */
-public interface IJs2Java {
+import org.json.JSONArray;
 
+import com.futureplatforms.kirin.extensions.IKirinExtension;
+
+public interface ILocalNotificationsBackend extends IKirinExtension {
+    void scheduleNotifications_(JSONArray notifications);
+    void cancelNotifications_(JSONArray notificationIds);
 }

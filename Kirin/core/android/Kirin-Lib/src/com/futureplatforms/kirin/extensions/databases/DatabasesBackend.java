@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions.databases;
 
 import static com.futureplatforms.kirin.internal.attic.JSONUtils.stringOrNull;
 
@@ -27,6 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,15 +46,16 @@ import android.util.Log;
 
 import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.IKirinDropbox;
-import com.futureplatforms.kirin.IJava2Js;
-import com.futureplatforms.kirin.api.IDatabasesBackend;
+import com.futureplatforms.kirin.attic.IJava2Js;
+import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
+import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
+import com.futureplatforms.kirin.helpers.IKirinServiceOnNonDefaultThread;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer4;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer5;
-import com.futureplatforms.kirin.services.DBStatement.StatementType;
 
-public class DatabasesBackend implements IDatabasesBackend {
+public class DatabasesBackend extends KirinExtensionAdapter implements IDatabasesBackend, IKirinServiceOnNonDefaultThread {
 
     private final IJava2Js mJS;
     private final SharedPreferences mPrefs;
@@ -86,7 +88,8 @@ public class DatabasesBackend implements IDatabasesBackend {
     }
 
     public DatabasesBackend(Context context, SharedPreferences preferences, IJava2Js js, ExecutorService readExecutor, ExecutorService writeExecutor) {
-        mJS = js;
+        super(context, "Databases");
+    	mJS = js;
         mPrefs = preferences;
         mContext = context;
         mWritingExecutor = writeExecutor;
@@ -160,7 +163,7 @@ public class DatabasesBackend implements IDatabasesBackend {
             mDatabases.put(dbName, db);
         }
 
-        int existingVersion = mPrefs.getInt("db_revision_" + dbName, -1);
+        int existingVersion = getDatabaseVersion(dbName);
         if (existingVersion != requestedVersion) {
             DBTransaction tx = mInFlightTransactions.get(txId);
             assert tx == null;
@@ -168,22 +171,30 @@ public class DatabasesBackend implements IDatabasesBackend {
             mInFlightTransactions.put(txId, tx);
             if (existingVersion == -1) {
                 // we need to call onCreate
-                mJS.callCallback(onCreate);
+                mKirinHelper.jsCallback(onCreate);
             } else {
                 // we need to call onUpdate
-                mJS.callCallback(onUpdate, existingVersion, requestedVersion);
+                mKirinHelper.jsCallback(onUpdate, existingVersion, requestedVersion);
             }
-            mJS.deleteCallback(onCreate, onUpdate);
+            mKirinHelper.cleanupCallback(onCreate, onUpdate);
 
         } else {
-            mJS.callCallback(onOpened);
-            mJS.deleteCallback(onOpened, onError, onUpdate, onCreate);
+            mKirinHelper.jsCallback(onOpened);
+            mKirinHelper.cleanupCallback(onOpened, onError, onUpdate, onCreate);
         }
     }
 
+    private void setDatabaseVersion(String dbName, int schemaVersion) {
+		mPrefs.edit().putInt("db_revision_" + dbName, schemaVersion).commit();
+	}
+    
+	private int getDatabaseVersion(String dbName) {
+		return mPrefs.getInt("db_revision_" + dbName, -1);
+	}
+
     @Override
     public void diposeToken_(String token) {
-        Object obj = mJS.getDropbox().consume(token);
+        Object obj = mKirinHelper.getDropbox().consume(token);
         if (obj instanceof Cursor) {
             ((Cursor) obj).close();
         }
@@ -203,8 +214,8 @@ public class DatabasesBackend implements IDatabasesBackend {
             }
         }
 
-        mJS.deleteCallback(tx.mOnSuccess, tx.mOnError);
-        mJS.deleteCallback(callbacks.toArray(new String[callbacks.size()]));
+        mKirinHelper.cleanupCallback(tx.mOnSuccess, tx.mOnError);
+        mKirinHelper.cleanupCallback(callbacks.toArray(new String[callbacks.size()]));
     }
 
     @Override
@@ -219,7 +230,8 @@ public class DatabasesBackend implements IDatabasesBackend {
         Runnable job = new Runnable() {
             public void run() {
 
-                SQLiteDatabase db = mDatabases.get(tx.mDbName);
+                String dbName = tx.mDbName;
+				SQLiteDatabase db = mDatabases.get(dbName);
                 String onError = null;
 
                 try {
@@ -233,15 +245,15 @@ public class DatabasesBackend implements IDatabasesBackend {
                     }
                     setNativeTransactionSuccessful(db);
                 } catch (SQLException e) {
-                    mJS.callCallback(onError, '"' + e.getLocalizedMessage() + '"');
-                    mJS.callCallback(tx.mOnError, '"' + e.getLocalizedMessage() + '"');
+                    mKirinHelper.jsCallback(onError, e.getLocalizedMessage());
+                    mKirinHelper.jsCallback(tx.mOnError, e.getLocalizedMessage());
                     cleanupTx(tx);
                     return;
                 } finally {
                     endNativeTransaction(db);
                 }
 
-                IKirinDropbox dropbox = mJS.getDropbox();
+                IKirinDropbox dropbox = mKirinHelper.getDropbox();
                 for (DBStatement s : tx.getEntries()) {
                     String onSuccess = s.mOnSuccess;
                     Cursor cursor = s.mResult;
@@ -253,23 +265,23 @@ public class DatabasesBackend implements IDatabasesBackend {
 
                     switch (s.mType) {
                     case rowset:
-                        mJS.callCallback(onSuccess, "\"" + dropbox.put("db.rowset.", cursor) + "\"");
+                        mKirinHelper.jsCallback(onSuccess, dropbox.put("db.rowset.", cursor));
                         break;
                     case file:
-                        mJS.callCallback(onSuccess);
+                        mKirinHelper.jsCallback(onSuccess);
                         break;
                     case row:
                         if (emptyResults) {
-                            mJS.callCallback(onSuccess, "{}");
+                            mKirinHelper.jsCallback(onSuccess, new JSONObject());
                         } else {
-                            mJS.callCallback(onSuccess, coerceToJSONObject(columnNames(cursor), cursor));
+                            mKirinHelper.jsCallback(onSuccess, coerceToJSONObject(columnNames(cursor), cursor));
                         }
                         break;
                     case array:
                         if (emptyResults) {
-                            mJS.callCallback(onSuccess, "[]");
+                            mKirinHelper.jsCallback(onSuccess, new JSONArray());
                         } else {
-                            mJS.callCallback(onSuccess, coerceToJSONArray(columnNames(cursor), cursor));
+                            mKirinHelper.jsCallback(onSuccess, coerceToJSONArray(columnNames(cursor), cursor));
                         }
                     }
 
@@ -278,12 +290,13 @@ public class DatabasesBackend implements IDatabasesBackend {
                     }
                 }
 
-                if (tx.mSchemaVersion >= 0) {
+                int schemaVersion = tx.mSchemaVersion;
+				if (schemaVersion >= 0) {
                     // update the schema version if it needs it.
-                    mPrefs.edit().putInt("db_revision_" + tx.mDbName, tx.mSchemaVersion).commit();
+                    setDatabaseVersion(dbName, schemaVersion);
                 }
 
-                mJS.callCallback(tx.mOnSuccess);
+                mKirinHelper.jsCallback(tx.mOnSuccess);
                 cleanupTx(tx);
             }
         };
@@ -419,8 +432,14 @@ public class DatabasesBackend implements IDatabasesBackend {
     }
 
     @Override
-    public void onAdditionToWebView() {
+    public void onLoad() {
         // NOP
     }
+
+	@Override
+	public Executor getExecutor() {
+		return Executors.newFixedThreadPool(1);
+	}
+
 
 }

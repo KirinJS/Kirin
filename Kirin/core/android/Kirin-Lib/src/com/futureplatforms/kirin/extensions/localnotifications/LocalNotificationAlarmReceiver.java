@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.external;
+package com.futureplatforms.kirin.extensions.localnotifications;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -28,7 +28,6 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.services.LocalNotificationsBackend;
 
 public class LocalNotificationAlarmReceiver extends BroadcastReceiver {
 

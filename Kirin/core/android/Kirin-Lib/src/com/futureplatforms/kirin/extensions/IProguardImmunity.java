@@ -15,23 +15,13 @@
 */
 
 
-package com.futureplatforms.kirin.api;
+package com.futureplatforms.kirin.extensions;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+/**
+ * Marker interface to help Proguard not munge our methods.
+ * @author james
+ * used to be called: IJs2Java
+ */
+public interface IProguardImmunity {
 
-import com.futureplatforms.kirin.services.IPlatformService;
-
-public interface IDatabasesBackend extends IPlatformService {
-    void db_openOrCreate_(String dbName, JSONObject config);
-
-    void beginTransaction_(JSONObject config);
-
-    void tx_appendToTransactionScript_(String txId, JSONArray log);
-
-    void tx_appendToOpenerScript_(String txId, JSONArray log);
-
-    void endTransaction_(String txId);
-
-    void diposeToken_(String token);
 }

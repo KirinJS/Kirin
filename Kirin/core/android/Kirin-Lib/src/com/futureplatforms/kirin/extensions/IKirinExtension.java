@@ -15,11 +15,18 @@
 */
 
 
-package com.futureplatforms.kirin.services;
+package com.futureplatforms.kirin.extensions;
 
-import com.futureplatforms.kirin.api.IJs2Java;
+import android.content.Intent;
 
+public interface IKirinExtension extends IProguardImmunity {
+    void onLoad();
 
-public interface IPlatformService extends IJs2Java {
-    void onAdditionToWebView();
+    void onStart();
+	
+	void onStop();
+	
+	void onUnload();
+	
+	void onActivityResult(int requestCode, int resultCode, Intent data);
 }

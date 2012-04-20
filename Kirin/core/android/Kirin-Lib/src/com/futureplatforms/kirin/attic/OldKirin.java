@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin;
+package com.futureplatforms.kirin.attic;
 
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -36,21 +36,21 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.futureplatforms.kirin.api.IJs2Java;
-import com.futureplatforms.kirin.internal.attic.ArtifactMap;
+import com.futureplatforms.kirin.C;
+import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.extensions.IKirinExtension;
+import com.futureplatforms.kirin.extensions.IProguardImmunity;
+import com.futureplatforms.kirin.extensions.databases.DatabasesBackend;
+import com.futureplatforms.kirin.extensions.localnotifications.LocalNotificationsBackend;
+import com.futureplatforms.kirin.extensions.networking.NetworkingBackend;
+import com.futureplatforms.kirin.extensions.settings.SettingsBackend;
 import com.futureplatforms.kirin.internal.attic.JSCallJava;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
 import com.futureplatforms.kirin.internal.attic.NativeObjectHolder;
-import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.fragmentation.WebChromeClient7;
 import com.futureplatforms.kirin.internal.fragmentation.WebChromeClient8;
-import com.futureplatforms.kirin.services.DatabasesBackend;
-import com.futureplatforms.kirin.services.IPlatformService;
-import com.futureplatforms.kirin.services.LocalNotificationsBackend;
-import com.futureplatforms.kirin.services.NetworkingBackend;
-import com.futureplatforms.kirin.services.SettingsBackend;
 
-public class OldKirin implements IJs2Java {
+public class OldKirin implements IProguardImmunity {
 
     private Context mContext;
 
@@ -71,9 +71,6 @@ public class OldKirin implements IJs2Java {
 
     private String mFileAreaPath;
 
-    private ArtifactMap mArtefactMap;
-    
-    private ProxyGenerator mScreenProxyGenerator;
 
     public OldKirin(Context context, Application app) {
     	this(context, app, true);
@@ -95,7 +92,6 @@ public class OldKirin implements IJs2Java {
     }
 
     public void initialize() {
-        mArtefactMap = new ArtifactMap();
         mDefaultExecutorService = Executors.newCachedThreadPool();
         mSingleThreadedExecutorService = Executors.newSingleThreadExecutor();
         
@@ -103,7 +99,6 @@ public class OldKirin implements IJs2Java {
 
         loadServices();
         
-        mScreenProxyGenerator = new ProxyGenerator(new Java2Js(), "js2nativeScreenProxy.{0}({1})");
     }
 
     private void initWebView(WebView webView) {
@@ -225,10 +220,6 @@ public class OldKirin implements IJs2Java {
             return "generated-javascript";
         }
 
-        @Override
-        public Object getService(String proxyName) {
-            return OldKirin.this.getService(proxyName);
-        }
     }
 
     public Object getService(String proxyName) {
@@ -248,9 +239,9 @@ public class OldKirin implements IJs2Java {
         }
 
         SharedPreferences prefs = mContext.getSharedPreferences("common-settings", 0);
-        getArtifacts().put(SharedPreferences.class, prefs);
+        //getArtifacts().put(SharedPreferences.class, prefs);
 
-        loadService("Settings-backend", new SettingsBackend(java2Js, prefs));
+        loadService("Settings-backend", new SettingsBackend(mContext, prefs));
         // sigh. We can't use apostrophes.
         java2Js.callJS("native2js.require(\"Environment\")");
 
@@ -267,17 +258,17 @@ public class OldKirin implements IJs2Java {
         java2Js.callJS("native2js.initializeApplicationLifecycle()");
     }
 
-    private IPlatformService loadService(String name, IPlatformService service) {
+    private IKirinExtension loadService(String name, IKirinExtension service) {
         return loadService(name, service, mDefaultExecutorService);
     }
 
-    private IPlatformService loadService(String name, IPlatformService service, ExecutorService threads) {
+    private IKirinExtension loadService(String name, IKirinExtension service, ExecutorService threads) {
         // this uses a handler, and run on the main thread.
         // addJavaUIObjectToJS(service, name);
 
         // this uses its own thread executor service to run in.
         addJavaObjectToJS(service, name, threads);
-        service.onAdditionToWebView();
+        service.onLoad();
 
         return service;
     }
@@ -347,21 +338,7 @@ public class OldKirin implements IJs2Java {
      * 
      */
     
-    /**
-     * To make a dynamic proxy for the screen module. This should be an interface given 
-     * by moduleProxy.
-     * 
-     * <tt>
-     * IMyScreen myScreen = mKirin.bindScreen(this, IMyScreen.class, "MyScreen");
-     * myScreen.onResume();
-     * myScreen.onButtonClicked();
-     * myScreen.reportScore(1000);
-     * </tt>
-     */
-    public <T> T bindScreen(Activity activity, Class<T> moduleProxy, String screenName) {
-    	setCurrentScreen(screenName, activity);
-    	return mScreenProxyGenerator.generate(moduleProxy);
-    }
+
     
     /**
      * Bind the current screen module.js to the activity.
@@ -395,10 +372,6 @@ public class OldKirin implements IJs2Java {
      */
     public IKirinDropbox getDropbox() {
         return mDropbox;
-    }
-
-    public IArtifacts getArtifacts() {
-        return mArtefactMap;
     }
 
     public String getExternalFilePath(String filename) {

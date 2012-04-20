@@ -15,18 +15,16 @@
 */
 
 
-package com.futureplatforms.kirin.api;
+package com.futureplatforms.kirin.attic;
 
-import org.json.JSONObject;
+public interface IArtifacts {
 
-import com.futureplatforms.kirin.services.IPlatformService;
+    <K, V extends K> void put(Class<K> clazz, V value);
 
-public interface INetworkingBackend extends IPlatformService {
-    void downloadJSONList_(JSONObject config);
+    <K> K get(Class<K> clazz);
 
-    void downloadJSON_(JSONObject config);
+    boolean containsKey(Class<?> clazz);
 
-    void downloadFile_(JSONObject config);
+    void clear();
 
-    void deleteDownloadedFile_(JSONObject config);
 }
