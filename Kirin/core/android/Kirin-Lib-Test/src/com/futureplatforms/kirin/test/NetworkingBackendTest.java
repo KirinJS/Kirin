@@ -28,7 +28,8 @@ import org.json.JSONObject;
 
 import android.test.AndroidTestCase;
 
-import com.futureplatforms.kirin.services.NetworkingBackend;
+import com.futureplatforms.kirin.extensions.networking.NetworkingBackend;
+import com.futureplatforms.kirin.test.dummies.DummyJavascript;
 
 public class NetworkingBackendTest extends AndroidTestCase {
 

@@ -24,6 +24,8 @@ import org.json.JSONObject;
 import android.test.AndroidTestCase;
 
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
+import com.futureplatforms.kirin.test.dummies.DummyJavascript;
+import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 public class DynamicProxyTest extends AndroidTestCase {
     private DummyJavascript mJS;
@@ -46,11 +48,11 @@ public class DynamicProxyTest extends AndroidTestCase {
         
         mJS = new DummyJavascript();
         
-        mGenerator = new ProxyGenerator(mJS, "javascript:EXPOSED_TO_NATIVE.js2nativeScreenProxy.{0}({1})");
+        mGenerator = new ProxyGenerator();
     }
     
     public void testInvocationHandler() throws JSONException {
-        ITestInterface proxy = mGenerator.generate(ITestInterface.class);
+        ITestInterface proxy = mGenerator.generate(new DummyKirinHelper(), ITestInterface.class);
         
         proxy.withNoArgs();
         

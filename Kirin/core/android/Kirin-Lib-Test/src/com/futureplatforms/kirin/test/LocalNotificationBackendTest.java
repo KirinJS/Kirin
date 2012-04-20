@@ -25,7 +25,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.test.AndroidTestCase;
 
-import com.futureplatforms.kirin.services.LocalNotificationsBackend;
+import com.futureplatforms.kirin.extensions.localnotifications.LocalNotificationsBackend;
 
 public class LocalNotificationBackendTest extends AndroidTestCase {
 

@@ -15,7 +15,7 @@
 */
 
 
-package com.futureplatforms.kirin.test;
+package com.futureplatforms.kirin.test.dummies;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
@@ -28,8 +28,8 @@ import junit.framework.Assert;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.IJava2Js;
 import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.attic.IJava2Js;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
 
 public class DummyJavascript implements IJava2Js {
@@ -118,9 +118,5 @@ public class DummyJavascript implements IJava2Js {
         return "javascript";
     }
 
-    @Override
-    public Object getService(String proxyName) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+
 }

@@ -35,13 +35,14 @@ import android.test.AndroidTestCase;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.services.DBStatement;
-import com.futureplatforms.kirin.services.DBStatement.StatementType;
-import com.futureplatforms.kirin.services.DBTransaction;
-import com.futureplatforms.kirin.services.DatabasesBackend;
+import com.futureplatforms.kirin.extensions.databases.DBStatement;
+import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
+import com.futureplatforms.kirin.extensions.databases.DBTransaction;
+import com.futureplatforms.kirin.extensions.databases.DatabasesBackend;
+import com.futureplatforms.kirin.test.dummies.DummyJavascript;
 
 
-public class DatabasesBackendTest extends AndroidTestCase {
+public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
     private DatabasesBackend mBackend;
 
