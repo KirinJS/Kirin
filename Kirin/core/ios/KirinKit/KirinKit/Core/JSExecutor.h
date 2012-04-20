@@ -16,6 +16,12 @@
 #define EXECUTE_CALLBACK_JS @"EXPOSED_TO_NATIVE.native2js.execCallback('%@')"
 #define EXECUTE_CALLBACK_WITH_ARGS_JS @"EXPOSED_TO_NATIVE.native2js.execCallback('%@', [%@])"
 
+#define DELETE_CALLBACK_JS @"EXPOSED_TO_NATIVE.native2js.deleteCallback(['%@'])"
+
+#define REGISTER_MODULE_WITH_METHODS @"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('%@', ['%@'])"
+
+#define UNREGISTER_MODULE @"EXPOSED_TO_NATIVE.native2js.unloadProxyForModule('%@')"
+
 @protocol JSExecutor <NSObject>
 - (void) execJS: (NSString*) js;
 @end

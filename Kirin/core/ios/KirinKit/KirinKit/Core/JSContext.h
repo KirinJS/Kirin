@@ -20,8 +20,4 @@
 
 - (void) js: (NSString*) js;
 
-- (void) registerObjectProxy: (NSString*) name withMethods:(NSArray*) methods;
-
-- (void) unregisterObjectProxy: (NSString*) name;
-
 @end

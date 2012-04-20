@@ -52,16 +52,4 @@
     [self performSelectorOnMainThread:@selector(jsOnMainThread:) withObject:js waitUntilDone:NO];
 }
 
-
-
-- (void) registerObjectProxy: (NSString*) name withMethods:(NSArray*) methods {
-    NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];
-    [self js: [NSString stringWithFormat:@"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('%@', ['%@'])",  name, methodJSON]];
-}
-
-- (void) unregisterObjectProxy: (NSString*) name {
-    [self js: [NSString stringWithFormat:@"EXPOSED_TO_NATIVE.native2js.unloadProxyForModule('%@')",  name]];
-}
-
-
 @end

@@ -44,17 +44,22 @@
 }
 
 - (void) onLoad {
+    // register the object so as to be callable from Javascript.
     [self.nativeContext registerNativeObject:self.nativeObject asName:self.jsModuleName];
-    [self.jsContext registerObjectProxy: self.jsModuleName withMethods:[self.nativeContext methodNamesFor: self.nativeObject]];
+    
+    // now tell the js what methods to construct a proxy with.
+    NSArray* methods = [self.nativeContext methodNamesFor: self.nativeObject];
+    // XXX this is a hack that we want to get rid of, to replace the colons with underscores.
+    NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];
+    
+    [self.jsContext js: [NSString stringWithFormat: REGISTER_MODULE_WITH_METHODS,  self.jsModuleName, methodJSON]];
 }
 
 - (void) onUnload {
-    
-    [self.jsContext unregisterObjectProxy:self.jsModuleName];
-    
+    [self.jsContext js: [NSString stringWithFormat: UNREGISTER_MODULE,  self.jsModuleName]];
+
     // possible race condition here. We should disallow any calls in onUnload() to native.
     [self.nativeContext unregisterNativeObject:self.jsModuleName];
-
 }
 
 - (void) jsMethod:(NSString *)methodName {
@@ -96,7 +101,7 @@
 
 - (void) cleanupCallbacks:(NSArray*) callbackIds {
     if ([callbackIds count]) {
-        [self.jsContext js:[NSString stringWithFormat: @"EXPOSED_TO_NATIVE.native2js.deleteCallback(['%@'])", [callbackIds componentsJoinedByString:@"', '"]]];
+        [self.jsContext js:[NSString stringWithFormat: DELETE_CALLBACK_JS, [callbackIds componentsJoinedByString:@"', '"]]];
     }
 }
 
