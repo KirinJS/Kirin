@@ -28,9 +28,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.Kirin;
-import com.futureplatforms.kirin.demo.hellokirin.TheApplication;
 import com.futureplatforms.kirin.demo.hellokirin.R;
+import com.futureplatforms.kirin.helpers.IKirinApplication;
+import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 import com.futureplatforms.kirin.ui.JSOnClickListener;
 
 public class DumbButtonActivity extends Activity {
@@ -38,19 +38,19 @@ public class DumbButtonActivity extends Activity {
     private Button mButton;
     private TextView mLabel;
 
-    Kirin mKirin;
+    private KirinScreenHelper mKirinHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        mKirin = ((TheApplication) getApplication()).getKirin();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dumb_button_activity);
 
+        mKirinHelper = ((IKirinApplication) getApplication()).getKirin().bindScreen("DumbButtonScreen", this);
+        mKirinHelper.onLoad();
         mButton = (Button) findViewById(R.id.dumb_button);
-        mButton.setOnClickListener(new JSOnClickListener(mKirin, "native2jsScreenProxy.onDumbButtonClick()"));
+        mButton.setOnClickListener(new JSOnClickListener(mKirinHelper, "onDumbButtonClick"));
 
-        findViewById(R.id.fp_logo_imageview).setOnClickListener(
-                new JSOnClickListener(mKirin, "native2jsScreenProxy.onNextScreenButtonClick()"));
+        findViewById(R.id.fp_logo_imageview).setOnClickListener(new JSOnClickListener(mKirinHelper, "onNextScreenButtonClick"));
 
         mLabel = (TextView) findViewById(R.id.dumb_label);
         setTitle("How big?");
@@ -59,7 +59,7 @@ public class DumbButtonActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        mKirin.setCurrentScreen("DumbButtonScreen", this);
+        mKirinHelper.jsMethod("onResume");
     }
     
     public void updateLabelSize_andText_(int size, String text) {

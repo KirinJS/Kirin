@@ -18,44 +18,40 @@
 package com.futureplatforms.kirin.demo.hellokirin.activity;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.Kirin;
-import com.futureplatforms.kirin.demo.hellokirin.TheApplication;
 import com.futureplatforms.kirin.demo.hellokirin.R;
+import com.futureplatforms.kirin.helpers.IKirinApplication;
+import com.futureplatforms.kirin.helpers.IKirinHelper;
+import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 import com.futureplatforms.kirin.ui.JSListAdapter;
 import com.futureplatforms.kirin.ui.KirinRowRenderer;
 
 public class DumbListActivity extends ListActivity {
 
-    protected Kirin mKirin;
-
-    protected String mScreenName;
+	private KirinScreenHelper mKirinHelper;
 
     protected KirinRowRenderer<JSONObject> mItemRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mKirin = ((TheApplication) getApplication()).getKirin();
+        mKirinHelper = ((IKirinApplication) getApplication()).getKirin().bindScreen("DumbListScreen", this);
 
         // we won't worry about arguments to this activity, though we know
         // how to do it.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dumb_list_activity);
-        mScreenName = "DumbListScreen";
 
-        mItemRenderer = new ObjectItemRenderer(mKirin, "native2jsScreenProxy.onListItemClick({0}, ''{1}'')", "key");
+        mItemRenderer = new ObjectItemRenderer(mKirinHelper, "onListItemClick", "key");
         setTitle("Alphabet");
+        mKirinHelper.onLoad();
     }
 
     public void populateList_(JSONArray jsonArray) {
@@ -79,14 +75,12 @@ public class DumbListActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mKirin.setCurrentScreen(mScreenName, this);
-        mKirin.fireEventIntoJS("native2jsScreenProxy.onResume()");
+        mKirinHelper.jsMethod("onResume");
     }
 
-    public static class ObjectItemRenderer implements KirinRowRenderer<JSONObject> {
+    public class ObjectItemRenderer implements KirinRowRenderer<JSONObject> {
 
-        private final String mEventName;
-        private final Kirin mJs;
+        private final String mMethodName;
 
         private final String mPropertyName;
 
@@ -94,9 +88,8 @@ public class DumbListActivity extends ListActivity {
             TextView mText;
         }
 
-        public ObjectItemRenderer(Kirin js, String onClickEvent, String propertyName) {
-            mEventName = onClickEvent;
-            mJs = js;
+        public ObjectItemRenderer(IKirinHelper js, String methodName, String propertyName) {
+            mMethodName = methodName;
             mPropertyName = propertyName;
         }
 
@@ -109,16 +102,12 @@ public class DumbListActivity extends ListActivity {
 
         @Override
         public void onItemClicked(View view, int index, JSONObject item) {
-            try {
-                mJs.fireEventIntoJS(mEventName, index, item.get(mPropertyName));
-            } catch (JSONException e) {
-                Log.e(C.TAG, "Can't get " + mPropertyName + " from item #" + index);
-            }
+            mKirinHelper.jsMethod(mMethodName, index, item.optString(mPropertyName));
         }
 
         @Override
         public void renderItem(View view, JSONObject item) {
-            ((ViewHolder) view.getTag()).mText.setText(item.optString("key", "unavailable"));
+            ((ViewHolder) view.getTag()).mText.setText(item.optString(mPropertyName));
         }
 
     }

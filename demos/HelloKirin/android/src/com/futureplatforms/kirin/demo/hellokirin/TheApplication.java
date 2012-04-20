@@ -19,9 +19,10 @@ package com.futureplatforms.kirin.demo.hellokirin;
 
 import android.app.Application;
 
+import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.Kirin;
 
-public class TheApplication extends Application {
+public class TheApplication extends Application implements IKirinApplication {
 
 	private Kirin mKirin;
 
@@ -29,9 +30,10 @@ public class TheApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		mKirin = new Kirin(this.getApplicationContext(), this);
+		mKirin = Kirin.create(this.getApplicationContext());
 	}
 
+	@Override
 	public Kirin getKirin() {
 		return mKirin;
 	}
