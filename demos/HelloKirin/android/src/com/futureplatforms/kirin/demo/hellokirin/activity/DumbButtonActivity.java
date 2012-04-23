@@ -63,7 +63,6 @@ public class DumbButtonActivity extends Activity {
     }
     
     public void updateLabelSize_andText_(int size, String text) {
-        Log.i(C.TAG, MessageFormat.format("updateLabel_ invoked with {0} and {1}", size, text));
         mLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         mLabel.setText(text);
         mLabel.invalidate();
