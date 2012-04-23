@@ -9,8 +9,6 @@
 #import "NativeContext.h"
 #import "JSON.h"
 #import "NativeObjectHolder.h"
-#import <objc/runtime.h>
-
 
 @interface NativeContext () 
 
@@ -35,30 +33,16 @@
     return self;
 }
 
-- (NSArray*) methodNamesFor: (id) obj {
-	NSMutableArray* selectorNames = [[[NSMutableArray alloc] init] autorelease];
-    Class class = object_getClass(obj);
-    while (class) {
-        int i=0;
-        unsigned int mc = 0;
-        Method * mlist = class_copyMethodList(class, &mc);
-    
-        for(i=0;i<mc;i++) {
-            [selectorNames addObject:NSStringFromSelector(method_getName(mlist[i]))];
-        }
-	
-        /* note mlist needs to be freed */
-        free(mlist);
-	
-        class = class_getSuperclass(class);
+- (NSArray*) methodNamesFor: (NSString*) moduleName {
+    NativeObjectHolder* holder = [self.nativeObjects objectForKey:moduleName];
+    if (!holder) {
+        [NSException raise:@"KirinNoSuchObjectException" format:@"There is no object registered called %@", moduleName];
     }
-    return selectorNames;
-	
+    return [holder methodNames];
 }
 
 - (void) registerNativeObject: (id) object asName: (NSString*) name {
     [self.nativeObjects setValue:[NativeObjectHolder holderForObject:object] forKey:name];
-//    [self.nativeObjects setValue:object forKey:name];
 }
 
 - (void) unregisterNativeObject: (NSString*) name {
@@ -67,12 +51,12 @@
     }
 }
 
-- (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) file andArgsList: (NSString*) query {
+- (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) fullMethodName andArgsList: (NSString*) query {
     NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
     id obj = holder ? holder.nativeObject : nil;
-    NSString* fullMethodName = [[file componentsSeparatedByString:@"_"] componentsJoinedByString:@":"];
+
     
-	SEL selector = NSSelectorFromString(fullMethodName);
+	SEL selector = [holder findSelectorFromString:fullMethodName];
 	if (obj && [obj respondsToSelector:selector]) {
         NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
@@ -98,7 +82,7 @@
                     [obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
                 }
             } @catch (NSException* exception) {
-                NSLog(@"Exception while executing %@.%@", host, file);
+                NSLog(@"Exception while executing %@.%@", host, fullMethodName);
                 
                 // Create a string based on the exception
                 NSString *exceptionMessage = [NSString stringWithFormat:@"%@\nReason: %@\nUser Info: %@", [exception name], [exception reason], [exception userInfo]];

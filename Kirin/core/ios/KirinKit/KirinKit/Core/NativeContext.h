@@ -16,7 +16,7 @@
 
 - (id) initWithDictionary: (NSMutableDictionary*) nativeObjs;
 
-- (NSArray*) methodNamesFor: (id) object;
+- (NSArray*) methodNamesFor: (NSString*) moduleName;
 
 - (void) registerNativeObject: (id) object asName: (NSString*) name;
 

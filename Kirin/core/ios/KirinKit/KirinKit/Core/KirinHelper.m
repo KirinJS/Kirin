@@ -48,11 +48,9 @@
     [self.nativeContext registerNativeObject:self.nativeObject asName:self.jsModuleName];
     
     // now tell the js what methods to construct a proxy with.
-    NSArray* methods = [self.nativeContext methodNamesFor: self.nativeObject];
-    // XXX this is a hack that we want to get rid of, to replace the colons with underscores.
-    NSString* methodJSON = [[[methods componentsJoinedByString:@"','"] componentsSeparatedByString:@":"] componentsJoinedByString:@"_"];
+    NSArray* methods = [self.nativeContext methodNamesFor: self.jsModuleName];
     
-    [self.jsContext js: [NSString stringWithFormat: REGISTER_MODULE_WITH_METHODS,  self.jsModuleName, methodJSON]];
+    [self.jsContext js: [NSString stringWithFormat: REGISTER_MODULE_WITH_METHODS,  self.jsModuleName, [methods JSONRepresentation]]];
 }
 
 - (void) onUnload {
