@@ -18,6 +18,6 @@
 package com.futureplatforms.kirin.demo.hellokirin.jsmodules;
 
 public interface IDumbButtonScreen {
-	void onResume();
 	void onDumbButtonClick();
+	void onNextScreenButtonClick();
 }
