@@ -3,7 +3,7 @@ package com.futureplatforms.kirin.test.dummies;
 import java.util.Collection;
 import java.util.List;
 
-import com.futureplatforms.kirin.core.internal.INativeContext;
+import com.futureplatforms.kirin.internal.core.INativeContext;
 
 public class DummyNativeContext implements INativeContext {
 

@@ -1,8 +1,8 @@
 package com.futureplatforms.kirin;
 
-import com.futureplatforms.kirin.helpers.IKirinApplication;
-
 import android.app.Application;
+
+import com.futureplatforms.kirin.helpers.IKirinApplication;
 
 public class TestingApplication extends Application implements IKirinApplication {
 

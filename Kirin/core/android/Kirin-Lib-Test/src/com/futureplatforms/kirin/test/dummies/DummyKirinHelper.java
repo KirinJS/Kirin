@@ -18,6 +18,7 @@ import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 import com.futureplatforms.kirin.helpers.IKirinHelper;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
+import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
@@ -167,6 +168,11 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	public IKirinFileSystem getFileSystem() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public <T> T createProxy(Class<T> interfaceClass) {
+		return new ProxyGenerator().generate(this, interfaceClass);
 	}
 	
 }

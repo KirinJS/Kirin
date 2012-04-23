@@ -2,9 +2,9 @@ package com.futureplatforms.kirin.test;
 
 import java.util.Collection;
 
-import com.futureplatforms.kirin.test.testable.TestableObjectHolder;
-
 import android.test.AndroidTestCase;
+
+import com.futureplatforms.kirin.test.testable.TestableObjectHolder;
 
 public class ObjectHolderTest extends AndroidTestCase {
 

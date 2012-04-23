@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.futureplatforms.kirin.core.internal.IJsContext;
+import com.futureplatforms.kirin.internal.core.IJsContext;
 
 public class DummyJsContext implements IJsContext{
 
