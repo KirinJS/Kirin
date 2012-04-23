@@ -43,4 +43,6 @@ public interface IKirinHelper {
 	void onLoad();
 	
 	void onUnload();
+	
+	<T> T createProxy(Class<T> interfaceClass);
 }

@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
+import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.IJsContext;
 import com.futureplatforms.kirin.internal.core.INativeContext;
 import com.futureplatforms.kirin.internal.core.JsCommands;
@@ -150,4 +151,8 @@ public class KirinHelper implements IKirinHelper {
 		return mAppState.getPaths();
 	}
 
+	@Override
+	public <T> T createProxy(Class<T> interfaceClass) {
+		return new ProxyGenerator().generate(this, interfaceClass);
+	}
 }
