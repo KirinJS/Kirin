@@ -391,6 +391,7 @@ public class DatabasesBackend extends KirinExtensionAdapter implements IDatabase
 
     protected Cursor execStatement(SQLiteDatabase db, DBStatement s) {
         if (s.mType == StatementType.file) {
+        	// TODO make this work a KirinFileSystem.
             String filename = "generated-javascript" + s.mSql; //;mJS.getPathToJavascriptDir() + s.mSql;
 
             try {

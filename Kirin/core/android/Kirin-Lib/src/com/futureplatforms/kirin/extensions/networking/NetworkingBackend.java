@@ -25,8 +25,6 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.apache.http.client.HttpClient;
@@ -45,8 +43,8 @@ import android.util.Log;
 
 import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.R;
-import com.futureplatforms.kirin.attic.IJava2Js;
 import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
+import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
 import com.futureplatforms.kirin.internal.attic.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.SDCardFileUtils;
@@ -57,7 +55,6 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 
 	private final SDCardFileUtils mFileUtils;
 
-	private final IJava2Js mJS;
 
 	private BroadcastReceiver mReceiver;
 
@@ -65,11 +62,13 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 
 	private HttpClient mHttpClient;
 
+	public NetworkingBackend(Context context) {
+		this(context, null, null);
+	}
 	
-	
-	public NetworkingBackend(Context context, IJava2Js js,
+	public NetworkingBackend(Context context, IKirinExtensionHelper kirinHelper,
 			String saveFileLocation) {
-		super(context, "Networking");
+		super(context, "Networking", kirinHelper);
 		mContext = context;
 
 		
@@ -80,7 +79,6 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
             path += "/";
         }
 		mFileUtils = new SDCardFileUtils(path);
-		mJS = js;
 		
 		mDownloadingCount = new AtomicInteger(0);
 	}
@@ -155,7 +153,7 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 		String filename = JSONUtils.stringOrNull(config, "filename", null);
 		try {
 			mFileUtils.deleteFile(mContext, filename);
-			mJS.callCallback(JSONUtils.stringOrNull(config, "onFinish", null));
+			mKirinHelper.jsCallback(config, "onFinish");
 		} catch (Exception e) {
 			Log.e(C.TAG, "Can't delete " + filename);
 			reportExceptionToJavascript(config, e);
@@ -166,15 +164,14 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 
 	private void reportExceptionToJavascript(JSONObject config, Exception e) {
 		Log.e(C.TAG, "Backend reported exception " + e, e);
-		mJS.callCallback(JSONUtils.stringOrNull(config, "onError", null),
-				'"' + e.getLocalizedMessage() + '"');
+		mKirinHelper.jsCallback(config, "onError", e.getLocalizedMessage());
 	}
 
 	@Override
 	public void downloadFile_(JSONObject config) {
 		try {
 			downloadFile(config.optString("url"), config.optString("filename"));
-			mJS.callCallback(JSONUtils.stringOrNull(config, "onFinish", null));
+			mKirinHelper.jsCallback(config, "onFinish");
 		} catch (IOException e) {
 			reportExceptionToJavascript(config, e);
 		} finally {
@@ -276,15 +273,13 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 			}
 
 			if (envelope != null) {
-				mJS.callCallback(
-						JSONUtils.stringOrNull(config, "envelope", null),
-						envelope);
+				mKirinHelper.jsCallback(config, "envelope", envelope);
 			}
 			if (array != null && eachCallback != null) {
 				for (int i = 0, max = array.length(); i < max; i++) {
 					Object item = array.get(i);
 					if (item != null) {
-						mJS.callCallback(eachCallback, item);
+						mKirinHelper.jsCallback(eachCallback, item);
 					}
 				}
 				arraySize = array.length();
@@ -293,13 +288,9 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 			if (array == null && envelope == null) {
 				Log.e(C.TAG, "Server provided badly formatted JSON: "
 						+ jsonString);
-				mJS.callCallback(
-						JSONUtils.stringOrNull(config, "onError", null),
-						"\"Invalid JSON\"");
+				mKirinHelper.jsCallback(config, "onError", "Invalid JSON");
 			} else {
-				mJS.callCallback(
-						JSONUtils.stringOrNull(config, "onFinish", null),
-						arraySize);
+				mKirinHelper.jsCallback(config, "onFinish", arraySize);
 			}
 		} catch (IOException e) {
 			Log.e(C.TAG, "Couldn't connect to the server", e);
@@ -320,10 +311,9 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 					+ jsonString);
 			Object obj = new JSONTokener(jsonString).nextValue();
             if (!(obj instanceof JSONArray) && !(obj instanceof JSONObject)) {
-                mJS.callCallback(JSONUtils.stringOrNull(config, "onError", null),
-                        '"' + "Invalid JSON response received" + '"');
+            	mKirinHelper.jsCallback(config, "onError", "Invalid JSON response received");
             } else {
-                mJS.callCallback(JSONUtils.stringOrNull(config, "payload", null), jsonString);
+            	mKirinHelper.jsCallback(config, "payload", new JSONTokener(jsonString).nextValue());
             }
 		} catch (IOException e) {
 			reportExceptionToJavascript(config, e);
@@ -335,19 +325,7 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 	}
 
 	private void cleanup(JSONObject config, String... callbacks) {
-
-		List<String> tokens = new ArrayList<String>();
-		for (String callback : callbacks) {
-			String token = JSONUtils.stringOrNull(config, callback, null);
-			if (token != null) {
-				tokens.add(token);
-			}
-		}
-
-		if (!tokens.isEmpty()) {
-			mJS.deleteCallback(tokens.toArray(new String[tokens.size()]));
-		}
-
+		mKirinHelper.cleanupCallback(config, callbacks);
 	}
 
 	@Override

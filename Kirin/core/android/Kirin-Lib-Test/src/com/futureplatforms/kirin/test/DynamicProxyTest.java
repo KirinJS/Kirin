@@ -24,11 +24,9 @@ import org.json.JSONObject;
 import android.test.AndroidTestCase;
 
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
-import com.futureplatforms.kirin.test.dummies.DummyJavascript;
 import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 public class DynamicProxyTest extends AndroidTestCase {
-    private DummyJavascript mJS;
     private ProxyGenerator mGenerator;
 
     public static interface ITestInterface {
@@ -46,7 +44,6 @@ public class DynamicProxyTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        mJS = new DummyJavascript();
         
         mGenerator = new ProxyGenerator();
     }

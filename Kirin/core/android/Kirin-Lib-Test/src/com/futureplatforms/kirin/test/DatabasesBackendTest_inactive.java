@@ -39,7 +39,6 @@ import com.futureplatforms.kirin.extensions.databases.DBStatement;
 import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
 import com.futureplatforms.kirin.extensions.databases.DBTransaction;
 import com.futureplatforms.kirin.extensions.databases.DatabasesBackend;
-import com.futureplatforms.kirin.test.dummies.DummyJavascript;
 import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 

@@ -76,8 +76,12 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 
 	@Override
 	public void cleanupCallback(JSONObject config, String... callbackNames) {
-		for (int i=0, max=callbackNames.length;i<max; i++) {
-			
+		
+		for (String callback : callbackNames) {
+			String id = config.optString(callback);
+			if (id != null) {
+				mDeletedCallbacks.add(id);
+			}
 		}
 	}
 

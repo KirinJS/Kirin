@@ -27,9 +27,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.test.AndroidTestCase;
+import android.util.Log;
 
+import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.extensions.networking.NetworkingBackend;
-import com.futureplatforms.kirin.test.dummies.DummyJavascript;
+import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 public class NetworkingBackendTest extends AndroidTestCase {
 
@@ -39,11 +41,11 @@ public class NetworkingBackendTest extends AndroidTestCase {
     
     private String mJSONString;
     
-    private DummyJavascript mJS = new DummyJavascript();
+    private DummyKirinHelper mJS = new DummyKirinHelper();
     
     @Override
     protected void setUp() throws Exception {
-        mJSONString = "['foo', 'bar', 'baz']";
+        mJSONString = "[\"foo\",\"bar\",\"baz\"]";
         String packageName = mContext.getPackageName();
         mBackend = new NetworkingBackend(getContext(), mJS, MessageFormat.format("Android/data/{0}/files", packageName)) {
             @Override
@@ -79,7 +81,7 @@ public class NetworkingBackendTest extends AndroidTestCase {
         
 
         mBackend.downloadJSON_(downloadJSONConfig);
-        
+        Log.i(C.TAG, "JSON String is " + mJSONString);
         mJS.verifyCallback("payload.0", mJSONString);
         
         mJS.verifyCalledCallbacks("payload.0");
