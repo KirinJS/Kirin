@@ -39,12 +39,12 @@ defineScreenModule("DumbListScreen", function (require, exports) {
 	};
 
 	exports.onResume = function () {
-		theScreen.populateList_(data);	
+		theScreen.populateList(data);	
 	};
 			
 	exports.onListItemClick = function (index) {
 		var key = data[index].key;
 		console.log("Clicked on '" + key + "' (item #" + index + ")");
-		theScreen.showToast_(key.toUpperCase());
+		theScreen.showToast(key.toUpperCase());
 	};	
 });

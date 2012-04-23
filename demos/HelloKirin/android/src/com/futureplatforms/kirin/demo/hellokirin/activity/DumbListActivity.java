@@ -54,11 +54,11 @@ public class DumbListActivity extends ListActivity {
         mKirinHelper.onLoad();
     }
 
-    public void populateList_(JSONArray jsonArray) {
+    public void populateList(JSONArray jsonArray) {
         setListAdapter(new JSListAdapter(this, jsonArray, R.layout.dumb_row, mItemRenderer));
     }
 
-    public void showToast_(String key) {
+    public void showToast(String key) {
         Toast.makeText(this, "You clicked on: " + key, Toast.LENGTH_SHORT).show();
     }
 

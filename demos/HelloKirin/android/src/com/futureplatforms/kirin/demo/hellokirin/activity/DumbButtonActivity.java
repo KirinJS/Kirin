@@ -62,13 +62,13 @@ public class DumbButtonActivity extends Activity {
         mKirinHelper.jsMethod("onResume");
     }
     
-    public void updateLabelSize_andText_(int size, String text) {
+    public void updateLabelSizeAndText(int size, String text) {
         mLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         mLabel.setText(text);
         mLabel.invalidate();
     }
 
-    public void changeScreen_(String arg) {
+    public void changeScreen(String arg) {
         Intent intent = new Intent(this, DumbListActivity.class);
         intent.putExtra("string", arg);
         startActivity(intent);

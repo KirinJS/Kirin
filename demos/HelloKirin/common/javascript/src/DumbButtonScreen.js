@@ -35,12 +35,12 @@ defineScreenModule("DumbButtonScreen", function (require, exports) {
 			counter ++;
 		}
 	
-		theScreen.updateLabelSize_andText_(counter * 5 + 10, strings[counter]);
+		theScreen.updateLabelSizeAndText(counter * 5 + 10, strings[counter]);
 	
 		return true;
 	};
 		
 	exports.onNextScreenButtonClick = function () {
-		theScreen.changeScreen_(strings[counter]);
+		theScreen.changeScreen(strings[counter]);
 	};
 });
