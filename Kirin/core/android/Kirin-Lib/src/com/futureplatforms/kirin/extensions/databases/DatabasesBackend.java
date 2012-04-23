@@ -46,9 +46,9 @@ import android.util.Log;
 
 import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.IKirinDropbox;
-import com.futureplatforms.kirin.attic.IJava2Js;
 import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
+import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 import com.futureplatforms.kirin.helpers.IKirinServiceOnNonDefaultThread;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer;
@@ -57,7 +57,6 @@ import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer5;
 
 public class DatabasesBackend extends KirinExtensionAdapter implements IDatabasesBackend, IKirinServiceOnNonDefaultThread {
 
-    private final IJava2Js mJS;
     private final SharedPreferences mPrefs;
 
     private final Map<String, SQLiteDatabase> mDatabases = new HashMap<String, SQLiteDatabase>();
@@ -87,10 +86,14 @@ public class DatabasesBackend extends KirinExtensionAdapter implements IDatabase
 
     }
 
-    public DatabasesBackend(Context context, SharedPreferences preferences, IJava2Js js, ExecutorService readExecutor, ExecutorService writeExecutor) {
-        super(context, "Databases");
-    	mJS = js;
-        mPrefs = preferences;
+    
+    public DatabasesBackend(Context context) {
+    	this(context, null, null, Executors.newCachedThreadPool(), Executors.newFixedThreadPool(1));
+    }
+    
+    public DatabasesBackend(Context context, SharedPreferences preferences, IKirinExtensionHelper js, ExecutorService readExecutor, ExecutorService writeExecutor) {
+        super(context, "Databases", js);
+        
         mContext = context;
         mWritingExecutor = writeExecutor;
         mReadOnlyExecutor = readExecutor;
@@ -100,6 +103,11 @@ public class DatabasesBackend extends KirinExtensionAdapter implements IDatabase
         } else {
             mCursorCoercer = new CursorCoercer4();
         }
+        
+        if (preferences == null) {
+        	preferences = mContext.getSharedPreferences("kirin-databases", 0);
+        }
+        mPrefs = preferences;
     }
 
     public SQLiteDatabase getDatabase(String dbName) {
@@ -383,7 +391,7 @@ public class DatabasesBackend extends KirinExtensionAdapter implements IDatabase
 
     protected Cursor execStatement(SQLiteDatabase db, DBStatement s) {
         if (s.mType == StatementType.file) {
-            String filename = mJS.getPathToJavascriptDir() + s.mSql;
+            String filename = "generated-javascript" + s.mSql; //;mJS.getPathToJavascriptDir() + s.mSql;
 
             try {
                 String block = IOUtils.loadTextAsset(mContext, filename);

@@ -49,7 +49,7 @@ public class Kirin {
 		mJsContext = jsContext;
 		
 		if (state == null) {
-			state = new KirinAppState();
+			state = new KirinAppState(mContext);
 		}
 		mKirinState = state;
 	}

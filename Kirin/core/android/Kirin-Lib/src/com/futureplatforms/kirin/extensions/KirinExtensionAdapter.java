@@ -4,13 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.futureplatforms.kirin.helpers.IKirinApplication;
-import com.futureplatforms.kirin.helpers.KirinExtensionHelper;
+import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 
 public class KirinExtensionAdapter implements IKirinExtension {
 
 	private final String mModuleName;
 	
-	protected final KirinExtensionHelper mKirinHelper;
+	protected final IKirinExtensionHelper mKirinHelper;
 	
 	private final Context mContext;
 	
@@ -18,7 +18,7 @@ public class KirinExtensionAdapter implements IKirinExtension {
 		this(context, moduleName, null);
 	}
 	
-	public KirinExtensionAdapter(Context context, String moduleName, KirinExtensionHelper helper) {
+	public KirinExtensionAdapter(Context context, String moduleName, IKirinExtensionHelper helper) {
 		mModuleName = moduleName;
 		mContext = context;
 		if (helper == null) {

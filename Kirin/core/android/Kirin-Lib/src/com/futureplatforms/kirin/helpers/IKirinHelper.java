@@ -3,6 +3,7 @@ package com.futureplatforms.kirin.helpers;
 import org.json.JSONObject;
 
 import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public interface IKirinHelper {
 
@@ -32,6 +33,8 @@ public interface IKirinHelper {
 	 */
 	
 	IKirinDropbox getDropbox();
+	
+	IKirinFileSystem getFileSystem();
 	
 	/*
 	 * Lifecycle methods.

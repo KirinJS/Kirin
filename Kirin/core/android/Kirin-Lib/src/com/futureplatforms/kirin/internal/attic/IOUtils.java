@@ -19,6 +19,7 @@ package com.futureplatforms.kirin.internal.attic;
 
 import java.io.BufferedReader;
 import java.io.Closeable;
+import java.io.FileDescriptor;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -231,6 +232,7 @@ public class IOUtils {
     public static String loadTextAsset(Context activity, String filename) throws IOException {
         BufferedReader in = null;
         try {
+        	
             in = new BufferedReader(new InputStreamReader(activity.getAssets().open(filename)));
             String line;
             StringBuilder buffer = new StringBuilder();

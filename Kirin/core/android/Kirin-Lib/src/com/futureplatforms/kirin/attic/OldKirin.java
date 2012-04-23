@@ -248,8 +248,8 @@ public class OldKirin implements IProguardImmunity {
         addJavaUIObjectToJS(mAppDelegate, "NativeAppDelegate");
 
         // Add new services here.
-        loadService("Databases-backend", new DatabasesBackend(mContext, prefs, java2Js, mDefaultExecutorService,
-                Executors.newSingleThreadExecutor()), mSingleThreadedExecutorService);
+//        loadService("Databases-backend", new DatabasesBackend(mContext, prefs, java2Js, mDefaultExecutorService,
+//                Executors.newSingleThreadExecutor()), mSingleThreadedExecutorService);
 
         loadService("Networking-backend", new NetworkingBackend(mContext, java2Js, mFileAreaPath));
 

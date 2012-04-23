@@ -33,7 +33,7 @@ public final class C {
     public static final String URI_SCHEME = "kirin";
     public static final String URI_HOST = "com.futureplatforms";
     public static final String URI_PATH_LOCALNOTIFICATION = "localNotifications";
-    public static final boolean DEBUGGING_SHOW_NATIVE_TO_JS_CALLS = true;
+    public static final boolean DEBUGGING_SHOW_NATIVE_TO_JS_CALLS = false;
     public static final boolean DEBUGGING_SHOW_CONSOLE_LOG = true;
 	
 

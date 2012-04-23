@@ -15,6 +15,7 @@ import com.futureplatforms.kirin.IKirinDropbox;
 import com.futureplatforms.kirin.internal.IJsContext;
 import com.futureplatforms.kirin.internal.INativeContext;
 import com.futureplatforms.kirin.internal.JsCommands;
+import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public class KirinHelper implements IKirinHelper {
 
@@ -142,6 +143,11 @@ public class KirinHelper implements IKirinHelper {
 
 	protected Object getNativeObject() {
 		return mNativeObject;
+	}
+
+	@Override
+	public IKirinFileSystem getFileSystem() {
+		return mAppState.getPaths();
 	}
 
 }

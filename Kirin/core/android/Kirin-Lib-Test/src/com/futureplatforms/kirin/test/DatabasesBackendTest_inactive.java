@@ -40,13 +40,14 @@ import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
 import com.futureplatforms.kirin.extensions.databases.DBTransaction;
 import com.futureplatforms.kirin.extensions.databases.DatabasesBackend;
 import com.futureplatforms.kirin.test.dummies.DummyJavascript;
+import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 
 public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
     private DatabasesBackend mBackend;
 
-    private DummyJavascript mJS;
+    private DummyKirinHelper mKirinHelper;
 
     private JSONObject mOpeningConfig;
 
@@ -92,11 +93,11 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mResults = new Object[][] { new Object[] { 1, 2, 3 }, new Object[] { 4, 5, 6 } };
 
-        mJS = new DummyJavascript();
+        mKirinHelper = new DummyKirinHelper();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         mExecutedSQL = new ArrayList<String>();
         mOpenTransactions = 0;
-        mBackend = new DatabasesBackend(getContext(), mPrefs, mJS, null, null) {
+        mBackend = new DatabasesBackend(getContext(), mPrefs, mKirinHelper, null, null) {
             
             
             
@@ -143,7 +144,7 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
     protected void tearDown() throws Exception {
         assertEquals(0, mOpenTransactions);
         mOpenTransactions = 0;
-        mJS.clear();
+        mKirinHelper.clear();
         mBackend.closeAll();
     }
 
@@ -155,8 +156,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.db_openOrCreate_(dbName, mOpeningConfig);
 
-        mJS.verifyCalledCallbacks("onOpened");
-        mJS.verifyDeletedCallbacks("onOpened", "onError", "onUpdate", "onCreate");
+        mKirinHelper.verifyCalledCallbacks("onOpened");
+        mKirinHelper.verifyDeletedCallbacks("onOpened", "onError", "onUpdate", "onCreate");
 
         assertNotNull(mBackend.getDatabase(dbName));
         assertTrue(mBackend.getDatabase(dbName).isOpen());
@@ -182,8 +183,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
         // FIRST call db_openOrCreate_
         mBackend.db_openOrCreate_(dbName, mOpeningConfig);
         assertNotNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onCreate");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate");
+        mKirinHelper.verifyCalledCallbacks("onCreate");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate");
 
         // SECOND, in response to onCreate, call beginTransaction
 
@@ -197,8 +198,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
         assertNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onCreate", "onOpened");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
+        mKirinHelper.verifyCalledCallbacks("onCreate", "onOpened");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
         
         assertEquals(requestedVersion, mPrefs.getInt("db_revision_" + dbName, -1));
     }
@@ -214,8 +215,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
         // FIRST call db_openOrCreate_
         mBackend.db_openOrCreate_(dbName, mOpeningConfig);
         assertNotNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onCreate");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate");
+        mKirinHelper.verifyCalledCallbacks("onCreate");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate");
 
         // SECOND, in response to onCreate, call beginTransaction
 
@@ -231,8 +232,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
         assertNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onCreate", "onError");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
+        mKirinHelper.verifyCalledCallbacks("onCreate", "onError");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
         
         assertEquals(-1, mPrefs.getInt("db_revision_" + dbName, -1));
     }
@@ -249,8 +250,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
         // FIRST call db_openOrCreate_
         mBackend.db_openOrCreate_(dbName, mOpeningConfig);
         assertNotNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onUpdate");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate");
+        mKirinHelper.verifyCalledCallbacks("onUpdate");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate");
 
         // SECOND, in response to onCreate, call beginTransaction
 
@@ -264,8 +265,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
         assertNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onUpdate", "onOpened");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
+        mKirinHelper.verifyCalledCallbacks("onUpdate", "onOpened");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
         
         assertEquals(requestedVersion, mPrefs.getInt("db_revision_" + dbName, -1));
     }
@@ -282,8 +283,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
         // FIRST call db_openOrCreate_
         mBackend.db_openOrCreate_(dbName, mOpeningConfig);
         assertNotNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onUpdate");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate");
+        mKirinHelper.verifyCalledCallbacks("onUpdate");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate");
 
         // SECOND, in response to onCreate, call beginTransaction
 
@@ -299,8 +300,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
         assertNull(mBackend.getTransaction(txId));
-        mJS.verifyCalledCallbacks("onUpdate", "onError");
-        mJS.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
+        mKirinHelper.verifyCalledCallbacks("onUpdate", "onError");
+        mKirinHelper.verifyDeletedCallbacks("onCreate", "onUpdate", "onOpened", "onError");
         
         assertEquals(existingVersion, mPrefs.getInt("db_revision_" + dbName, -1));
     }
@@ -346,8 +347,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
 
-        mJS.verifyCalledCallbacks("success0", "success1", "txSuccess");
-        mJS.verifyDeletedCallbacks("txSuccess", "txError", "error0", "error1", "success1", "success0");
+        mKirinHelper.verifyCalledCallbacks("success0", "success1", "txSuccess");
+        mKirinHelper.verifyDeletedCallbacks("txSuccess", "txError", "error0", "error1", "success1", "success0");
 
     }
 
@@ -366,8 +367,8 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
 
-        mJS.verifyCalledCallbacks("error3", "txError");
-        mJS.verifyDeletedCallbacks("txSuccess", "txError", // 
+        mKirinHelper.verifyCalledCallbacks("error3", "txError");
+        mKirinHelper.verifyDeletedCallbacks("txSuccess", "txError", // 
                 "error0", "error1", "error2", "error3", //
                 "success0", "success1", "success2", "success3");
 
@@ -426,7 +427,7 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
 
-        mJS.verifyCallback("success0", new JSONObject("{foo:'1',bar:'2',baz:'3'}"));
+        mKirinHelper.verifyCallback("success0", new JSONObject("{foo:'1',bar:'2',baz:'3'}"));
     }
 
     public void testResultTypes_array() throws JSONException {
@@ -439,7 +440,7 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
 
-        mJS.verifyCallback("success0", new JSONArray("[{foo:'1',bar:'2',baz:'3'}," + //
+        mKirinHelper.verifyCallback("success0", new JSONArray("[{foo:'1',bar:'2',baz:'3'}," + //
                 "{foo:'5',bar:'7',baz:'11'}," + //
                 "{foo:'13',bar:'17',baz:'19'}]"));
     }
@@ -454,7 +455,7 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
 
         mBackend.endTransaction_(txId);
 
-        Object[] args = mJS.getCallbackArgs("success0");
+        Object[] args = mKirinHelper.getCallbackArgs("success0");
         assertEquals(1, args.length);
         String dropboxKey = (String) args[0];
 
@@ -462,7 +463,7 @@ public class DatabasesBackendTest_inactive extends AndroidTestCase {
         dropboxKey = dropboxKey.replaceAll("\"", "");
 
         Log.i(C.TAG, "Dropbox key is: '" + dropboxKey + "'");
-        assertEquals(mCursor, mJS.getDropbox().consume(dropboxKey));
+        assertEquals(mCursor, mKirinHelper.getDropbox().consume(dropboxKey));
     }
 
     public void testStatementType_file() throws JSONException {
