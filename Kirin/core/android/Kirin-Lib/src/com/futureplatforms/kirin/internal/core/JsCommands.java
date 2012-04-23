@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.internal;
+package com.futureplatforms.kirin.internal.core;
 
 public final class JsCommands {
 	public static final String EXECUTE_METHOD_JS = "EXPOSED_TO_NATIVE.native2js.execMethod(''{0}'', ''{1}'')";

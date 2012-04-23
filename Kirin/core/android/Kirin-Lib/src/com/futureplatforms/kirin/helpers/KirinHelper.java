@@ -11,10 +11,10 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
-import com.futureplatforms.kirin.IKirinDropbox;
-import com.futureplatforms.kirin.internal.IJsContext;
-import com.futureplatforms.kirin.internal.INativeContext;
-import com.futureplatforms.kirin.internal.JsCommands;
+import com.futureplatforms.kirin.internal.core.IJsContext;
+import com.futureplatforms.kirin.internal.core.INativeContext;
+import com.futureplatforms.kirin.internal.core.JsCommands;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public class KirinHelper implements IKirinHelper {

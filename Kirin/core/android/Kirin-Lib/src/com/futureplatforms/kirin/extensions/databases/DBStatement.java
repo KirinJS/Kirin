@@ -19,7 +19,7 @@ package com.futureplatforms.kirin.extensions.databases;
 
 import org.json.JSONArray;
 
-import com.futureplatforms.kirin.internal.attic.JSONUtils;
+import com.futureplatforms.kirin.internal.JSONUtils;
 
 import android.database.Cursor;
 

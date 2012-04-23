@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.internal;
+package com.futureplatforms.kirin.internal.core;
 
 import java.text.MessageFormat;
 import java.util.Queue;
@@ -116,12 +116,12 @@ public class KirinWebViewHolder implements IJsContext {
                 webView.setWebChromeClient(client);
             }
         }
-        webView.addJavascriptInterface(this, "JavaProxyObject");
+        webView.addJavascriptInterface(new InjectedObject(), "JavaProxyObject");
         webView.loadUrl("file:///android_asset/generated-javascript/index-android.html");
     }
 	
 	
-	//public class InjectedObject {
+	public class InjectedObject {
 		
 	    public void call(String classMethod, String jsonArgs) {
 	        String[] split = classMethod.split("\\.", 2);
@@ -145,5 +145,5 @@ public class KirinWebViewHolder implements IJsContext {
 	        mNativeContext.executeCommandFromModule(moduleName, methodName, args);
 	    }
     
-	//}
+	}
 }

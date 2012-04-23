@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.futureplatforms.kirin.extensions.IKirinExtension;
-import com.futureplatforms.kirin.internal.IJsContext;
-import com.futureplatforms.kirin.internal.INativeContext;
+import com.futureplatforms.kirin.internal.core.IJsContext;
+import com.futureplatforms.kirin.internal.core.INativeContext;
 
 public class KirinScreenHelper extends KirinUiFragmentHelper {
 

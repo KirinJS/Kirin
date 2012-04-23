@@ -15,10 +15,10 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.IKirinDropbox;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 import com.futureplatforms.kirin.helpers.IKirinHelper;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {

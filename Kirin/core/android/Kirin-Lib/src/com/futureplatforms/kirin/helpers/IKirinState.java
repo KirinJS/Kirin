@@ -2,8 +2,8 @@ package com.futureplatforms.kirin.helpers;
 
 import android.app.Activity;
 
-import com.futureplatforms.kirin.IKirinDropbox;
 import com.futureplatforms.kirin.extensions.IKirinExtension;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public interface IKirinState {

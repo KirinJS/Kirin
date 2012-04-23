@@ -2,7 +2,7 @@ package com.futureplatforms.kirin.helpers;
 
 import org.json.JSONObject;
 
-import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public interface IKirinHelper {

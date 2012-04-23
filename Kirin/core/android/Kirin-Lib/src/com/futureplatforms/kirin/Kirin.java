@@ -13,11 +13,11 @@ import com.futureplatforms.kirin.helpers.KirinExtensionHelper;
 import com.futureplatforms.kirin.helpers.KirinHelper;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 import com.futureplatforms.kirin.helpers.KirinUiFragmentHelper;
-import com.futureplatforms.kirin.internal.IJsContext;
-import com.futureplatforms.kirin.internal.INativeContext;
-import com.futureplatforms.kirin.internal.KirinAppState;
-import com.futureplatforms.kirin.internal.KirinWebViewHolder;
-import com.futureplatforms.kirin.internal.NativeContext;
+import com.futureplatforms.kirin.internal.core.IJsContext;
+import com.futureplatforms.kirin.internal.core.INativeContext;
+import com.futureplatforms.kirin.internal.core.KirinAppState;
+import com.futureplatforms.kirin.internal.core.KirinWebViewHolder;
+import com.futureplatforms.kirin.internal.core.NativeContext;
 
 public class Kirin {
 

@@ -21,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import com.futureplatforms.kirin.IKirinDropbox;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 
 public class KirinDropbox implements IKirinDropbox {
 

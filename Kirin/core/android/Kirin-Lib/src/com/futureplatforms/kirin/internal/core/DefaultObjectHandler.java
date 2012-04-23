@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.internal;
+package com.futureplatforms.kirin.internal.core;
 
 import java.util.concurrent.Executor;
 

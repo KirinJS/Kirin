@@ -45,8 +45,8 @@ import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.R;
 import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
+import com.futureplatforms.kirin.internal.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
-import com.futureplatforms.kirin.internal.attic.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.SDCardFileUtils;
 
 public class NetworkingBackend extends KirinExtensionAdapter implements INetworkingBackend {

@@ -15,12 +15,18 @@
 */
 
 
-package com.futureplatforms.kirin;
+package com.futureplatforms.kirin.internal;
 
-public interface IKirinDropbox {
-    String put(String tokenPrefix, Object obj);
-    Object get(String token);
-    void remove(String token);
-    
-    Object consume(String token);
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+public class JSONUtils {
+
+    public static String stringOrNull(JSONObject config, String string, String nullObj) {
+        return config.isNull(string) ? nullObj : config.optString(string, nullObj);
+    }
+
+    public static String stringOrNull(JSONArray array, int index, String nullObj) {
+        return array.isNull(index) ? nullObj : array.optString(index);
+    }
 }

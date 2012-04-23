@@ -1,6 +1,5 @@
 package com.futureplatforms.kirin.internal;
 
-import java.io.File;
 import java.text.MessageFormat;
 
 import android.content.Context;

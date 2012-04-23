@@ -1,7 +1,7 @@
 package com.futureplatforms.kirin.helpers;
 
-import com.futureplatforms.kirin.internal.IJsContext;
-import com.futureplatforms.kirin.internal.INativeContext;
+import com.futureplatforms.kirin.internal.core.IJsContext;
+import com.futureplatforms.kirin.internal.core.INativeContext;
 
 public class KirinUiFragmentHelper extends KirinHelper {
 

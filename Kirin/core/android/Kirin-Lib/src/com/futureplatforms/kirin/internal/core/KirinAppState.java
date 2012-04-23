@@ -1,12 +1,13 @@
-package com.futureplatforms.kirin.internal;
+package com.futureplatforms.kirin.internal.core;
 
 import android.app.Activity;
 import android.content.Context;
 
-import com.futureplatforms.kirin.IKirinDropbox;
 import com.futureplatforms.kirin.extensions.IKirinExtension;
 import com.futureplatforms.kirin.helpers.IKirinState;
+import com.futureplatforms.kirin.internal.KirinPaths;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
+import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
 public class KirinAppState implements IKirinState {

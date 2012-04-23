@@ -15,24 +15,12 @@
 */
 
 
-package com.futureplatforms.kirin.internal.attic;
+package com.futureplatforms.kirin.state;
 
-import java.util.concurrent.ExecutorService;
-
-import android.content.Context;
-
-public class ServiceBackendHolder extends NativeObjectHolder {
-
-    private ExecutorService mThreads;
+public interface IKirinDropbox {
+    String put(String tokenPrefix, Object obj);
+    Object get(String token);
+    void remove(String token);
     
-    public ServiceBackendHolder(Context context, ExecutorService executorService) {
-        super(context);
-        mThreads = executorService;
-    }
-
-    @Override
-    protected void enqueue(Runnable runnable) {
-        mThreads.execute(runnable);
-    }
-
+    Object consume(String token);
 }
