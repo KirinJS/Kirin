@@ -7,7 +7,8 @@ import com.futureplatforms.kirin.Kirin;
 import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 
-public class KirinActivity extends Activity {
+
+public abstract class KirinActivity extends Activity {
 
 	protected KirinScreenHelper mKirinHelper;
 	
