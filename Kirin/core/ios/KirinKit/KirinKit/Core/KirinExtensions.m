@@ -1,12 +1,12 @@
 //
-//  KirinServices.m
+//  KirinExtensions.m
 //  KirinKit
 //
 //  Created by James Hugman on 11/01/2012.
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import "KirinServices.h"
+#import "KirinExtensions.h"
 
 #import "SettingsBackend.h"
 #import "FileSystemBackend.h"
@@ -16,26 +16,26 @@
 #import "KirinLocationBackend.h"
 #import "KirinImageTransformer.h"
 
-@interface KirinServices()
+@interface KirinExtensions()
 
 @property(retain) NSMutableArray* allServices;
 
 @end
 
-@implementation KirinServices
+@implementation KirinExtensions
 
 @synthesize isStarted;
 
 @synthesize allServices;
 
-+ (KirinServices*) empty {
-    NSLog(@"Empty KirinServices");
-    return [[[KirinServices alloc] init] autorelease];
++ (KirinExtensions*) empty {
+    NSLog(@"Empty KirinExtensions");
+    return [[[KirinExtensions alloc] init] autorelease];
 }
 
-+ (KirinServices*) coreServices {
-    KirinServices* services = [KirinServices empty];
-    NSLog(@"Core KirinServices");
++ (KirinExtensions*) coreServices {
+    KirinExtensions* services = [KirinExtensions empty];
+    NSLog(@"Core KirinExtensions");
     [services registerService:[[[SettingsBackend alloc] init] autorelease]];
     [services registerService:[[[FileSystemBackend alloc] init] autorelease]];
     [services registerService:[[[NetworkingBackend alloc] init] autorelease]];
@@ -54,7 +54,7 @@
     return self;
 }
 
-- (void) registerService: (id<KirinServiceProtocol>) service {
+- (void) registerService: (id<KirinExtensionProtocol>) service {
     [self.allServices addObject:service];
     [service onLoad];
     if (self.isStarted && [service respondsToSelector:@selector(onStart)]) {
@@ -70,7 +70,7 @@
     self.isStarted = YES;   
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
+        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
         if ([service respondsToSelector:@selector(onStart)]) {
             [service onStart];
         }
@@ -84,14 +84,14 @@
     }
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
+        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
         if ([service respondsToSelector:@selector(onStop)]) {
             [service onStop];
         }
     }
     
     for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinServiceProtocol> service = [self.allServices objectAtIndex:i];
+        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
         if ([service respondsToSelector:@selector(onUnload)]) {
             [service onUnload];
         }

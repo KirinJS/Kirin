@@ -21,9 +21,9 @@
 #import <KirinKit/KirinHelper.h>
 #import <KirinKit/KirinUiFragmentHelper.h>
 #import <KirinKit/KirinScreenHelper.h>
-#import <KirinKit/KirinServiceHelper.h>
+#import <KirinKit/KirinExtensionHelper.h>
 #import <KirinKit/KirinAppDelegateHelper.h>
-#import <KirinKit/KirinServices.h>
+#import <KirinKit/KirinExtensions.h>
 
 #import <KirinKit/KirinDropbox.h>
 
@@ -43,7 +43,7 @@
 // publicly available objects.
 @property(retain) KirinDropbox* dropbox;
 
-@property(nonatomic, retain) KirinServices* kirinServices;
+@property(nonatomic, retain) KirinExtensions* KirinExtensions;
 
 - (id) initWithWebView: (UIWebView*) aWebView;
 
@@ -53,7 +53,7 @@
 
 - (KirinScreenHelper*) bindScreen: (id) nativeObject toModule:(NSString*) moduleName;
 
-- (KirinServiceHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName;
+- (KirinExtensionHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName;
 
 - (KirinAppDelegateHelper*) bindAppDelegate: (id) nativeObject toModule: (NSString*) moduleName;
 

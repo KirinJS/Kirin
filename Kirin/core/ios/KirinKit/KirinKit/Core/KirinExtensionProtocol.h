@@ -1,5 +1,5 @@
 //
-//  KirinServiceProtocol.h
+//  KirinExtensionProtocol.h
 //  KirinKit
 //
 //  Created by James Hugman on 11/01/2012.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol KirinServiceProtocol <NSObject>
+@protocol KirinExtensionProtocol <NSObject>
 
 - (void) onLoad;
 

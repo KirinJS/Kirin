@@ -1,5 +1,5 @@
 //
-//  KirinServices.h
+//  KirinExtensions.h
 //  KirinKit
 //
 //  Created by James Hugman on 11/01/2012.
@@ -7,21 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <KirinKit/KirinServiceProtocol.h>
+#import <KirinKit/KirinExtensionProtocol.h>
 
-@interface KirinServices : NSObject {
+@interface KirinExtensions : NSObject {
     
 }
 
-+ (KirinServices*) coreServices;
++ (KirinExtensions*) coreServices;
 
-+ (KirinServices*) empty;
++ (KirinExtensions*) empty;
 
 @property BOOL isStarted;
 
 
 
-- (void) registerService: (id<KirinServiceProtocol>) service;
+- (void) registerService: (id<KirinExtensionProtocol>) service;
 
 - (void) ensureStarted;
 

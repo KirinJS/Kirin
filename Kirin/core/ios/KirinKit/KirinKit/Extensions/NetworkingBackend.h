@@ -14,12 +14,11 @@
    limitations under the License.
 */
 
-
-
 #import <KirinKit/KirinKit.h>
-#import "Settings.h"
+#import "Networking.h"
 
-@interface SettingsBackend : KirinServiceStub <Settings> {
+@interface NetworkingBackend : KirinExtensionStub <Networking> {
+
 }
 
 @end

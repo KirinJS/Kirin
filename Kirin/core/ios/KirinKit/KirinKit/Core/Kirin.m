@@ -43,7 +43,7 @@
 @implementation Kirin 
 
 @synthesize dropbox = dropbox_;
-@synthesize kirinServices = kirinServices_;
+@synthesize KirinExtensions = KirinExtensions_;
 
 
 @synthesize jsContext = jsContext_;
@@ -119,10 +119,10 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
 }
 
-- (KirinServiceHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName {
+- (KirinExtensionHelper*) bindService: (id) nativeObject toModule:(NSString*) moduleName {
     // we don't want to ensureStarted here, because this will be adding services, 
     // and services is what we're starting.
-    return [[[KirinServiceHelper alloc] initWithModuleName:moduleName 
+    return [[[KirinExtensionHelper alloc] initWithModuleName:moduleName 
                                           andNativeObject:nativeObject 
                                              andJsContext:self.jsContext 
                                          andNativeContext:self.nativeContext
@@ -143,31 +143,31 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 #pragma mark Managing Services
 
 - (void) ensureStarted {
-    // implicitly calls the getter, ensuring a kirinservices object exists.
-    [self.kirinServices ensureStarted];
+    // implicitly calls the getter, ensuring a KirinExtensions object exists.
+    [self.KirinExtensions ensureStarted];
 }
 
-- (void) setKirinServices:(KirinServices *) services {
-    if (services != nil && kirinServices_ != nil) {
-        [NSException raise:@"KirinServicesException" 
-                    format:@"Cannot change KirinServices contained once the first service has been added"];
+- (void) setKirinExtensions:(KirinExtensions *) services {
+    if (services != nil && KirinExtensions_ != nil) {
+        [NSException raise:@"KirinExtensionsException" 
+                    format:@"Cannot change KirinExtensions contained once the first service has been added"];
     }
     
-    [kirinServices_ release];
-    kirinServices_ = services;
-    [kirinServices_ retain];
+    [KirinExtensions_ release];
+    KirinExtensions_ = services;
+    [KirinExtensions_ retain];
 }
 
 
-- (KirinServices*) kirinServices {
-    if (kirinServices_ == nil) {
-        self.kirinServices = [KirinServices coreServices];
+- (KirinExtensions*) KirinExtensions {
+    if (KirinExtensions_ == nil) {
+        self.KirinExtensions = [KirinExtensions coreServices];
     }
-    return kirinServices_;
+    return KirinExtensions_;
 }
 
 - (void) unloadKirin {
-    [self.kirinServices unloadServices];
+    [self.KirinExtensions unloadServices];
 }
 
 

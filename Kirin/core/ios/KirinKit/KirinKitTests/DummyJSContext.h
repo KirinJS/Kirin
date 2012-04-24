@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import <KirinKit/JSContext.h>
-#import <KirinKit/KirinServiceOnMainThread.h>
+#import <KirinKit/KirinExtensionOnMainThread.h>
 #import <KirinKit/JSExecutor.h>
 
-@interface DummyJSContext : JSContext <KirinServiceOnMainThread, JSExecutor> {
+@interface DummyJSContext : JSContext <KirinExtensionOnMainThread, JSExecutor> {
 }
 
 @property(retain) NSString* lastCall;

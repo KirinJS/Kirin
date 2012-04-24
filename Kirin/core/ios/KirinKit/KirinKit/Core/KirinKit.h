@@ -10,13 +10,13 @@
 #import <KirinKit/KirinHelper.h>
 #import <KirinKit/KirinUiFragmentHelper.h>
 #import <KirinKit/KirinScreenHelper.h>
-#import <KirinKit/KirinServiceHelper.h>
+#import <KirinKit/KirinExtensionHelper.h>
 #import <KirinKit/KirinAppDelegateHelper.h>
 
 #import <KirinKit/KirinArgs.h>
 
-#import <KirinKit/KirinServiceProtocol.h>
-#import <KirinKit/KirinServiceOnMainThread.h>
-#import <KirinKit/KirinServiceStub.h>
+#import <KirinKit/KirinExtensionProtocol.h>
+#import <KirinKit/KirinExtensionOnMainThread.h>
+#import <KirinKit/KirinExtensionStub.h>
 #import <KirinKit/KirinPaths.h>
 #import <KirinKit/KirinFileSystem.h>

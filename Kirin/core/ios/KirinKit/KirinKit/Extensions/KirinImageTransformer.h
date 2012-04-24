@@ -6,10 +6,10 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import "KirinServiceStub.h"
+#import "KirinExtensionStub.h"
 #import "ImageTransformProtocol.h"
 
-@interface KirinImageTransformer : KirinServiceStub <ImageTransformProtocol>
+@interface KirinImageTransformer : KirinExtensionStub <ImageTransformProtocol>
 
 + (KirinImageTransformer*) instance;
 

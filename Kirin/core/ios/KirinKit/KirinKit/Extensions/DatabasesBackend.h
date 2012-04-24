@@ -21,7 +21,7 @@
 #import "Database.h"
 
 
-@interface DatabasesBackend : KirinServiceStub <DatabasesBackendProtocol> {
+@interface DatabasesBackend : KirinExtensionStub <DatabasesBackendProtocol> {
     
     id<Database> db;
     NSMutableDictionary *connectionsByName;

@@ -34,7 +34,7 @@
 }
 
 #pragma mark - 
-#pragma mark KirinService methods.
+#pragma mark KirinExtension methods.
 
 - (id) init {
     return [super initWithModuleName:@"Location"];

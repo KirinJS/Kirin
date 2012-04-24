@@ -1,5 +1,5 @@
 //
-//  KirinServiceWithUI.h
+//  KirinExtensionWithUI.h
 //  KirinKit
 //
 //  Created by James Hugman on 29/01/2012.
@@ -11,6 +11,6 @@
  */
 #import <Foundation/Foundation.h>
 
-@protocol KirinServiceOnMainThread <NSObject>
+@protocol KirinExtensionOnMainThread <NSObject>
 
 @end

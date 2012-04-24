@@ -1,5 +1,5 @@
 //
-//  KirinServiceHelper.h
+//  KirinExtensionHelper.h
 //  KirinKit
 //
 //  Created by James Hugman on 10/01/2012.
@@ -9,7 +9,7 @@
 
 #import <KirinKit/KirinHelper.h>
 
-@interface KirinServiceHelper : KirinHelper {
+@interface KirinExtensionHelper : KirinHelper {
     
 }
 

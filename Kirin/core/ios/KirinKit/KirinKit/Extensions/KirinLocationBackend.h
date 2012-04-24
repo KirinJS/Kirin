@@ -11,7 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "KirinLocation.h"
 
-@interface KirinLocationBackend : KirinServiceStub<KirinLocation, CLLocationManagerDelegate>
+@interface KirinLocationBackend : KirinExtensionStub<KirinLocation, CLLocationManagerDelegate>
 
 + (KirinLocationBackend*) instance;
 

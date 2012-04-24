@@ -16,9 +16,9 @@
 
 
 #import <Foundation/Foundation.h>
-#import "KirinServiceOnMainThread.h"
+#import "KirinExtensionOnMainThread.h"
 
-@interface DebugConsole : NSObject <KirinServiceOnMainThread> {
+@interface DebugConsole : NSObject <KirinExtensionOnMainThread> {
 }
 - (void)log:(id)message atLevel:(NSString*) log_level;
 

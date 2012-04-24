@@ -10,6 +10,6 @@
 #import <KirinKit/KirinKit.h>
 #import "FileSystem.h"
 
-@interface FileSystemBackend : KirinServiceStub <FileSystem>
+@interface FileSystemBackend : KirinExtensionStub <FileSystem>
 
 @end

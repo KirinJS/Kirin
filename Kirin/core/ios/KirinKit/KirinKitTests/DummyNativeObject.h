@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import <KirinKit/KirinServiceOnMainThread.h>
+#import <KirinKit/KirinExtensionOnMainThread.h>
 
-@interface DummyNativeObject : NSObject<KirinServiceOnMainThread>
+@interface DummyNativeObject : NSObject<KirinExtensionOnMainThread>
 
 @property(nonatomic) SEL lastMethod;
 

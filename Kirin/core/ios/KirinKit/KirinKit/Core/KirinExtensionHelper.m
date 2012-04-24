@@ -1,15 +1,15 @@
 //
-//  KirinServiceHelper.m
+//  KirinExtensionHelper.m
 //  KirinKit
 //
 //  Created by James Hugman on 10/01/2012.
 //  Copyright 2012 Future Platforms. All rights reserved.
 //
 
-#import "KirinServiceHelper.h"
+#import "KirinExtensionHelper.h"
 
 
-@implementation KirinServiceHelper
+@implementation KirinExtensionHelper
 
 - (void) onStart {
     [self jsMethod:@"onStart"];
