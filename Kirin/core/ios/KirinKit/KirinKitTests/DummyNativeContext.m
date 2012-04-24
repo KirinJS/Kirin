@@ -13,7 +13,7 @@
 
 - (NSArray*) methodNamesFor: (id) obj {
     NSMutableArray* methods = [[NSMutableArray alloc] initWithCapacity:1];
-    [methods addObject:@"dummyMethod:WithArgs:"];
+    [methods addObject:@"dummyMethodWithArgs"];
     return methods;
     
 }

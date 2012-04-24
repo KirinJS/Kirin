@@ -9,6 +9,7 @@
 #import "NativeContextTest.h"
 
 #import "DebugConsole.h"
+#import "DummyNativeObject.h"
 
 @implementation NativeContextTest 
 
@@ -39,6 +40,28 @@
 - (void) testExecuteLog {
     [nativeCtx registerNativeObject:[[DebugConsole alloc] init] asName:@"Log"];
     [nativeCtx executeCommandFromModule:@"Log" andMethod:@"log_atLevel_" andArgsList:@"[\"Test Log message\", \"INFO\"]"];
+}
+
+- (void) testExecuteCommandWithMultipleArgs {
+    DummyNativeObject* obj = [[[DummyNativeObject alloc] init] autorelease];
+    [nativeCtx registerNativeObject:obj asName:@"obj"];
+    
+    obj.lastArg = nil;
+    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithNoArgs" andArgsList:@"[]"];
+    STAssertEquals(@selector(methodWithNoArgs), obj.lastMethod, @"No args");
+    STAssertNil(obj.lastArg, @"Arg is not nil");
+    
+    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithArg" andArgsList:@"[\"string0\"]"];
+    STAssertEquals(@selector(methodWithArg:), obj.lastMethod, @"One arg");    
+    STAssertEqualObjects(@"string0", obj.lastArg, @"One arg");
+    
+    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithArgAndArg" andArgsList:@"[\"string0\", \"string1\"]"];
+    STAssertEquals(@selector(methodWithArg:andArg:), obj.lastMethod, @"Two arg");    
+    STAssertEqualObjects(@"string1", obj.lastArg, @"Two arg");
+    
+//    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithArgAndArgAndArg" andArgsList:@"[\"string0\", \"string1\", \"string2\"]"];
+//    STAssertEquals(@selector(methodWithArg:andArg:), obj.lastMethod, @"Two arg");    
+//    STAssertEqualObjects(@"string2", obj.lastArg, @"Two arg");
 }
 
 @end

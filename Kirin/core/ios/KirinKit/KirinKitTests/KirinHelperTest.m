@@ -36,7 +36,8 @@
     
     [helper onLoad];
     
-    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('TestModule', ['dummyMethod_WithArgs_'])", [ctx.jsCalls objectAtIndex:0], @"loading didn't work");
+    // the method dummyMethodWithArgs comes from the DummyNativeContext.
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.loadProxyForModule('TestModule', [\"dummyMethodWithArgs\"])", [ctx.jsCalls objectAtIndex:0], @"loading didn't work");
     
     [ctx reset];
     
