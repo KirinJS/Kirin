@@ -22,7 +22,7 @@
 @synthesize nativeObjects = nativeObjects_;
 
 - (id) init {
-    return [self initWithDictionary: [[[NSMutableDictionary alloc] init] autorelease]]; 
+    return [self initWithDictionary: [NSMutableDictionary dictionary]]; 
 }
 
 - (id) initWithDictionary: (NSMutableDictionary*) nativeObjs {
