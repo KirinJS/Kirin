@@ -155,10 +155,6 @@
 }
 
 - (void)startDownloadWithConfig:(NSDictionary *)config {
-    UIBackgroundTaskIdentifier backgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-        [self failWithError:@"Timeout"];
-    }];
-    
     NSURLRequest* request;
     
     NSURL* url = [NSURL URLWithString:[config objectForKey:@"url"] ];
@@ -203,8 +199,7 @@
     } else {
         [self failWithError:@"noData"];
     }
-        
-    [[UIApplication sharedApplication] endBackgroundTask:backgroundTaskId];
+   
 }
 
 
