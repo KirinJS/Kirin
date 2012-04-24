@@ -98,6 +98,7 @@
 		1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
 		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61952914D22105004FDD8E /* KirinFileSystem.m */; };
+		1A6A21F11546B249006B5D13 /* DummyNativeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A21F01546B249006B5D13 /* DummyNativeObject.m */; };
 		1A7B90C914FFDA390090DF19 /* KirinLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C614FFDA390090DF19 /* KirinLocation.h */; };
 		1A7B90CA14FFDA390090DF19 /* KirinLocationBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C714FFDA390090DF19 /* KirinLocationBackend.h */; };
 		1A7B90CB14FFDA390090DF19 /* KirinLocationBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B90C814FFDA390090DF19 /* KirinLocationBackend.m */; };
@@ -232,6 +233,8 @@
 		1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemBackend.m; sourceTree = "<group>"; };
 		1A61952814D22105004FDD8E /* KirinFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinFileSystem.h; sourceTree = "<group>"; };
 		1A61952914D22105004FDD8E /* KirinFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinFileSystem.m; sourceTree = "<group>"; };
+		1A6A21EF1546B249006B5D13 /* DummyNativeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyNativeObject.h; sourceTree = "<group>"; };
+		1A6A21F01546B249006B5D13 /* DummyNativeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyNativeObject.m; sourceTree = "<group>"; };
 		1A7B90C614FFDA390090DF19 /* KirinLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocation.h; sourceTree = "<group>"; };
 		1A7B90C714FFDA390090DF19 /* KirinLocationBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocationBackend.h; sourceTree = "<group>"; };
 		1A7B90C814FFDA390090DF19 /* KirinLocationBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinLocationBackend.m; sourceTree = "<group>"; };
@@ -345,10 +348,7 @@
 				1A00C97314B2E36500211F34 /* KirinTests.h */,
 				1A00C97414B2E36500211F34 /* KirinHelperTest.m */,
 				1A00C97514B2E36500211F34 /* KirinHelperTest.h */,
-				1A00C97614B2E36500211F34 /* DummyNativeContext.m */,
-				1A00C97714B2E36500211F34 /* DummyNativeContext.h */,
-				1A00C97914B2E36500211F34 /* DummyJSContext.h */,
-				1A00C97814B2E36500211F34 /* DummyJSContext.m */,
+				1A6A21ED1546B221006B5D13 /* Dummies */,
 				1A00C8C914B2E2FD00211F34 /* Supporting Files */,
 				1AF8396514CA13FA00E0D436 /* NetworkingTest.h */,
 				1AF8396614CA13FA00E0D436 /* NetworkingTest.m */,
@@ -524,6 +524,19 @@
 				1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */,
 			);
 			name = FileSystem;
+			sourceTree = "<group>";
+		};
+		1A6A21ED1546B221006B5D13 /* Dummies */ = {
+			isa = PBXGroup;
+			children = (
+				1A00C97614B2E36500211F34 /* DummyNativeContext.m */,
+				1A00C97714B2E36500211F34 /* DummyNativeContext.h */,
+				1A00C97914B2E36500211F34 /* DummyJSContext.h */,
+				1A00C97814B2E36500211F34 /* DummyJSContext.m */,
+				1A6A21EF1546B249006B5D13 /* DummyNativeObject.h */,
+				1A6A21F01546B249006B5D13 /* DummyNativeObject.m */,
+			);
+			name = Dummies;
 			sourceTree = "<group>";
 		};
 		1A7B90CD14FFDA3F0090DF19 /* Location */ = {
@@ -805,6 +818,7 @@
 				1A00C97E14B2E36500211F34 /* DummyJSContext.m in Sources */,
 				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
 				1AEA44F41527B92000E7B961 /* KirinProxyTest.m in Sources */,
+				1A6A21F11546B249006B5D13 /* DummyNativeObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
