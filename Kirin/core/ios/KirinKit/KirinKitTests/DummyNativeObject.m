@@ -19,8 +19,9 @@
 }
 
 - (void) methodWithArg: (NSString*) string0 {
-    self.lastMethod = _cmd;
     self.lastArg = string0;
+    self.lastMethod = _cmd;
+
 }
 
 - (void) methodWithArg: (NSString*) string0 andArg: (NSString*) string1 {
@@ -31,6 +32,10 @@
 - (void) methodWithArg: (NSString*) string0 andArg: (NSString*) string1 andArg: (NSString*) string3 {
     self.lastMethod = _cmd;
     self.lastArg = string3;
+}
+
+- (void) methodWithError {
+    [self performSelector:@selector(nosuchmethod)];
 }
 
 - (void) dealloc {

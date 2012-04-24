@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <KirinKit/KirinServiceOnMainThread.h>
 
 @interface DummyNativeObject : NSObject<KirinServiceOnMainThread>

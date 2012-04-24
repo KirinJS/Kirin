@@ -9,6 +9,7 @@
 #import "NativeContext.h"
 #import "JSON.h"
 #import "NativeObjectHolder.h"
+#import <objc/message.h>
 
 @interface NativeContext () 
 
@@ -54,33 +55,27 @@
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) fullMethodName andArgsList: (NSString*) query {
     NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
     id obj = holder ? holder.nativeObject : nil;
-
     
 	SEL selector = [holder findSelectorFromString:fullMethodName];
 	if (obj && [obj respondsToSelector:selector]) {
-        NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-        NSMutableArray* arguments = [argsJSON JSONValue];
-
-        // TODO make this work. This would mean that we were no longer restricted to 
-        // two args selectors.
-        // http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ObjCRuntimeRef/Reference/reference.html
-        // http://cocoawithlove.com/2009/05/variable-argument-lists-in-cocoa.html
-//        char *argList = (char *)malloc(sizeof(NSString *) * [arguments count]);
-//        [arguments getObjects:(id *)argList];        
-//        objc_msgSend(obj, selector, argList);
-//        free(argList);
 
         void (^block)(void) = ^{
             @try {
-                int len = [arguments count];
-                if (len == 0) {
-                    [obj performSelector:selector];
-                } else if (len == 1) {
-                    [obj performSelector:selector withObject:[arguments objectAtIndex:0]];
-                } else if (len == 2) {
-                    [obj performSelector:selector withObject:[arguments objectAtIndex:0] withObject:[arguments objectAtIndex:1]];
+                NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+                
+                NSMutableArray* arguments = [argsJSON JSONValue];
+                
+                NSMethodSignature* sig = [[obj class] instanceMethodSignatureForSelector:selector];                
+                NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
+                inv.selector = selector;
+                inv.target = obj;
+                for (int i=0, max=[arguments count]; i<max; i++) {
+                    NSObject* obj = [arguments objectAtIndex:i];
+                    [inv setArgument:&obj atIndex:i + 2];
                 }
+                [inv invoke];
+
             } @catch (NSException* exception) {
                 NSLog(@"Exception while executing %@.%@", host, fullMethodName);
                 
@@ -95,7 +90,6 @@
         
         dispatch_queue_t queue = holder.dispatchQueue;
         if (queue) {
-//            block();
             dispatch_async(queue, block);
         } else {
             block();

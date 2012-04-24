@@ -59,9 +59,19 @@
     STAssertEquals(@selector(methodWithArg:andArg:), obj.lastMethod, @"Two arg");    
     STAssertEqualObjects(@"string1", obj.lastArg, @"Two arg");
     
-//    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithArgAndArgAndArg" andArgsList:@"[\"string0\", \"string1\", \"string2\"]"];
-//    STAssertEquals(@selector(methodWithArg:andArg:), obj.lastMethod, @"Two arg");    
-//    STAssertEqualObjects(@"string2", obj.lastArg, @"Two arg");
+    [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithArgAndArgAndArg" andArgsList:@"[\"string0\", \"string1\", \"string2\"]"];
+    STAssertEquals(@selector(methodWithArg:andArg:andArg:), obj.lastMethod, @"Two arg");    
+    STAssertEqualObjects(@"string2", obj.lastArg, @"Two arg");
+    
+    @try {
+        [nativeCtx executeCommandFromModule:@"obj" andMethod:@"methodWithError" andArgsList:@"[]"];
+    }
+    @catch (NSException *exception) {
+        STFail(@"Exception should've been caught already");
+    }
+    
+    
+    
 }
 
 @end
