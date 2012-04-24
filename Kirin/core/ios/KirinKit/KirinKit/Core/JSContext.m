@@ -49,7 +49,11 @@
 }
 
 - (void) js: (NSString*) js {
-    [self performSelectorOnMainThread:@selector(jsOnMainThread:) withObject:js waitUntilDone:NO];
+    if ([NSThread isMainThread]) {
+        [self jsOnMainThread:js];
+    } else {
+        [self performSelectorOnMainThread:@selector(jsOnMainThread:) withObject:js waitUntilDone:NO];
+    }
 }
 
 @end
