@@ -7,6 +7,7 @@
 //
 
 #import "StringDownloader.h"
+#import <UIKit/UIApplication.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "JSON.h"
 
@@ -29,6 +30,7 @@
 @synthesize errorBlock = errorBlock_;
 
 @synthesize statusCode = statusCode_;
+
 
 - (void) dealloc {
     self.successBlock = nil;
@@ -153,6 +155,10 @@
 }
 
 - (void)startDownloadWithConfig:(NSDictionary *)config {
+    UIBackgroundTaskIdentifier backgroundTaskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [self failWithError:@"Timeout"];
+    }];
+    
     NSURLRequest* request;
     
     NSURL* url = [NSURL URLWithString:[config objectForKey:@"url"] ];
@@ -198,6 +204,7 @@
         [self failWithError:@"noData"];
     }
         
+    [[UIApplication sharedApplication] endBackgroundTask:backgroundTaskId];
 }
 
 
