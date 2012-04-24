@@ -36,13 +36,13 @@
 + (KirinExtensions*) coreServices {
     KirinExtensions* services = [KirinExtensions empty];
     NSLog(@"Core KirinExtensions");
-    [services registerService:[[[SettingsBackend alloc] init] autorelease]];
-    [services registerService:[[[FileSystemBackend alloc] init] autorelease]];
-    [services registerService:[[[NetworkingBackend alloc] init] autorelease]];
-    [services registerService:[[[KirinImagePicker alloc] init] autorelease]];
-    [services registerService:[[[DatabasesBackend alloc] init] autorelease]];
-    [services registerService:[KirinLocationBackend instance]];
-    [services registerService:[KirinImageTransformer instance]];
+    [services registerExtension:[[[SettingsBackend alloc] init] autorelease]];
+    [services registerExtension:[[[FileSystemBackend alloc] init] autorelease]];
+    [services registerExtension:[[[NetworkingBackend alloc] init] autorelease]];
+    [services registerExtension:[[[KirinImagePicker alloc] init] autorelease]];
+    [services registerExtension:[[[DatabasesBackend alloc] init] autorelease]];
+    [services registerExtension:[KirinLocationBackend instance]];
+    [services registerExtension:[KirinImageTransformer instance]];
     return services;
 }
 
@@ -54,7 +54,7 @@
     return self;
 }
 
-- (void) registerService: (id<KirinExtensionProtocol>) service {
+- (void) registerExtension: (id<KirinExtensionProtocol>) service {
     [self.allServices addObject:service];
     [service onLoad];
     if (self.isStarted && [service respondsToSelector:@selector(onStart)]) {

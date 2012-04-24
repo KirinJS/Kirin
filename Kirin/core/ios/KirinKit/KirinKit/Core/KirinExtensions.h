@@ -21,7 +21,7 @@
 
 
 
-- (void) registerService: (id<KirinExtensionProtocol>) service;
+- (void) registerExtension: (id<KirinExtensionProtocol>) service;
 
 - (void) ensureStarted;
 
