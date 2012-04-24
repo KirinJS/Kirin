@@ -17,17 +17,13 @@
 
 package com.futureplatforms.kirin.demo.hellokirin.activity;
 
-import java.text.MessageFormat;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.demo.hellokirin.R;
 import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
