@@ -9,7 +9,7 @@
 #import "NativeContext.h"
 #import "JSON.h"
 #import "NativeObjectHolder.h"
-#import <UIKit/UIApplication.h>
+#import <objc/message.h>
 
 @interface NativeContext () 
 
@@ -52,10 +52,6 @@
     }
 }
 
-- (void) endBackgroundTask: (UIBackgroundTaskIdentifier) taskId {
-     [[UIApplication sharedApplication] endBackgroundTask:taskId];
-}
-
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) fullMethodName andArgsList: (NSString*) query {
     NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
     id obj = holder ? holder.nativeObject : nil;
@@ -63,22 +59,12 @@
 	SEL selector = [holder findSelectorFromString:fullMethodName];
 	if (obj && [obj respondsToSelector:selector]) {
 
-        dispatch_queue_t queue = holder.dispatchQueue;
-        BOOL isOnMainThread = queue == nil;
+
         void (^block)(void) = ^{
-            
-            // we're going to want to have this running until completion. 
-            // This is only sensible if extensions don't last very long for any given task.
-            // TODO expose some API such the extension can do long running stuff without risking 
-            // being run in the background.
-            UIBackgroundTaskIdentifier taskId = UIBackgroundTaskInvalid;
-            if (!isOnMainThread) {
-                taskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{} ];
-            }
             @try {
                 NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 
-                NSArray* arguments = [argsJSON JSONValue];
+                NSMutableArray* arguments = [argsJSON JSONValue];
                 
                 NSMethodSignature* sig = [[obj class] instanceMethodSignatureForSelector:selector];                
                 NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
@@ -100,14 +86,9 @@
                 NSLog(@"Exception raised:\n%@", exceptionMessage);
                 NSLog(@"Backtrace: %@", [exception callStackSymbols]);
             }
-            if (!isOnMainThread) {
-                // we've completed. OR HAVE WE? Javascript callbacks may be running, triggering further background 
-                // activity. Let's give JS one second to either launch another native call or close down.
-                [self performSelector:@selector(endBackgroundTask:) withObject:[NSNumber numberWithInt:taskId] afterDelay:1];
-            }
         };
         
-
+        dispatch_queue_t queue = holder.dispatchQueue;
         if (queue) {
             dispatch_async(queue, block);
         } else {
