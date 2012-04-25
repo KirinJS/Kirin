@@ -9,7 +9,7 @@
 #import "NativeContext.h"
 #import "JSON.h"
 #import "NativeObjectHolder.h"
-#import <objc/message.h>
+#import <UIKit/UIApplication.h>
 
 @interface NativeContext () 
 
@@ -52,15 +52,26 @@
     }
 }
 
+- (void) endBackgroundTask: (UIBackgroundTaskIdentifier) taskId {
+    [[UIApplication sharedApplication] endBackgroundTask:taskId];
+}
+
 - (void) executeCommandFromModule: (NSString*) host andMethod: (NSString*) fullMethodName andArgsList: (NSString*) query {
     NativeObjectHolder* holder = [self.nativeObjects objectForKey:host];
     id obj = holder ? holder.nativeObject : nil;
     
 	SEL selector = [holder findSelectorFromString:fullMethodName];
+    
+    BOOL isBackgroundThread = (holder.dispatchQueue != nil);
+    
 	if (obj && [obj respondsToSelector:selector]) {
 
 
         void (^block)(void) = ^{
+            UIBackgroundTaskIdentifier taskId = 0;
+            if (isBackgroundThread) {
+                taskId = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{} ];
+            }
             @try {
                 NSString* argsJSON = [query stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
                 
@@ -86,6 +97,12 @@
                 NSLog(@"Exception raised:\n%@", exceptionMessage);
                 NSLog(@"Backtrace: %@", [exception callStackSymbols]);
             }
+            @finally {
+                if (isBackgroundThread) {
+                    [self performSelector:@selector(endBackgroundTask:) withObject:[NSNumber numberWithUnsignedInt:taskId] afterDelay:1];
+                }
+            }
+
         };
         
         dispatch_queue_t queue = holder.dispatchQueue;
