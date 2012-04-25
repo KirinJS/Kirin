@@ -44,7 +44,8 @@ function buildAll (argv, dir) {
 		buildType: "dev",
 		minifiedJs: "application.js",
 		dirname: dir,
-		jslint: true
+		jslint: true,
+		compileDependencies: true
 	};
 
 	var args = initialArgs = {};
@@ -93,7 +94,6 @@ function buildAll (argv, dir) {
 			case "--android":
 				args.platform = "android";
 				args.compileNative = true;
-				break;
 				break;				
 			case "--initialize":
 				args.projectInit = true;
@@ -114,6 +114,9 @@ function buildAll (argv, dir) {
 			case "--no-js-build":
 				args.noJSBuildDir = true;
 				break;
+			case "--no-deps":
+			    args.compileDependencies = false;
+			    break;
 			case "-v":
 			case "--verbose":
 				verbose = args.verbose = true;
@@ -328,15 +331,21 @@ function compileNative () {
 			env = buildOrder[i];
 
 			//  (isApplication, dir, environment, callback, errback)
-			if (env.isApplication) {
+			var isApplication = env.isApplication;
+			if (isApplication) {
 				env.info.appFile = env.appFile;
+				console.log("Compiling the application");
+			}
+			i++;
+	    	if (isApplication || env.compileDependencies) {
+	    	    var args = _.extend(_.clone(env.info), env.info);
+	    	    _.defaults(args, initialArgs);
+		    	buildtools.compileNative(isApplication, env.cwd, env.platform, env.buildType, args, cb, errback);
+			} else {
+			    cb();
 			}
 			
-			i++;
-
-			var args = _.extend(_.clone(env.info), env.info);
-			_.defaults(args, initialArgs);
-			buildtools.compileNative(env.isApplication, env.cwd, env.platform, env.buildType, args, cb, errback);
+			
 		} else {
 			endBuild();
 		}

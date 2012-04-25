@@ -57,6 +57,10 @@ OPTIONS
 --native (optional)
 	By default, this flag is not applied. When present, the build script should do the right thing building the native package, in the correct order needed to assemble the app.
 	
+--no-deps
+    When the project is being natively compiled, this flag will prevent projects rebuilding dependent projects. This overrides the default behaviour. This may be useful in 
+    environments where multiple apps are depending on a single set of dependencies (e.g. on a build server).
+	
 Build-type:
 This will toggle minification, and the use of minified versions of library files.
 For this reason, for each external library, there must be two versions supplied: with and without a -min.js suffix.
