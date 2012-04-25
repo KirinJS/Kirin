@@ -18,7 +18,7 @@
 
 @interface KirinExtensions()
 
-@property(retain) NSMutableArray* allServices;
+@property(retain) NSMutableArray* allExtensions;
 
 @end
 
@@ -26,14 +26,14 @@
 
 @synthesize isStarted;
 
-@synthesize allServices;
+@synthesize allExtensions;
 
 + (KirinExtensions*) empty {
     NSLog(@"Empty KirinExtensions");
     return [[[KirinExtensions alloc] init] autorelease];
 }
 
-+ (KirinExtensions*) coreServices {
++ (KirinExtensions*) coreExtensions {
     KirinExtensions* services = [KirinExtensions empty];
     NSLog(@"Core KirinExtensions");
     [services registerExtension:[[[SettingsBackend alloc] init] autorelease]];
@@ -49,13 +49,13 @@
 - (id) init {
     self = [super init];
     if (self) {
-        self.allServices = [NSMutableArray array];
+        self.allExtensions = [NSMutableArray array];
     }
     return self;
 }
 
 - (void) registerExtension: (id<KirinExtensionProtocol>) service {
-    [self.allServices addObject:service];
+    [self.allExtensions addObject:service];
     [service onLoad];
     if (self.isStarted && [service respondsToSelector:@selector(onStart)]) {
         [service onStart];
@@ -69,8 +69,8 @@
  
     self.isStarted = YES;   
     
-    for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
+    for (int i=0, max=[self.allExtensions count]; i<max; i++) {
+        id<KirinExtensionProtocol> service = [self.allExtensions objectAtIndex:i];
         if ([service respondsToSelector:@selector(onStart)]) {
             [service onStart];
         }
@@ -83,15 +83,15 @@
         return;
     }
     
-    for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
+    for (int i=0, max=[self.allExtensions count]; i<max; i++) {
+        id<KirinExtensionProtocol> service = [self.allExtensions objectAtIndex:i];
         if ([service respondsToSelector:@selector(onStop)]) {
             [service onStop];
         }
     }
     
-    for (int i=0, max=[self.allServices count]; i<max; i++) {
-        id<KirinExtensionProtocol> service = [self.allServices objectAtIndex:i];
+    for (int i=0, max=[self.allExtensions count]; i<max; i++) {
+        id<KirinExtensionProtocol> service = [self.allExtensions objectAtIndex:i];
         if ([service respondsToSelector:@selector(onUnload)]) {
             [service onUnload];
         }
@@ -102,7 +102,7 @@
 
 - (void) dealloc {
     self.isStarted = NO;
-    self.allServices = nil;
+    self.allExtensions = nil;
     [super dealloc];
 }
 

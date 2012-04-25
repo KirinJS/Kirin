@@ -43,7 +43,7 @@
 // publicly available objects.
 @property(retain) KirinDropbox* dropbox;
 
-@property(nonatomic, retain) KirinExtensions* KirinExtensions;
+@property(nonatomic, retain) KirinExtensions* kirinExtensions;
 
 - (id) initWithWebView: (UIWebView*) aWebView;
 

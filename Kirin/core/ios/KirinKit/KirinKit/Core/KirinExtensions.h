@@ -13,7 +13,7 @@
     
 }
 
-+ (KirinExtensions*) coreServices;
++ (KirinExtensions*) coreExtensions;
 
 + (KirinExtensions*) empty;
 

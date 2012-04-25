@@ -43,7 +43,7 @@
 @implementation Kirin 
 
 @synthesize dropbox = dropbox_;
-@synthesize KirinExtensions = KirinExtensions_;
+@synthesize kirinExtensions = kirinExtensions_;
 
 
 @synthesize jsContext = jsContext_;
@@ -144,30 +144,30 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
 
 - (void) ensureStarted {
     // implicitly calls the getter, ensuring a KirinExtensions object exists.
-    [self.KirinExtensions ensureStarted];
+    [self.kirinExtensions ensureStarted];
 }
 
-- (void) setKirinExtensions:(KirinExtensions *) services {
-    if (services != nil && KirinExtensions_ != nil) {
+- (void) setKirinExtensions:(KirinExtensions *) extensions {
+    if (extensions != nil && kirinExtensions_ != nil) {
         [NSException raise:@"KirinExtensionsException" 
-                    format:@"Cannot change KirinExtensions contained once the first service has been added"];
+                    format:@"Cannot change kirinExtensions contained once the first service has been added"];
     }
     
-    [KirinExtensions_ release];
-    KirinExtensions_ = services;
-    [KirinExtensions_ retain];
+    [kirinExtensions_ release];
+    kirinExtensions_ = extensions;
+    [kirinExtensions_ retain];
 }
 
 
-- (KirinExtensions*) KirinExtensions {
-    if (KirinExtensions_ == nil) {
-        self.KirinExtensions = [KirinExtensions coreServices];
+- (KirinExtensions*) kirinExtensions {
+    if (kirinExtensions_ == nil) {
+        self.kirinExtensions = [KirinExtensions coreExtensions];
     }
-    return KirinExtensions_;
+    return kirinExtensions_;
 }
 
 - (void) unloadKirin {
-    [self.KirinExtensions unloadServices];
+    [self.kirinExtensions unloadServices];
 }
 
 
