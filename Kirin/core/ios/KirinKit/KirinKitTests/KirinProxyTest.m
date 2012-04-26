@@ -13,6 +13,7 @@
 
 #import "DummyJSContext.h"
 #import "DummyProtocol.h"
+#import "DummyValueObject.h"
 
 @interface KirinProxyTest ()
 @property(retain, nonatomic) KirinProxy* proxy;
@@ -44,11 +45,9 @@
     self.dummy = nil;
 }
 
-- (void) testSingleArg {
-//    NSLog(@"[self.dummy method0];");
+- (void) testMethodCallingIntoJS {
     [self.dummy method0];
     NSString* expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_JS, self.module, @"method0"];
-    
     STAssertEqualObjects(
                 expectedCall, 
                 self.jsContext.lastCall, 
@@ -108,5 +107,33 @@
     
     STAssertFalse([self.dummy respondsToSelector:@selector(methodNotThere)], @"Should not respond to methodNotThere");
 }
+
+- (void) testProxyForDictionary {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"number"];
+    [dictionary setObject:[NSNumber numberWithInt:2] forKey:@"numberObject"];
+    [dictionary setObject:@"aString" forKey:@"string"];    
+    [dictionary setObject:[NSNumber numberWithBool:YES] forKey:@"boolean"];
+
+    
+    
+    id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary];
+
+
+    STAssertEqualObjects(@"aString", [proxy string], @"string is wrong");
+    STAssertEqualObjects(@"aString", proxy.string, @"string is wrong");
+
+    STAssertEquals(1, proxy.number, @"number is wrong");
+    STAssertEqualObjects([NSNumber numberWithInt:2], proxy.numberObject, @"number object is wrong");
+    
+    STAssertTrue(proxy.boolean, @"boolean is wrong");
+
+    STAssertNil([proxy stringNotThere], @"nil is wrong");
+    
+    STAssertEquals(0, [proxy intNotThere], @"Value is wrongly initialized");
+
+    
+}
+
 
 @end

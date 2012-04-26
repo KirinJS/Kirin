@@ -13,6 +13,10 @@
 
 @interface KirinProxy : NSObject
 
-+ (KirinProxy*) proxyWithProtocol: (Protocol*) protocol andModuleName: (NSString*) moduleName andExecutor: (id<JSExecutor>) executor;
++ (id) proxyWithProtocol:(Protocol*) protocol andModuleName:(NSString*) moduleName andExecutor:(id<JSExecutor>) jsContext;
+
++ (id) proxyWithProtocol:(Protocol*) protocol andDictionary: (NSDictionary*) dictionary;
+
+- (id) initWithProtocol: (Protocol*) protocol;
 
 @end

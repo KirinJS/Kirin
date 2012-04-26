@@ -78,4 +78,6 @@
  */
 - (id) proxyForJavascriptObject: (Protocol*) protocol;
 
+- (id) proxyForJavascriptObject:(Protocol *)protocol andDictionary: (NSDictionary*) dictionary;
+
 @end

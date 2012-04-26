@@ -139,6 +139,10 @@
     return self.proxyForJSModule;
 }
 
+- (id) proxyForJavascriptObject:(Protocol *)protocol andDictionary: (NSDictionary*) dictionary {
+    return [KirinProxy proxyWithProtocol:protocol andDictionary:dictionary];
+}
+
 - (void) dealloc {
     self.jsContext = nil;
     self.nativeContext = nil;
