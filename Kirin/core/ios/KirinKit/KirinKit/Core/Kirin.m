@@ -180,6 +180,7 @@ SYNTHESIZE_SINGLETON_FOR_CLASS(Kirin)
     self.jsContext = nil;
     self.nativeContext = nil;
     self.dropbox = nil;
+    self.kirinExtensions = nil;
 	[super dealloc];
 }
 
