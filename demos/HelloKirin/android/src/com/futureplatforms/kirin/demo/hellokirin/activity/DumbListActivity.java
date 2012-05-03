@@ -27,8 +27,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.helpers.IKirinHelper;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 import com.futureplatforms.kirin.ui.JSListAdapter;

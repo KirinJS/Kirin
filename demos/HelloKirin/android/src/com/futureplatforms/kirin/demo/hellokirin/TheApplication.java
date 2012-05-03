@@ -19,8 +19,8 @@ package com.futureplatforms.kirin.demo.hellokirin;
 
 import android.app.Application;
 
-import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.Kirin;
+import com.futureplatforms.kirin.application.IKirinApplication;
 
 public class TheApplication extends Application implements IKirinApplication {
 

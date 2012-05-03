@@ -24,8 +24,8 @@ import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.helpers.IKirinApplication;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 import com.futureplatforms.kirin.ui.JSOnClickListener;
 
