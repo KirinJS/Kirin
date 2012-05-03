@@ -42,7 +42,6 @@
         return;
     }
     
-    NSLog(@"Looking for %@ in %@", methodName, self.dictionary);
     id result = [self.dictionary objectForKey:methodName];
 
     
