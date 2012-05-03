@@ -68,9 +68,33 @@
     if (argsList == nil || [argsList length] == 0) {
         [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_JS, self.jsModuleName, methodName]];
     } else {
-        [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_WITH_ARGS_JS, self.jsModuleName, methodName, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: DEPRECATED_EXECUTE_METHOD_WITH_ARGS_JS, self.jsModuleName, methodName, argsList]];
     }
 }
+
+- (void) jsMethod:(NSString *)methodName withArgArray:(NSArray*) argArray {
+    if (argArray == nil || [argArray count] == 0) {
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_JS, self.jsModuleName, methodName]];
+    } else {
+        // we need to think about square brackets: 
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_METHOD_WITH_ARGS_JS, self.jsModuleName, methodName, [argArray JSONRepresentation]]];
+    }    
+}
+
+- (void) jsMethod:(NSString *)methodName withArgs:(NSObject *)argument, ... {
+    // TODO test me.
+    // TODO generalize me into a reusable block, or something.
+    // TODO manage the memory a bit more tightly with all these arrays.
+    NSMutableArray* argArray = [NSMutableArray array];
+    va_list args;
+    va_start(args, argument);
+    for (NSObject *object = argument; object != nil; object = va_arg(args, NSObject*)) {
+        [argArray addObject:object];
+    }  
+    va_end(args);
+    [self jsMethod:methodName withArgArray:argArray];
+}
+
 
 - (void) jsCallback: (NSString*) callbackId {
     [self jsCallback:callbackId withArgsList:nil];
@@ -83,7 +107,7 @@
     if (argsList == nil || [argsList length] == 0) {
         [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_JS, callbackId]];
     } else {
-        [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, argsList]];
+        [self.jsContext js:[NSString stringWithFormat: DEPRECATED_EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, argsList]];
     }    
 }
 
@@ -97,6 +121,45 @@
     [self jsCallback:callbackId withArgsList:argsList];
 }
 
+- (void) jsCallback: (NSString*) callbackId withArgArray:(NSArray*) argArray {
+    if (!callbackId || [callbackId isKindOfClass:[NSNull class]]) {
+        return;
+    }
+    if (argArray == nil || [argArray count] == 0) {
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_JS, callbackId]];
+    } else {
+        [self.jsContext js:[NSString stringWithFormat: EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, [argArray JSONRepresentation]]];
+    }
+}
+
+- (void) jsCallback: (NSString*) callbackId withArgs:(NSObject *)argument, ... {
+    NSMutableArray* argArray = [NSMutableArray array];
+    va_list args;
+    va_start(args, argument);
+    for (NSObject *object = argument; object != nil; object = va_arg(args, NSObject*)) {
+        [argArray addObject:object];
+    }  
+    va_end(args);
+
+    [self jsCallback:callbackId withArgArray:argArray];
+}
+
+- (void) jsCallback:(NSString *)callbackName fromConfig:(NSDictionary *)config withArgs:(NSObject *)argument, ... {
+    NSString* callbackId = [config objectForKey:callbackName];
+    if (!callbackId) {
+        return;
+    }
+    NSMutableArray* argArray = [NSMutableArray array];
+    va_list args;
+    va_start(args, argument);
+    for (NSObject *object = argument; object != nil; object = va_arg(args, NSObject*)) {
+        [argArray addObject:object];
+    }  
+    va_end(args);
+    
+    [self jsCallback:callbackId withArgArray:argArray];
+}
+
 - (void) cleanupCallbacks:(NSArray*) callbackIds {
     if ([callbackIds count]) {
         [self.jsContext js:[NSString stringWithFormat: DELETE_CALLBACK_JS, [callbackIds componentsJoinedByString:@"', '"]]];
@@ -104,7 +167,7 @@
 }
 
 - (void) cleanupCallback:(NSString *)callbackId, ... {
-    NSMutableArray* callbackIds = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* callbackIds = [NSMutableArray array];
     va_list args;
     va_start(args, callbackId);
     for (NSString *arg = callbackId; arg != nil; arg = va_arg(args, NSString*)) {
@@ -115,7 +178,7 @@
 }
 
 - (void) cleanupCallback:(NSDictionary *)config withNames:(NSString *)callbackName, ... {
-    NSMutableArray* callbackIds = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray* callbackIds = [NSMutableArray array];
     va_list args;
     va_start(args, callbackName);
     for (NSString *arg = callbackName; arg != nil; arg = va_arg(args, NSString*)) {

@@ -130,4 +130,49 @@
     // there should be no extra call.
     STAssertTrue(0 == [ctx.jsCalls count], @"Callback cleanup");
 }
+
+- (void) testJsMethodWithArgs {
+    [helper jsMethod:@"foo" withArgs:@"bar", @"baz", nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'foo', [\"bar\",\"baz\"])", [ctx.jsCalls objectAtIndex:0], @"Method calling");
+    [ctx reset];
+    
+    [helper jsMethod:@"foo" withArgs:@"bar", [NSNumber numberWithBool:YES], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'foo', [\"bar\",true])", [ctx.jsCalls objectAtIndex:0], @"Method calling");
+    [ctx reset];
+
+    [helper jsMethod:@"foo" withArgs:[NSNumber numberWithInt: 42], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execMethod('TestModule', 'foo', [42])", [ctx.jsCalls objectAtIndex:0], @"Method calling");
+    [ctx reset];
+}
+
+- (void) testJsCallbackWithArgs {
+    [helper jsCallback:@"foo" withArgs:@"bar", @"baz", nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [\"bar\",\"baz\"])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+    
+    [helper jsCallback:@"foo" withArgs:@"bar", [NSNumber numberWithBool:YES], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [\"bar\",true])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+    
+    [helper jsCallback:@"foo" withArgs:[NSNumber numberWithInt: 42], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [42])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+}
+
+- (void) testJsCallbackWithConfigArgs {
+    NSMutableDictionary* config = [NSMutableDictionary dictionary];
+    [config setObject:@"foo" forKey:@"callback"];
+
+    [helper jsCallback:@"callback" fromConfig:config withArgs:@"bar", @"baz", nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [\"bar\",\"baz\"])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+    
+    [helper jsCallback:@"callback" fromConfig:config withArgs:@"bar", [NSNumber numberWithBool:YES], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [\"bar\",true])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+    
+    [helper jsCallback:@"callback" fromConfig:config withArgs:[NSNumber numberWithInt: 42], nil];
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.execCallback('foo', [42])", [ctx.jsCalls objectAtIndex:0], @"Callback calling with args");
+    [ctx reset];
+}
 @end

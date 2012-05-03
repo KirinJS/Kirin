@@ -47,15 +47,23 @@
 
 - (void) jsMethod:(NSString *)methodName withArgsList:(NSString*) argsList;
 
+- (void) jsMethod:(NSString *)methodName withArgs:(NSObject *)arg, ...
+    NS_REQUIRES_NIL_TERMINATION;
+
 - (void) jsCallback: (NSString*) callbackId;
 
 - (void) jsCallback: (NSString*) callbackId withArgsList:(NSString*) argsList;
+
+- (void) jsCallback: (NSString*) callbackId withArgs:(NSObject *)arg, ...
+    NS_REQUIRES_NIL_TERMINATION;
 
 - (void) jsCallback: (NSString*) callbackName fromConfig: (NSDictionary*) config;
 
 - (void) jsCallback: (NSString*) callbackName fromConfig: (NSDictionary*) config withArgsList:(NSString*) argsList;
 
-    
+- (void) jsCallback: (NSString*) callbackName fromConfig: (NSDictionary*) config withArgs:(NSObject *)arg, ...
+    NS_REQUIRES_NIL_TERMINATION;
+
 
 /**
  * The callbacks are managed within the JS context, so we will need to delete the callbacks when we're finished with them.
