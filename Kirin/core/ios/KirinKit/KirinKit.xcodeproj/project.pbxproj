@@ -74,6 +74,7 @@
 		1A06437814CF0DB500FB7EE3 /* CameraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */; };
 		1A21D87F14E5EE4000723C20 /* KirinArgs.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A21D87D14E5EE4000723C20 /* KirinArgs.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A21D88014E5EE4000723C20 /* KirinArgs.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A21D87E14E5EE4000723C20 /* KirinArgs.m */; };
+		1A2D478A1552954100EDF796 /* KirinArgsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2D47891552954100EDF796 /* KirinArgsTest.m */; };
 		1A2EF3BC14FA9B9300D00DE2 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90714B2E32600211F34 /* JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A2EF3BD14FA9B9300D00DE2 /* NSObject+JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A00C90814B2E32600211F34 /* NSObject+JSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A2EF3BE14FA9B9300D00DE2 /* NSObject+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00C90914B2E32600211F34 /* NSObject+JSON.m */; };
@@ -96,9 +97,9 @@
 		1A4384B614E2CAE00012CD5A /* FileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B514E2CAE00012CD5A /* FileSystem.h */; };
 		1A4384BB14E2CCA40012CD5A /* FileSystemBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */; };
 		1A4384BC14E2CCA40012CD5A /* FileSystemBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */; };
-		1A4F7CD31549632A00A010E0 /* KirinUIViewControllerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CD11549632A00A010E0 /* KirinUIViewControllerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1A4F7CD41549632A00A010E0 /* KirinUIViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F7CD21549632A00A010E0 /* KirinUIViewControllerViewController.m */; };
-		1A4F7CD71549666D00A010E0 /* KirinKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CD61549666D00A010E0 /* KirinKitUI.h */; };
+		1A4F7CD31549632A00A010E0 /* KirinUIViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CD11549632A00A010E0 /* KirinUIViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1A4F7CD41549632A00A010E0 /* KirinUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F7CD21549632A00A010E0 /* KirinUIViewController.m */; };
+		1A4F7CD71549666D00A010E0 /* KirinKitUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CD61549666D00A010E0 /* KirinKitUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A4F7CDA1549692A00A010E0 /* KirinProxyWithModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CD81549692A00A010E0 /* KirinProxyWithModule.h */; };
 		1A4F7CDB1549692A00A010E0 /* KirinProxyWithModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4F7CD91549692A00A010E0 /* KirinProxyWithModule.m */; };
 		1A4F7CDE15496D0000A010E0 /* KirinProxyWithDictionary.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A4F7CDC15496D0000A010E0 /* KirinProxyWithDictionary.h */; };
@@ -125,6 +126,8 @@
 		1AEA44EA1527B29500E7B961 /* KirinProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEA44E81527B29500E7B961 /* KirinProxy.m */; };
 		1AEA44EE1527B84C00E7B961 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AEA44ED1527B84C00E7B961 /* CoreLocation.framework */; };
 		1AEA44F41527B92000E7B961 /* KirinProxyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEA44F11527B92000E7B961 /* KirinProxyTest.m */; };
+		1AEE8DA3154EC8DD00B8C0D7 /* KirinUITableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AEE8DA1154EC8DD00B8C0D7 /* KirinUITableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1AEE8DA4154EC8DD00B8C0D7 /* KirinUITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AEE8DA2154EC8DD00B8C0D7 /* KirinUITableViewController.m */; };
 		1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AF8396614CA13FA00E0D436 /* NetworkingTest.m */; };
 /* End PBXBuildFile section */
 
@@ -235,11 +238,13 @@
 		1A06437314CF0DB500FB7EE3 /* CameraProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraProtocol.h; sourceTree = "<group>"; };
 		1A21D87D14E5EE4000723C20 /* KirinArgs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinArgs.h; sourceTree = "<group>"; };
 		1A21D87E14E5EE4000723C20 /* KirinArgs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinArgs.m; sourceTree = "<group>"; };
+		1A2D47881552954100EDF796 /* KirinArgsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinArgsTest.h; sourceTree = "<group>"; };
+		1A2D47891552954100EDF796 /* KirinArgsTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinArgsTest.m; sourceTree = "<group>"; };
 		1A4384B514E2CAE00012CD5A /* FileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystem.h; sourceTree = "<group>"; };
 		1A4384B914E2CCA40012CD5A /* FileSystemBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSystemBackend.h; sourceTree = "<group>"; };
 		1A4384BA14E2CCA40012CD5A /* FileSystemBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSystemBackend.m; sourceTree = "<group>"; };
-		1A4F7CD11549632A00A010E0 /* KirinUIViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinUIViewControllerViewController.h; sourceTree = "<group>"; };
-		1A4F7CD21549632A00A010E0 /* KirinUIViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinUIViewControllerViewController.m; sourceTree = "<group>"; };
+		1A4F7CD11549632A00A010E0 /* KirinUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinUIViewController.h; sourceTree = "<group>"; };
+		1A4F7CD21549632A00A010E0 /* KirinUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinUIViewController.m; sourceTree = "<group>"; };
 		1A4F7CD61549666D00A010E0 /* KirinKitUI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KirinKitUI.h; path = Core/KirinKitUI.h; sourceTree = "<group>"; };
 		1A4F7CD81549692A00A010E0 /* KirinProxyWithModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinProxyWithModule.h; sourceTree = "<group>"; };
 		1A4F7CD91549692A00A010E0 /* KirinProxyWithModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinProxyWithModule.m; sourceTree = "<group>"; };
@@ -272,6 +277,8 @@
 		1AEA44F01527B92000E7B961 /* KirinProxyTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinProxyTest.h; sourceTree = "<group>"; };
 		1AEA44F11527B92000E7B961 /* KirinProxyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinProxyTest.m; sourceTree = "<group>"; };
 		1AEA44F61527BAFB00E7B961 /* DummyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyProtocol.h; sourceTree = "<group>"; };
+		1AEE8DA1154EC8DD00B8C0D7 /* KirinUITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinUITableViewController.h; sourceTree = "<group>"; };
+		1AEE8DA2154EC8DD00B8C0D7 /* KirinUITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinUITableViewController.m; sourceTree = "<group>"; };
 		1AF8396514CA13FA00E0D436 /* NetworkingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTest.h; sourceTree = "<group>"; };
 		1AF8396614CA13FA00E0D436 /* NetworkingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -370,6 +377,8 @@
 				1AF8396614CA13FA00E0D436 /* NetworkingTest.m */,
 				1AEA44F01527B92000E7B961 /* KirinProxyTest.h */,
 				1AEA44F11527B92000E7B961 /* KirinProxyTest.m */,
+				1A2D47881552954100EDF796 /* KirinArgsTest.h */,
+				1A2D47891552954100EDF796 /* KirinArgsTest.m */,
 			);
 			path = KirinKitTests;
 			sourceTree = "<group>";
@@ -405,8 +414,10 @@
 				1A61952914D22105004FDD8E /* KirinFileSystem.m */,
 				1A21D87D14E5EE4000723C20 /* KirinArgs.h */,
 				1A21D87E14E5EE4000723C20 /* KirinArgs.m */,
-				1A4F7CD11549632A00A010E0 /* KirinUIViewControllerViewController.h */,
-				1A4F7CD21549632A00A010E0 /* KirinUIViewControllerViewController.m */,
+				1A4F7CD11549632A00A010E0 /* KirinUIViewController.h */,
+				1A4F7CD21549632A00A010E0 /* KirinUIViewController.m */,
+				1AEE8DA1154EC8DD00B8C0D7 /* KirinUITableViewController.h */,
+				1AEE8DA2154EC8DD00B8C0D7 /* KirinUITableViewController.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -647,10 +658,11 @@
 				1A7B90CA14FFDA390090DF19 /* KirinLocationBackend.h in Headers */,
 				1AA97D1E150921C5001F557E /* KirinImageTransformer.h in Headers */,
 				1AEA44E91527B29500E7B961 /* KirinProxy.h in Headers */,
-				1A4F7CD31549632A00A010E0 /* KirinUIViewControllerViewController.h in Headers */,
+				1A4F7CD31549632A00A010E0 /* KirinUIViewController.h in Headers */,
 				1A4F7CD71549666D00A010E0 /* KirinKitUI.h in Headers */,
 				1A4F7CDA1549692A00A010E0 /* KirinProxyWithModule.h in Headers */,
 				1A4F7CDE15496D0000A010E0 /* KirinProxyWithDictionary.h in Headers */,
+				1AEE8DA3154EC8DD00B8C0D7 /* KirinUITableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,9 +843,10 @@
 				1A7B90CB14FFDA390090DF19 /* KirinLocationBackend.m in Sources */,
 				1AA97D1F150921C5001F557E /* KirinImageTransformer.m in Sources */,
 				1AEA44EA1527B29500E7B961 /* KirinProxy.m in Sources */,
-				1A4F7CD41549632A00A010E0 /* KirinUIViewControllerViewController.m in Sources */,
+				1A4F7CD41549632A00A010E0 /* KirinUIViewController.m in Sources */,
 				1A4F7CDB1549692A00A010E0 /* KirinProxyWithModule.m in Sources */,
 				1A4F7CDF15496D0000A010E0 /* KirinProxyWithDictionary.m in Sources */,
+				1AEE8DA4154EC8DD00B8C0D7 /* KirinUITableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -849,6 +862,7 @@
 				1AF8396714CA13FA00E0D436 /* NetworkingTest.m in Sources */,
 				1AEA44F41527B92000E7B961 /* KirinProxyTest.m in Sources */,
 				1A6A21F11546B249006B5D13 /* DummyNativeObject.m in Sources */,
+				1A2D478A1552954100EDF796 /* KirinArgsTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
