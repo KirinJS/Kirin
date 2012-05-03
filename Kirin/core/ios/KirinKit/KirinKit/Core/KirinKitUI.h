@@ -12,6 +12,7 @@
 #import <KirinKit/KirinScreenHelper.h>
 
 #import <KirinKit/KirinUIViewController.h>
+#import <KirinKit/KirinUITableViewController.h>
 
 #import <KirinKit/KirinPaths.h>
 #import <KirinKit/KirinFileSystem.h>

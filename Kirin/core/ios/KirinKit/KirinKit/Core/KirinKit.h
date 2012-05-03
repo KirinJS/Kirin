@@ -20,3 +20,8 @@
 #import <KirinKit/KirinExtensionStub.h>
 #import <KirinKit/KirinPaths.h>
 #import <KirinKit/KirinFileSystem.h>
+
+// TODO review if this is the best place to put this.
+// Better would be to go in KirinKitUI.h, but it's easier to remember here.
+#import <KirinKit/KirinUIViewController.h>
+#import <KirinKit/KirinUITableViewController.h>
