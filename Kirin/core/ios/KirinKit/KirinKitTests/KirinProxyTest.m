@@ -57,7 +57,7 @@
 
     
     [self.dummy methodWithArray:[NSArray array]];
-    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithArray", @"[]"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithArray", @"[[]]"];
     STAssertEqualObjects(
                          expectedCall, 
                          self.jsContext.lastCall, 
@@ -65,7 +65,7 @@
                          );
     
     [self.dummy methodWithDictionary:[NSDictionary dictionary]];
-    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithDictionary", @"{}"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithDictionary", @"[{}]"];
     STAssertEqualObjects(
                          expectedCall, 
                          self.jsContext.lastCall, 
@@ -74,7 +74,7 @@
     
     
     [self.dummy methodWithString:@"Hello"];
-    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithString", @"\"Hello\""];
+    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithString", @"[\"Hello\"]"];
     STAssertEqualObjects(
                          expectedCall, 
                          self.jsContext.lastCall, 
@@ -83,7 +83,7 @@
 
     
     [self.dummy methodWithNumber:[NSNumber numberWithFloat:1.5f]];
-    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithNumber", @"1.5"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithNumber", @"[1.5]"];
     STAssertEqualObjects(
                          expectedCall, 
                          self.jsContext.lastCall, 
@@ -94,7 +94,7 @@
 
 - (void) testMultiArgs {
     [self.dummy methodWithArgs:1 :YES];
-    NSString* expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithArgs", @"1, true"];
+    NSString* expectedCall = [NSString stringWithFormat:EXECUTE_METHOD_WITH_ARGS_JS, self.module, @"methodWithArgs", @"[1,true]"];
     STAssertEqualObjects(
                          expectedCall, 
                          self.jsContext.lastCall, 
