@@ -45,17 +45,17 @@ import android.os.Build;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
+import com.futureplatforms.kirin.extensions.IKirinExtensionOnNonDefaultThread;
 import com.futureplatforms.kirin.extensions.KirinExtensionAdapter;
 import com.futureplatforms.kirin.extensions.databases.DBStatement.StatementType;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
-import com.futureplatforms.kirin.helpers.IKirinServiceOnNonDefaultThread;
 import com.futureplatforms.kirin.internal.attic.IOUtils;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer4;
 import com.futureplatforms.kirin.internal.fragmentation.CursorCoercer5;
 import com.futureplatforms.kirin.state.IKirinDropbox;
 
-public class DatabasesBackend extends KirinExtensionAdapter implements IDatabasesBackend, IKirinServiceOnNonDefaultThread {
+public class DatabasesBackend extends KirinExtensionAdapter implements IDatabasesBackend, IKirinExtensionOnNonDefaultThread {
 
     private final SharedPreferences mPrefs;
 

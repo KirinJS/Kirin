@@ -13,6 +13,7 @@ import android.text.TextUtils;
 
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.IJsContext;
+import com.futureplatforms.kirin.internal.core.IKirinState;
 import com.futureplatforms.kirin.internal.core.INativeContext;
 import com.futureplatforms.kirin.internal.core.JsCommands;
 import com.futureplatforms.kirin.state.IKirinDropbox;

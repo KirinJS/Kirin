@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.futureplatforms.kirin.Kirin;
-import com.futureplatforms.kirin.helpers.IKirinApplication;
+import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 
 
@@ -40,6 +40,9 @@ public abstract class KirinActivity extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		if (mKirinHelper == null) {
+			throw new IllegalStateException("The activity has no javascript module bound to it. Did you call bindScreen()?");
+		}
 		mKirinHelper.onResume();
 	}
 	

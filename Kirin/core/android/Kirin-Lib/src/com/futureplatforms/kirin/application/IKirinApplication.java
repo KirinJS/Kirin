@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.helpers;
+package com.futureplatforms.kirin.application;
 
 import com.futureplatforms.kirin.Kirin;
 

@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.helpers;
+package com.futureplatforms.kirin.extensions;
 
 /**
  * Marker interface for methods to be run on the main thread. 
@@ -8,6 +8,6 @@ package com.futureplatforms.kirin.helpers;
  * @author james
  *
  */
-public interface IKirinServiceOnUiThread {
+public interface IKirinExtensionOnUiThread {
 
 }

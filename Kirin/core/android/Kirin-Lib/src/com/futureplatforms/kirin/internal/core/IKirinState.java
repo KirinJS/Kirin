@@ -1,4 +1,4 @@
-package com.futureplatforms.kirin.helpers;
+package com.futureplatforms.kirin.internal.core;
 
 import android.app.Activity;
 

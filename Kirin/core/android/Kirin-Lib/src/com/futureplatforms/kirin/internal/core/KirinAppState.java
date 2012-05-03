@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.futureplatforms.kirin.extensions.IKirinExtension;
-import com.futureplatforms.kirin.helpers.IKirinState;
 import com.futureplatforms.kirin.internal.KirinPaths;
 import com.futureplatforms.kirin.internal.attic.KirinDropbox;
 import com.futureplatforms.kirin.state.IKirinDropbox;

@@ -33,7 +33,11 @@ public class WebChromeClient8 extends WebChromeClient {
     // this will die on SDK < 8
     public boolean onConsoleMessage(ConsoleMessage m) {
         String sourceID = m.sourceId();
-        sourceID = sourceID.substring(sourceID.lastIndexOf('/') + 1);
+        if (sourceID != null) {
+        	sourceID = sourceID.substring(sourceID.lastIndexOf('/') + 1);
+        } else {
+        	sourceID = "Unknown";
+        }
         String msg = MessageFormat.format("{2} (line {1}): {0}", m.message(), m.lineNumber(), sourceID);
         switch (m.messageLevel()) {
         case DEBUG:

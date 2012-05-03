@@ -3,7 +3,7 @@ package com.futureplatforms.kirin.extensions;
 import android.content.Context;
 import android.content.Intent;
 
-import com.futureplatforms.kirin.helpers.IKirinApplication;
+import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 
 public class KirinExtensionAdapter implements IKirinExtension {

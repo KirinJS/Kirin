@@ -13,8 +13,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.futureplatforms.kirin.C;
-import com.futureplatforms.kirin.helpers.IKirinServiceOnNonDefaultThread;
-import com.futureplatforms.kirin.helpers.IKirinServiceOnUiThread;
+import com.futureplatforms.kirin.extensions.IKirinExtensionOnNonDefaultThread;
+import com.futureplatforms.kirin.extensions.IKirinExtensionOnUiThread;
 
 public class NativeContext implements INativeContext {
 
@@ -50,11 +50,11 @@ public class NativeContext implements INativeContext {
 	@Override
 	public void registerNativeObject(String moduleName, Object object) {
 		IObjectHolder objectHolder = null;
-		if (object instanceof View || object instanceof Activity || object instanceof IKirinServiceOnUiThread) {
+		if (object instanceof View || object instanceof Activity || object instanceof IKirinExtensionOnUiThread) {
 			objectHolder = new UiObjectHolder(new Handler(), object);
 			logThread(object, "UI");
-		} else if (object instanceof IKirinServiceOnNonDefaultThread) {
-			Executor executor = ((IKirinServiceOnNonDefaultThread) object).getExecutor();
+		} else if (object instanceof IKirinExtensionOnNonDefaultThread) {
+			Executor executor = ((IKirinExtensionOnNonDefaultThread) object).getExecutor();
 			if (executor == null) {
 				logThread(object, "default background");
 				executor = mDefaultExecutorService;

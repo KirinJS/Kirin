@@ -1,7 +1,7 @@
 package com.futureplatforms.kirin.activities;
 
 import com.futureplatforms.kirin.Kirin;
-import com.futureplatforms.kirin.helpers.IKirinApplication;
+import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.helpers.KirinScreenHelper;
 
 import android.app.ListActivity;
