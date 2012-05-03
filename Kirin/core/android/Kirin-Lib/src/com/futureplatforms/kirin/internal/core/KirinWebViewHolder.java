@@ -6,6 +6,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.os.Build;
@@ -135,7 +136,12 @@ public class KirinWebViewHolder implements IJsContext {
 	            JSONArray array = new JSONArray(jsonArgs);
 	            args = new Object[array.length()];
 	            for (int i = 0, max = array.length(); i < max; i++) {
-	                args[i] = array.get(i);
+	                Object object = array.get(i);
+	                if (object != JSONObject.NULL) {
+	                	args[i] = object;
+	                } else {
+	                	args[i] = null;
+	                }
 	            }
 	        } catch (JSONException e) {
 	            Log.e(C.JS_TAG, MessageFormat.format("Problem calling {0}.{1}{2}", moduleName, methodName, jsonArgs));
