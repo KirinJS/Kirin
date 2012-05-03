@@ -6,23 +6,14 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import "KirinUIViewControllerViewController.h"
+#import "KirinUIViewController.h"
 
-@interface KirinUIViewControllerViewController ()
+@interface KirinUIViewController ()
 
 @end
 
-@implementation KirinUIViewControllerViewController
-@synthesize kirinHelper;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation KirinUIViewController
+@synthesize kirinHelper = kirinHelper_;
 
 - (void) bindScreenWithoutLoading: (NSString*) moduleName {
     self.kirinHelper = [KIRIN bindScreen:self toModule:moduleName];
@@ -57,12 +48,5 @@
     [super viewDidUnload];
     self.kirinHelper = nil;
 }
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-
 
 @end

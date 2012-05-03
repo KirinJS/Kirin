@@ -11,7 +11,7 @@
 #import <KirinKit/Kirin.h>
 #import <KirinKit/KirinScreenHelper.h>
 
-@interface KirinUIViewControllerViewController : UIViewController
+@interface KirinUIViewController : UIViewController
 
 @property(retain, nonatomic) KirinScreenHelper* kirinHelper;
 
