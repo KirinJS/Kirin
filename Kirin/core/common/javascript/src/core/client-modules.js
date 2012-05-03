@@ -44,7 +44,7 @@ var require = (function() {
 				return returned;
 			}
 		} else {
-			console.log("Module '" + name + "' has not been loaded (doesn't exist)");
+			throw new Error("Module '" + name + "' has not been loaded (doesn't exist)");
 		}
 		return exports;
 	};
