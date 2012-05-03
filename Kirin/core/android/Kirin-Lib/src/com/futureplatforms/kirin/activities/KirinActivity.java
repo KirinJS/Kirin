@@ -12,6 +12,11 @@ public abstract class KirinActivity extends Activity {
 
 	protected KirinScreenHelper mKirinHelper;
 	
+	protected <T> T bindScreen(String moduleName, Class<T> javascriptModule) {
+		bindScreen(moduleName);
+		return mKirinHelper.createProxy(javascriptModule);
+	}
+	
 	protected void bindScreen(String moduleName) {
 		bindScreenWithoutLoading(moduleName);
 		mKirinHelper.onLoad();
