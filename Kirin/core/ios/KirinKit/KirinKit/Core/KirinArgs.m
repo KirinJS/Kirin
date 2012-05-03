@@ -45,15 +45,15 @@
     return boolean ? @"true" : @"false";
 }
 
-+ (NSString*) args: (NSString*) argString, ... {
-    NSMutableArray* argStringList = [[[NSMutableArray alloc] init] autorelease];
++ (NSString*) args:(NSString *)argument, ... {
+    NSMutableArray* argArray = [NSMutableArray array];
     va_list args;
-    va_start(args, argString);
-    for (NSString *arg = argString; arg != nil; arg = va_arg(args, NSString*)) {
-        [argStringList addObject:argString];        
-    }
+    va_start(args, argument);
+    for (NSString *object = argument; object != nil; object = va_arg(args, NSString*)) {
+        [argArray addObject:object];
+    }  
     va_end(args);
-    return [argStringList componentsJoinedByString:@", "];
+    return [argArray componentsJoinedByString:@", "];
 }
 
 + (BOOL) isNull: (id) arg {
