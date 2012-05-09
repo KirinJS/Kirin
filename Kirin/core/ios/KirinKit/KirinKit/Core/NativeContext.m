@@ -78,15 +78,58 @@
                 NSMutableArray* arguments = [argsJSON JSONValue];
                 
                 NSMethodSignature* sig = [[obj class] instanceMethodSignatureForSelector:selector];                
-                NSInvocation* inv = [NSInvocation invocationWithMethodSignature:sig];
-                inv.selector = selector;
-                inv.target = obj;
+                
+                NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:sig];
+                
+                invocation.selector = selector;
+                invocation.target = obj;
                 for (int i=0, max=[arguments count]; i<max; i++) {
-                    NSObject* obj = [arguments objectAtIndex:i];
-                    [inv setArgument:&obj atIndex:i + 2];
+                    NSObject* arg = [arguments objectAtIndex:i];
+                    
+                    char argType = [sig getArgumentTypeAtIndex:i + 2][0];
+                    BOOL handled = YES;
+                    if (argType == @encode(id)[0]) {    
+                        if ([arg isKindOfClass:[NSNull class]]) {
+                            arg = nil;
+                        }
+                        [invocation setArgument:&arg atIndex:i + 2];
+                    } else if ([arg isKindOfClass: [NSNumber class]]) {
+                        NSNumber* num = (NSNumber*) arg;
+                        if (argType == @encode(int)[0]) {
+                            int value = [num intValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else if (argType == @encode(BOOL)[0]) {
+                            BOOL value = [num boolValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else if (argType == @encode(float)[0]) {
+                            float value = [num floatValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else if (argType == @encode(double)[0]) {
+                            double value = [num doubleValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else if (argType == @encode(long)[0]) {
+                            long value = [num longValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else if (argType == @encode(short)[0]) {
+                            short value = [num shortValue];
+                            [invocation setArgument:&value atIndex:i + 2];
+                        } else {
+                            handled = NO;
+                        }
+                    } else {
+                        handled = NO;
+                    }
+                    
+                    if (!handled) {
+                        [NSException raise:@"KirinInvocationException" 
+                                    format:@"Cannot call selector %@ with argument %d value=%@", 
+                         fullMethodName, i, arg];
+                    }
+                        
+                    
+                    
                 }
-                [inv invoke];
-
+                [invocation invoke];
             } @catch (NSException* exception) {
                 NSLog(@"Exception while executing %@.%@", host, fullMethodName);
                 
