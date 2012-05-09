@@ -61,10 +61,10 @@
             BOOL value = [num boolValue];
             [invocation setReturnValue:&value];
         } else if (returnType == @encode(float)[0]) {
-            BOOL value = [num floatValue];
+            float value = [num floatValue];
             [invocation setReturnValue:&value];
         } else if (returnType == @encode(double)[0]) {
-            BOOL value = [num doubleValue];
+            double value = [num doubleValue];
             [invocation setReturnValue:&value];
         } else if (returnType == @encode(long)[0]) {
             long value = [num longValue];

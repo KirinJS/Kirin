@@ -23,4 +23,12 @@
 
 - (NSString*) stringNotThere;
 
+- (float) aFloat;
+
+- (long) aLong;
+
+- (double) aDouble;
+
+- (short) aShort;
+
 @end

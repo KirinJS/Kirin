@@ -110,29 +110,52 @@
 
 - (void) testProxyForDictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"number"];
-    [dictionary setObject:[NSNumber numberWithInt:2] forKey:@"numberObject"];
-    [dictionary setObject:@"aString" forKey:@"string"];    
-    [dictionary setObject:[NSNumber numberWithBool:YES] forKey:@"boolean"];
-
-    
-    
     id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary];
 
 
+    // objects
+    [dictionary setObject:@"aString" forKey:@"string"];    
     STAssertEqualObjects(@"aString", [proxy string], @"string is wrong");
     STAssertEqualObjects(@"aString", proxy.string, @"string is wrong");
 
-    STAssertEquals(1, proxy.number, @"number is wrong");
+    // NSNumber
+    [dictionary setObject:[NSNumber numberWithInt:2] forKey:@"numberObject"];
     STAssertEqualObjects([NSNumber numberWithInt:2], proxy.numberObject, @"number object is wrong");
     
-    STAssertTrue(proxy.boolean, @"boolean is wrong");
-
-    STAssertNil([proxy stringNotThere], @"nil is wrong");
+    // int
+    [dictionary setObject:[NSNumber numberWithInt:1] forKey:@"number"];
+    STAssertEquals(1, proxy.number, @"number is wrong");
     
+    
+    // boolean
+    [dictionary setObject:[NSNumber numberWithBool:YES] forKey:@"boolean"];
+    STAssertTrue(proxy.boolean, @"boolean is wrong");
+    [dictionary setObject:[NSNumber numberWithBool:NO] forKey:@"boolean"];
+    STAssertFalse(proxy.boolean, @"boolean is wrong");    
+    
+    // float
+    [dictionary setObject:[NSNumber numberWithFloat:42.0f] forKey:@"aFloat"];
+    STAssertEquals(42.0f, proxy.aFloat, @"float is wrong");
+    
+    // long
+    [dictionary setObject:[NSNumber numberWithLong:42l] forKey:@"aLong"];
+    STAssertEquals(42l, proxy.aLong, @"long is wrong");
+
+    // double
+    [dictionary setObject:[NSNumber numberWithDouble:42.0] forKey:@"aDouble"];
+    STAssertEquals(42.0, proxy.aDouble, @"double is wrong");
+    
+    // short
+    [dictionary setObject:[NSNumber numberWithShort:(short) 42] forKey:@"aShort"];
+    STAssertEquals((short) 42, proxy.aShort, @"short is wrong");
+
+    // nil
+    [dictionary removeObjectForKey:@"stringNotThere"];
+    STAssertNil([proxy stringNotThere], @"nil is wrong");
+
+    [dictionary removeObjectForKey:@"intNotThere"];
     STAssertEquals(0, [proxy intNotThere], @"Value is wrongly initialized");
 
-    
 }
 
 
