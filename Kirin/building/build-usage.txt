@@ -1,0 +1,79 @@
+Usage: node build.js OPTIONS
+
+Build and test the Javascript project
+
+The script:
+	Identifies the correct files in shared/ relevant to the platform
+	runs tests found in test/test-all.js.
+	runs JSLint on each of the files in turn.
+	optionally assembles a directory suitable for distribution.
+
+Options:
+	platform           qt|ios|android
+	build_type         developer|qa|stage|production
+	dist_directory     the directory where the files will be copied.
+
+Varying the platform or build-type will change the Javascript that is used. The suffixes used in the shared directory become
+significant.
+
+Suffixes:
+    
+These suffixes may be combined, e.g. for a javascript file to be included in both android and qt, use -android-qt.js as a suffix.
+
+OPTIONS
+
+--platform, -p ios|android|qt
+	Specify the platform this javascript bundle should support. 
+
+
+
+	These correspond to the file suffixes: 
+	-android        Only included in Android builds.
+	-ios            Only included in iOS builds.
+	-qt             Only included in Qt builds.
+	
+	Additionally, two other suffixes are supported:
+	-webview        Only included for platforms where the Javascript is to be run in a webview. e.g. Android, iOS
+	-javascript     Only included for platforms where the Javascript is to be run in a webview. e.g. QML, WebOS
+
+--build-type, -b developer|qa|prod|uitest|none (developer by default)
+
+	Specifies the type of build the Javascript is going to be used for.
+	
+	dev		Only included for development releases. This will not minify the source.
+	qa			Only included for QA releases
+	stage		Only included for Staging releases
+	prod		Only included for production releases
+	uitest    	If ui tests are available, use these files preferentially. Useful for when building UI first.
+
+
+	Additionally, the following is provided to ease unit testing.
+    -dummy          If dummy modules are available, use these files preferentially. Useful for unit testing.
+
+
+--build-dir, -d <dir> (optional)
+	This is where the final javascript and index file will be deposited. If this is specified the named directory will be deleted and replaced with a new build directory.
+	
+--native (optional)
+	By default, this flag is not applied. When present, the build script should do the right thing building the native package, in the correct order needed to assemble the app.
+	
+--no-deps
+    When the project is being natively compiled, this flag will prevent projects rebuilding dependent projects. This overrides the default behaviour. This may be useful in 
+    environments where multiple apps are depending on a single set of dependencies (e.g. on a build server).
+	
+Build-type:
+This will toggle minification, and the use of minified versions of library files.
+For this reason, for each external library, there must be two versions supplied: with and without a -min.js suffix.
+
+Build-type options:
+	production    minify the Javascript in shared/ and use the -min.js files available in lib/
+	stage         minify the Javascript in shared/ and use the -min.js files available in lib/
+	qa            minify the Javascript in shared/ and use the -min.js files available in lib/
+	developer     uses unminified versions of files in lib/.
+	none          causes the build script to terminate immediately and normally. Useful for headless building.
+
+Distribution directory
+If one is specified, the platform specific file in index/ is used as a template. The value of %INCLUDED_SCRIPTS% is
+replaced with the platform specific method of loading all relevant javascript files.
+
+If a dir is not specified, then the tests and jsLint are still run.

@@ -1,0 +1,385 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A4A0F361430C12E0010EF83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A0F351430C12E0010EF83 /* UIKit.framework */; };
+		1A4A0F381430C12E0010EF83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A0F371430C12E0010EF83 /* Foundation.framework */; };
+		1A4A0F3A1430C12E0010EF83 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A4A0F391430C12E0010EF83 /* CoreGraphics.framework */; };
+		1A4A0F401430C12F0010EF83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A0F3E1430C12F0010EF83 /* InfoPlist.strings */; };
+		1A4A0F431430C12F0010EF83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A0F421430C12F0010EF83 /* main.m */; };
+		1A4A0F461430C12F0010EF83 /* HelloKirin_iOSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A0F451430C12F0010EF83 /* HelloKirin_iOSAppDelegate.m */; };
+		1A4A0F491430C12F0010EF83 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A0F471430C12F0010EF83 /* MainWindow.xib */; };
+		1A4A0F4C1430C12F0010EF83 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A0F4B1430C12F0010EF83 /* RootViewController.m */; };
+		1A4A0F781430C6CE0010EF83 /* DumbListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A4A0F761430C6CD0010EF83 /* DumbListViewController.m */; };
+		1A4A0F811430C7680010EF83 /* DumbListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A4A0F7F1430C7680010EF83 /* DumbListViewController.xib */; };
+		1A61E4831431236C00A2E0DB /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4811431236C00A2E0DB /* RootViewController.xib */; };
+		1A61E48A1431272A00A2E0DB /* DumbTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4881431272900A2E0DB /* DumbTableCell.xib */; };
+		1A61E4941431EAE300A2E0DB /* generated-javascript in Resources */ = {isa = PBXBuildFile; fileRef = 1A61E4931431EAE300A2E0DB /* generated-javascript */; };
+		1A72207714B2D114005650E8 /* KirinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A72207614B2D114005650E8 /* KirinKit.framework */; };
+		1AC2DC4814A54A7600B00AE6 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC2DC4714A54A7600B00AE6 /* libsqlite3.0.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		1A61E48C143133CD00A2E0DB /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		1A4A0F311430C12E0010EF83 /* HelloKirin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloKirin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A4A0F351430C12E0010EF83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A4A0F371430C12E0010EF83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A4A0F391430C12E0010EF83 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1A4A0F3D1430C12F0010EF83 /* HelloKirin-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HelloKirin-iOS-Info.plist"; sourceTree = "<group>"; };
+		1A4A0F3F1430C12F0010EF83 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1A4A0F411430C12F0010EF83 /* HelloKirin-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HelloKirin-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		1A4A0F421430C12F0010EF83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1A4A0F441430C12F0010EF83 /* HelloKirin_iOSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloKirin_iOSAppDelegate.h; sourceTree = "<group>"; };
+		1A4A0F451430C12F0010EF83 /* HelloKirin_iOSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloKirin_iOSAppDelegate.m; sourceTree = "<group>"; };
+		1A4A0F481430C12F0010EF83 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		1A4A0F4A1430C12F0010EF83 /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		1A4A0F4B1430C12F0010EF83 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		1A4A0F761430C6CD0010EF83 /* DumbListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DumbListViewController.m; sourceTree = "<group>"; };
+		1A4A0F771430C6CE0010EF83 /* DumbListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DumbListViewController.h; sourceTree = "<group>"; };
+		1A4A0F801430C7680010EF83 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DumbListViewController.xib; sourceTree = "<group>"; };
+		1A61E4821431236C00A2E0DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		1A61E4891431272A00A2E0DB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DumbTableCell.xib; sourceTree = "<group>"; };
+		1A61E4931431EAE300A2E0DB /* generated-javascript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "generated-javascript"; sourceTree = "<group>"; };
+		1A72207614B2D114005650E8 /* KirinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KirinKit.framework; sourceTree = "<group>"; };
+		1AC2DC4714A54A7600B00AE6 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A4A0F2E1430C12E0010EF83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AC2DC4814A54A7600B00AE6 /* libsqlite3.0.dylib in Frameworks */,
+				1A4A0F361430C12E0010EF83 /* UIKit.framework in Frameworks */,
+				1A4A0F381430C12E0010EF83 /* Foundation.framework in Frameworks */,
+				1A4A0F3A1430C12E0010EF83 /* CoreGraphics.framework in Frameworks */,
+				1A72207714B2D114005650E8 /* KirinKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A4A0F261430C12E0010EF83 = {
+			isa = PBXGroup;
+			children = (
+				1AC2DC4714A54A7600B00AE6 /* libsqlite3.0.dylib */,
+				1A61E4931431EAE300A2E0DB /* generated-javascript */,
+				1A4A0F3B1430C12E0010EF83 /* HelloKirin-iOS */,
+				1A4A0F341430C12E0010EF83 /* Frameworks */,
+				1A4A0F321430C12E0010EF83 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A4A0F321430C12E0010EF83 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A0F311430C12E0010EF83 /* HelloKirin-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A4A0F341430C12E0010EF83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A72207614B2D114005650E8 /* KirinKit.framework */,
+				1A4A0F351430C12E0010EF83 /* UIKit.framework */,
+				1A4A0F371430C12E0010EF83 /* Foundation.framework */,
+				1A4A0F391430C12E0010EF83 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A4A0F3B1430C12E0010EF83 /* HelloKirin-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				1A61E4881431272900A2E0DB /* DumbTableCell.xib */,
+				1A4A0F7F1430C7680010EF83 /* DumbListViewController.xib */,
+				1A4A0F761430C6CD0010EF83 /* DumbListViewController.m */,
+				1A4A0F771430C6CE0010EF83 /* DumbListViewController.h */,
+				1A61E4811431236C00A2E0DB /* RootViewController.xib */,
+				1A4A0F4A1430C12F0010EF83 /* RootViewController.h */,
+				1A4A0F4B1430C12F0010EF83 /* RootViewController.m */,
+				1A4A0F471430C12F0010EF83 /* MainWindow.xib */,
+				1A4A0F441430C12F0010EF83 /* HelloKirin_iOSAppDelegate.h */,
+				1A4A0F451430C12F0010EF83 /* HelloKirin_iOSAppDelegate.m */,
+				1A4A0F3C1430C12F0010EF83 /* Supporting Files */,
+			);
+			path = "HelloKirin-iOS";
+			sourceTree = "<group>";
+		};
+		1A4A0F3C1430C12F0010EF83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A4A0F3D1430C12F0010EF83 /* HelloKirin-iOS-Info.plist */,
+				1A4A0F3E1430C12F0010EF83 /* InfoPlist.strings */,
+				1A4A0F411430C12F0010EF83 /* HelloKirin-iOS-Prefix.pch */,
+				1A4A0F421430C12F0010EF83 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1A4A0F301430C12E0010EF83 /* HelloKirin-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A4A0F521430C12F0010EF83 /* Build configuration list for PBXNativeTarget "HelloKirin-iOS" */;
+			buildPhases = (
+				1A61E48B1431328B00A2E0DB /* ShellScript */,
+				1A4A0F2D1430C12E0010EF83 /* Sources */,
+				1A4A0F2E1430C12E0010EF83 /* Frameworks */,
+				1A4A0F2F1430C12E0010EF83 /* Resources */,
+			);
+			buildRules = (
+				1A61E48C143133CD00A2E0DB /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = "HelloKirin-iOS";
+			productName = "HelloKirin-iOS";
+			productReference = 1A4A0F311430C12E0010EF83 /* HelloKirin-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A4A0F281430C12E0010EF83 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "Future Platforms";
+			};
+			buildConfigurationList = 1A4A0F2B1430C12E0010EF83 /* Build configuration list for PBXProject "HelloKirin-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A4A0F261430C12E0010EF83;
+			productRefGroup = 1A4A0F321430C12E0010EF83 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A4A0F301430C12E0010EF83 /* HelloKirin-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1A4A0F2F1430C12E0010EF83 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A4A0F401430C12F0010EF83 /* InfoPlist.strings in Resources */,
+				1A4A0F491430C12F0010EF83 /* MainWindow.xib in Resources */,
+				1A4A0F811430C7680010EF83 /* DumbListViewController.xib in Resources */,
+				1A61E4831431236C00A2E0DB /* RootViewController.xib in Resources */,
+				1A61E48A1431272A00A2E0DB /* DumbTableCell.xib in Resources */,
+				1A61E4941431EAE300A2E0DB /* generated-javascript in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1A61E48B1431328B00A2E0DB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = "/usr/local/bin/node ../build.js --platform ios --build-type developer --build-dir generated-javascript ";
+			shellScript = "";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A4A0F2D1430C12E0010EF83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A4A0F431430C12F0010EF83 /* main.m in Sources */,
+				1A4A0F461430C12F0010EF83 /* HelloKirin_iOSAppDelegate.m in Sources */,
+				1A4A0F4C1430C12F0010EF83 /* RootViewController.m in Sources */,
+				1A4A0F781430C6CE0010EF83 /* DumbListViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1A4A0F3E1430C12F0010EF83 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A4A0F3F1430C12F0010EF83 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1A4A0F471430C12F0010EF83 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A4A0F481430C12F0010EF83 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		1A4A0F7F1430C7680010EF83 /* DumbListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A4A0F801430C7680010EF83 /* en */,
+			);
+			name = DumbListViewController.xib;
+			sourceTree = "<group>";
+		};
+		1A61E4811431236C00A2E0DB /* RootViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A61E4821431236C00A2E0DB /* en */,
+			);
+			name = RootViewController.xib;
+			sourceTree = "<group>";
+		};
+		1A61E4881431272900A2E0DB /* DumbTableCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1A61E4891431272A00A2E0DB /* en */,
+			);
+			name = DumbTableCell.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1A4A0F501430C12F0010EF83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(VALID_ARCHS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					KirinKit,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-framework",
+					KirinKit,
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1A4A0F511430C12F0010EF83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(VALID_ARCHS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-framework",
+					KirinKit,
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-framework",
+					KirinKit,
+				);
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		1A4A0F531430C12F0010EF83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(VALID_ARCHS)";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";
+				INFOPLIST_FILE = "HelloKirin-iOS/HelloKirin-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1A4A0F541430C12F0010EF83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = "$(VALID_ARCHS)";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";
+				INFOPLIST_FILE = "HelloKirin-iOS/HelloKirin-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A4A0F2B1430C12E0010EF83 /* Build configuration list for PBXProject "HelloKirin-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A4A0F501430C12F0010EF83 /* Debug */,
+				1A4A0F511430C12F0010EF83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A4A0F521430C12F0010EF83 /* Build configuration list for PBXNativeTarget "HelloKirin-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A4A0F531430C12F0010EF83 /* Debug */,
+				1A4A0F541430C12F0010EF83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A4A0F281430C12E0010EF83 /* Project object */;
+}

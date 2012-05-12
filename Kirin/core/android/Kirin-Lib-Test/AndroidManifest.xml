@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      android:versionCode="1"
+      android:versionName="1.0" package="com.futureplatforms.kirin">
+	
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <instrumentation android:name="android.test.InstrumentationTestRunner" android:targetPackage="com.futureplatforms.kirin"/>
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:name="TestingApplication">
+		<receiver android:name="com.futureplatforms.kirin.external.LocalNotificationAlarmReceiver">
+			<intent-filter>
+				<action android:name="android.intent.action.BOOT_COMPLETED" />
+			</intent-filter>
+			
+			<meta-data android:name="notification_icon" android:resource="@drawable/icon"/>
+			<meta-data android:name="content_uri_prefix" android:value="glasto://planner"/>
+		</receiver>
+    <uses-library android:name="android.test.runner" />
+    </application>
+</manifest>

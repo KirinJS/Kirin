@@ -1,0 +1,74 @@
+{
+    "name": "kirin",
+    "description": "A toolkit to help building native crossplatform mobile apps by implementing the application logic in Javascript.",
+    "version": "0.6.0",
+    "homepage": "https://github.com/kirinjs/kirin",
+    "author": [
+        {
+            "name": "Future Platforms",
+            "email": "james.hugman@futureplatforms.com",
+            "url": "http://futureplatforms.com"
+        },
+        {
+            "name": "jhugman",
+            "email": "james@hugman.tv",
+            "url": "https://hugman.posterous.com/kirin"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/kirinjs/kirin.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kirinjs/kirin/issues"
+    },
+    "licenses": [
+        {
+            "type": "Apache",
+            "url": "https://github.com/KirinJS/Kirin/blob/master/LICENSE"
+        }
+    ],
+    "engines": {
+        "node": "*"
+    },
+    "scripts": {
+        "build-ios": "Kirin/rebuild_kirinkit.sh",
+        "test-tools": "nodeunit ./tools/test/package-crawler-test.js"
+    },
+    "bin": {
+        "kirin-create": "./bin/kirin-create.js"
+    },
+    "kirin": {
+        "directories": [
+            "Kirin/core/common/javascript/src"            
+        ],
+        "dependencies": [
+            "underscore"
+        ],
+	    "platforms": {
+		    "ios": {
+			    "project": "Kirin/core/ios/KirinKit/KirinKit.xcodeproj"
+		    },
+		    "android": {}
+	    },
+	    "extensions": {
+	        "kirin": "Kirin/core/common/javascript/src/core/kirin",
+	        "Native": "Kirin/core/common/javascript/src/core/Native",
+	        "Settings": "Kirin/core/common/javascript/src/services/Settings"
+	    }
+    },
+    "dependencies": {
+        "underscore": ">= 1.3.1",
+        "progenitor": "git://github.com/KirinJS/progenitor.git",
+        "JSON": "*"
+    },
+    "devDependencies": {
+        "nodeunit": "*"
+    },
+    "keywords": [
+        "mobile",
+        "crossplatform",
+        "native",
+        "apps"
+    ]
+}
