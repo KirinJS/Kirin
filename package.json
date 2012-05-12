@@ -32,10 +32,9 @@
         "node": "*"
     },
     "scripts": {
-        "build-ios": "Kirin/rebuild_kirinkit.sh",
-        "test-tools": "nodeunit ./tools/test/package-crawler-test.js"
     },
     "bin": {
+        "kirin-rebuild-kirin-kit": "./bin/rebuild_kirinkit.sh",
         "kirin-create": "./bin/kirin-create.js"
     },
     "kirin": {
