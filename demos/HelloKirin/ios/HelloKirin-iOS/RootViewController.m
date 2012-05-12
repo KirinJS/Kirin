@@ -89,8 +89,8 @@
     [self.kirinHelper jsMethod:@"onNextScreenButtonClick"];
 }
 
-- (void) updateLabelSize:(NSInteger) size andText:(NSString*) text {
-    NSLog(@"Setting label to %@ with size %@", text, size);
+- (void) updateLabelSize:(int) size andText:(NSString*) text {
+    NSLog(@"Setting label to %@ with size %d", text, size);
 //    [self.label setFont:[UIFont fontWithName:@"Helvetica" size: size]];
 	self.label.text = text;
 
