@@ -43,8 +43,8 @@
 	self.navigationItem.rightBarButtonItem = editButton;
 	
 	self.navigationItem.title = @"How big?";
-    self.kirinHelper = [[KIRIN bindScreen:self
-                           toModule:@"DumbButtonScreen"] retain];
+    self.kirinHelper = [KIRIN bindScreen:self
+                                toModule:@"DumbButtonScreen"];
     [self.kirinHelper onLoad];
 }
 
@@ -123,7 +123,7 @@
 
 
 - (void)dealloc {
-    [self.kirinHelper release];
+    self.kirinHelper = nil;
     [super dealloc];
 }
 
