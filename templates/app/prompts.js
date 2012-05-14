@@ -19,6 +19,9 @@ exports.prompts = {
       validator: /^[a-z][a-z0-9]\w*$/,
       warning: "Project name must be lower case and contain no spaces",
   },
+  project_description: {
+      message: "A short description about the project"
+  },
   class_prefix: {
     message: "Prefix for all classes",
     validator: /^[A-Z]\w*$/,
@@ -38,4 +41,4 @@ exports.prompts = {
   "JAVA_PACKAGE": "",
 };
 
-exports.header = "The following prompts will help you create an ios application…";
+exports.header = "The following prompts will help you create an ios application...";

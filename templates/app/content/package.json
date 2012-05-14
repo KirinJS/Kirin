@@ -1,0 +1,28 @@
+{
+    "name": "{{project_name}}",
+    "description": "{{project_description}}",
+    "version": "0.0.1",
+    "private": true,
+    "kirin": {
+        "shared": "shared/lib",
+        "dependencies": [
+            "kirin-core"
+        ],
+	"platforms": {
+            "ios": {
+                "project": "platforms/ios/__project_name__.xcodeproj",
+                "build": "xcodebuild clean build",
+                "build.debug": "xcodebuild -configuration Debug clean build",
+                "build.release": "xcodebuild -configuration Release clean build"
+            },
+            "android": {
+                "project": "platforms/android",
+                "build": "ant clean debug && ant clean release",
+                "build.debug": "ant clean debug",
+                "build.release": "ant clean release"
+            }
+        },
+	"extensions": {
+	}
+    }
+}
