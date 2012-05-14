@@ -47,9 +47,17 @@
         ],
 	    "platforms": {
 		    "ios": {
-			    "project": "platforms/ios/KirinKit/KirinKit.xcodeproj"
+			    "project": "platforms/ios/KirinKit/KirinKit.xcodeproj",
+			    "build": "xcodebuild -target KirinKit",
+			    "build.debug": "xcodebuild -sdk iphoneos -configuration Debug clean build",
+			    "build.release": "xcodebuild -sdk iphoneos -configuration Release clean build"
 		    },
-		    "android": {}
+		    "android": {
+			    "project": "platforms/android/Kirin-Lib",
+			    "build": "ant clean debug && ant clean release",
+			    "build.debug": "ant clean debug",
+			    "build.release": "ant clean release"		    
+		    }
 	    },
 	    "extensions": {
 	        "kirin": "src/core/kirin",
@@ -61,6 +69,7 @@
     "dependencies": {
         "underscore": ">= 1.3.1",
         "progenitor": "git://github.com/KirinJS/progenitor.git",
+        "kirin-build": "git://github.com/KirinJS/kirin-build.git",
         "JSON": "*"
     },
     "devDependencies": {
