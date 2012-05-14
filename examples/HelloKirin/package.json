@@ -32,9 +32,11 @@
 	    "platforms": {
 		    "ios": {
 			    "project": "platforms/ios/HelloKirin-iOS.xcodeproj",
-                            "target":  "HelloKirin-iOS"
-                    },
-		    "android": {}
+			    "target":  "HelloKirin-iOS"
+		    },
+		    "android": {
+			    "project": "platforms/android"
+		    }
 	    },
 	    "extensions": {
 	    }

@@ -39,7 +39,7 @@
 
 /* Begin PBXFileReference section */
 		1A00C9A414B2F4CD00211F34 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		1A3A0CCC14B3006F00BAFF2A /* KirinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KirinKit.framework; path = "../../../../Library/Developer/Xcode/DerivedData/KirinKit-fswjoqojxunyzxaeoaxsjnnikaaq/Build/Products/Debug-iphoneos/KirinKit.framework"; sourceTree = "<group>"; };
+		1A3A0CCC14B3006F00BAFF2A /* KirinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KirinKit.framework; path = "platforms/ios/KirinKit/build/Debug-iphoneos/KirinKit.framework"; sourceTree = KIRIN_HOME; };
 		1A4A0F311430C12E0010EF83 /* HelloKirin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloKirin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4A0F351430C12E0010EF83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1A4A0F371430C12E0010EF83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -218,7 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/node ../build.js --platform ios --build-type $KIRIN_BUILD_TYPE\n";
+			shellScript = "$HOME/bin/kirin-build --platform ios --build-type $KIRIN_BUILD_TYPE\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -338,7 +338,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Kirin/core/ios/KirinKit/build/Debug-iphoneos\"",
+					"\"$(KIRIN_HOME)/platforms/ios/KirinKit/build/Debug-iphoneos\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -362,7 +362,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Kirin/core/ios/KirinKit/build/Release-iphoneos\"",
+					"\"$(SRCROOT)/../../../platforms/ios/KirinKit/build/Release-iphoneos\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HelloKirin-iOS/HelloKirin-iOS-Prefix.pch";

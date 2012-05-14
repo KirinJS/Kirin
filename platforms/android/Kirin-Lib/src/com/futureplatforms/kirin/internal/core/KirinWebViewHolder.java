@@ -118,7 +118,8 @@ public class KirinWebViewHolder implements IJsContext {
             }
         }
         webView.addJavascriptInterface(new InjectedObject(), "JavaProxyObject");
-        webView.loadUrl("file:///android_asset/generated-javascript/index-android.html");
+        // TODO make this point to something a little less hardcoded.
+        webView.loadUrl("file:///android_asset/generated-javascript/index.android.html");
     }
 	
 	
