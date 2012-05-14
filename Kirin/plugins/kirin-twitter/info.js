@@ -1,4 +1,0 @@
-{
-	"name": "kirin-twitter",
-	"plugins": []	
-}
