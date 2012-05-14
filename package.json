@@ -38,22 +38,24 @@
         "kirin-create": "./bin/kirin-create.js"
     },
     "kirin": {
+        "shared": "lib/javascript",
         "directories": [
-            "Kirin/core/common/javascript/src"            
+            "src"            
         ],
         "dependencies": [
             "underscore"
         ],
 	    "platforms": {
 		    "ios": {
-			    "project": "Kirin/core/ios/KirinKit/KirinKit.xcodeproj"
+			    "project": "platforms/ios/KirinKit/KirinKit.xcodeproj"
 		    },
 		    "android": {}
 	    },
 	    "extensions": {
-	        "kirin": "Kirin/core/common/javascript/src/core/kirin",
-	        "Native": "Kirin/core/common/javascript/src/core/Native",
-	        "Settings": "Kirin/core/common/javascript/src/services/Settings"
+	        "kirin": "src/core/kirin",
+	        "Settings": "src/extensions/Settings",
+	        "Filesystem": "src/extensions/FileSystem",
+	        "Databases": "src/extensions/Databases"
 	    }
     },
     "dependencies": {

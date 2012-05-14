@@ -1,0 +1,42 @@
+{
+    "name": "hello-kirin",
+    "description": "A demonstration of the kirin project",
+    "version": "0.0.1",
+    "private": true,
+    "author": [
+        {
+            "name": "Future Platforms",
+            "email": "james.hugman@futureplatforms.com",
+            "url": "http://futureplatforms.com"
+        },
+        {
+            "name": "jhugman",
+            "email": "james@hugman.tv",
+            "url": "https://hugman.posterous.com/kirin"
+        }
+    ],
+    "bugs": {
+        "url": "https://github.com/kirinjs/kirin/issues"
+    },
+    "licenses": [
+        {
+            "type": "Apache",
+            "url": "https://github.com/KirinJS/Kirin/blob/master/LICENSE"
+        }
+    ],
+    "kirin": {
+        "shared": "lib",
+        "dependencies": [
+            "kirin-core"
+        ],
+	    "platforms": {
+		    "ios": {
+			    "project": "platforms/ios/HelloKirin-iOS.xcodeproj",
+                            "target":  "HelloKirin-iOS"
+                    },
+		    "android": {}
+	    },
+	    "extensions": {
+	    }
+    }
+}

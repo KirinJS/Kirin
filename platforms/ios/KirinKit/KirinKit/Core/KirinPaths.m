@@ -13,7 +13,7 @@
 
 
 + (NSString*) indexFilename {
-	return @"index-ios.html";
+	return @"index.ios.html";
 }
 
 + (NSString*) javascriptDirectory {
