@@ -14,37 +14,35 @@
    limitations under the License.
 */
 
-defineScreenModule("DumbListScreen", function (require, exports) {
 
-	var theScreen;
+var theScreen;
 
-	var data = [
-				{key: 'ant'}, {key: 'ball'}, {key: 'chair'}, 
-				{key: 'dragon'}, {key: 'elf'}, {key: 'frog'}, 
-				{key: 'gate'}, {key: 'helicopter'}, {key: 'igloo'},
-				{key: 'jumper'}, {key: 'kite'}, {key: 'lady'}, 
-				{key: 'man'}, {key: 'nest'}, {key: 'octopus'}, 
-				{key: 'panda'}, {key: 'queen'}, {key: 'rabbit'}, 
-				{key: 'shumper'}, {key: 'teacup'}, {key: 'umbrella'}, 
-				{key: 'vase'}, {key: 'xylophone'}, {key: 'yoyo'}, 
-				{key: 'zebra'}
-			];
+var data = [
+			{key: 'ant'}, {key: 'ball'}, {key: 'chair'}, 
+			{key: 'dragon'}, {key: 'elf'}, {key: 'frog'}, 
+			{key: 'gate'}, {key: 'helicopter'}, {key: 'igloo'},
+			{key: 'jumper'}, {key: 'kite'}, {key: 'lady'}, 
+			{key: 'man'}, {key: 'nest'}, {key: 'octopus'}, 
+			{key: 'panda'}, {key: 'queen'}, {key: 'rabbit'}, 
+			{key: 'shumper'}, {key: 'teacup'}, {key: 'umbrella'}, 
+			{key: 'vase'}, {key: 'xylophone'}, {key: 'yoyo'}, 
+			{key: 'zebra'}
+		];
 
-	exports.onLoad = function (ui) {
-		theScreen = ui;
-	};
+exports.onLoad = function (ui) {
+	theScreen = ui;
+};
 
-	exports.onUnload = function () {
-		theScreen = null;
-	};
+exports.onUnload = function () {
+	theScreen = null;
+};
 
-	exports.onResume = function () {
-		theScreen.populateList(data);	
-	};
-			
-	exports.onListItemClick = function (index) {
-		var key = data[index].key;
-		console.log("Clicked on '" + key + "' (item #" + index + ")");
-		theScreen.showToast(key.toUpperCase());
-	};	
-});
+exports.onResume = function () {
+	theScreen.populateList(data);	
+};
+		
+exports.onListItemClick = function (index) {
+	var key = data[index].key;
+	console.log("Clicked on '" + key + "' (item #" + index + ")");
+	theScreen.showToast(key.toUpperCase());
+};	

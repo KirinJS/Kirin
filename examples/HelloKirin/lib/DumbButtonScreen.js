@@ -14,33 +14,31 @@
    limitations under the License.
 */
 
-defineScreenModule("DumbButtonScreen", function (require, exports) {
-	var strings = ["smallest", "still small", "small", "medium", "big", "bigger", "huge", "giant", "quite big", "biggest"],
-		counter = strings.length - 1,
-		theScreen;
+var strings = ["smallest", "still small", "small", "medium", "big", "bigger", "huge", "giant", "quite big", "biggest"],
+	counter = strings.length - 1,
+	theScreen;
+
+
+exports.onLoad = function (ui) {
+	theScreen = ui;
+};
+
+exports.onResume = function () {
+	console.log("We're running");
+};
+
+exports.onDumbButtonClick = function () {
+	if (counter >= (strings.length - 1)) {
+		counter = 0;
+	} else {
+		counter ++;
+	}
+
+	theScreen.updateLabelSizeAndText(counter * 5 + 10, strings[counter]);
+
+	return true;
+};
 	
-	
-	exports.onLoad = function (ui) {
-		theScreen = ui;
-	};
-	
-	exports.onResume = function () {
-		console.log("We're running");
-	};
-	
-	exports.onDumbButtonClick = function () {
-		if (counter >= (strings.length - 1)) {
-			counter = 0;
-		} else {
-			counter ++;
-		}
-	
-		theScreen.updateLabelSizeAndText(counter * 5 + 10, strings[counter]);
-	
-		return true;
-	};
-		
-	exports.onNextScreenButtonClick = function () {
-		theScreen.changeScreen(strings[counter]);
-	};
-});
+exports.onNextScreenButtonClick = function () {
+	theScreen.changeScreen(strings[counter]);
+};
