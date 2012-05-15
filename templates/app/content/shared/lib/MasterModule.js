@@ -1,32 +1,39 @@
 
-var theScreen = null,
-    sentence = "All work and no play makes __USER__ a dull boy",
-    items = sentence.split(/\s+/),
-    index = 0;
+var sentence = "All work and no play makes __USER__ a dull boy",
+    items = sentence.split(/\s+/);
+    
 
-exports.onLoad = function (ui) {
-    theScreen = ui;
+function MyModule () {
+    this.screen = null;
+    this.index = 0;
+}
+
+MyModule.prototype.onLoad = function (ui) {
+    this.screen = ui;
 };
 
-exports.onUnload = function () {
-    theScreen = null;
+MyModule.prototype.onUnload = function () {
+    this.screen = null;
 };
 
-exports.onResume = function () {
+MyModule.prototype.onResume = function () {
     // the screen is about to appear.
-    theScreen.setTableContents(["click on add"]);
-    index = 0;
+    this.screen.setTableContents(["click on add"]);
+    this.index = 0;
 };
 
-exports.onPause = function () {
+MyModule.prototype.onPause = function () {
     // the screen is about to go away.
 };
 
-exports.addNewItem = function () {
-    theScreen.insertRowWithContents(index, items[index]);
-    index = (index + 1) % items.length; 
+MyModule.prototype.addNewItem = function () {
+    this.screen.insertRowWithContents(this.index, items[this.index]);
+    this.index = (this.index + 1) % items.length; 
 };
 
-exports.itemSelected = function (row) {
-    theScreen.displayDetailScreenForRowAndContents(row, items[row % items.length]);
+MyModule.prototype.itemSelected = function (row) {
+    this.screen.displayDetailScreenForRowAndContents(row, items[row % items.length]);
 };
+
+module.exports = MyModule;
+

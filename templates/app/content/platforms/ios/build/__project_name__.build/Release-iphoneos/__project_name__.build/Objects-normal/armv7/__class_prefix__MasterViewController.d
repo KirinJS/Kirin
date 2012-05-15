@@ -1,6 +1,5 @@
 dependencies: \
-  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m \
-  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.h \
+  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m \
   /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.h \
   /Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos/KirinKit.framework/Headers/KirinKit.h \
   /Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos/KirinKit.framework/Headers/Kirin.h \
@@ -26,4 +25,5 @@ dependencies: \
   /Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos/KirinKit.framework/Headers/KirinUIViewController.h \
   /Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos/KirinKit.framework/Headers/KirinUITableViewController.h \
   /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterScreen.h \
-  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.h
+  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.h \
+  /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterModule.h
