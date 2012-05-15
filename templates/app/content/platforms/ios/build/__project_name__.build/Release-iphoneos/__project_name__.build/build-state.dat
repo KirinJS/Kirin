@@ -1,490 +1,0 @@
-T__project_name__
-v5
-r1
-cCheck dependencies
-cCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist build/Release-iphoneos/__project_name__.app/ResourceRules.plist
-cProcessInfoPlistFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/Info.plist __project_name__/__project_name__-Info.plist
-cPhaseScriptExecution "Run Script" /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh
-cProcessPCH /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth __project_name__/__project_name__-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-cLd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__ normal armv7
-cGenerateDSYMFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__
-cCopyStringsFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/InfoPlist.strings __project_name__/en.lproj/InfoPlist.strings
-cCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib
-cCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib
-cCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib
-cCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib
-cCpResource generated-javascript build/Release-iphoneos/__project_name__.app/generated-javascript
-cProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision
-cProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision
-cTouch /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-cProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent
-cCodeSign /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-cValidate /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk
-c000000004F6CA1600000000000000110
-t1332519264
-s272
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist
-c000000004F588BE100000000000001A7
-t1331203041
-s423
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist
-c000000004F588BE100000000000001E5
-t1331203041
-s485
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
-c000000004F588BE200000000003AE430
-t1331203042
-s3859504
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/CoreLocation.framework/CoreLocation
-c000000004F588BE1000000000007C770
-t1331203041
-s509808
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/Foundation.framework/Foundation
-c000000004F588BE2000000000052C940
-t1331203042
-s5425472
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
-c000000004F588BE2000000000006F910
-t1331203042
-s456976
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/System/Library/Frameworks/UIKit.framework/UIKit
-c000000004F588BE30000000000798EA0
-t1331203043
-s7966368
-
-N/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/usr/lib/libsqlite3.0.dylib
-c000000004F588BE40000000000156EF0
-t1331203044
-s1404656
-
-N/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision
-c000000004F96B83E0000000000004C22
-t1335277630
-s19490
-
-N/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Debug-iphoneos/KirinKit.framework/KirinKit
-c000000004FB177CF000000000019D294
-t1337030607
-s1692308
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.h
-c000000004FAE7F5900000000000001E0
-t1336835929
-s480
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m
-c000000004FAE7F590000000000000FB8
-t1336835929
-s4024
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.h
-c000000004FAE7F5900000000000001AD
-t1336835929
-s429
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m
-c000000004FAE7F590000000000000B5A
-t1336835929
-s2906
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterModule.h
-c000000004FAE7F590000000000000142
-t1336835929
-s322
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterScreen.h
-c000000004FAE7F5900000000000001C0
-t1336835929
-s448
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.h
-c000000004FAE7F590000000000000210
-t1336835929
-s528
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m
-c000000004FAE7F590000000000001639
-t1336835929
-s5689
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Prefix.pch
-c000000004FAE7F59000000000000014F
-t1336835929
-s335
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/InfoPlist.strings
-c000000004FAE7F59000000000000002D
-t1336835929
-s45
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib
-c000000004FAE7F590000000000001FFA
-t1336835929
-s8186
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib
-c000000004FAE7F590000000000001EEE
-t1336835929
-s7918
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib
-c000000004FAE7F590000000000001C5D
-t1336835929
-s7261
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib
-c000000004FAE7F590000000000001836
-t1336835929
-s6198
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m
-c000000004FAE7F590000000000000183
-t1336835929
-s387
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-t1337079825
-s340
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM
-t1337079822
-s102
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/Info.plist
-t1337079821
-s1224
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/PkgInfo
-t1337079821
-s8
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/ResourceRules.plist
-t1337079821
-s485
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__
-t1337079825
-s202672
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision
-t1337079825
-s19490
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/InfoPlist.strings
-t1337079822
-s42
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__DetailViewController_iPad.nib
-t1337079824
-s1401
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__DetailViewController_iPhone.nib
-t1337079824
-s1370
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__MasterViewController_iPad.nib
-t1337079824
-s1110
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__MasterViewController_iPhone.nib
-t1337079824
-s1110
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/generated-javascript
-t1337079822
-s136
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o
-t1337079822
-s71564
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o
-t1337079822
-s59576
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o
-t1337079822
-s73864
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__project_name__.LinkFileList
-c000000004FB2380D00000000000002F3
-t1337079821
-s755
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o
-t1337079822
-s3580
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh
-c000000004FB2380D000000000000004E
-t1337079821
-s78
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent
-t1337079825
-s450
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/com.apple.build-tools.platform.validate
-t2
-s0
-
-N/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/generated-javascript
-c000000004FB2380D0000000000000088
-t1337079821
-s136
-
-N/var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.pth
-t1337030639
-s3968520
-
-N/var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth
-t1337079822
-s3968520
-
-N__project_name__/__project_name__-Info.plist
-c000000004FAE7F5900000000000005BC
-t1336835929
-s1468
-
-CCheck dependencies
-r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesa2d2608d6f62b541^0646728d6f62b541^---0#1#0#--18"Check dependencies36"B897A69B-C2F7-4F1B-9C59-B4AEB92F9004-
-
-CCodeSign /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-s358772625.221623
-e358772625.497268
-r1
-xCodeSign
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"CodeSign build/Release-iphoneos/__project_name__.app14cc38916f62b541^f54c7f916f62b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/0000000000000000^1002"CodeSign build/Release-iphoneos/__project_name__.app    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv CODESIGN_ALLOCATE /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/codesign_allocate    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /usr/bin/codesign --force --sign b87286577d54fe4172cb6289ab87af47cd3db41e --resource-rules=/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/ResourceRules.plist --entitlements /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app36"801895BF-5570-43EA-AD67-DDEFCD919EF5-
-
-CCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358772622.229703
-e358772622.417947
-r1
-xCompileC
-xbuild/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection124"Compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.me4f33a8e6f62b541^50fe6a8e6f62b541^---0#0#0#-19%DVTDocumentLocation2@132"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m0000000000000000^3954"CompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o __project_name__/__class_prefix__AppDelegate.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch -MMD -MT dependencies -MF /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.d --serialize-diagnostics /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__AppDelegate.m -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__AppDelegate.o36"5C23D981-5BB5-489A-BCA6-1A762C3DCCCF-
-
-CCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358772622.229725
-e358772622.418544
-r1
-xCompileC
-xbuild/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m23f53a8e6f62b541^b3256b8e6f62b541^---0#0#0#-19%DVTDocumentLocation2@141"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m0000000000000000^4008"CompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o __project_name__/__class_prefix__DetailViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch -MMD -MT dependencies -MF /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.d --serialize-diagnostics /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__DetailViewController.m -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__DetailViewController.o36"2B97882F-D754-423E-8CB0-6E0F429E2743-
-
-CCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358772622.229721
-e358772622.429636
-r1
-xCompileC
-xbuild/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection133"Compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m56f53a8e6f62b541^69fd6d8e6f62b541^---0#0#0#-19%DVTDocumentLocation2@141"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m0000000000000000^4008"CompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o __project_name__/__class_prefix__MasterViewController.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch -MMD -MT dependencies -MF /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.d --serialize-diagnostics /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__class_prefix__MasterViewController.m -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__class_prefix__MasterViewController.o36"B0DF88FE-6B1E-4145-9053-AE4AEE84392E-
-
-CCompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358772622.229493
-e358772622.401595
-r1
-xCompileC
-xbuild/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection101"Compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m29e83a8e6f62b541^85cf668e6f62b541^---0#0#0#-19%DVTDocumentLocation2@109"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m0000000000000000^3816"CompileC build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o __project_name__/main.m normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 -include /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch -MMD -MT dependencies -MF /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.d --serialize-diagnostics /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/main.m -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/main.o36"1596FAF9-7E81-4595-9472-9A89B455240C-
-
-CCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib
-s358772622.686431
-e358772625.162199
-r1
-xCompileXIB
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection151"Compiling /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib68cdaf8e6f62b541^de8d29916f62b541^---0#0#0#-19%DVTDocumentLocation2@157"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib0000000000000000^1072"CompileXIB __project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__DetailViewController_iPad.nib /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPad.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk36"C9FB0259-FCCC-414A-9FA5-AF4AEF69ADF3-
-
-CCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib
-s358772622.686421
-e358772625.162136
-r1
-xCompileXIB
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection153"Compiling /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib7dccaf8e6f62b541^e08129916f62b541^---0#0#0#-19%DVTDocumentLocation2@159"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib0000000000000000^1078"CompileXIB __project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__DetailViewController_iPhone.nib /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__DetailViewController_iPhone.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk36"2C3291A3-017B-4496-903D-90CCB7B6AE51-
-
-CCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib
-s358772622.686419
-e358772624.228912
-r1
-xCompileXIB
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection151"Compiling /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib81cbaf8e6f62b541^3d9a3a906f62b541^---0#0#0#-19%DVTDocumentLocation2@157"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib0000000000000000^1072"CompileXIB __project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__MasterViewController_iPad.nib /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPad.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk36"5798E828-7907-4C70-8754-E138770D62BA-
-
-CCompileXIB /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib
-s358772622.686217
-e358772624.231661
-r1
-xCompileXIB
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection153"Compiling /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xibcfbdaf8e6f62b541^b1503b906f62b541^---0#0#0#-19%DVTDocumentLocation2@159"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib0000000000000000^1078"CompileXIB __project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv IBC_MINIMUM_COMPATIBILITY_VERSION 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv XCODE_DEVELOPER_USR_PATH /Applications/Xcode.app/Contents/Developer/usr/bin/..    /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/__class_prefix__MasterViewController_iPhone.nib /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/__class_prefix__MasterViewController_iPhone.xib --sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk36"F1878AB5-674D-422B-9088-E6AA40A4EB23-
-
-CCopyStringsFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/InfoPlist.strings __project_name__/en.lproj/InfoPlist.strings
-s358772622.686198
-e358772622.689669
-r1
-xCopyStringsFile
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj/InfoPlist.strings
-x__project_name__/en.lproj/InfoPlist.strings
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection48"Copy __project_name__/en.lproj/InfoPlist.strings41bbaf8e6f62b541^8f8db08e6f62b541^---0#0#0#-19%DVTDocumentLocation2@129"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/en.lproj/InfoPlist.strings0000000000000000^684"CopyStringsFile build/Release-iphoneos/__project_name__.app/en.lproj/InfoPlist.strings __project_name__/en.lproj/InfoPlist.strings    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-copyStrings --validate --inputencoding utf-8 --outputencoding binary --outdir /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/en.lproj -- __project_name__/en.lproj/InfoPlist.strings36"0CAC0E1C-B760-4DFB-9F24-FE91E1602416-
-
-CCpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist build/Release-iphoneos/__project_name__.app/ResourceRules.plist
-s358772621.451260
-e358772621.454282
-r1
-xCpResource
-x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist
-xbuild/Release-iphoneos/__project_name__.app/ResourceRules.plist
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Copy build/Release-iphoneos/__project_name__.app/ResourceRules.plist0a9d738d6f62b541^064c748d6f62b541^---0#0#0#-19%DVTDocumentLocation2@149"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/ResourceRules.plist000000000080d041^964"CpResource /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist build/Release-iphoneos/__project_name__.app/ResourceRules.plist    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/ResourceRules.plist /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app36"D8279771-5908-4119-BB7F-FA4FDC7613E4-
-
-CCpResource generated-javascript build/Release-iphoneos/__project_name__.app/generated-javascript
-s358772622.686434
-e358772622.699578
-r1
-xCpResource
-xgenerated-javascript
-xbuild/Release-iphoneos/__project_name__.app/generated-javascript
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Copy build/Release-iphoneos/__project_name__.app/generated-javascript6cccaf8e6f62b541^a818b38e6f62b541^---0#0#0#-19%DVTDocumentLocation2@150"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/generated-javascript000000000080d041^833"CpResource generated-javascript build/Release-iphoneos/__project_name__.app/generated-javascript    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -strip-debug-symbols -resolve-src-symlinks -strip-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/strip /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/generated-javascript /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app36"DA81B0A0-35A9-4FFD-82AF-50511325D9F6-
-
-CGenerateDSYMFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__
-s358772622.649466
-e358772622.678074
-r1
-xGenerateDSYMFile
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection129"Generating /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYMa853a68e6f62b541^8596ad8e6f62b541^---0#0#0#-19%DVTDocumentLocation2@134"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM000000000080d041^737"GenerateDSYMFile build/Release-iphoneos/__project_name__.app.dSYM build/Release-iphoneos/__project_name__.app/__project_name__    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/usr/bin/dsymutil /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__ -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app.dSYM36"15BD739B-DB68-4266-B72D-F40F69E2EAB1-
-
-CLd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__ normal armv7
-s358772622.436792
-e358772622.642343
-r1
-xLd
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__
-xnormal
-xarmv7
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection135"Link /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__21e56f8e6f62b541^b970a48e6f62b541^---0#0#0#--1438"Ld build/Release-iphoneos/__project_name__.app/__project_name__ normal armv7    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -arch armv7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -L/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -filelist /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__project_name__.LinkFileList -dead_strip -fobjc-arc -miphoneos-version-min=5.1 -framework CoreLocation -framework MobileCoreServices -lsqlite3.0 -framework KirinKit -framework UIKit -framework Foundation -framework CoreGraphics -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/__project_name__36"E3A89902-D1D4-4A54-9AF2-7B5E92DCFD40-
-
-CPhaseScriptExecution "Run Script" /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh
-s358772621.463377
-e358772621.728028
-r1
-xPhaseScriptExecution
-xRun Script
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh
-opath.existsSync is deprecated. It is now called `fs.existsSync`.
-o# Linting modules that have a .jshintrc file
-o# Packaged Javascript into /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/generated-javascript
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection36"Run custom shell script 'Run Script'2b4c778d6f62b541^e95fba8d6f62b541^-228"path.existsSync is deprecated. It is now called `fs.existsSync`.# Linting modules that have a .jshintrc file# Packaged Javascript into /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/generated-javascript3(21%IDEActivityLogMessage2@65"path.existsSync is deprecated. It is now called `fs.existsSync`.-358772621#0#65#-0#-----2@45"# Linting modules that have a .jshintrc file-358772621#65#45#-0#-----2@118"# Packaged Javascript into /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/generated-javascript-358772621#110#118#-0#-----0#0#0#--21467"PhaseScriptExecution "Run Script" build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv ACTION build    setenv AD_HOC_CODE_SIGNING_ALLOWED NO    setenv ALTERNATE_GROUP staff    setenv ALTERNATE_MODE u+w,go-w,a+rX    setenv ALTERNATE_OWNER james    setenv ALWAYS_SEARCH_USER_PATHS NO    setenv APPLE_INTERNAL_DEVELOPER_DIR /AppleInternal/Developer    setenv APPLE_INTERNAL_DIR /AppleInternal    setenv APPLE_INTERNAL_DOCUMENTATION_DIR /AppleInternal/Documentation    setenv APPLE_INTERNAL_LIBRARY_DIR /AppleInternal/Library    setenv APPLE_INTERNAL_TOOLS /AppleInternal/Developer/Tools    setenv APPLY_RULES_IN_COPY_FILES NO    setenv ARCHS armv7    setenv ARCHS_STANDARD_32_64_BIT armv7    setenv ARCHS_STANDARD_32_BIT armv7    setenv ARCHS_UNIVERSAL_IPHONE_OS armv7    setenv AVAILABLE_PLATFORMS "iphonesimulator macosx iphoneos"    setenv BUILD_COMPONENTS "headers build"    setenv BUILD_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build    setenv BUILD_ROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build    setenv BUILD_STYLE     setenv BUILD_VARIANTS normal    setenv BUILT_PRODUCTS_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos    setenv CACHE_ROOT /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501    setenv CCHROOT /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501    setenv CHMOD /bin/chmod    setenv CHOWN /usr/sbin/chown    setenv CLANG_ENABLE_OBJC_ARC YES    setenv CLASS_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/JavaClasses    setenv CLEAN_PRECOMPS YES    setenv CLONE_HEADERS NO    setenv CODESIGNING_FOLDER_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app    setenv CODE_SIGNING_ALLOWED YES    setenv CODE_SIGNING_REQUIRED YES    setenv CODE_SIGN_CONTEXT_CLASS XCiPhoneOSCodeSignContext    setenv CODE_SIGN_IDENTITY "iPhone Developer"    setenv COMMAND_MODE legacy    setenv COMPOSITE_SDK_DIRS /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/CompositeSDKs    setenv COMPRESS_PNG_FILES YES    setenv CONFIGURATION Release    setenv CONFIGURATION_BUILD_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos    setenv CONFIGURATION_TEMP_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos    setenv CONTENTS_FOLDER_PATH __project_name__.app    setenv COPYING_PRESERVES_HFS_DATA NO    setenv COPY_PHASE_STRIP YES    setenv COPY_RESOURCES_FROM_STATIC_FRAMEWORKS YES    setenv CP /bin/cp    setenv CURRENT_ARCH armv7    setenv CURRENT_VARIANT normal    setenv DEAD_CODE_STRIPPING YES    setenv DEBUGGING_SYMBOLS YES    setenv DEBUG_INFORMATION_FORMAT dwarf-with-dsym    setenv DEFAULT_COMPILER com.apple.compilers.llvm.clang.1_0    setenv DEPLOYMENT_LOCATION NO    setenv DEPLOYMENT_POSTPROCESSING NO    setenv DERIVED_FILES_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources    setenv DERIVED_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources    setenv DERIVED_SOURCES_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources    setenv DEVELOPER_APPLICATIONS_DIR /Applications/Xcode.app/Contents/Developer/Applications    setenv DEVELOPER_BIN_DIR /Applications/Xcode.app/Contents/Developer/usr/bin    setenv DEVELOPER_DIR /Applications/Xcode.app/Contents/Developer    setenv DEVELOPER_FRAMEWORKS_DIR /Applications/Xcode.app/Contents/Developer/Library/Frameworks    setenv DEVELOPER_FRAMEWORKS_DIR_QUOTED "\"/Applications/Xcode.app/Contents/Developer/Library/Frameworks\""    setenv DEVELOPER_LIBRARY_DIR /Applications/Xcode.app/Contents/Developer/Library    setenv DEVELOPER_SDK_DIR /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs    setenv DEVELOPER_TOOLS_DIR /Applications/Xcode.app/Contents/Developer/Tools    setenv DEVELOPER_USR_DIR /Applications/Xcode.app/Contents/Developer/usr    setenv DEVELOPMENT_LANGUAGE English    setenv DOCUMENTATION_FOLDER_PATH __project_name__.app/English.lproj/Documentation    setenv DO_HEADER_SCANNING_IN_JAM NO    setenv DSTROOT /tmp/__project_name__.dst    setenv DT_TOOLCHAIN_DIR /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain    setenv DWARF_DSYM_FILE_NAME __project_name__.app.dSYM    setenv DWARF_DSYM_FILE_SHOULD_ACCOMPANY_PRODUCT NO    setenv DWARF_DSYM_FOLDER_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos    setenv EFFECTIVE_PLATFORM_NAME -iphoneos    setenv EMBEDDED_PROFILE_NAME embedded.mobileprovision    setenv ENABLE_HEADER_DEPENDENCIES YES    setenv ENTITLEMENTS_ALLOWED YES    setenv ENTITLEMENTS_REQUIRED YES    setenv EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS ".DS_Store .svn .git .hg CVS"    setenv EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES "*.nib *.lproj *.framework *.gch (*) .DS_Store CVS .svn .git .hg *.xcodeproj *.xcode *.pbproj *.pbxproj"    setenv EXECUTABLES_FOLDER_PATH __project_name__.app/Executables    setenv EXECUTABLE_FOLDER_PATH __project_name__.app    setenv EXECUTABLE_NAME __project_name__    setenv EXECUTABLE_PATH __project_name__.app/__project_name__    setenv FILE_LIST /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects/LinkFileList    setenv FIXED_FILES_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/FixedFiles    setenv FRAMEWORKS_FOLDER_PATH __project_name__.app/Frameworks    setenv FRAMEWORK_FLAG_PREFIX -framework    setenv FRAMEWORK_SEARCH_PATHS "\"/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos\"  \"/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos\""    setenv FRAMEWORK_VERSION A    setenv FULL_PRODUCT_NAME __project_name__.app    setenv GCC3_VERSION 3.3    setenv GCC_C_LANGUAGE_STANDARD gnu99    setenv GCC_INLINES_ARE_PRIVATE_EXTERN YES    setenv GCC_PFE_FILE_C_DIALECTS "c objective-c c++ objective-c++"    setenv GCC_PRECOMPILE_PREFIX_HEADER YES    setenv GCC_PREFIX_HEADER __project_name__/__project_name__-Prefix.pch    setenv GCC_SYMBOLS_PRIVATE_EXTERN YES    setenv GCC_THUMB_SUPPORT YES    setenv GCC_TREAT_WARNINGS_AS_ERRORS NO    setenv GCC_VERSION com.apple.compilers.llvm.clang.1_0    setenv GCC_VERSION_IDENTIFIER com_apple_compilers_llvm_clang_1_0    setenv GCC_WARN_ABOUT_RETURN_TYPE YES    setenv GCC_WARN_UNINITIALIZED_AUTOS YES    setenv GCC_WARN_UNUSED_VARIABLE YES    setenv GENERATE_MASTER_OBJECT_FILE NO    setenv GENERATE_PKGINFO_FILE YES    setenv GENERATE_PROFILING_CODE NO    setenv GID 20    setenv GROUP staff    setenv HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT YES    setenv HEADERMAP_INCLUDES_FRAMEWORK_ENTRIES_FOR_ALL_PRODUCT_TYPES YES    setenv HEADERMAP_INCLUDES_NONPUBLIC_NONPRIVATE_HEADERS YES    setenv HEADERMAP_INCLUDES_PROJECT_HEADERS YES    setenv HEADER_SEARCH_PATHS "\"/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include\" "    setenv ICONV /usr/bin/iconv    setenv INFOPLIST_EXPAND_BUILD_SETTINGS YES    setenv INFOPLIST_FILE __project_name__/__project_name__-Info.plist    setenv INFOPLIST_OUTPUT_FORMAT binary    setenv INFOPLIST_PATH __project_name__.app/Info.plist    setenv INFOPLIST_PREPROCESS NO    setenv INFOSTRINGS_PATH __project_name__.app/English.lproj/InfoPlist.strings    setenv INSTALL_DIR /tmp/__project_name__.dst/Applications    setenv INSTALL_GROUP staff    setenv INSTALL_MODE_FLAG u+w,go-w,a+rX    setenv INSTALL_OWNER james    setenv INSTALL_PATH /Applications    setenv INSTALL_ROOT /tmp/__project_name__.dst    setenv IPHONEOS_DEPLOYMENT_TARGET 5.1    setenv JAVAC_DEFAULT_FLAGS "-J-Xms64m -J-XX:NewSize=4M -J-Dfile.encoding=UTF8"    setenv JAVA_APP_STUB /System/Library/Frameworks/JavaVM.framework/Resources/MacOS/JavaApplicationStub    setenv JAVA_ARCHIVE_CLASSES YES    setenv JAVA_ARCHIVE_TYPE JAR    setenv JAVA_COMPILER /usr/bin/javac    setenv JAVA_FOLDER_PATH __project_name__.app/Java    setenv JAVA_FRAMEWORK_RESOURCES_DIRS Resources    setenv JAVA_JAR_FLAGS cv    setenv JAVA_SOURCE_SUBDIR .    setenv JAVA_USE_DEPENDENCIES YES    setenv JAVA_ZIP_FLAGS -urg    setenv JIKES_DEFAULT_FLAGS "+E +OLDCSO"    setenv KEEP_PRIVATE_EXTERNS NO    setenv KIRIN_BUILD_TYPE none    setenv KIRIN_HOME /Users/james/workspaces/kirin/tip    setenv LD_GENERATE_MAP_FILE NO    setenv LD_MAP_FILE_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-LinkMap-normal-armv7.txt    setenv LD_NO_PIE NO    setenv LEGACY_DEVELOPER_DIR /Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer    setenv LEX lex    setenv LIBRARY_FLAG_NOSPACE YES    setenv LIBRARY_FLAG_PREFIX -l    setenv LIBRARY_SEARCH_PATHS "\"/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos\" "    setenv LINKER_DISPLAYS_MANGLED_NAMES NO    setenv LINK_FILE_LIST_normal_armv7 /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal/armv7/__project_name__.LinkFileList    setenv LINK_WITH_STANDARD_LIBRARIES YES    setenv LOCALIZED_RESOURCES_FOLDER_PATH __project_name__.app/English.lproj    setenv LOCAL_ADMIN_APPS_DIR /Applications/Utilities    setenv LOCAL_APPS_DIR /Applications    setenv LOCAL_DEVELOPER_DIR /Library/Developer    setenv LOCAL_LIBRARY_DIR /Library    setenv MACH_O_TYPE mh_execute    setenv MAC_OS_X_PRODUCT_BUILD_VERSION 11D50b    setenv MAC_OS_X_VERSION_ACTUAL 1073    setenv MAC_OS_X_VERSION_MAJOR 1070    setenv MAC_OS_X_VERSION_MINOR 0703    setenv NATIVE_ARCH armv7    setenv NATIVE_ARCH_32_BIT i386    setenv NATIVE_ARCH_64_BIT x86_64    setenv NATIVE_ARCH_ACTUAL x86_64    setenv NODE /usr/local/bin/node    setenv NO_COMMON YES    setenv OBJECT_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects    setenv OBJECT_FILE_DIR_normal /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Objects-normal    setenv OBJROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build    setenv ONLY_ACTIVE_ARCH NO    setenv OPTIMIZATION_LEVEL 0    setenv OS MACOS    setenv OSAC /usr/bin/osacompile    setenv OTHER_CFLAGS -DNS_BLOCK_ASSERTIONS=1    setenv OTHER_CPLUSPLUSFLAGS -DNS_BLOCK_ASSERTIONS=1    setenv PACKAGE_TYPE com.apple.package-type.wrapper.application    setenv PASCAL_STRINGS YES    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES "/usr/include /usr/local/include /System/Library/Frameworks /System/Library/PrivateFrameworks /Applications/Xcode.app/Contents/Developer/Headers /Applications/Xcode.app/Contents/Developer/SDKs /Applications/Xcode.app/Contents/Developer/Platforms"    setenv PBDEVELOPMENTPLIST_PATH __project_name__.app/pbdevelopment.plist    setenv PFE_FILE_C_DIALECTS objective-c    setenv PKGINFO_FILE_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/PkgInfo    setenv PKGINFO_PATH __project_name__.app/PkgInfo    setenv PLATFORM_DEVELOPER_APPLICATIONS_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Applications    setenv PLATFORM_DEVELOPER_BIN_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin    setenv PLATFORM_DEVELOPER_LIBRARY_DIR /Applications/Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library    setenv PLATFORM_DEVELOPER_SDK_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs    setenv PLATFORM_DEVELOPER_TOOLS_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Tools    setenv PLATFORM_DEVELOPER_USR_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr    setenv PLATFORM_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform    setenv PLATFORM_NAME iphoneos    setenv PLATFORM_PREFERRED_ARCH i386    setenv PLATFORM_PRODUCT_BUILD_VERSION 9B176    setenv PLIST_FILE_OUTPUT_FORMAT binary    setenv PLUGINS_FOLDER_PATH __project_name__.app/PlugIns    setenv PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR YES    setenv PRECOMP_DESTINATION_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/PrefixHeaders    setenv PRESERVE_DEAD_CODE_INITS_AND_TERMS NO    setenv PRIVATE_HEADERS_FOLDER_PATH __project_name__.app/PrivateHeaders    setenv PRODUCT_NAME __project_name__    setenv PRODUCT_SETTINGS_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Info.plist    setenv PRODUCT_TYPE com.apple.product-type.application    setenv PROFILING_CODE NO    setenv PROJECT __project_name__    setenv PROJECT_DERIVED_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/DerivedSources    setenv PROJECT_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PROJECT_FILE_PATH /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__.xcodeproj    setenv PROJECT_NAME __project_name__    setenv PROJECT_TEMP_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build    setenv PROVISIONING_PROFILE_REQUIRED YES    setenv PUBLIC_HEADERS_FOLDER_PATH __project_name__.app/Headers    setenv RECURSIVE_SEARCH_PATHS_FOLLOW_SYMLINKS YES    setenv REMOVE_CVS_FROM_RESOURCES YES    setenv REMOVE_GIT_FROM_RESOURCES YES    setenv REMOVE_HG_FROM_RESOURCES YES    setenv REMOVE_SVN_FROM_RESOURCES YES    setenv RESOURCE_RULES_REQUIRED YES    setenv REZ_COLLECTOR_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/ResourceManagerResources    setenv REZ_OBJECTS_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/ResourceManagerResources/Objects    setenv REZ_SEARCH_PATHS "\"/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos\" "    setenv RUN_CLANG_STATIC_ANALYZER NO    setenv SCAN_ALL_SOURCE_FILES_FOR_INCLUDES NO    setenv SCRIPTS_FOLDER_PATH __project_name__.app/Scripts    setenv SCRIPT_INPUT_FILE_COUNT 0    setenv SCRIPT_OUTPUT_FILE_COUNT 0    setenv SDKROOT /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk    setenv SDK_DIR /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk    setenv SDK_NAME iphoneos5.1    setenv SDK_PRODUCT_BUILD_VERSION 9B176    setenv SED /usr/bin/sed    setenv SEPARATE_STRIP NO    setenv SEPARATE_SYMBOL_EDIT NO    setenv SET_DIR_MODE_OWNER_GROUP YES    setenv SET_FILE_MODE_OWNER_GROUP NO    setenv SHALLOW_BUNDLE YES    setenv SHARED_DERIVED_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/DerivedSources    setenv SHARED_FRAMEWORKS_FOLDER_PATH __project_name__.app/SharedFrameworks    setenv SHARED_PRECOMPS_DIR /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders    setenv SHARED_SUPPORT_FOLDER_PATH __project_name__.app/SharedSupport    setenv SKIP_INSTALL NO    setenv SOURCE_ROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv SRCROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv STRINGS_FILE_OUTPUT_ENCODING binary    setenv STRIP_INSTALLED_PRODUCT YES    setenv STRIP_STYLE all    setenv SUPPORTED_DEVICE_FAMILIES 1,2    setenv SUPPORTED_PLATFORMS "iphonesimulator iphoneos"    setenv SYMROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build    setenv SYSTEM_ADMIN_APPS_DIR /Applications/Utilities    setenv SYSTEM_APPS_DIR /Applications    setenv SYSTEM_CORE_SERVICES_DIR /System/Library/CoreServices    setenv SYSTEM_DEMOS_DIR /Applications/Extras    setenv SYSTEM_DEVELOPER_APPS_DIR /Applications/Xcode.app/Contents/Developer/Applications    setenv SYSTEM_DEVELOPER_BIN_DIR /Applications/Xcode.app/Contents/Developer/usr/bin    setenv SYSTEM_DEVELOPER_DEMOS_DIR "/Applications/Xcode.app/Contents/Developer/Applications/Utilities/Built Examples"    setenv SYSTEM_DEVELOPER_DIR /Applications/Xcode.app/Contents/Developer    setenv SYSTEM_DEVELOPER_DOC_DIR "/Applications/Xcode.app/Contents/Developer/ADC Reference Library"    setenv SYSTEM_DEVELOPER_GRAPHICS_TOOLS_DIR "/Applications/Xcode.app/Contents/Developer/Applications/Graphics Tools"    setenv SYSTEM_DEVELOPER_JAVA_TOOLS_DIR "/Applications/Xcode.app/Contents/Developer/Applications/Java Tools"    setenv SYSTEM_DEVELOPER_PERFORMANCE_TOOLS_DIR "/Applications/Xcode.app/Contents/Developer/Applications/Performance Tools"    setenv SYSTEM_DEVELOPER_RELEASENOTES_DIR "/Applications/Xcode.app/Contents/Developer/ADC Reference Library/releasenotes"    setenv SYSTEM_DEVELOPER_TOOLS /Applications/Xcode.app/Contents/Developer/Tools    setenv SYSTEM_DEVELOPER_TOOLS_DOC_DIR "/Applications/Xcode.app/Contents/Developer/ADC Reference Library/documentation/DeveloperTools"    setenv SYSTEM_DEVELOPER_TOOLS_RELEASENOTES_DIR "/Applications/Xcode.app/Contents/Developer/ADC Reference Library/releasenotes/DeveloperTools"    setenv SYSTEM_DEVELOPER_USR_DIR /Applications/Xcode.app/Contents/Developer/usr    setenv SYSTEM_DEVELOPER_UTILITIES_DIR /Applications/Xcode.app/Contents/Developer/Applications/Utilities    setenv SYSTEM_DOCUMENTATION_DIR /Library/Documentation    setenv SYSTEM_LIBRARY_DIR /System/Library    setenv TARGETED_DEVICE_FAMILY 1,2    setenv TARGETNAME __project_name__    setenv TARGET_BUILD_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos    setenv TARGET_NAME __project_name__    setenv TARGET_TEMP_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build    setenv TEMP_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build    setenv TEMP_FILES_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build    setenv TEMP_FILE_DIR /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build    setenv TEMP_ROOT /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build    setenv TEST_AFTER_BUILD NO    setenv UID 501    setenv UNLOCALIZED_RESOURCES_FOLDER_PATH __project_name__.app    setenv UNSTRIPPED_PRODUCT NO    setenv USER james    setenv USER_APPS_DIR /Users/james/Applications    setenv USER_LIBRARY_DIR /Users/james/Library    setenv USE_DYNAMIC_NO_PIC YES    setenv USE_HEADERMAP YES    setenv USE_HEADER_SYMLINKS NO    setenv VALIDATE_PRODUCT YES    setenv VALID_ARCHS "armv6 armv7"    setenv VERBOSE_PBXCP NO    setenv VERSIONPLIST_PATH __project_name__.app/version.plist    setenv VERSION_INFO_BUILDER james    setenv VERSION_INFO_FILE __project_name___vers.c    setenv VERSION_INFO_STRING "\"@(#)PROGRAM:__project_name__  PROJECT:__project_name__-\""    setenv WRAPPER_EXTENSION app    setenv WRAPPER_NAME __project_name__.app    setenv WRAPPER_SUFFIX .app    setenv XCODE_APP_SUPPORT_DIR /Applications/Xcode.app/Contents/Developer/Library/Xcode    setenv XCODE_PRODUCT_BUILD_VERSION 4E2002    setenv XCODE_VERSION_ACTUAL 0432    setenv XCODE_VERSION_MAJOR 0400    setenv XCODE_VERSION_MINOR 0430    setenv YACC yacc    /bin/sh -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/Script-1AEE8DB7154EE10300B8C0D7.sh36"7EF7638E-50CB-430C-9095-75586E550E30-
-
-CProcessInfoPlistFile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/Info.plist __project_name__/__project_name__-Info.plist
-s358772621.451289
-e358772621.455478
-r1
-xProcessInfoPlistFile
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/Info.plist
-x__project_name__/__project_name__-Info.plist
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"Process __project_name__/__project_name__-Info.plistd89c738d6f62b541^899a748d6f62b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Info.plist0000000000000000^958"ProcessInfoPlistFile build/Release-iphoneos/__project_name__.app/Info.plist __project_name__/__project_name__-Info.plist    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-infoPlistUtility __project_name__/__project_name__-Info.plist -genpkginfo /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/PkgInfo -expandbuildsettings -format binary -platform iphoneos -resourcerulesfile /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/ResourceRules.plist -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/Info.plist36"DDD9EA03-D806-4E17-9EAA-665132AF8629-
-
-CProcessPCH /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.pth __project_name__/__project_name__-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358723438.976285
-e358723439.169588
-r1
-xProcessPCH
-x/var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.pth
-x__project_name__/__project_name__-Prefix.pch
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection55"Precompile __project_name__/__project_name__-Prefix.pch1006fa6eaf61b541^db692b6faf61b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Prefix.pch0000000000000000^3792"ProcessPCH /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.pth __project_name__/__project_name__-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/core/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Prefix.pch -o /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-arlmlrxiqphabfaukkndknftwbfl/__project_name__-Prefix.pch.d36"729648DB-FD87-4744-8643-5339ED9660AC-
-
-CProcessPCH /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth __project_name__/__project_name__-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler
-s358772621.736016
-e358772622.222690
-r1
-xProcessPCH
-x/var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth
-x__project_name__/__project_name__-Prefix.pch
-xnormal
-xarmv7
-xobjective-c
-xcom.apple.compilers.llvm.clang.1_0.compiler
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection55"Precompile __project_name__/__project_name__-Prefix.pch8883bc8d6f62b541^c500398e6f62b541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Prefix.pch0000000000000000^3797"ProcessPCH /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth __project_name__/__project_name__-Prefix.pch normal armv7 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch armv7 -fmessage-length=0 -std=gnu99 -fobjc-arc -Wno-trigraphs -fpascal-strings -Os -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk -Wprotocol -Wdeprecated-declarations -g -fvisibility=hidden -Wno-conversion -Wno-sign-conversion -mthumb "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -miphoneos-version-min=5.1 -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-generated-files.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-own-target-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-all-target-headers.hmap -iquote /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__-project-headers.hmap -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/include -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources/armv7 -I/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/DerivedSources -F/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos -F/Users/james/workspaces/kirin/tip/platforms/ios/KirinKit/build/Release-iphoneos -DNS_BLOCK_ASSERTIONS=1 --serialize-diagnostics /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.dia -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/__project_name__/__project_name__-Prefix.pch -o /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.pth -MMD -MT dependencies -MF /var/folders/20/g440_5dj1njfft4j66k0gfh40000gn/C/com.apple.Xcode.501/SharedPrecompiledHeaders/__project_name__-Prefix-enfrugchxdrpbieacsocqmfrshxf/__project_name__-Prefix.pch.d36"C4B56EE2-E195-49C9-BDAD-D71CA9DBBAD0-
-
-CProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision
-s358772625.181385
-e358772625.184306
-r1
-xProcessProductPackaging
-x/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection203"ProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" build/Release-iphoneos/__project_name__.app/embedded.mobileprovision6f7f2e916f62b541^16322f916f62b541^---0#0#0#-19%DVTDocumentLocation2@154"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision0000000000000000^786"ProcessProductPackaging "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" build/Release-iphoneos/__project_name__.app/embedded.mobileprovision    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-productPackagingUtility "/Users/james/Library/MobileDevice/Provisioning Profiles/77A8502B-D9C6-491A-8296-3BCFADC97ADF.mobileprovision" -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/embedded.mobileprovision36"94873199-4541-433D-ADC5-67CB639CA5DE-
-
-CProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent
-s358772625.208376
-e358772625.212946
-r1
-xProcessProductPackaging
-x/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection236"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcentf06e35916f62b541^888136916f62b541^---0#0#0#-19%DVTDocumentLocation2@177"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent000000000080d041^878"ProcessProductPackaging /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    builtin-productPackagingUtility /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS5.1.sdk/Entitlements.plist -entitlements -format xml -o /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/__project_name__.build/Release-iphoneos/__project_name__.build/__project_name__.xcent36"B714ECDB-6B99-432F-8087-97C9BA3C2533-
-
-CTouch /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-s358772625.193753
-e358772625.199872
-r1
-xTouch
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection119"Touch /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app0cb231916f62b541^672b33916f62b541^---0#0#0#--479"Touch build/Release-iphoneos/__project_name__.app    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    /usr/bin/touch -c /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app36"5B19E119-DF7F-497F-B5F2-88292340DD7C-
-
-CValidate /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-s358772625.505304
-e358772626.400081
-r1
-xValidate
-x/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app
-owarning: iPhone/iPod Touch: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon.png that is 57x57 (-19013)
-oUnable to validate your application. - (null)
-o
-owarning: iPad: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon-72.png that is 72x72 (-19013)
-oUnable to validate your application. - (null)
-o
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection52"Validate build/Release-iphoneos/__project_name__.app236b81916f62b541^f86b66926f62b541^-506"warning: iPhone/iPod Touch: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon.png that is 57x57 (-19013)Unable to validate your application. - (null)warning: iPad: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon-72.png that is 72x72 (-19013)Unable to validate your application. - (null)2(21%IDEActivityLogMessage2@202" iPhone/iPod Touch: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon.png that is 57x57 (-19013)192"IPhone/iPod Touch: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon.png that is 57x57358772626#18446744073709551615#0#-1#-23%DVTTextDocumentLocation3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---2@192" iPad: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon-72.png that is 72x72 (-19013)182"IPad: Info.plist: Unable to verify icon dimensions, no icon found.  You must define CFBundleIcons, CFBundleIconFiles, CFBundleIconFile, or provide a default Icon-72.png that is 72x72358772626#18446744073709551615#0#-1#-3@-0000000000000000^18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#18446744073709551615#0#---0#0#0#-19%DVTDocumentLocation4@130"file://localhost/Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app/0000000000000000^623"Validate build/Release-iphoneos/__project_name__.app    cd /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios    setenv PATH "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin"    setenv PRODUCT_TYPE com.apple.product-type.application    /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/Validation /Users/james/workspaces/kirin/tip/templates/app/content/platforms/ios/build/Release-iphoneos/__project_name__.app36"858D3605-22CF-4B75-BFD3-601B89BC940A-
-
