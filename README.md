@@ -20,8 +20,11 @@ The non-UI parts of your app – the business logic – is written in Javascript
 
 For the UI, you build in whatever tools the platform provides, to produce responsive, platform-appropriate and respectful UIs that are driven by a common business logic.
 
-i.e. *Javascript logic, native UI*
+> Javascript logic, native UI
 
+We are beginning to see kirin apps as this: 
+
+> Single page web apps, with a native UI.
 
 Sightings
 ---------
@@ -33,17 +36,18 @@ Current Status
 --------------
 Kirin provides the tools to: 
 
- * modularize your Javascript with Common JS Modules.
- * test, minify and package the Javascript, using the Google Closure Compiler.
+ * write and test your Javascript logic with node.js, in the CommonJS Module format
+ * package the Javascript into a form that can be run in the browser
  * facilitate bi-directional communication between native (Android & Objective-C) and Javascript.
  * access the device APIs. 
 
-Kirin is currently under heavy development. The HEAD branch represents the version that was written and deployed for the Glastonbury app. This version is unlikely to be maintained, and will not be forward compatible with future versions.
-
-The [kirin-fragments branch](https://github.com/kirinjs/kirin/tree/kirin-fragments) is currently where all the action is happening. It is still in a branch because it only has an iOS implementation.
+Kirin is currently under heavy development.
 
 News
 ----
+ * 2012-06-01 Alpha release at [Over The Air](http://overtheair.org/blog/2012/)
+ * 2012-04-15 Kirin gains a full time developer.
+
 The best way to keep up is either on [the blog](http://hugman.posterous.com/tag/kirin) or on [my twitter feed](http://twitter.com/jhugman) where I post periodically about Kirin.
 
 LICENSE

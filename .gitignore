@@ -40,3 +40,4 @@ local.properties
 *.swp
 examples/HelloKirin/platforms/android/bin
 examples/HelloKirin/platforms/ios/generated-javascript
+npm-debug.log
