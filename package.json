@@ -63,7 +63,8 @@
 	        "kirin": "src/core/kirin",
 	        "Settings": "src/extensions/Settings",
 	        "Filesystem": "src/extensions/FileSystem",
-	        "Databases": "src/extensions/Databases"
+	        "Databases": "src/extensions/Databases",
+	        "Networking": "src/extensions/Networking"
 	    }
     },
     "dependencies": {
