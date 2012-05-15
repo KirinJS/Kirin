@@ -39,7 +39,7 @@ Kirin provides the tools to:
  * write and test your Javascript logic with node.js, in the CommonJS Module format
  * package the Javascript into a form that can be run in the browser
  * facilitate bi-directional communication between native (Android & Objective-C) and Javascript.
- * access the device APIs. 
+ * access the device APIs. Currently: Settings and Databases are considered  
 
 Kirin is currently under heavy development.
 

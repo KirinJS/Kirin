@@ -32,6 +32,7 @@
         "node": "*"
     },
     "scripts": {
+        "kirinkit": "./bin/rebuild_kirinkit.sh" 
     },
     "bin": {
         "kirin-rebuild-kirin-kit": "./bin/rebuild_kirinkit.sh",
