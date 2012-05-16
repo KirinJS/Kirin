@@ -12,6 +12,7 @@
 
 # Project target.
 target=android-15
-# for instances of the template, see project.properties.template
-# But this file works when developing the template itself.
-android.library.reference.1=../../../../../platforms/android/Kirin-Lib
+# this works for instances of the template
+android.library.reference.1=../../xXKIRIN_HOME_RELATIVEXx/platforms/android/Kirin-Lib
+# this works when developing the template itself.
+#android.library.reference.1=../../../../../platforms/android/Kirin-Lib
