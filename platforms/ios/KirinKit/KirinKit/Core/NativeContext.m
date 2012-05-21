@@ -88,10 +88,10 @@
                     
                     char argType = [sig getArgumentTypeAtIndex:i + 2][0];
                     BOOL handled = YES;
+                    if ([arg isKindOfClass:[NSNull class]]) {
+                        arg = nil;
+                    }
                     if (argType == @encode(id)[0]) {    
-                        if ([arg isKindOfClass:[NSNull class]]) {
-                            arg = nil;
-                        }
                         [invocation setArgument:&arg atIndex:i + 2];
                     } else if ([arg isKindOfClass: [NSNumber class]]) {
                         NSNumber* num = (NSNumber*) arg;
