@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
+#import "DummyResponseValueObject.h"
 
 @protocol DummyValueObject <NSObject>
 
@@ -30,5 +31,11 @@
 - (double) aDouble;
 
 - (short) aShort;
+
+- (void) callback;
+
+- (void) errback: (NSString*) err withStatus: (int) status;
+
+- (void) respond: (id<DummyResponseValueObject>) response;
 
 @end

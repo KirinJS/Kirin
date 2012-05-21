@@ -14,6 +14,11 @@
 #import "DummyJSContext.h"
 #import "DummyProtocol.h"
 #import "DummyValueObject.h"
+#import "DummyResponseValueObject.h"
+
+#import "KirinProxyWithDictionary.h"
+
+#import "JSON.h"
 
 @interface KirinProxyTest ()
 @property(retain, nonatomic) KirinProxy* proxy;
@@ -108,9 +113,9 @@
     STAssertFalse([self.dummy respondsToSelector:@selector(methodNotThere)], @"Should not respond to methodNotThere");
 }
 
-- (void) testProxyForDictionary {
+- (void) testProxyForGettersOnly {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary];
+    id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary andExecutor:self.jsContext];
 
 
     // objects
@@ -156,6 +161,113 @@
     [dictionary removeObjectForKey:@"intNotThere"];
     STAssertEquals(0, [proxy intNotThere], @"Value is wrongly initialized");
 
+}
+
+- (void) testProxyForRequestObjectCallbacks {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary andExecutor:self.jsContext];
+    NSString* expectedCall;
+    
+    [dictionary setObject:@"callback001" forKey:@"callback"];
+    [proxy callback];
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_JS, @"callback001"];
+    STAssertEqualObjects(
+                         expectedCall, 
+                         self.jsContext.lastCall, 
+                         @"js isn't equal"
+                         );
+    
+    
+    [dictionary setObject:@"errback001" forKey:@"errbackwithStatus"];
+    [proxy errback:@"foo" withStatus:42];
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_WITH_ARGS_JS, @"errback001", @"[\"foo\",42]"];
+    STAssertEqualObjects(
+                         expectedCall,
+                         self.jsContext.lastCall, 
+                         @"js isn't equal"
+                         );
+}
+
+
+- (void) testProxyForResponseObject {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    id<DummyResponseValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyResponseValueObject) andMutableDictionary:dictionary];
+    
+    proxy.string = @"foo";
+    STAssertEqualObjects([dictionary objectForKey:@"string"], @"foo", [NSString stringWithFormat:@"String is wrong: %@", dictionary]);
+    
+    
+    [proxy setString: @"bar"];
+    STAssertEqualObjects([dictionary objectForKey:@"string"], @"bar", [NSString stringWithFormat:@"String is wrong: %@", dictionary]);
+    
+    [proxy setInteger:4];
+    STAssertEqualObjects([dictionary objectForKey:@"integer"], [NSNumber numberWithInt:4], [NSString stringWithFormat:@"Integer is wrong: %@", dictionary]);
+
+    proxy.boolean = YES;
+    STAssertEqualObjects([dictionary objectForKey:@"boolean"], [NSNumber numberWithBool:YES], @"Bool is wrong");
+    
+    proxy.boolean = NO;
+    STAssertEqualObjects([dictionary objectForKey:@"boolean"], [NSNumber numberWithBool:NO], @"Bool is wrong");
+    
+    NSMutableArray* args = [NSMutableArray array];
+
+    
+    STAssertEqualObjects([args JSONRepresentation], @"[]",@"JSON doesn't match");
+    
+    [args addObject:proxy];
+    
+    NSArray* newArray = [[args JSONRepresentation] JSONValue];
+    STAssertEqualObjects(dictionary, [newArray objectAtIndex:0], @"JSON roundtripping not working");
+}
+
+- (void) testRequestResponse {
+    
+    NSMutableDictionary* requestParams = [NSMutableDictionary dictionary];
+        // set up the callback
+    [requestParams setObject:@"callback002" forKey:@"respond"];
+    id<DummyValueObject> request = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:requestParams andExecutor:self.jsContext];
+    
+
+    
+    
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    id<DummyResponseValueObject> response = [KirinProxy proxyWithProtocol:@protocol(DummyResponseValueObject) andMutableDictionary:dictionary];
+    
+    response.boolean = YES;
+//    [response setInteger:43];
+//    response.string = @"bar";
+    
+    [request respond:response];
+    
+    NSString* expectedCall;
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_WITH_ARGS_JS, @"callback002", @"[{\"boolean\":true}]"];
+    STAssertEqualObjects(
+                         expectedCall,
+                         self.jsContext.lastCall, 
+                         @"js isn't equal"
+                         );
+    
+}
+
+- (void) testCleanupCallbacks {
+    NSMutableDictionary* requestParams = [NSMutableDictionary dictionary];
+    // set up the callback
+    [requestParams setObject:@"callback002" forKey:@"respond"];
+    id<DummyValueObject> request = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:requestParams andExecutor:self.jsContext];
+    
+    KirinProxyWithDictionary<DummyValueObject> *requestObject = request;
+    
+    [requestObject cleanupCallbacks];
+
+    NSString* expectedCall;
+    expectedCall = [NSString stringWithFormat:DELETE_CALLBACK_JS, @"[\"callback002\"]"];
+    STAssertEqualObjects(
+                         expectedCall,
+                         self.jsContext.lastCall, 
+                         @"js isn't equal"
+                         );
+    
+    
 }
 
 

@@ -34,62 +34,21 @@
     return self;
 }
 
+
 - (void) forwardInvocation: (NSInvocation*) invocation {
+
+    
+    NSString* methodName = [self getMethodNameForSelector: invocation.selector];
+
+    
     NSMethodSignature* sig = invocation.methodSignature;
-    SEL selector = invocation.selector;
-    
-    NSString* name = NSStringFromSelector(selector);
-    
-    // TODO: will this need to be camel cased? 
-    NSString* methodName = [[name componentsSeparatedByString:@":"] componentsJoinedByString:@""];
-    
     unsigned numArgs = [sig numberOfArguments];
     if (numArgs == 2) {
         [self.jsExecutor execJS:[NSString stringWithFormat: EXECUTE_METHOD_JS, self.moduleName, methodName]];
         return;
     }
+    NSArray* args = [self getArgsFromSignature:sig andInvocation:invocation];
     
-    NSMutableArray* args = [NSMutableArray array];
-    
-    for(unsigned i = 2; i < numArgs; i++) {
-        const char *type = [sig getArgumentTypeAtIndex: i];
-        
-        if (strcmp(type, @encode(id)) == 0) {
-            // https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
-            id arg = nil;
-            [invocation getArgument:&arg atIndex:i];
-            if (arg == nil) {
-                [args addObject:[NSNull null]];
-            } else if ([arg isKindOfClass:[NSString class]]) {
-                [args addObject:arg];
-            } else if ([arg isKindOfClass:[NSDictionary class]]) {
-                [args addObject:arg];
-            } else if ([arg isKindOfClass:[NSArray class]]) {
-                [args addObject:arg];
-            } else if ([arg isKindOfClass:[NSNull class]]) {
-                [args addObject:arg];
-            } else {
-                // handles numbers.
-                [args addObject:arg];
-            } 
-        } else if (strcmp(type, @encode(int)) == 0) {
-            int arg = 0;
-            [invocation getArgument:&arg atIndex:i];
-            [args addObject: [NSNumber numberWithInt:arg]];
-        } else if (strcmp(type, @encode(BOOL)) == 0) {
-            BOOL arg = NO;
-            [invocation getArgument:&arg atIndex:i];
-            [args addObject: [NSNumber numberWithBool:arg]];
-        } else if (strcmp(type, @encode(float)) == 0) {
-            float arg = 0.0f;
-            [invocation getArgument:&arg atIndex:i];
-            [args addObject: [NSNumber numberWithFloat:arg]];
-        } else if (strcmp(type, @encode(double)) == 0) {
-            double arg = 0.0;
-            [invocation getArgument:&arg atIndex:i];
-            [args addObject: [NSNumber numberWithDouble:arg]];
-        } 
-    }
     NSString* jsString = [NSString stringWithFormat: EXECUTE_METHOD_WITH_ARGS_JS, self.moduleName, methodName, [args JSONRepresentation]];
     
     [self.jsExecutor execJS:jsString];

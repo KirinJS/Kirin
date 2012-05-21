@@ -13,10 +13,22 @@
 
 @interface KirinProxy : NSObject
 
-+ (id) proxyWithProtocol:(Protocol*) protocol andModuleName:(NSString*) moduleName andExecutor:(id<JSExecutor>) jsContext;
+@property(retain, nonatomic) Protocol* targetProtocol;
 
-+ (id) proxyWithProtocol:(Protocol*) protocol andDictionary: (NSDictionary*) dictionary;
+// Modules objects
++ (id) proxyWithProtocol:(Protocol*) protocol andModuleName:(NSString*) moduleName andExecutor:(id<JSExecutor>) executor;
+
+// Requests from Javascript, with getters and callbacks
++ (id) proxyWithProtocol:(Protocol *)protocol andDictionary:(NSDictionary *)dictionary andExecutor: (id<JSExecutor>) executor;
+
+// Just setters, backed by a mutable dictionary;
++ (id) proxyWithProtocol:(Protocol *)protocol andMutableDictionary:(NSMutableDictionary *)dictionary;
+
 
 - (id) initWithProtocol: (Protocol*) protocol;
+
+- (NSArray*) getArgsFromSignature: (NSMethodSignature*) sig andInvocation: (NSInvocation*) invocation;
+
+- (NSString*) getMethodNameForSelector: (SEL) selector;
 
 @end

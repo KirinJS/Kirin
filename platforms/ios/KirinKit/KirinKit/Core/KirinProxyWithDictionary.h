@@ -8,8 +8,12 @@
 
 #import "KirinProxy.h"
 
+#import "JSExecutor.h"
+
 @interface KirinProxyWithDictionary : KirinProxy
 
-- (id) initWithProtocol: (Protocol*) protocol andDictionary: (NSDictionary*) dictionary;
+- (id) initWithProtocol: (Protocol*) protocol andDictionary: (NSDictionary*) dictionary andExecutor: (id<JSExecutor>) executor;
+
+- (void) cleanupCallbacks;
 
 @end

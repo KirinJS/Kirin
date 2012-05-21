@@ -9,6 +9,7 @@
 #import "KirinProxy.h"
 #import "KirinProxyWithModule.h"
 #import "KirinProxyWithDictionary.h"
+#import "KirinProxyWithEmptyDictionary.h"
 
 #import <objc/runtime.h>
 
@@ -18,7 +19,6 @@
 
 - (id) initWithProtocol: (Protocol*) protocol;
 
-@property(retain, nonatomic) Protocol* targetProtocol;
 @end
 
 @implementation KirinProxy
@@ -30,10 +30,14 @@
     return [[[KirinProxyWithModule alloc] initWithProtocol:protocol andModuleName: moduleName andExecutor:executor] autorelease];
 }
 
-+ (id) proxyWithProtocol:(Protocol *)protocol andDictionary:(NSDictionary *)dictionary {
-    return [[KirinProxyWithDictionary alloc] initWithProtocol:protocol andDictionary: dictionary];
++ (id) proxyWithProtocol:(Protocol *)protocol andDictionary:(NSDictionary *)dictionary andExecutor: (id<JSExecutor>) executor {
+    return [[[KirinProxyWithDictionary alloc] initWithProtocol:protocol andDictionary: dictionary andExecutor: (id<JSExecutor>) executor] autorelease];
 }
 
+// Just setters, backed by a mutable dictionary;
++ (id) proxyWithProtocol:(Protocol *)protocol andMutableDictionary:(NSMutableDictionary *)dictionary {
+    return [[[KirinProxyWithEmptyDictionary alloc] initWithProtocol:protocol andDictionary:dictionary] autorelease];
+}
 
 - (id) initWithProtocol: (Protocol*) protocol {
     self = [super init];
@@ -72,7 +76,61 @@
         required = NO;
         desc = protocol_getMethodDescription(self.targetProtocol, selector, required, YES);
     }
-    return (desc.name != NULL);
+    return (desc.name != NULL) || [super respondsToSelector:selector];
+}
+
+
+- (NSArray*) getArgsFromSignature: (NSMethodSignature*) sig andInvocation: (NSInvocation*) invocation {
+    NSMutableArray* args = [NSMutableArray array];
+    
+    for(unsigned i = 2, numArgs = [sig numberOfArguments]; i < numArgs; i++) {
+        const char *type = [sig getArgumentTypeAtIndex: i];
+        
+        if (strcmp(type, @encode(id)) == 0) {
+            // https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
+            id arg = nil;
+            [invocation getArgument:&arg atIndex:i];
+            if (arg == nil) {
+                [args addObject:[NSNull null]];
+            } else if ([arg isKindOfClass:[NSString class]]) {
+                [args addObject:arg];
+            } else if ([arg isKindOfClass:[NSDictionary class]]) {
+                [args addObject:arg];
+            } else if ([arg isKindOfClass:[NSArray class]]) {
+                [args addObject:arg];
+            } else if ([arg isKindOfClass:[NSNull class]]) {
+                [args addObject:arg];
+            } else {
+                // handles numbers.
+                [args addObject:arg];
+            } 
+        } else if (strcmp(type, @encode(int)) == 0) {
+            int arg = 0;
+            [invocation getArgument:&arg atIndex:i];
+            [args addObject: [NSNumber numberWithInt:arg]];
+        } else if (strcmp(type, @encode(BOOL)) == 0) {
+            BOOL arg = NO;
+            [invocation getArgument:&arg atIndex:i];
+            [args addObject: [NSNumber numberWithBool:arg]];
+        } else if (strcmp(type, @encode(float)) == 0) {
+            float arg = 0.0f;
+            [invocation getArgument:&arg atIndex:i];
+            [args addObject: [NSNumber numberWithFloat:arg]];
+        } else if (strcmp(type, @encode(double)) == 0) {
+            double arg = 0.0;
+            [invocation getArgument:&arg atIndex:i];
+            [args addObject: [NSNumber numberWithDouble:arg]];
+        } 
+    }
+    return args;
+}
+
+- (NSString*) getMethodNameForSelector: (SEL) selector {
+    
+    NSString* name = NSStringFromSelector(selector);
+    
+    // TODO: will this need to be camel cased? 
+    return [[name componentsSeparatedByString:@":"] componentsJoinedByString:@""];
 }
 
 

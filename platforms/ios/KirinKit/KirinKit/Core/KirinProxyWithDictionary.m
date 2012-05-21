@@ -8,44 +8,94 @@
 
 #import "KirinProxyWithDictionary.h"
 
+#import "JSON.h"
+
+#import <objc/runtime.h>
+
 @interface KirinProxyWithDictionary ()
 
 @property(nonatomic, retain) NSDictionary* dictionary;
+@property(nonatomic, retain) id<JSExecutor> jsExecutor;
 
 @end
 
 @implementation KirinProxyWithDictionary
 
 @synthesize dictionary = dictionary_;
+@synthesize jsExecutor = jsExecutor_;
 
-- (id) initWithProtocol: (Protocol*) protocol andDictionary: (NSDictionary*) dictionary {
+- (id) initWithProtocol: (Protocol*) protocol andDictionary: (NSDictionary*) dictionary andExecutor: (id<JSExecutor>) executor {
     self = [super initWithProtocol:protocol];
     if (self) {
         self.dictionary = dictionary;
+        self.jsExecutor = executor;
     }
     return self;
 }
 
+- (void) cleanupCallbacks {
+    int i=0;
+    unsigned int mc = 0;
+    struct objc_method_description * mlist = protocol_copyMethodDescriptionList(self.targetProtocol, YES, YES, &mc);
+    
+    NSMutableArray* callbackIds = [NSMutableArray arrayWithCapacity:mc];
+    
+    for(i=0;i<mc;i++) {
+        struct objc_method_description method = mlist[i];
+        char returnType = method.types[0];
+        if (returnType == @encode(void)[0]) {
+            // we have a callback
+            NSString* methodName = [self getMethodNameForSelector: method.name];    
+            NSObject* callbackId = [self.dictionary objectForKey:methodName];
+            if ([callbackId isKindOfClass:[NSString class]]) {
+                [callbackIds addObject:callbackId]; 
+            }
+        }
+    }
+    
+    free(mlist);
+    
+    if ([callbackIds count] > 0) {
+        [self.jsExecutor execJS:[NSString stringWithFormat: DELETE_CALLBACK_JS, [callbackIds JSONRepresentation]]];
+    }
+}
+
 - (void) forwardInvocation: (NSInvocation*) invocation {
     NSMethodSignature* sig = invocation.methodSignature;
-    SEL selector = invocation.selector;
-    
-    NSString* name = NSStringFromSelector(selector);
-    
 
+    NSString* methodName = [self getMethodNameForSelector:invocation.selector];    
     
-    NSString* methodName = [[name componentsSeparatedByString:@":"] componentsJoinedByString:@""];
     
-    unsigned numArgs = [sig numberOfArguments];
-    if (numArgs > 2) {
-        [NSException raise:@"KirinProxyException" format:@"Message %@ has arguments, which are not supported by KirinProxyWithDictionary", methodName];
+    id result = [self.dictionary objectForKey:methodName];
+    char returnType = [sig methodReturnType][0];
+    if (returnType == @encode(void)[0]) {
+        // call a callback if return type is void
+        if (!result || [result isKindOfClass:[NSNull class]]) {
+            return;
+        }
+        if (![result isKindOfClass:[NSString class]]) {
+            NSLog(@"Method name %@ does not encode for a callback. Callback id is a non-string: %@", methodName, result);
+            return;
+        }
+        
+        NSString* callbackId = (NSString*) result;
+        
+        NSMethodSignature* sig = invocation.methodSignature;
+        unsigned numArgs = [sig numberOfArguments];
+        if (numArgs == 2) {
+            [self.jsExecutor execJS:[NSString stringWithFormat: EXECUTE_CALLBACK_JS, callbackId]];
+            return;
+        }
+        NSArray* args = [self getArgsFromSignature:sig andInvocation:invocation];
+        NSString* jsString = [NSString stringWithFormat: EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, [args JSONRepresentation]];
+        [self.jsExecutor execJS:jsString];        
         return;
     }
     
-    id result = [self.dictionary objectForKey:methodName];
 
     
-    char returnType = [sig methodReturnType][0];
+
+    // handle getters
 
     if (returnType == @encode(id)[0]) {    
         if ([result isKindOfClass:[NSNull class]]) {
@@ -80,6 +130,7 @@
 
 - (void) dealloc {
     self.dictionary = nil;
+    self.jsExecutor = nil;
     [super dealloc];
 }
 

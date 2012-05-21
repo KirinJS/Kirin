@@ -107,7 +107,7 @@
     
 - (void) testJsRemoveCallback {
     [helper cleanupCallback:@"cb001", @"eb001", nil];
-    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback(['cb001', 'eb001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback([\"cb001\",\"eb001\"])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
     
     [ctx reset];
     [helper cleanupCallback:nil];
@@ -123,7 +123,7 @@
     [helper cleanupCallback:config withNames:@"onSuccess", @"onError", nil];
     
 
-    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback(['callback0001', 'errback0001'])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
+    STAssertEqualObjects(@"EXPOSED_TO_NATIVE.native2js.deleteCallback([\"callback0001\",\"errback0001\"])", [ctx.jsCalls objectAtIndex:0], @"Callback cleanup");
     
     [ctx reset];
     [helper cleanupCallback:nil withNames:@"onSuccess", @"onError", nil];
