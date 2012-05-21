@@ -1,7 +1,7 @@
 {
     "name": "kirin",
     "description": "A toolkit to help building native crossplatform mobile apps by implementing the application logic in Javascript.",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "homepage": "https://github.com/kirinjs/kirin",
     "author": [
         {
