@@ -162,7 +162,7 @@
 
 - (void) cleanupCallbacks:(NSArray*) callbackIds {
     if ([callbackIds count]) {
-        [self.jsContext js:[NSString stringWithFormat: DELETE_CALLBACK_JS, [callbackIds componentsJoinedByString:@"', '"]]];
+        [self.jsContext js:[NSString stringWithFormat: DELETE_CALLBACK_JS, [callbackIds JSONRepresentation]]];
     }
 }
 
