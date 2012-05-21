@@ -28,7 +28,7 @@
 
 - (id) bindScreen:(NSString *)moduleName withProtocol: (Protocol*) protocol {
     [self bindScreen:moduleName];
-    return [self.kirinHelper proxyForJavascriptObject:protocol];
+    return [self.kirinHelper proxyForJavascriptModule:protocol];
 }
 
 - (void) viewWillAppear:(BOOL)animated {

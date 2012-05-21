@@ -195,15 +195,19 @@
     return self.state.dropbox;
 }
 
-- (id) proxyForJavascriptObject: (Protocol*) protocol {
+- (id) proxyForJavascriptModule: (Protocol*) protocol {
     if (!self.proxyForJSModule) {
         self.proxyForJSModule = [KirinProxy proxyWithProtocol:protocol andModuleName:self.jsModuleName andExecutor:self.jsContext];
     }
     return self.proxyForJSModule;
 }
 
-- (id) proxyForJavascriptObject:(Protocol *)protocol andDictionary: (NSDictionary*) dictionary {
-    return [KirinProxy proxyWithProtocol:protocol andDictionary:dictionary];
+- (id) proxyForJavascriptRequest:(Protocol *)protocol andDictionary: (NSDictionary*) dictionary {
+    return [KirinProxy proxyWithProtocol:protocol andDictionary:dictionary andExecutor:self.jsContext];
+}
+
+- (id) proxyForJavascriptResponse:(Protocol *)protocol {
+    return [KirinProxy proxyWithProtocol:protocol andMutableDictionary:[NSMutableDictionary dictionary]];
 }
 
 - (void) dealloc {
