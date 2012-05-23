@@ -172,7 +172,7 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 
 	@Override
 	public <T> T createProxy(Class<T> interfaceClass) {
-		return new ProxyGenerator().generate(this, interfaceClass);
+		return new ProxyGenerator().javascriptProxyForModule(this, interfaceClass);
 	}
 	
 }

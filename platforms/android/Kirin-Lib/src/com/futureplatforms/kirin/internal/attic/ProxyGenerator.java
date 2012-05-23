@@ -21,11 +21,16 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import org.json.JSONObject;
+
+import android.util.Log;
+
+import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.helpers.IKirinHelper;
 
 public class ProxyGenerator {
 
-    public <T> T generate(final IKirinHelper kirinHelper, Class<T> baseInterface, Class<?>... otherClasses) {
+    public <T> T javascriptProxyForModule(final IKirinHelper kirinHelper, Class<T> baseInterface, Class<?>... otherClasses) {
         Class<?>[] allClasses;
         
         if (otherClasses.length == 0) {
@@ -45,5 +50,55 @@ public class ProxyGenerator {
         
         Object proxy = Proxy.newProxyInstance(baseInterface.getClassLoader(), allClasses, h);
         return baseInterface.cast(proxy);
+    }
+    
+    public <T> T javascriptProxyForRequest(final IKirinHelper kirinHelper, final JSONObject obj, Class<T> baseInterface, Class<?>... otherClasses) {
+    	Class<?>[] allClasses;
+    	
+    	if (otherClasses.length == 0) {
+    		allClasses = new Class[] {baseInterface};
+    	} else {
+    		allClasses = new Class[otherClasses.length + 1];
+    		allClasses[0] = baseInterface;
+    		System.arraycopy(otherClasses, 0, allClasses, 1, otherClasses.length);
+    	}
+    	InvocationHandler h = new InvocationHandler() {            
+    		@Override
+    		public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    			String methodName = method.getName();
+    			Class<?> returnType = method.getReturnType();
+				if (void.class.equals(returnType)) {
+    				// so assume it's a callback
+    				kirinHelper.jsCallback(obj, methodName, args);
+    				return null;
+    			}
+    			// we're handling a non-void return, ie. a getter
+     			int start = -1;
+    			if (methodName.startsWith("get")) {
+    				start = 3;
+    			} else if (methodName.startsWith("is")) {
+    				start = 2;
+    			}
+    			
+    			if (start >= 0) {
+    				String propertyName = methodName.substring(start, start + 1).toLowerCase() + methodName.substring(start + 1);
+    				Object retValue = obj.opt(propertyName);
+    				
+    				if (retValue instanceof JSONObject) {
+    					if (returnType.isInterface()) {
+    						return javascriptProxyForRequest(kirinHelper, (JSONObject) retValue, returnType); 
+    					} else if (!JSONObject.class.equals(returnType)){
+    						throw new Exception("Trying to cast a JSONObject to a " + returnType.getName());
+    					}
+    				}
+    				return retValue;
+    			}
+    			
+    			return null;
+    		}
+    	};
+    	
+    	Object proxy = Proxy.newProxyInstance(baseInterface.getClassLoader(), allClasses, h);
+    	return baseInterface.cast(proxy);
     }
 }

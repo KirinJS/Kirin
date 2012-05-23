@@ -28,8 +28,9 @@ import com.futureplatforms.kirin.test.dummies.DummyKirinHelper;
 
 public class DynamicProxyTest extends AndroidTestCase {
     private ProxyGenerator mGenerator;
+	private DummyKirinHelper mKirinHelper;
 
-    public static interface ITestInterface {
+    public static interface ITestModule {
         void withNoArgs();
         void withOneArg(String s);
         void withOneArg(int s);
@@ -40,16 +41,40 @@ public class DynamicProxyTest extends AndroidTestCase {
         void withTwoArgs(JSONArray array, JSONObject object);
     }
     
+    public static interface ITestResponse {
+    	void setId(long id);
+    	void setName(String name);
+    }
+    
+    public static interface ITestParams {
+    	long getId();
+    	String getName();
+    }
+    
+    public static interface ITestRequest {
+    	void callback(ITestResponse response);
+    	void errback(int number, boolean flag);
+    	
+    	String getName();
+    	boolean isReady();
+    	
+    	ITestParams getParams();
+    }
+    
     @Override
     protected void setUp() throws Exception {
         super.setUp();
         
         
         mGenerator = new ProxyGenerator();
+        
+        mKirinHelper = new DummyKirinHelper();
     }
     
-    public void testInvocationHandler() throws JSONException {
-        ITestInterface proxy = mGenerator.generate(new DummyKirinHelper(), ITestInterface.class);
+    
+    
+    public void testModuleProxy() throws JSONException {
+        ITestModule proxy = mGenerator.javascriptProxyForModule(mKirinHelper, ITestModule.class);
         
         proxy.withNoArgs();
         
@@ -57,6 +82,30 @@ public class DynamicProxyTest extends AndroidTestCase {
         
         JSONArray array = new JSONArray("[1,2,3]");
         proxy.withTwoArgs(array, new JSONObject("{}"));
+    }
+    
+    public void testRequestProxy() throws JSONException {
+    	JSONObject obj = new JSONObject();
+    	ITestRequest proxy = mGenerator.javascriptProxyForRequest(mKirinHelper, obj, ITestRequest.class);
+    	
+    	obj.put("name", "myName");
+    	obj.put("ready", true);
+    	
+    	assertEquals(obj.optString("name"), proxy.getName());
+    	assertEquals(obj.optBoolean("ready"), proxy.isReady());
+    	
+    	JSONObject paramsObject = new JSONObject();
+    	paramsObject.put("name", "anotherName");
+    	paramsObject.put("id", 42l);
+    	
+    	obj.put("params", paramsObject);
+    	
+    	ITestParams params = proxy.getParams();
+    	assertNotNull(params);
+    	assertTrue(params instanceof ITestParams);
+    	
+    	assertEquals(paramsObject.opt("name"), params.getName());
+    	
     }
     
 }
