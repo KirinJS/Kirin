@@ -23,9 +23,6 @@ import java.lang.reflect.Proxy;
 
 import org.json.JSONObject;
 
-import android.util.Log;
-
-import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.helpers.IKirinHelper;
 
 public class ProxyGenerator {
