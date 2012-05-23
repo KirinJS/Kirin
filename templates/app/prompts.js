@@ -39,6 +39,9 @@ exports.prompts = {
   },
   "contextPackage": "__companyIdentifier__xXJAVA_PACKAGEXx",
   "JAVA_PACKAGE": "",
+  "javascript_screen_module": "__project_name__ScreenModule",
+  "native_screen_module": "I__class_prefix____javascript_screen_module__",
+  "native_screen": "I__class_prefix____project_name__Screen"
 };
 
-exports.header = "The following prompts will help you create an ios application...";
+exports.header = "The following prompts will help you create an ios and android application...";

@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <KirinKit/KirinKit.h>
 
-#import "__class_prefix__MasterScreen.h"
+#import "__native_screen__.h"
 
 @class __class_prefix__DetailViewController;
 
-@interface __class_prefix__MasterViewController : KirinUITableViewController <__class_prefix__MasterScreen>
+@interface __class_prefix__MasterViewController : KirinUITableViewController <__native_screen__>
 
 @property (strong, nonatomic) __class_prefix__DetailViewController *detailViewController;
 

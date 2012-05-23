@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.json.JSONArray;
 
-import xXcontextPackageXx.xXshortNameXx.android.I__class_prefix__MasterScreen;
-import xXcontextPackageXx.xXshortNameXx.shared.I__class_prefix__MasterModule;
+import xXcontextPackageXx.xXshortNameXx.android.__native_screen__;
+import xXcontextPackageXx.xXshortNameXx.shared.__native_screen_module__;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,9 +18,9 @@ import android.widget.Toast;
 
 import com.futureplatforms.kirin.activities.KirinActivity;
 
-public class __project_name__Activity extends KirinActivity implements I__class_prefix__MasterScreen {
+public class __project_name__Activity extends KirinActivity implements __native_screen__ {
     
-	private I__class_prefix__MasterModule mKirinModule;
+	private __native_screen_module__ mScreenModule;
 	private ListView mListView;
 	private List<String> mTableRows;
 
@@ -30,23 +30,22 @@ public class __project_name__Activity extends KirinActivity implements I__class_
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_master_list);
         setTitle(R.string.app_name);
-        mKirinModule = bindScreen("MasterModule", I__class_prefix__MasterModule.class);
+        mScreenModule = bindScreen("xXjavascript_screen_moduleXx", __native_screen_module__.class);
         
         mListView = (ListView) findViewById(R.id.list_view);
         
         mListView.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
-			public void onItemClick(AdapterView<?> adapter, View row, int index,
-					long id) {
-				mKirinModule.itemSelected(index);
+			public void onItemClick(AdapterView<?> adapter, View row, int index, long id) {
+				mScreenModule.itemSelected(index);
 			}
 		});
         
         findViewById(R.id.button).setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				mKirinModule.addNewItem();
+				mScreenModule.addNewItem();
 			}
 		});
     }

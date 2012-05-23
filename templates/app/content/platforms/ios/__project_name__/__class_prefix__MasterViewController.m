@@ -10,18 +10,18 @@
 
 #import "__class_prefix__DetailViewController.h"
 
-#import "__class_prefix__MasterModule.h"
+#import "__native_screen_module__.h"
 
 @interface __class_prefix__MasterViewController () 
 @property(retain, nonatomic) NSMutableArray* objects;
-@property(retain, nonatomic) id<__class_prefix__MasterModule> kirinModule;
+@property(retain, nonatomic) id<__native_screen_module__> screenModule;
 @end
 
 @implementation __class_prefix__MasterViewController
 
 @synthesize detailViewController = detailViewController_;
 @synthesize objects = objects_;
-@synthesize kirinModule = kirinModule_;
+@synthesize screenModule = screenModule_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +40,7 @@
 {
     [super viewDidLoad];
     
-    self.kirinModule = [self bindScreen:@"MasterModule" withProtocol:@protocol(__class_prefix__MasterModule)];
+    self.screenModule = [self bindScreen:@"xXjavascript_screen_moduleXx" withProtocol:@protocol(__native_screen_module__)];
     
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -64,16 +64,19 @@
     }
 }
 
+
+#pragma mark - Respond to UI events
+
 - (void)insertNewObject:(id)sender
 {
-    [self.kirinModule addNewItem];
+    [self.screenModule addNewItem];
 }
 
+#pragma mark - Called by Javascript, declared in I__class_prefix__MasterScreen.h
 
-
-- (void) insertRow: (NSNumber*) rowNumber withContents: (NSString*) rowContents {
-    [self.objects insertObject:rowContents atIndex:[rowNumber intValue]];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[rowNumber intValue] inSection:0];
+- (void) insertRow: (int) rowNumber WithContents: (NSString*) rowContents {
+    [self.objects insertObject:rowContents atIndex:rowNumber];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:rowNumber inSection:0];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
@@ -83,7 +86,7 @@
 }
 
 
-- (void) displayDetailScreenForRow: (NSNumber*) row andContents: (NSString*) contents {
+- (void) displayDetailScreenForRow: (int) index AndContents: (NSString*) contents {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
 	    if (!self.detailViewController) {
 	        self.detailViewController = [[__class_prefix__DetailViewController alloc] initWithNibName:@"__class_prefix__DetailViewController_iPhone" bundle:nil];
@@ -160,7 +163,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.kirinModule itemSelected:[indexPath row]];
+    [self.screenModule itemSelected:[indexPath row]];
 }
 
 @end

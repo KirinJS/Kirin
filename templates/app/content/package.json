@@ -5,6 +5,7 @@
     "private": true,
     "kirin": {
         "shared": "shared/lib",
+        "idl": "shared/idl",
         "dependencies": [
             "kirin-core"
         ],

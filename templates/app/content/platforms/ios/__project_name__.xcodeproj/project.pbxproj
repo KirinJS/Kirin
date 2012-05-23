@@ -42,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A35BFEE156CF57300B47A70 /* __native_screen__.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __native_screen__.h; sourceTree = "<group>"; };
+		1A35BFEF156CF57300B47A70 /* __native_screen_module__.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = __native_screen_module__.h; sourceTree = "<group>"; };
 		1AEE8D5C154EC82C00B8C0D7 /* __project_name__.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = __project_name__.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AEE8D60154EC82C00B8C0D7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1AEE8D62154EC82C00B8C0D7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -70,8 +72,6 @@
 		1AEE8DA8154ECBF700B8C0D7 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		1AEE8DAA154ECC0B00B8C0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		1AEE8DAC154ECC2900B8C0D7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		1AEE8DB5154ECEBF00B8C0D7 /* __class_prefix__MasterScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __class_prefix__MasterScreen.h; sourceTree = "<group>"; };
-		1AEE8DB6154ED25B00B8C0D7 /* __class_prefix__MasterModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = __class_prefix__MasterModule.h; sourceTree = "<group>"; };
 		1AEE8DB9154EEF8000B8C0D7 /* generated-javascript */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "generated-javascript"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,9 +103,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A35BFE6156CEE0D00B47A70 /* idl-generated */ = {
+			isa = PBXGroup;
+			children = (
+				1A35BFEE156CF57300B47A70 /* __native_screen__.h */,
+				1A35BFEF156CF57300B47A70 /* __native_screen_module__.h */,
+			);
+			path = "idl-generated";
+			sourceTree = "<group>";
+		};
 		1AEE8D51154EC82C00B8C0D7 = {
 			isa = PBXGroup;
 			children = (
+				1A35BFE6156CEE0D00B47A70 /* idl-generated */,
 				1AEE8DB9154EEF8000B8C0D7 /* generated-javascript */,
 				1AEE8D66154EC82C00B8C0D7 /* __project_name__ */,
 				1AEE8D90154EC82C00B8C0D7 /* __project_name__Tests */,
@@ -141,8 +151,6 @@
 		1AEE8D66154EC82C00B8C0D7 /* __project_name__ */ = {
 			isa = PBXGroup;
 			children = (
-				1AEE8DB4154ECDDB00B8C0D7 /* Presenter protocols */,
-				1AEE8DB3154ECD9E00B8C0D7 /* Application logic protocols */,
 				1AEE8D6F154EC82C00B8C0D7 /* __class_prefix__AppDelegate.h */,
 				1AEE8D70154EC82C00B8C0D7 /* __class_prefix__AppDelegate.m */,
 				1AEE8D72154EC82C00B8C0D7 /* __class_prefix__MasterViewController.h */,
@@ -186,22 +194,6 @@
 				1AEE8D93154EC82C00B8C0D7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1AEE8DB3154ECD9E00B8C0D7 /* Application logic protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1AEE8DB6154ED25B00B8C0D7 /* __class_prefix__MasterModule.h */,
-			);
-			name = "Application logic protocols";
-			sourceTree = "<group>";
-		};
-		1AEE8DB4154ECDDB00B8C0D7 /* Presenter protocols */ = {
-			isa = PBXGroup;
-			children = (
-				1AEE8DB5154ECEBF00B8C0D7 /* __class_prefix__MasterScreen.h */,
-			);
-			name = "Presenter protocols";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
