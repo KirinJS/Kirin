@@ -63,6 +63,7 @@
 	    },
 	    "extensions": {
 	        "kirin": "src/core/kirin",
+                "kirin-bridge": "src/utils/bridge-utils",
 	        "Settings": "src/extensions/Settings",
 	        "Filesystem": "src/extensions/FileSystem",
 	        "Databases": "src/extensions/Databases",
