@@ -8,28 +8,45 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONObject;
+
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
+import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 
 public abstract class AbstractObjectHolder implements IObjectHolder {
 
+	
 
 	private static final class JavaMethodCall implements Runnable {
 		private final Method mMethod;
 		private final Object[] mArgs;
 		private final Object mNativeObject;
+		private final ProxyGenerator mProxyGenerator;
 
-		private JavaMethodCall(Object object, Method method, Object[] args) {
+		private JavaMethodCall(Object object, Method method, Object[] args, ProxyGenerator generator) {
 			mMethod = method;
 			mArgs = args;
 			mNativeObject = object;
+			mProxyGenerator = generator;
 		}
 
 		@Override
 		public void run() {
 			try {
+				Class<?>[] argTypes = null;
+				for (int i=0, max=mArgs.length; i<max; i++) {
+					if (mArgs[i] instanceof JSONObject) {
+						if (argTypes == null) {
+							argTypes = mMethod.getParameterTypes();
+						}
+						if (argTypes[i].isInterface()) {
+							mArgs[i] = mProxyGenerator.javascriptProxyForRequest((JSONObject) mArgs[i], argTypes[i]);
+						}
+					}
+				}
 				mMethod.invoke(mNativeObject, mArgs);
 			} catch (InvocationTargetException ex) {
 				Throwable e = ex.getTargetException();
@@ -60,8 +77,11 @@ public abstract class AbstractObjectHolder implements IObjectHolder {
 	
 	protected final Object mNativeObject;
 	
-	public AbstractObjectHolder(Object nativeObject) {
+	private final ProxyGenerator mProxyGenerator; 
+	
+	public AbstractObjectHolder(Object nativeObject, ProxyGenerator proxyGenerator) {
 		mNativeObject = nativeObject;
+		mProxyGenerator = proxyGenerator;
 	}
 	
 	@Override
@@ -105,7 +125,7 @@ public abstract class AbstractObjectHolder implements IObjectHolder {
             return;
         }
 	    
-		enqueue(new JavaMethodCall(mNativeObject, method, args));
+		enqueue(new JavaMethodCall(mNativeObject, method, args, mProxyGenerator));
 	}
 
 

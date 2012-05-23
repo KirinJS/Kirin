@@ -3,6 +3,7 @@ package com.futureplatforms.kirin.test.dummies;
 import java.util.Collection;
 import java.util.List;
 
+import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.INativeContext;
 
 public class DummyNativeContext implements INativeContext {
@@ -23,7 +24,7 @@ public class DummyNativeContext implements INativeContext {
 	}
 
 	@Override
-	public void registerNativeObject(String moduleName, Object object) {
+	public void registerNativeObject(String moduleName, Object object, ProxyGenerator proxyGenerator) {
 		mLastModuleName = moduleName;
 		mLastNativeObject = object;
 	}

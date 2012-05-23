@@ -26,6 +26,7 @@ public class KirinHelper implements IKirinHelper {
 	private final INativeContext mNativeContext;
 	private final IJsContext mJsContext;
 	private final IKirinState mAppState;
+	private final ProxyGenerator mProxyGenerator;
 	
 	public KirinHelper(Object nativeObject, String moduleName, IJsContext jsContext, INativeContext nativeContext, IKirinState appState) {
 		super();
@@ -36,6 +37,8 @@ public class KirinHelper implements IKirinHelper {
 		mJsContext = jsContext;
 		
 		mAppState = appState;
+		
+		mProxyGenerator = new ProxyGenerator(this);
 	}
 	
 	@Override
@@ -121,7 +124,7 @@ public class KirinHelper implements IKirinHelper {
 	@Override
 	public void onLoad() {
 		// let the object be available for calling from Javascript.
-		mNativeContext.registerNativeObject(getModuleName(), getNativeObject());
+		mNativeContext.registerNativeObject(getModuleName(), getNativeObject(), mProxyGenerator);
 		
 		// and now tell Javascript the method names so it can construct a proxy for us.
 		Collection<String> methods = mNativeContext.getMethodNamesForObject(getModuleName());

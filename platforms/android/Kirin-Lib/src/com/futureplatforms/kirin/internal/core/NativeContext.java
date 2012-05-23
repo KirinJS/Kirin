@@ -15,6 +15,7 @@ import android.view.View;
 import com.futureplatforms.kirin.C;
 import com.futureplatforms.kirin.extensions.IKirinExtensionOnNonDefaultThread;
 import com.futureplatforms.kirin.extensions.IKirinExtensionOnUiThread;
+import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 
 public class NativeContext implements INativeContext {
 
@@ -48,10 +49,10 @@ public class NativeContext implements INativeContext {
 	}
 	
 	@Override
-	public void registerNativeObject(String moduleName, Object object) {
+	public void registerNativeObject(String moduleName, Object object, ProxyGenerator proxyGenerator) {
 		IObjectHolder objectHolder = null;
 		if (object instanceof View || object instanceof Activity || object instanceof IKirinExtensionOnUiThread) {
-			objectHolder = new UiObjectHolder(new Handler(), object);
+			objectHolder = new UiObjectHolder(new Handler(), object, proxyGenerator);
 			logThread(object, "UI");
 		} else if (object instanceof IKirinExtensionOnNonDefaultThread) {
 			Executor executor = ((IKirinExtensionOnNonDefaultThread) object).getExecutor();
@@ -61,10 +62,10 @@ public class NativeContext implements INativeContext {
 			} else {
 				logThread(object, "custom background");
 			}
-			objectHolder = new DefaultObjectHandler(executor, object);
+			objectHolder = new DefaultObjectHandler(executor, object, proxyGenerator);
 		} else {
 			logThread(object, "default background");
-			objectHolder = new DefaultObjectHandler(mDefaultExecutorService, object);
+			objectHolder = new DefaultObjectHandler(mDefaultExecutorService, object, proxyGenerator);
 		}
 		mObjectHolders.put(moduleName, objectHolder);
 	}

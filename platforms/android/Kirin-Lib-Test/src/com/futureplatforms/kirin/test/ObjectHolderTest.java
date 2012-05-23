@@ -2,6 +2,9 @@ package com.futureplatforms.kirin.test;
 
 import java.util.Collection;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.test.AndroidTestCase;
 
 import com.futureplatforms.kirin.test.testable.TestableObjectHolder;
@@ -14,6 +17,10 @@ public class ObjectHolderTest extends AndroidTestCase {
 		NO_ARGS, SINGLE_ARG, TWO_ARGS;
 	}
 	
+	private static interface Request {
+		String getName();
+		int getId();
+	}
 
 	
 	private LastMethod mLastMethodCalled;
@@ -58,6 +65,22 @@ public class ObjectHolderTest extends AndroidTestCase {
 		assertEquals(LastMethod.SINGLE_ARG, mLastMethodCalled);
 		assertTrue(mLastArgs.length == 1);
 		assertTrue(mLastArgs[0].equals(42));
+		
+	}
+
+	public void testInvocationWithProxy() throws JSONException {
+		JSONObject obj = new JSONObject();
+		obj.put("name", "kirin");
+		obj.put("id", 43);
+		
+		mObjectHolder.invoke("myDummyMethodWithRequest", obj);
+		assertEquals(LastMethod.SINGLE_ARG, mLastMethodCalled);
+		assertEquals(1, mLastArgs.length);
+		
+		Request request = (Request) mLastArgs[0];
+		
+		assertEquals(obj.optString("name"), request.getName());
+		assertEquals(obj.optInt("id"), request.getId());
 	}
 	
 	public void myDummyNoArgMethod() {
@@ -68,5 +91,10 @@ public class ObjectHolderTest extends AndroidTestCase {
 	public void myDummySingleArgMethod(int i) {
 		mLastMethodCalled = LastMethod.SINGLE_ARG;
 		mLastArgs = new Object[] {i};
+	}
+	
+	public void myDummyMethodWithRequest(Request request) {
+		mLastMethodCalled = LastMethod.SINGLE_ARG;
+		mLastArgs = new Object[] {request};
 	}
 }

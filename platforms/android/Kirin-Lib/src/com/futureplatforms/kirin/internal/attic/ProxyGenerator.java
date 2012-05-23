@@ -27,7 +27,13 @@ import com.futureplatforms.kirin.helpers.IKirinHelper;
 
 public class ProxyGenerator {
 
-    public <T> T javascriptProxyForModule(final IKirinHelper kirinHelper, Class<T> baseInterface, Class<?>... otherClasses) {
+	private final IKirinHelper mKirinHelper;
+	
+	public ProxyGenerator(IKirinHelper helper) {
+		mKirinHelper = helper;
+	}
+	
+    public <T> T javascriptProxyForModule(Class<T> baseInterface, Class<?>... otherClasses) {
         Class<?>[] allClasses;
         
         if (otherClasses.length == 0) {
@@ -40,7 +46,7 @@ public class ProxyGenerator {
         InvocationHandler h = new InvocationHandler() {            
             @Override
             public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            	kirinHelper.jsMethod(method.getName(), (Object[]) args);
+            	mKirinHelper.jsMethod(method.getName(), (Object[]) args);
                 return null;
             }
         };
@@ -49,7 +55,7 @@ public class ProxyGenerator {
         return baseInterface.cast(proxy);
     }
     
-    public <T> T javascriptProxyForRequest(final IKirinHelper kirinHelper, final JSONObject obj, Class<T> baseInterface, Class<?>... otherClasses) {
+    public <T> T javascriptProxyForRequest(final JSONObject obj, Class<T> baseInterface, Class<?>... otherClasses) {
     	Class<?>[] allClasses;
     	
     	if (otherClasses.length == 0) {
@@ -66,7 +72,7 @@ public class ProxyGenerator {
     			Class<?> returnType = method.getReturnType();
 				if (void.class.equals(returnType)) {
     				// so assume it's a callback
-    				kirinHelper.jsCallback(obj, methodName, args);
+    				mKirinHelper.jsCallback(obj, methodName, args);
     				return null;
     			}
     			// we're handling a non-void return, ie. a getter
@@ -83,7 +89,7 @@ public class ProxyGenerator {
     				
     				if (retValue instanceof JSONObject) {
     					if (returnType.isInterface()) {
-    						return javascriptProxyForRequest(kirinHelper, (JSONObject) retValue, returnType); 
+    						return javascriptProxyForRequest((JSONObject) retValue, returnType); 
     					} else if (!JSONObject.class.equals(returnType)){
     						throw new Exception("Trying to cast a JSONObject to a " + returnType.getName());
     					}

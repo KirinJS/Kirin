@@ -65,16 +65,14 @@ public class DynamicProxyTest extends AndroidTestCase {
     protected void setUp() throws Exception {
         super.setUp();
         
-        
-        mGenerator = new ProxyGenerator();
-        
         mKirinHelper = new DummyKirinHelper();
+        mGenerator = new ProxyGenerator(mKirinHelper);
     }
     
     
     
     public void testModuleProxy() throws JSONException {
-        ITestModule proxy = mGenerator.javascriptProxyForModule(mKirinHelper, ITestModule.class);
+        ITestModule proxy = mGenerator.javascriptProxyForModule(ITestModule.class);
         
         proxy.withNoArgs();
         
@@ -86,7 +84,7 @@ public class DynamicProxyTest extends AndroidTestCase {
     
     public void testRequestProxy() throws JSONException {
     	JSONObject obj = new JSONObject();
-    	ITestRequest proxy = mGenerator.javascriptProxyForRequest(mKirinHelper, obj, ITestRequest.class);
+    	ITestRequest proxy = mGenerator.javascriptProxyForRequest(obj, ITestRequest.class);
     	
     	obj.put("name", "myName");
     	obj.put("ready", true);
