@@ -12,7 +12,7 @@ public class KirinListActivity extends ListActivity {
 
 	protected <T> T bindScreen(String moduleName, Class<T> javascriptModule) {
 		bindScreen(moduleName);
-		return mKirinHelper.createProxy(javascriptModule);
+		return mKirinHelper.javascriptProxyForModule(javascriptModule);
 	}
 
 	protected void bindScreen(String moduleName) {

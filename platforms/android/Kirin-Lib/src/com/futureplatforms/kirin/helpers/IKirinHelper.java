@@ -44,5 +44,5 @@ public interface IKirinHelper {
 	
 	void onUnload();
 	
-	<T> T createProxy(Class<T> interfaceClass);
+	<T> T javascriptProxyForModule(Class<T> interfaceClass);
 }
