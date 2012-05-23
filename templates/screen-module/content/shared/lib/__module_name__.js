@@ -22,7 +22,7 @@ __ModuleName__.prototype.onUnload = function () {
 
 __ModuleName__.prototype.onResume = function () {
     // the screen is about to appear.
-    this.screen.setDataForScreen({name: "foo"});
+    this.screen.setDataForScreen({name: "__ModuleName__"});
 };
 
 __ModuleName__.prototype.onPause = function () {

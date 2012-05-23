@@ -19,15 +19,17 @@ exports.prompts = {
 
   CompanyName: "MyCompanyName",
   ModuleViewController: "__class_prefix____ModuleName__ViewController",
-  ModuleProtocol: "__class_prefix____ModuleName__Module",
-  ScreenProtocol: "__class_prefix____ModuleName__Screen",
+  ModuleProtocol: "I__class_prefix____ModuleName__ScreenModule",
+  ScreenProtocol: "I__class_prefix____ModuleName__Screen",
+  RequestProtocol: "I__class_prefix____ModuleName__Request",
 
   module_name: {
-    message: "The name of the Javascript module, without the .js extension",
-    validator: /^[a-z][a-z0-9_]*$/
+    message: "the name of the Javascript module, without the .js extension",
+    validator: /^[a-z][a-z0-9_\-]*$/,
+    warning: "this should be lowercase, with underscores and dashes"
   },
   ModuleName: {
-    message: "A version of the module name, in title case. This will be used in native code.",
+    message: "A version of the module name, in title case. This will be used in native code",
     validator: /^[A-Z]\w*$/
   } 
 }

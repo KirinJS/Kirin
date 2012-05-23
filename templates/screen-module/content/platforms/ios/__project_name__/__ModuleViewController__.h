@@ -1,5 +1,5 @@
 //
-//  __class_prefix__MasterViewController.h
+//  __ModuleViewController__.h
 //  __project_name__
 //
 //  Created by James Hugman on 30/04/2012.

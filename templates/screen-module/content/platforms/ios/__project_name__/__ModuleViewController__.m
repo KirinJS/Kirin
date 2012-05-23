@@ -1,5 +1,5 @@
 //
-//  __class_prefix__MasterViewController.m
+//  __ModuleViewController__.m
 //  __project_name__
 //
 //  Created by James Hugman on 30/04/2012.
@@ -11,12 +11,12 @@
 #import "__ModuleProtocol__.h"
 
 @interface __ModuleViewController__ () 
-@property(retain, nonatomic) id<__ModuleProtocol__> kirinModule;
+@property(retain, nonatomic) id<__ModuleProtocol__> screenModule;
 @end
 
 @implementation __ModuleViewController__
 
-@synthesize kirinModule = kirinModule_;
+@synthesize screenModule = screenModule_;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    self.kirinModule = [self bindScreen:@"__module_name__" withProtocol:@protocol(__ModuleProtocol__)];
+    self.screenModule = [self bindScreen:@"__module_name__" withProtocol:@protocol(__ModuleProtocol__)];
     
 	// Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -54,6 +54,15 @@
     } else {
         return YES;
     }
+}
+
+
+#pragma mark - Implementing __ScreenProtocol__, called by __module_name__.js
+
+- (void) setDataForScreen: (NSDictionary*) dataDictionary {
+    id<__RequestProtocol__> data = [self.kirinHelper proxyForJavascriptRequest:@protocol(__RequestProtocol__) 
+                                                                  andDictionary: dataDictionary];
+    NSLog(@"Sent from __module_name__.js: %@", data.name);
 }
 
 @end
