@@ -104,6 +104,10 @@ public class DynamicProxyTest extends AndroidTestCase {
     	
     	assertEquals(paramsObject.opt("name"), params.getName());
     	
+    	obj.remove("ready");
+    	obj.remove("params");
+    	assertEquals("{\"name\":\"myName\"}", proxy.toString());
+    	
     }
     
 }

@@ -97,6 +97,10 @@ public class ProxyGenerator {
     				return retValue;
     			}
     			
+    			if ("toString".equals(methodName) && String.class.equals(returnType)) {
+    				return obj.toString();
+    			}
+    			
     			return null;
     		}
     	};
