@@ -17,53 +17,59 @@
 
 package com.futureplatforms.kirin.demo.hellokirin.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.futureplatforms.kirin.application.IKirinApplication;
+import com.futureplatforms.kirin.activities.KirinActivity;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.helpers.KirinScreenHelper;
-import com.futureplatforms.kirin.ui.JSOnClickListener;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbButtonScreen;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbButtonScreenModule;
 
-public class DumbButtonActivity extends Activity {
+public class DumbButtonActivity extends KirinActivity implements IDumbButtonScreen {
 
     private Button mButton;
     private TextView mLabel;
 
-    private KirinScreenHelper mKirinHelper;
+    private IDumbButtonScreenModule mScreenModule;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dumb_button_activity);
 
-        mKirinHelper = ((IKirinApplication) getApplication()).getKirin().bindScreen("DumbButtonScreen", this);
-        mKirinHelper.onLoad();
+        mScreenModule = bindScreen("DumbButtonScreenModule", IDumbButtonScreenModule.class);
+        
         mButton = (Button) findViewById(R.id.dumb_button);
-        mButton.setOnClickListener(new JSOnClickListener(mKirinHelper, "onDumbButtonClick"));
-
-        findViewById(R.id.fp_logo_imageview).setOnClickListener(new JSOnClickListener(mKirinHelper, "onNextScreenButtonClick"));
+        mButton.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mScreenModule.onDumbButtonClick();
+			}
+		});
+        findViewById(R.id.fp_logo_imageview).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mScreenModule.onNextScreenButtonClick();
+			}
+		});
 
         mLabel = (TextView) findViewById(R.id.dumb_label);
         setTitle("How big?");
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mKirinHelper.jsMethod("onResume");
-    }
     
+    @Override
     public void updateLabelSizeAndText(int size, String text) {
         mLabel.setTextSize(TypedValue.COMPLEX_UNIT_SP, size);
         mLabel.setText(text);
         mLabel.invalidate();
     }
 
+    @Override
     public void changeScreen(String arg) {
         Intent intent = new Intent(this, DumbListActivity.class);
         intent.putExtra("string", arg);

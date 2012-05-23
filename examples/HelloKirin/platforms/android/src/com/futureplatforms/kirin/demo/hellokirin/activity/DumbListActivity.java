@@ -20,38 +20,35 @@ package com.futureplatforms.kirin.demo.hellokirin.activity;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.futureplatforms.kirin.application.IKirinApplication;
+import com.futureplatforms.kirin.activities.KirinListActivity;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.helpers.IKirinHelper;
-import com.futureplatforms.kirin.helpers.KirinScreenHelper;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbListScreen;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbListScreenModule;
 import com.futureplatforms.kirin.ui.JSListAdapter;
 import com.futureplatforms.kirin.ui.KirinRowRenderer;
 
-public class DumbListActivity extends ListActivity {
+public class DumbListActivity extends KirinListActivity implements IDumbListScreen {
 
-	private KirinScreenHelper mKirinHelper;
-
+	private IDumbListScreenModule mKirinModule;
+	
     protected KirinRowRenderer<JSONObject> mItemRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mKirinHelper = ((IKirinApplication) getApplication()).getKirin().bindScreen("DumbListScreen", this);
-
+        mKirinModule = bindScreen("DumbListScreenModule", IDumbListScreenModule.class);
         // we won't worry about arguments to this activity, though we know
         // how to do it.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dumb_list_activity);
 
-        mItemRenderer = new ObjectItemRenderer(mKirinHelper, "onListItemClick", "key");
+        mItemRenderer = new ObjectItemRenderer("key");
         setTitle("Alphabet");
-        mKirinHelper.onLoad();
     }
 
     public void populateList(JSONArray jsonArray) {
@@ -72,27 +69,18 @@ public class DumbListActivity extends ListActivity {
         mItemRenderer.onItemClicked(v, position, (JSONObject) getListAdapter().getItem(position));
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mKirinHelper.jsMethod("onResume");
-    }
-
     public class ObjectItemRenderer implements KirinRowRenderer<JSONObject> {
-
-        private final String mMethodName;
-
-        private final String mPropertyName;
 
         public class ViewHolder {
             TextView mText;
         }
 
-        public ObjectItemRenderer(IKirinHelper js, String methodName, String propertyName) {
-            mMethodName = methodName;
-            mPropertyName = propertyName;
+        private final String mPropertyName;
+        
+        public ObjectItemRenderer(String propertyName) {
+        	mPropertyName = propertyName;
         }
-
+        
         @Override
         public void configureView(View view) {
             ViewHolder vh = new ViewHolder();
@@ -102,7 +90,7 @@ public class DumbListActivity extends ListActivity {
 
         @Override
         public void onItemClicked(View view, int index, JSONObject item) {
-            mKirinHelper.jsMethod(mMethodName, index, item.optString(mPropertyName));
+        	mKirinModule.onListItemClick(index, item.optString(mPropertyName));
         }
 
         @Override

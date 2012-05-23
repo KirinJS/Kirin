@@ -19,7 +19,9 @@
 #import <UIKit/UIKit.h>
 #import <KirinKit/KirinKit.h>
 
-@interface DumbListViewController : UITableViewController {
+#import "IDumbListScreen.h"
+
+@interface DumbListViewController : KirinUITableViewController <IDumbListScreen> {
 
 }
 

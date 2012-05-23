@@ -18,16 +18,20 @@
 
 #import "DumbListViewController.h"
 
+#import "IDumbListScreenModule.h"
+
 @interface DumbListViewController () 
 
-@property(retain, nonatomic) KirinScreenHelper* kirinHelper;
+
+
+@property(retain, nonatomic) id<IDumbListScreenModule> screenModule;
 @property(retain, nonatomic) NSArray* jsonList;
 
 @end
 
 @implementation DumbListViewController
 @synthesize jsonList = jsonList_;
-@synthesize kirinHelper = kirinHelper_;
+@synthesize screenModule = screenModule_;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -39,45 +43,13 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.navigationItem.title = @"Alphabet";
 
-    self.kirinHelper = [KIRIN bindScreen:self toModule:@"DumbListScreen"];
-    
-    [self.kirinHelper onLoad];
+    self.screenModule = [self bindScreen:@"DumbListScreenModule" withProtocol:@protocol(IDumbListScreenModule)];
+ 
 }
-
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-    [self.kirinHelper onResume];
-}
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [self.kirinHelper onPause];
-    [super viewDidDisappear:animated];
-}
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations.
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void) populateList: (NSArray*) list {
 	self.jsonList = list;
+
 	[(UITableView*)self.view reloadData];
 }
 
@@ -95,6 +67,9 @@
     return [self.jsonList count];
 }
 
+- (NSString*) getRowAtIndex: (int) index {
+    return [[self.jsonList objectAtIndex:index] objectForKey:@"key"];
+}
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -111,67 +86,17 @@
     UILabel *dumbLabel = (UILabel *)[cell viewWithTag:42];
 
 
-	NSDictionary* data = [self.jsonList objectAtIndex:indexPath.row];
-	dumbLabel.text = [data objectForKey:@"key"];
+	dumbLabel.text = [self getRowAtIndex:indexPath.row];
 	
     return cell;
 }
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source.
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }   
-}
-*/
-
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-    // ...
-    // Pass the selected object to the new view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
-    [detailViewController release];
-    */
-	
-	[self.kirinHelper jsMethod:@"onListItemClick" withArgsList: [NSString stringWithFormat:@"%d", indexPath.row]];
+	[self.screenModule onListItemClick:indexPath.row : [self getRowAtIndex:[indexPath row]]];
 }
 
 - (void) showToast:(NSString*) title {
@@ -183,24 +108,17 @@
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc. that aren't in use.
-}
-
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
 	self.jsonList = nil;
-    [self.kirinHelper onUnload];
+    self.screenModule = nil;
+    [super viewDidUnload];
     
 }
 
 
 - (void)dealloc {
-    self.kirinHelper = nil;
     [super dealloc];
 }
 

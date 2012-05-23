@@ -39,6 +39,10 @@
 
 /* Begin PBXFileReference section */
 		1A00C9A414B2F4CD00211F34 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		1A35BFDB156BF02200B47A70 /* IDumbButtonScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDumbButtonScreen.h; sourceTree = "<group>"; };
+		1A35BFDC156BF02200B47A70 /* IDumbButtonScreenModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDumbButtonScreenModule.h; sourceTree = "<group>"; };
+		1A35BFDD156BF02200B47A70 /* IDumbListScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDumbListScreen.h; sourceTree = "<group>"; };
+		1A35BFDE156BF02200B47A70 /* IDumbListScreenModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDumbListScreenModule.h; sourceTree = "<group>"; };
 		1A3A0CCC14B3006F00BAFF2A /* KirinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KirinKit.framework; path = "platforms/ios/KirinKit/build/Debug-iphoneos/KirinKit.framework"; sourceTree = KIRIN_HOME; };
 		1A4A0F311430C12E0010EF83 /* HelloKirin-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloKirin-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A4A0F351430C12E0010EF83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -81,9 +85,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A35BFDA156BF02200B47A70 /* idl-generated */ = {
+			isa = PBXGroup;
+			children = (
+				1A35BFDB156BF02200B47A70 /* IDumbButtonScreen.h */,
+				1A35BFDC156BF02200B47A70 /* IDumbButtonScreenModule.h */,
+				1A35BFDD156BF02200B47A70 /* IDumbListScreen.h */,
+				1A35BFDE156BF02200B47A70 /* IDumbListScreenModule.h */,
+			);
+			path = "idl-generated";
+			sourceTree = "<group>";
+		};
 		1A4A0F261430C12E0010EF83 = {
 			isa = PBXGroup;
 			children = (
+				1A35BFDA156BF02200B47A70 /* idl-generated */,
 				1ABCF22A153F6585000FBB14 /* CoreLocation.framework */,
 				1ABC0BB714E3E659001B227A /* MobileCoreServices.framework */,
 				1A00C9A414B2F4CD00211F34 /* libsqlite3.0.dylib */,

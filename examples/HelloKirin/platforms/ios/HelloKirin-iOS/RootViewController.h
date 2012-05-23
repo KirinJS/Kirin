@@ -19,7 +19,9 @@
 #import <UIKit/UIKit.h>
 #import <KirinKit/KirinKit.h>
 
-@interface RootViewController : UIViewController {
+#import "IDumbButtonScreen.h"
+
+@interface RootViewController : UIViewController <IDumbButtonScreen> {
 
 }
 
