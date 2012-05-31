@@ -49,3 +49,4 @@ templates/app/content/platforms/android/bin
 templates/app/content/platforms/android/idl-generated
 templates/app/content/platforms/ios/generated-javascript
 templates/app/content/platforms/ios/idl-generated
+examples/HelloKirin/lib/stubs
