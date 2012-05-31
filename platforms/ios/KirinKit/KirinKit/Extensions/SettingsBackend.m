@@ -57,13 +57,8 @@
 - (void)updateContents:(NSDictionary *)adds withDeletes:(NSArray *)deletes
 {
     NSUserDefaults* userSettings = [NSUserDefaults standardUserDefaults];
-    
-    if([adds isKindOfClass:[NSDictionary class]]) {
-        [userSettings setValuesForKeysWithDictionary:adds];
-    } else {
-        NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
-    }
 
+    
     if([deletes isKindOfClass:[NSArray class]]) {
         for (id key in deletes) {
             [userSettings removeObjectForKey:key];
@@ -71,6 +66,13 @@
     } else {
         NSLog(@"[SettingsBackend] didn't expect a %@", [deletes class]);
     }
+    
+    if([adds isKindOfClass:[NSDictionary class]]) {
+        [userSettings setValuesForKeysWithDictionary:adds];
+    } else {
+        NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
+    }
+
     
     [userSettings synchronize];
 }

@@ -134,4 +134,37 @@
 }
 
 
+- (void) handleGettingReturnType: (char) returnType withResult: (id) result andInvocation: (NSInvocation*) invocation {
+    if (result == nil) {
+        return;
+    }
+    if (returnType == @encode(id)[0]) {    
+        if ([result isKindOfClass:[NSNull class]]) {
+            result = nil;
+        }
+        [invocation setReturnValue:&result];
+    } else if ([result isKindOfClass: [NSNumber class]]) {
+        NSNumber* num = (NSNumber*) result;
+        if (returnType == @encode(int)[0]) {
+            int value = [num intValue];
+            [invocation setReturnValue:&value];
+        } else if (returnType == @encode(BOOL)[0]) {
+            BOOL value = [num boolValue];
+            [invocation setReturnValue:&value];
+        } else if (returnType == @encode(float)[0]) {
+            float value = [num floatValue];
+            [invocation setReturnValue:&value];
+        } else if (returnType == @encode(double)[0]) {
+            double value = [num doubleValue];
+            [invocation setReturnValue:&value];
+        } else if (returnType == @encode(long)[0]) {
+            long value = [num longValue];
+            [invocation setReturnValue:&value];
+        } else if (returnType == @encode(short)[0]) {
+            short value = [num shortValue];
+            [invocation setReturnValue:&value];
+        }
+    }
+}
+
 @end

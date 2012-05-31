@@ -10,12 +10,13 @@
 
 @protocol DummyResponseValueObject <NSObject>
 
-@property(assign) NSString* string;
+@property(retain) NSString* string;
 
-@property(assign) BOOL boolean;
+- (BOOL) boolean;
+- (void) setBoolean: (BOOL) value;
 
 
-- (void) setInteger: (int) value;
+@property int integer;
 
 
 

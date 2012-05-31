@@ -209,9 +209,20 @@
     proxy.boolean = NO;
     STAssertEqualObjects([dictionary objectForKey:@"boolean"], [NSNumber numberWithBool:NO], @"Bool is wrong");
     
+    
+    // now let's check getters
+    [dictionary setObject:[NSNumber numberWithBool:NO] forKey:@"boolean"];
+    STAssertEquals(NO, [proxy boolean], @"Getter for boolean");
+
+    [dictionary setObject:[NSNumber numberWithBool:YES] forKey:@"boolean"];
+    STAssertEquals(YES, proxy.boolean, @"Getter for boolean");
+    
+    [dictionary setObject:[NSNumber numberWithInt:43] forKey:@"integer"];
+    STAssertEquals(43, proxy.integer, @"Getter for integer");
+    
+    
     NSMutableArray* args = [NSMutableArray array];
 
-    
     STAssertEqualObjects([args JSONRepresentation], @"[]",@"JSON doesn't match");
     
     [args addObject:proxy];
@@ -234,8 +245,9 @@
     id<DummyResponseValueObject> response = [KirinProxy proxyWithProtocol:@protocol(DummyResponseValueObject) andMutableDictionary:dictionary];
     
     response.boolean = YES;
-//    [response setInteger:43];
-//    response.string = @"bar";
+    
+    //[response setInteger:43];
+    //response.string = @"bar";
     
     [request respond:response];
     

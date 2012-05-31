@@ -31,4 +31,6 @@
 
 - (NSString*) getMethodNameForSelector: (SEL) selector;
 
+- (void) handleGettingReturnType: (char) returnType withResult: (id) result andInvocation: (NSInvocation*) invocation;
+
 @end

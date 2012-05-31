@@ -49,6 +49,9 @@ public class DynamicProxyTest extends AndroidTestCase {
     public static interface ITestParams {
     	long getId();
     	String getName();
+    	
+    	void setName(String name);
+    	void setId(long id);
     }
     
     public static interface ITestRequest {
@@ -104,9 +107,32 @@ public class DynamicProxyTest extends AndroidTestCase {
     	
     	assertEquals(paramsObject.opt("name"), params.getName());
     	
+    	
+    	
     	obj.remove("ready");
     	obj.remove("params");
     	assertEquals("{\"name\":\"myName\"}", proxy.toString());
+    	
+    }
+
+    public void testResponseProxy() throws JSONException {
+    	JSONObject obj = new JSONObject();
+    	ITestParams proxy = mGenerator.javascriptProxyForResponse(obj, ITestParams.class);
+    	
+    	obj.put("name", "initialName");
+    	assertEquals("{\"name\":\"initialName\"}", proxy.toString());
+    	
+    	obj.put("id", 56l);
+    	assertEquals(obj.optString("name"), proxy.getName());
+    	assertEquals(obj.optLong("id"), proxy.getId());
+    	
+    	String newName = "myNewName";
+    	long newId = 32l;
+    	proxy.setName(newName);
+    	proxy.setId(newId);
+    	assertEquals(newName, obj.optString("name"));
+    	assertEquals(newId, obj.optLong("id"));
+    	
     	
     }
     
