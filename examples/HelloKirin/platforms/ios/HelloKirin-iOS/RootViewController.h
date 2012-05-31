@@ -21,7 +21,7 @@
 
 #import "IDumbButtonScreen.h"
 
-@interface RootViewController : UIViewController <IDumbButtonScreen> {
+@interface RootViewController : KirinUIViewController <IDumbButtonScreen> {
 
 }
 

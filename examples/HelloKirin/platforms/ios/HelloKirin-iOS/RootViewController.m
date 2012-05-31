@@ -21,17 +21,18 @@
 
 
 #import "DumbListViewController.h"
+#import "IDumbButtonScreenModule.h"
 
 @interface RootViewController() 
 
-@property(retain, nonatomic) KirinScreenHelper* kirinHelper;
+@property(retain, nonatomic) id<IDumbButtonScreenModule> screenModule;
 
 @end
 
 @implementation RootViewController
 @synthesize label = label_;
 @synthesize dumbListViewController = dumbListViewController_;
-@synthesize kirinHelper = kirinHelper_;
+@synthesize screenModule = screenModule_;
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -43,34 +44,8 @@
 	self.navigationItem.rightBarButtonItem = editButton;
 	
 	self.navigationItem.title = @"How big?";
-    self.kirinHelper = [KIRIN bindScreen:self
-                                toModule:@"DumbButtonScreenModule"];
-    [self.kirinHelper onLoad];
+    self.screenModule = [self bindScreen:@"DumbButtonScreenModule"withProtocol:@protocol(IDumbButtonScreenModule) ];
 }
-
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [self.kirinHelper onResume];
-    [super viewWillAppear:animated];
-}
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear:animated];
-}
-*/
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [self.kirinHelper onPause];
-	[super viewDidDisappear:animated];
-}
-
 
 /*
  // Override to allow orientations other than the default portrait orientation.
@@ -81,12 +56,12 @@
  */
 
 -(IBAction) buttonOnClick: (id)sender {    
-    [self.kirinHelper jsMethod:@"onDumbButtonClick"];
+    [self.screenModule onDumbButtonClick];
 	
 }
 
 -(IBAction) showListOnClick: (id)sender {
-    [self.kirinHelper jsMethod:@"onNextScreenButtonClick"];
+    [self.screenModule onNextScreenButtonClick];
 }
 
 - (void) updateLabelSize:(int) size andText:(NSString*) text {
@@ -115,15 +90,9 @@
     // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-    [self.kirinHelper onUnload];
-}
-
 
 - (void)dealloc {
-    self.kirinHelper = nil;
+    self.screenModule = nil;
     [super dealloc];
 }
 
