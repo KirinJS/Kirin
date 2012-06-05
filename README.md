@@ -26,6 +26,10 @@ We are beginning to see kirin apps as this:
 
 > Single page web apps, with a native UI.
 
+Getting Started
+---------------
+A getting started guide can be found on the [wiki](https://github.com/KirinJS/Kirin/wiki).
+
 Sightings
 ---------
 The only outing it has in the market place was for the Glastonbury 2011 app – a single app for sure, but it's winning awards, and was featured in [Apple's AppStore](http://itunes.apple.com/us/app/glastonbury-2011/id377852148?mt=8&ls=1), the [Android Market](https://market.android.com/details?id=com.orange.glastonbury), and the Ovi market place.
