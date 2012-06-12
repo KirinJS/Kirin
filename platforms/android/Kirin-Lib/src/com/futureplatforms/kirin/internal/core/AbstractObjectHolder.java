@@ -18,8 +18,6 @@ import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 
 public abstract class AbstractObjectHolder implements IObjectHolder {
 
-	
-
 	private static final class JavaMethodCall implements Runnable {
 		private final Method mMethod;
 		private final Object[] mArgs;
@@ -40,6 +38,7 @@ public abstract class AbstractObjectHolder implements IObjectHolder {
 				for (int i=0, max=mArgs.length; i<max; i++) {
 					if (mArgs[i] instanceof JSONObject) {
 						if (argTypes == null) {
+							// do this only once.
 							argTypes = mMethod.getParameterTypes();
 						}
 						if (argTypes[i].isInterface()) {
