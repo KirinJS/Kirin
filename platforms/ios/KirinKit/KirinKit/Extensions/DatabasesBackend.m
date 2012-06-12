@@ -465,7 +465,7 @@
 #pragma mark Lifecycle
 
 - (id)init {
-    self = [super initWithModuleName:@"Databases"];
+    self = [super initWithModuleName:@"app-databases-alpha"];
     if (self) {
         db = [[SQLiteDatabase alloc] init];
         connectionsByName = [[NSMutableDictionary alloc] init];

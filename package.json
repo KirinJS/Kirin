@@ -1,7 +1,7 @@
 {
     "name": "kirin",
     "description": "A toolkit to help building native crossplatform mobile apps by implementing the application logic in Javascript.",
-    "version": "0.6.1",
+    "version": "0.6.2",
     "homepage": "https://github.com/kirinjs/kirin",
     "author": [
         {
@@ -47,33 +47,47 @@
         "dependencies": [
             "underscore"
         ],
-	    "platforms": {
-		    "ios": {
-			    "project": "platforms/ios/KirinKit/KirinKit.xcodeproj",
-			    "build": "xcodebuild -target KirinKit",
-			    "build.debug": "xcodebuild -sdk iphoneos -configuration Debug clean build",
-			    "build.release": "xcodebuild -sdk iphoneos -configuration Release clean build"
-		    },
-		    "android": {
-			    "project": "platforms/android/Kirin-Lib",
-			    "build": "ant clean debug && ant clean release",
-			    "build.debug": "ant clean debug",
-			    "build.release": "ant clean release"		    
-		    }
-	    },
-	    "extensions": {
-	        "kirin": "src/core/kirin",
+        "platforms": {
+            "ios": {
+                "project": "platforms/ios/KirinKit/KirinKit.xcodeproj",
+                "build": "xcodebuild -target KirinKit",
+                "build.debug": "xcodebuild -sdk iphoneos -configuration Debug clean build",
+                "build.release": "xcodebuild -sdk iphoneos -configuration Release clean build"
+            },
+            "android": {
+                "project": "platforms/android/Kirin-Lib",
+                "build": "ant clean debug && ant clean release",
+                "build.debug": "ant clean debug",
+                "build.release": "ant clean release"            
+            }
+        },
+        "extensions": {
+            "kirin": "src/core/kirin",
             "kirin-bridge": "src/utils/bridge-utils",
-	        
-	        "Settings": "src/extensions/Settings",
-	        "app-preferences": "src/extensions/Settings",
-	        
-	        "Filesystem": "src/extensions/FileSystem",
-	        
-	        "app-databases-alpha": "src/extensions/Databases",
-	        "Databases": "src/extensions/Databases",
-	        "Networking": "src/extensions/Networking"
-	    }
+            
+            "app-analytics-beta": "src/extensions/Analytics",
+            "app-databases-alpha": "src/extensions/Databases",
+            "app-preferences": "src/extensions/Settings",
+            
+            "device-camera-alpha": "src/extensions/Camera",
+            "device-location-alpha": "src/extensions/Location",
+            "device-networking-alpha": "src/extensions/Networking",
+            "device-filesystem-alpha": "src/extensions/FileSystem",            
+            
+            "kirin-image-utils-alpha": "src/extensions/ImageTransform",
+            "kirin-functional-utils-alpha": "src/utils/FunctionalUtils",
+            "kirin-string-utils-alpha": "src/utils/StringUtils",
+            
+            "Settings": "src/extensions/Settings",            
+            "Filesystem": "src/extensions/FileSystem",
+            "Databases": "src/extensions/Databases",
+            "Networking": "src/extensions/Networking",
+            
+
+            "bridge-utils": "src/utils/bridge-utils",
+            "simple-timers": "src/extensions/Timers",
+            "kirin-json-utils": "src/utils/JSONUtils"
+        }
     },
     "dependencies": {
         "underscore": ">= 1.3.1",

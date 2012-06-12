@@ -25,7 +25,7 @@
 }
 
 - (id) init {
-    self = [super initWithModuleName:@"ImageTransform"];
+    self = [super initWithModuleName:@"kirin-image-utils-alpha"];
     if (self) {
         self.camera = [[[KirinImagePicker alloc] init] autorelease];
     }

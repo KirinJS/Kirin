@@ -36,7 +36,7 @@
 @implementation NetworkingBackend
 
 - (id) init {
-    return [super initWithModuleName: @"Networking"];
+    return [super initWithModuleName: @"device-networking-alpha"];
 }
 
 - (void) cleanupCallbacks: (NSDictionary*) config {

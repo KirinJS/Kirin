@@ -25,7 +25,7 @@
 #pragma mark Constructors 
 
 - (id) init {
-    return [super initWithModuleName:@"FileSystem"];
+    return [super initWithModuleName:@"device-filesystem-alpha"];
 }
 
 #pragma mark -

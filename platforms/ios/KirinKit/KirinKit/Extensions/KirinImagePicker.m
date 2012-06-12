@@ -32,7 +32,7 @@
 @synthesize config = config_;
 
 - (id) init {
-    return [super initWithModuleName:@"Camera"];
+    return [super initWithModuleName:@"device-camera-alpha"];
 }
 
 - (void) cleanup {

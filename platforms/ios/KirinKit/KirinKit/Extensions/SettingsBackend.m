@@ -29,7 +29,7 @@
 @implementation SettingsBackend
 
 - (id) init {
-    return [super initWithModuleName:@"Settings"];
+    return [super initWithModuleName:@"app-preferences"];
 }
 
 - (void) onLoad {

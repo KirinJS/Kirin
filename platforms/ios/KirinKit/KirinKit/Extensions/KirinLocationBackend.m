@@ -37,7 +37,7 @@
 #pragma mark KirinExtension methods.
 
 - (id) init {
-    return [super initWithModuleName:@"Location"];
+    return [super initWithModuleName:@"device-location-alpha"];
 }
 
 - (void) onStart {
