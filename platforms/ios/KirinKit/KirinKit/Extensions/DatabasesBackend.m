@@ -136,13 +136,9 @@
                 
                 [self.kirinHelper jsCallback:@"onUpdateToken" 
                                   fromConfig:args 
-                                withArgsList:[NSString stringWithFormat: @"%d, %d", 
-                                              schemaVersion,   
-                                              schemaVersionToOpenWith]];
+                                    withArgs: schemaVersion,   
+                                              schemaVersionToOpenWith, nil];
 
-                
-//                [KIRIN runCallback:onUpdate withArgument:nil];
-                
             }
             
         }
