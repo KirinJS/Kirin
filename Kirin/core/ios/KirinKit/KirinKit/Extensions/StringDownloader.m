@@ -155,27 +155,28 @@
 }
 
 - (void)startDownloadWithConfig:(NSDictionary *)config {
-    NSURLRequest* request;
+
     
     NSURL* url = [NSURL URLWithString:[config objectForKey:@"url"] ];
     NSString* method = [config objectForKey:@"method"];
-    
-    if ([method isEqualToString:@"GET"]) {
-        request = [NSURLRequest requestWithURL:url];
-    } else {
-        NSMutableURLRequest* r = [NSMutableURLRequest requestWithURL:url];
 
-        NSData* postData = [self prepareRequest: r withData: config];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    
+    NSDictionary* headers = [config objectForKey:@"headers"];
+    if (headers && ![headers isKindOfClass:[NSNull class]]) {
+        [request setAllHTTPHeaderFields:headers];
+    }
+    
+    if (![method isEqualToString:@"GET"]) {
+        NSData* postData = [self prepareRequest: request withData: config];
         NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];  
         
-        [r setHTTPMethod:method];
-        [r setValue:postLength forHTTPHeaderField:@"Content-Length"];  
+        [request setHTTPMethod:method];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];  
  
-        [r setHTTPBody:postData];
-
-        request = r;
+        [request setHTTPBody:postData];
     }
-
+    
     NSURLResponse* response = nil;
     NSError* error = nil;
     NSData* data = (NSMutableData*) [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];

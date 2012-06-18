@@ -203,7 +203,7 @@ defineServiceModule("Networking", function (require, exports) {
                 optional: ['onError']
             },
             'object': {
-                optional: ['params']
+                optional: ['params', 'headers']
             },
             'array': {
                 optional: ['attachments']
@@ -238,7 +238,7 @@ defineServiceModule("Networking", function (require, exports) {
                 defaults: {'path':[]}
             },
             'object': {
-                optional: ['params']
+                optional: ['params', 'headers']
             }
         } , config);
         
@@ -293,7 +293,7 @@ defineServiceModule("Networking", function (require, exports) {
                 optional: ['onError']
             },
             'object': {
-                optional: ['params']
+                optional: ['params', 'headers']
             },
             'array': {
                 optional: ['attachments']
