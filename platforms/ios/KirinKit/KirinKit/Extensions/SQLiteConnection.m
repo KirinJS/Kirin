@@ -109,6 +109,8 @@
             } else if (strchr("fd", *[o objCType])) {   // double
                 // TODO unsure what comes out of JSON -> NSNumber
                 resultCode = sqlite3_bind_double(statement, i + 1, [o doubleValue]);
+            } else if (strchr("c", *[o objCType])) {   // Boolean
+                resultCode = sqlite3_bind_int(statement, i + 1, [o intValue]);
             } else {    // unhandled types
                 NSLog(@"[DatabasesBackend] Unhandled objCType: %s", [o objCType]);
                 resultCode = SQLITE_ERROR;
