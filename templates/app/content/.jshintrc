@@ -1,15 +1,6 @@
 {
     "predef": [
-        "jasmine",
-        "spyOn",
-        "it",
         "console",
-        "describe",
-        "expect",
-        "beforeEach",
-        "waits",
-        "waitsFor",
-        "runs"
     ],
     "node": true,
     "bitwise": true,
