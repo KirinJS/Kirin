@@ -2,7 +2,8 @@
     "predef": [
         "console",
         "window",
-        "document"
+        "document",
+        "JavaProxyObject"
     ],
     "node": true,
     "bitwise": true,
