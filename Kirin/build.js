@@ -91,8 +91,12 @@ function buildAll (argv, dir) {
 				args["ios.configuration"] = argv[i+1];
 				i++;
 				break;
-			case "--ios-scheme":
-				args["ios.scheme"] = argv[i+1];
+			case "--ios-code_sign_identity":
+				args["ios.code_sign_identity"] = argv[i+1];
+				i++;
+				break;
+			case "--ios-other_code_sign_flags":
+				args["ios.other_code_sign_flags"] = argv[i+1];
 				i++;
 				break;
 			case "--android":
