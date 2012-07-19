@@ -91,6 +91,10 @@ function buildAll (argv, dir) {
 				args["ios.configuration"] = argv[i+1];
 				i++;
 				break;
+			case "--ios-scheme":
+				args["ios.scheme"] = argv[i+1];
+				i++;
+				break;
 			case "--android":
 				args.platform = "android";
 				args.compileNative = true;
