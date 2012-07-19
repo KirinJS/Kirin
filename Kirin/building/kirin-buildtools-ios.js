@@ -50,7 +50,7 @@ function compileProject (environment, dir, callback, errback) {
 	}
 
 	if (environment["ios.provisioning_profile"]) {
-		args.push("PROVISIONING_PROFILE=\"" + environment["ios.ios.provisioning_profile"] + "\"");
+		args.push("PROVISIONING_PROFILE=\"" + environment["ios.provisioning_profile"] + "\"");
 	}
 	
 	if (environment["ios.workspace"]) {
