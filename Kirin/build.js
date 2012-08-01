@@ -99,6 +99,10 @@ function buildAll (argv, dir) {
 				args["ios.other_code_sign_flags"] = argv[i+1];
 				i++;
 				break;
+			case "--ios-provisioning_profile":
+				args["ios.provisioning_profile"] = argv[i+1];
+				i++;
+				break;
 			case "--android":
 				args.platform = "android";
 				args.compileNative = true;

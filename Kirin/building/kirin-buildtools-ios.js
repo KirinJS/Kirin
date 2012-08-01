@@ -41,8 +41,16 @@ function compileProject (environment, dir, callback, errback) {
 		args.push("-project " + environment["ios.project"]);		
 	}
 	
-	if (environment["ios.scheme"]) {
-		args.push("-scheme " + environment["ios.scheme"]);
+	if (environment["ios.code_sign_identity"]) {
+		args.push("CODE_SIGN_IDENTITY=\"" + environment["ios.code_sign_identity"] + "\"");
+	}
+
+	if (environment["ios.other_code_sign_flags"]) {
+		args.push("OTHER_CODE_SIGN_FLAGS=\"" + environment["ios.other_code_sign_flags"] + "\"");
+	}
+
+	if (environment["ios.provisioning_profile"]) {
+		args.push("PROVISIONING_PROFILE=\"" + environment["ios.provisioning_profile"] + "\"");
 	}
 	
 	if (environment["ios.workspace"]) {
