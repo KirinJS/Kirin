@@ -34,7 +34,7 @@
 
 - (void) onLoad {
     [super onLoad];
-
+    
     [self.kirinHelper jsMethod:@"mergeOrOverwrite" withArgsList:[[self settingsAsDictionary] JSONRepresentation]];
     [self.kirinHelper jsMethod:@"resetEnvironment"];
 }
@@ -43,7 +43,15 @@
 #pragma mark Interal Methods
 
 - (NSDictionary*) settingsAsDictionary {
-    return [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    NSMutableDictionary* kirinSettings = [[NSMutableDictionary alloc] init];
+    
+    for (id key in settings) {
+        if ([key hasPrefix:@"kirin-"]) {
+            [kirinSettings setValue:[settings objectForKey:key] forKey:[key substringFromIndex:6]];
+        }
+    }
+    return kirinSettings;
 }
 
 #pragma mark -
@@ -59,14 +67,20 @@
     NSUserDefaults* userSettings = [NSUserDefaults standardUserDefaults];
     
     if([adds isKindOfClass:[NSDictionary class]]) {
-        [userSettings setValuesForKeysWithDictionary:adds];
+        NSMutableDictionary* kirinAdds = [[NSMutableDictionary alloc] init];
+        for (id key in adds) {
+            id value = [adds objectForKey:key];
+            [kirinAdds setValue:value forKey:[NSString stringWithFormat:@"kirin-%@", key]];
+        }
+    
+        [userSettings setValuesForKeysWithDictionary:kirinAdds];
     } else {
         NSLog(@"[SettingsBackend] didn't expect a %@", [adds class]);
     }
 
     if([deletes isKindOfClass:[NSArray class]]) {
         for (id key in deletes) {
-            [userSettings removeObjectForKey:key];
+            [userSettings removeObjectForKey:[NSString stringWithFormat:@"kirin-%@", key]];
         }        
     } else {
         NSLog(@"[SettingsBackend] didn't expect a %@", [deletes class]);
