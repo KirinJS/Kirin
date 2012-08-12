@@ -28,8 +28,8 @@ import android.widget.Toast;
 
 import com.futureplatforms.kirin.activities.KirinListActivity;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.generated.demo.hellokirin.IDumbListScreen;
-import com.futureplatforms.kirin.generated.demo.hellokirin.IDumbListScreenModule;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbListScreen;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbListScreenModule;
 import com.futureplatforms.kirin.ui.JSListAdapter;
 import com.futureplatforms.kirin.ui.KirinRowRenderer;
 

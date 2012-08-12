@@ -27,8 +27,8 @@ import android.widget.TextView;
 
 import com.futureplatforms.kirin.activities.KirinActivity;
 import com.futureplatforms.kirin.demo.hellokirin.R;
-import com.futureplatforms.kirin.generated.demo.hellokirin.IDumbButtonScreen;
-import com.futureplatforms.kirin.generated.demo.hellokirin.IDumbButtonScreenModule;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbButtonScreen;
+import com.futureplatforms.kirin.demo.hellokirin.ffi.IDumbButtonScreenModule;
 
 public class DumbButtonActivity extends KirinActivity implements IDumbButtonScreen {
 
