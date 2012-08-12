@@ -25,7 +25,7 @@ exports.prompts = {
   class_prefix: {
     message: "Prefix for all classes",
     validator: /^[A-Z]\w*$/,
-    warning: "Class name prefix should be preferably be short, and all caps. It should definitely contain no spaces or punctiation",
+    warning: "Class name prefix should be preferably be short, and all caps. It should definitely contain no spaces or punctuation",
     empty: true
   },
   MyCompanyName: {
