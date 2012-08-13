@@ -17,6 +17,10 @@
 
 package com.futureplatforms.kirin.internal;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.Locale;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -28,5 +32,94 @@ public class JSONUtils {
 
     public static String stringOrNull(JSONArray array, int index, String nullObj) {
         return array.isNull(index) ? nullObj : array.optString(index);
+    }
+
+	/**
+	 * Based on Apache Common Lang 2.6 implementation of StringEscapeUtls.escapeJavaScript.
+	 * 
+	 * Future: Use JSONStringer?
+	 * 
+	 * @param str The string to escape
+	 * @return Escaped string
+	 * @throws IOException
+	 */
+	public static String escapeJavaScript(String str) {
+		if (str == null) {
+	        return null;
+	    }
+	    
+		int size = str.length();
+	    StringWriter out = new StringWriter(size * 2);
+	    
+	    for (int i = 0; i < size; i++) {
+	        char ch = str.charAt(i);
+	
+	        // handle unicode
+	        if (ch > 0xfff) {
+	            out.write("\\u" + hex(ch));
+	        } else if (ch > 0xff) {
+	            out.write("\\u0" + hex(ch));
+	        } else if (ch > 0x7f) {
+	            out.write("\\u00" + hex(ch));
+	        } else if (ch < 32) {
+	            switch (ch) {
+	                case '\b' :
+	                    out.write('\\');
+	                    out.write('b');
+	                    break;
+	                case '\n' :
+	                    out.write('\\');
+	                    out.write('n');
+	                    break;
+	                case '\t' :
+	                    out.write('\\');
+	                    out.write('t');
+	                    break;
+	                case '\f' :
+	                    out.write('\\');
+	                    out.write('f');
+	                    break;
+	                case '\r' :
+	                    out.write('\\');
+	                    out.write('r');
+	                    break;
+	                default :
+	                    if (ch > 0xf) {
+	                        out.write("\\u00" + hex(ch));
+	                    } else {
+	                        out.write("\\u000" + hex(ch));
+	                    }
+	                    break;
+	            }
+	        } else {
+	            switch (ch) {
+	                case '\'' :
+	                	out.write('\\');
+	                    out.write('\'');
+	                    break;
+	                case '"' :
+	                    out.write('\\');
+	                    out.write('"');
+	                    break;
+	                case '\\' :
+	                    out.write('\\');
+	                    out.write('\\');
+	                    break;
+	                case '/' :
+	                	out.write('\\');
+	                    out.write('/');
+	                    break;
+	                default :
+	                    out.write(ch);
+	                    break;
+	            }
+	        }
+	    }
+	
+	    return out.toString();
+	}
+
+	private static String hex(char ch) {
+        return Integer.toHexString(ch).toUpperCase(Locale.ENGLISH);
     }
 }

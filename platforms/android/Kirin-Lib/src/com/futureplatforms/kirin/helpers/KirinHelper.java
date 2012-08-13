@@ -1,12 +1,9 @@
 package com.futureplatforms.kirin.helpers;
 
-import java.io.IOException;
-import java.io.StringWriter;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.json.JSONArray;
@@ -14,6 +11,7 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
+import com.futureplatforms.kirin.internal.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.IJsContext;
 import com.futureplatforms.kirin.internal.core.IKirinState;
@@ -59,7 +57,7 @@ public class KirinHelper implements IKirinHelper {
 		for (int i=0, length=args.length; i<length; i++) {
 			Object arg = args[i];
 			if (arg instanceof String) {
-				arg = "'" + escapeJavaScript((String)arg) + "'";
+				arg = "'" + JSONUtils.escapeJavaScript((String)arg) + "'";
 			} else if (arg instanceof Integer) {
 				arg = Integer.toString((Integer) arg);
 			} else if (arg instanceof Long) {
@@ -163,93 +161,4 @@ public class KirinHelper implements IKirinHelper {
 	public <T> T javascriptProxyForModule(Class<T> interfaceClass) {
 		return mProxyGenerator.javascriptProxyForModule(interfaceClass);
 	}
-
-	/**
-	 * Based on Apache Common Lang 2.6 implementation of StringEscapeUtls.escapeJavaScript.
-	 * 
-	 * Future: Use JSONStringer?
-	 * 
-	 * @param str The string to escape
-	 * @return Escaped string
-	 * @throws IOException
-	 */
-    private static String escapeJavaScript(String str) {
-    	if (str == null) {
-            return null;
-        }
-        
-    	int size = str.length();
-        StringWriter out = new StringWriter(size * 2);
-        
-        for (int i = 0; i < size; i++) {
-            char ch = str.charAt(i);
-
-            // handle unicode
-            if (ch > 0xfff) {
-                out.write("\\u" + hex(ch));
-            } else if (ch > 0xff) {
-                out.write("\\u0" + hex(ch));
-            } else if (ch > 0x7f) {
-                out.write("\\u00" + hex(ch));
-            } else if (ch < 32) {
-                switch (ch) {
-                    case '\b' :
-                        out.write('\\');
-                        out.write('b');
-                        break;
-                    case '\n' :
-                        out.write('\\');
-                        out.write('n');
-                        break;
-                    case '\t' :
-                        out.write('\\');
-                        out.write('t');
-                        break;
-                    case '\f' :
-                        out.write('\\');
-                        out.write('f');
-                        break;
-                    case '\r' :
-                        out.write('\\');
-                        out.write('r');
-                        break;
-                    default :
-                        if (ch > 0xf) {
-                            out.write("\\u00" + hex(ch));
-                        } else {
-                            out.write("\\u000" + hex(ch));
-                        }
-                        break;
-                }
-            } else {
-                switch (ch) {
-                    case '\'' :
-                    	out.write('\\');
-                        out.write('\'');
-                        break;
-                    case '"' :
-                        out.write('\\');
-                        out.write('"');
-                        break;
-                    case '\\' :
-                        out.write('\\');
-                        out.write('\\');
-                        break;
-                    case '/' :
-                    	out.write('\\');
-                        out.write('/');
-                        break;
-                    default :
-                        out.write(ch);
-                        break;
-                }
-            }
-        }
-
-        return out.toString();
-    }
-
-    private static String hex(char ch) {
-        return Integer.toHexString(ch).toUpperCase(Locale.ENGLISH);
-    }
 }
