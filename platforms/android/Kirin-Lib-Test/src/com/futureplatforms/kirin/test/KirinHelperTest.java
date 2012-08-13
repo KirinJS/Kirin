@@ -86,6 +86,9 @@ public class KirinHelperTest extends AndroidTestCase {
 		testJsMethod_withArgs("2.0", 2.0d);
 		testJsMethod_withArgs("2.0", 2.0f);
 		testJsMethod_withArgs("true", true);
+		testJsMethod_withArgs("\'testingString\'", "testingString");
+		testJsMethod_withArgs("\'testingStri\\'ng\'", "testingStri'ng");
+		testJsMethod_withArgs("\'testingStri\\ng\'", "testingStri\ng");
 		
 		testJsMethod_withArgs("'a string'", "a string");
 		

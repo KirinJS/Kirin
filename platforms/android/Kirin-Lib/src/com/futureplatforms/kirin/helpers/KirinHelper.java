@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.text.TextUtils;
 
+import com.futureplatforms.kirin.internal.JSONUtils;
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.IJsContext;
 import com.futureplatforms.kirin.internal.core.IKirinState;
@@ -47,7 +48,8 @@ public class KirinHelper implements IKirinHelper {
 			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS, getModuleName(), methodName));
 		} else {
 			String argsList = prepareArgs(args);
-			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS_WITH_ARGS, getModuleName(), methodName, argsList));
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS_WITH_ARGS, getModuleName(), 
+					methodName, argsList));
 		}
 	}
 
@@ -55,7 +57,7 @@ public class KirinHelper implements IKirinHelper {
 		for (int i=0, length=args.length; i<length; i++) {
 			Object arg = args[i];
 			if (arg instanceof String) {
-				arg = "'" + arg + "'";
+				arg = "'" + JSONUtils.escapeJavaScript((String)arg) + "'";
 			} else if (arg instanceof Integer) {
 				arg = Integer.toString((Integer) arg);
 			} else if (arg instanceof Long) {
