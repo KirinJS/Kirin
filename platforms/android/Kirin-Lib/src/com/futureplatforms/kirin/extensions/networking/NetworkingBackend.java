@@ -328,11 +328,6 @@ public class NetworkingBackend extends KirinExtensionAdapter implements INetwork
 		mKirinHelper.cleanupCallback(config, callbacks);
 	}
 
-	@Override
-	public void onLoad() {
-
-	}
-
 	private void listenForChangeInNetworkStatus() {
 		Log.i(C.TAG, "NetworkingBackend.listenForChangeInNetworkStatus: ");
 		mReceiver = new BroadcastReceiver() {
