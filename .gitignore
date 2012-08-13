@@ -51,3 +51,4 @@ templates/app/content/platforms/ios/generated-javascript
 templates/app/content/platforms/ios/idl-generated
 examples/HelloKirin/lib/stubs
 examples/HelloKirin/platforms/android/src/com/futureplatforms/kirin/generated
+/.project
