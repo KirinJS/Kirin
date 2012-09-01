@@ -68,7 +68,7 @@
     }
 
     if (start < 0) {
-        [NSException raise:@"KirinProxyException" format:@"Method %@ does not seem to be either a getter or a setter"];
+        [NSException raise:@"KirinProxyException" format:@"Method %@ does not seem to be either a getter or a setter", methodName];
     }
     
 
