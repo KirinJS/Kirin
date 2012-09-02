@@ -291,6 +291,10 @@ public class DatabasesBackend extends KirinExtensionAdapter implements IDatabase
                         } else {
                             mKirinHelper.jsCallback(onSuccess, coerceToJSONArray(columnNames(cursor), cursor));
                         }
+					case eof:
+						break;
+					default:
+						break;
                     }
 
                     if (s.mType != StatementType.rowset) {
