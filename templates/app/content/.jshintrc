@@ -1,6 +1,6 @@
 {
     "predef": [
-        "console",
+        "console"
     ],
     "node": true,
     "bitwise": true,
