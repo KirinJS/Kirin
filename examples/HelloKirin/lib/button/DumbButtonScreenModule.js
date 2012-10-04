@@ -25,6 +25,9 @@ exports.onLoad = function (ui) {
 
 exports.onResume = function () {
 	console.log("We're running");
+	
+	var settings = require("Settings");
+	console.log(settings);
 };
 
 exports.onDumbButtonClick = function () {
