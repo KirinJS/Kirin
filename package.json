@@ -63,7 +63,7 @@
         },
         "extensions": {
             "kirin": "src/core/kirin",
-            "kirin-bridge": "src/utils/bridge-utils",
+            "kirin-bridge-utils": "src/core/kirin-validation",
             
             "app-analytics-beta": "src/extensions/Analytics",
             "app-databases-alpha": "src/extensions/Databases",
