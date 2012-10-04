@@ -96,7 +96,8 @@
         "JSON": "*"
     },
     "devDependencies": {
-        "nodeunit": "*"
+        "nodeunit": "*",
+        "tap": "*"
     },
     "keywords": [
         "mobile",
