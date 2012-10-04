@@ -40,7 +40,8 @@
 			    "project": "platforms/android",
 			    "build": "ant clean debug && ant clean release",
 			    "build.debug": "ant clean debug",
-			    "build.release": "ant clean release"
+			    "build.release": "ant clean release",
+			    "idlJavaDir": "src" 
 		    }
 	    },
 	    "extensions": {

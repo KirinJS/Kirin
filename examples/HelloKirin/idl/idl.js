@@ -1,5 +1,5 @@
 module.exports = {
-    namespace: "com.futureplatforms.kirin.demo.hellokirin.ffi",
+    namespace: "com.futureplatforms.kirin.generated.demo.hellokirin",
     classes: {
         "IDumbButtonScreen": {
             implementedBy: "native",
@@ -11,6 +11,7 @@ module.exports = {
         },
         "IDumbButtonScreenModule": {
             implementedBy: "javascript", // || gwt
+            location: "button",
             methods: {
                 "onDumbButtonClick": [],
                 "onNextScreenButtonClick": []
@@ -24,11 +25,12 @@ module.exports = {
             methods: { 
                 // only methods allowed
                 "populateList": [{ list : "array" }],
-                "showToast": [{ toast: "string" }],
+                "showToast": [{ toast: "string" }]
             }
         },
         "IDumbListScreenModule": {
             implementedBy: "javascript", // || gwt
+            location: "list",
             methods: {
                 "onListItemClick": [{index: "int"}, {label: "string"}]
             }
