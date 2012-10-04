@@ -40,7 +40,7 @@ public class SettingsBackend extends KirinExtensionAdapter implements ISettingsB
     }
     
     public SettingsBackend(Context context, SharedPreferences preferences) {
-    	super(context, "Settings");
+    	super(context, "app-preferences");
     	if (preferences == null) {
     		preferences = PreferenceManager.getDefaultSharedPreferences(context);
     	}
