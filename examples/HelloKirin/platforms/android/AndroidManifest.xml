@@ -5,7 +5,7 @@
 	
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="10"/>
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
-		android:name="com.futureplatforms.kirin.demo.hellokirin.TheApplication"
+		android:name="com.futureplatforms.kirin.application.KirinApplication"
 		android:enabled="true" android:hasCode="true" android:persistent="true"
         android:theme="@style/FPTheme">
 		<activity android:name=".activity.DumbButtonActivity"
