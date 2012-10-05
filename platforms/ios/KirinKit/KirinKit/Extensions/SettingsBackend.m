@@ -53,7 +53,7 @@
     // Returns a dictionary of all the pairs in NSUserDefaults
     // whose keys begin with "kirin-"
     NSDictionary* settings = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-    NSMutableDictionary* kirinSettings = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* kirinSettings = [NSMutableDictionary dictionary];
     
     for (id key in settings) {
         if ([key hasPrefix:@"kirin-"]) {
@@ -78,7 +78,7 @@
     if([adds isKindOfClass:[NSDictionary class]]) {
         // Make a separate dictionary of all the keys with "kirin-"
         // stuck on the front.
-        NSMutableDictionary* kirinAdds = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary* kirinAdds = [NSMutableDictionary dictionary];
         for (id key in adds) {
             id value = [adds objectForKey:key];
             [kirinAdds setValue:value forKey:[NSString stringWithFormat:@"kirin-%@", key]];
