@@ -82,7 +82,7 @@
     
 
     
-    NSString* boundary = [NSString stringWithFormat: @"-_-_-_-_-_-_-_-_%d", [NSDate timeIntervalSinceReferenceDate]];
+    NSString* boundary = [NSString stringWithFormat: @"-_-_-_-_-_-_-_-_%.0f", [NSDate timeIntervalSinceReferenceDate]];
 
 
 	[request setValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary] forHTTPHeaderField:@"Content-Type"];

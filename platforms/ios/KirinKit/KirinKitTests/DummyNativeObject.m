@@ -71,7 +71,7 @@
 
 - (void) methodWithLong: (long) arg {
     self.lastMethod = _cmd;
-    self.lastArg = [NSString stringWithFormat:@"%d", arg];
+    self.lastArg = [NSString stringWithFormat:@"%@", [NSNumber numberWithLong:arg]];
 }
 
 
