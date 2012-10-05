@@ -66,6 +66,11 @@
 
 - (void) jsCallback: (NSString*) callbackId;
 
+/*
+ * @deprecated
+ * Use [self jsCallback: callbackId withArgs: args] instead. That is safer than 
+ * this.
+ */
 - (void) jsCallback: (NSString*) callbackId withArgsList:(NSString*) argsList;
 
 - (void) jsCallback: (NSString*) callbackId withArgs:(NSObject *)arg, ...
