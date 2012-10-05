@@ -68,7 +68,7 @@
     
     id result = [self.dictionary objectForKey:methodName];
     char returnType = [sig methodReturnType][0];
-    if (returnType == @encode(void)[0]) {
+    if (result && returnType == @encode(void)[0]) {
         // call a callback if return type is void
         if (!result || [result isKindOfClass:[NSNull class]]) {
             return;

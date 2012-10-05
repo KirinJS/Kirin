@@ -172,18 +172,18 @@
     [proxy callback];
     expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_JS, @"callback001"];
     STAssertEqualObjects(
-                         expectedCall, 
-                         self.jsContext.lastCall, 
+                         self.jsContext.lastCall,
+                         expectedCall,
                          @"js isn't equal"
                          );
+    self.jsContext.lastCall = nil;
     
-    
-    [dictionary setObject:@"errback001" forKey:@"errbackwithStatus"];
+    [dictionary setObject:@"errback001" forKey:@"errbackWithStatus"];
     [proxy errback:@"foo" withStatus:42];
     expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_WITH_ARGS_JS, @"errback001", @"[\"foo\",42]"];
     STAssertEqualObjects(
+                         self.jsContext.lastCall,
                          expectedCall,
-                         self.jsContext.lastCall, 
                          @"js isn't equal"
                          );
 }
