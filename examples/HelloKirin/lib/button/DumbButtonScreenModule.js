@@ -24,10 +24,7 @@ exports.onLoad = function (ui) {
 };
 
 exports.onResume = function () {
-	console.log("We're running");
-	
-	var settings = require("Settings");
-	console.log(settings);
+	console.log("Resuming " + __filename);
 };
 
 exports.onDumbButtonClick = function () {
