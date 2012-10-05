@@ -126,11 +126,23 @@
 }
 
 - (NSString*) getMethodNameForSelector: (SEL) selector {
-    
-    NSString* name = NSStringFromSelector(selector);
-    
-    // TODO: will this need to be camel cased? 
-    return [[name componentsSeparatedByString:@":"] componentsJoinedByString:@""];
+    // TODO cache the method name mapping so we're not doing this on each method call.
+    NSString* methodName = NSStringFromSelector(selector);
+    // TODO move this into an internal utility class.
+    NSMutableString *output = [NSMutableString string];
+    BOOL makeNextCharacterUpperCase = NO;
+    for (NSInteger idx = 0; idx < [methodName length]; idx += 1) {
+        unichar c = [methodName characterAtIndex:idx];
+        if (c == ':') {
+            makeNextCharacterUpperCase = YES;
+        } else if (makeNextCharacterUpperCase) {
+            [output appendString:[[NSString stringWithCharacters:&c length:1] uppercaseString]];
+            makeNextCharacterUpperCase = NO;
+        } else {
+            [output appendFormat:@"%C", c];
+        }
+    }
+    return output;
 }
 
 
