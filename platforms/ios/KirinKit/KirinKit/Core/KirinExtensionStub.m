@@ -23,8 +23,7 @@
 }
 
 - (void) onLoad {
-    self.kirinHelper = [KIRIN bindService:self toModule:self.moduleName];
-    [self.kirinHelper onLoad];
+    [self bindExtension];
 }
 
 - (void) onStart {
@@ -44,6 +43,32 @@
     self.kirinHelper = nil;
     
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark Utility methods
+
+
+- (id) bindRequestDictionary: (NSDictionary*) request withProtocol: (Protocol*) protocol {
+    return [self.kirinHelper proxyForJavascriptRequest:protocol andDictionary:request];
+}
+
+
+- (id) bindEmptyDictionaryWithProtocol: (Protocol*) protocol {
+    return [self.kirinHelper proxyForJavascriptResponse:protocol];
+}
+
+
+- (void) bindExtension {
+    if (!self.kirinHelper) {
+        self.kirinHelper = [KIRIN bindService:self toModule:self.moduleName];
+        [self.kirinHelper onLoad];
+    }
+}
+
+- (id) bindExtensionWithProtocol: (Protocol*) protocol {
+    [self bindExtension];
+    return [self.kirinHelper proxyForJavascriptModule:protocol];
 }
 
 @end

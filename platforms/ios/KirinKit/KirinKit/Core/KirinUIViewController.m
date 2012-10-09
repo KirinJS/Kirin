@@ -29,6 +29,16 @@
     return [self.kirinHelper proxyForJavascriptModule:protocol];
 }
 
+- (id) bindRequestDictionary: (NSDictionary*) request withProtocol: (Protocol*) protocol {
+    return [self.kirinHelper proxyForJavascriptRequest:protocol andDictionary:request];
+}
+
+
+- (id) bindEmptyDictionaryWithProtocol: (Protocol*) protocol {
+    return [self.kirinHelper proxyForJavascriptResponse:protocol];
+}
+
+
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     

@@ -17,6 +17,15 @@
 @property(retain, nonatomic) NSString* moduleName;
 @property(retain, nonatomic) KirinExtensionHelper* kirinHelper;
 
+
 - (id) initWithModuleName: (NSString*) moduleName;
+
+- (void) bindExtension;
+
+- (id) bindExtensionWithProtocol: (Protocol*) protocol;
+
+- (id) bindRequestDictionary: (NSDictionary*) request withProtocol: (Protocol*) protocol;
+
+- (id) bindEmptyDictionaryWithProtocol: (Protocol*) protocol;
 
 @end
