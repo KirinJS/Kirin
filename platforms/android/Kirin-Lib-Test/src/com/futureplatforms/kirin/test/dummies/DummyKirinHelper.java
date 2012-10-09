@@ -32,16 +32,19 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 
     private IKirinDropbox mDropbox = new KirinDropbox();
 	
+    public String mLastCall;
+    
     public void clear() {
         mOrderOfCallbacks.clear();
         mCallbacks.clear();
         mDeletedCallbacks.clear();
         mDropbox  = new KirinDropbox();
+        mLastCall = null;
     }
     
 	@Override
 	public void jsMethod(String methodName, Object... args) {
-		
+		mLastCall = methodName + Arrays.toString(args);
 	}
 
 	@Override
@@ -178,8 +181,7 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	@Override
 	public void jsCallbackObjectMethod(String objectId, String methodName,
 			Object... args) {
-		// TODO Auto-generated method stub
-		
+		mLastCall = objectId + "." + methodName + Arrays.toString(args);
 	}
 	
 }
