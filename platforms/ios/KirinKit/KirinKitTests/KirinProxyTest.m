@@ -168,9 +168,11 @@
     id<DummyValueObject> proxy = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:dictionary andExecutor:self.jsContext];
     NSString* expectedCall;
     
-    [dictionary setObject:@"callback001" forKey:@"callback"];
+    NSNumber* yes = [NSNumber numberWithBool:YES];
+    [dictionary setObject:yes forKey:@"callback"];
+    [dictionary setObject:@"callbackObj1" forKey:@"__id"];
     [proxy callback];
-    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_JS, @"callback001"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_METHOD_JS, @"callbackObj1", @"callback"];
     STAssertEqualObjects(
                          self.jsContext.lastCall,
                          expectedCall,
@@ -178,9 +180,9 @@
                          );
     self.jsContext.lastCall = nil;
     
-    [dictionary setObject:@"errback001" forKey:@"errbackWithStatus"];
+    [dictionary setObject:yes forKey:@"errbackWithStatus"];
     [proxy errback:@"foo" withStatus:42];
-    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_WITH_ARGS_JS, @"errback001", @"[\"foo\",42]"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, @"callbackObj1", @"errbackWithStatus", @"[\"foo\",42]"];
     STAssertEqualObjects(
                          self.jsContext.lastCall,
                          expectedCall,
@@ -235,7 +237,8 @@
     
     NSMutableDictionary* requestParams = [NSMutableDictionary dictionary];
         // set up the callback
-    [requestParams setObject:@"callback002" forKey:@"respond"];
+    [requestParams setObject:@YES forKey:@"respond"];
+    [requestParams setObject:@"cb1" forKey:@"__id"];
     id<DummyValueObject> request = [KirinProxy proxyWithProtocol:@protocol(DummyValueObject) andDictionary:requestParams andExecutor:self.jsContext];
     
 
@@ -252,7 +255,7 @@
     [request respond:response];
     
     NSString* expectedCall;
-    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_WITH_ARGS_JS, @"callback002", @"[{\"boolean\":true}]"];
+    expectedCall = [NSString stringWithFormat:EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, @"cb1", @"respond", @"[{\"boolean\":true}]"];
     STAssertEqualObjects(
                          expectedCall,
                          self.jsContext.lastCall, 

@@ -73,21 +73,25 @@
         if (!result || [result isKindOfClass:[NSNull class]]) {
             return;
         }
-        if (![result isKindOfClass:[NSString class]]) {
-            NSLog(@"Method name %@ does not encode for a callback. Callback id is a non-string: %@", methodName, result);
+
+        
+        NSNumber* methodPresent = (NSNumber*) result;
+        if (!methodPresent) {
             return;
         }
-        
-        NSString* callbackId = (NSString*) result;
-        
+        NSString* callbackObjectId = [self.dictionary objectForKey:@"__id"];
+        if (![callbackObjectId isKindOfClass:[NSString class]]) {
+            NSLog(@"Method name %@ does not encode for a callback. Callback object id is a non-string: %@", methodName, callbackObjectId);
+            return;
+        }
         NSMethodSignature* sig = invocation.methodSignature;
         unsigned numArgs = [sig numberOfArguments];
         if (numArgs == 2) {
-            [self.jsExecutor execJS:[NSString stringWithFormat: EXECUTE_CALLBACK_JS, callbackId]];
+            [self.jsExecutor execJS:[NSString stringWithFormat: EXECUTE_CALLBACK_METHOD_JS, callbackObjectId, methodName]];
             return;
         }
         NSArray* args = [self getArgsFromSignature:sig andInvocation:invocation];
-        NSString* jsString = [NSString stringWithFormat: EXECUTE_CALLBACK_WITH_ARGS_JS, callbackId, [args JSONRepresentation]];
+        NSString* jsString = [NSString stringWithFormat: EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, callbackObjectId, methodName, [args JSONRepresentation]];
         [self.jsExecutor execJS:jsString];        
         return;
     }
