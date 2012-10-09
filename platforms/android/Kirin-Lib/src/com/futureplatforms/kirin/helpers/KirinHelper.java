@@ -74,6 +74,7 @@ public class KirinHelper implements IKirinHelper {
 	}
 
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void jsCallback(String callbackId, Object... args) {
 		if (args == null || args.length == 0) {			
@@ -113,7 +114,19 @@ public class KirinHelper implements IKirinHelper {
 			cleanupCallbacks(TextUtils.join("','",callbackIds));
 		}
 	}
+
+	@Override
+	public void jsCallbackObjectMethod(String objectId, String methodName, Object... args) {
+		// TODO test this.
+		if (args == null || args.length == 0) {			
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_JS, objectId, methodName));
+		} else {
+			String argsList = prepareArgs(args);
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, objectId, methodName, argsList));
+		}
+	}
 	
+	@SuppressWarnings("deprecation")
 	private void cleanupCallbacks(String argsList) {
 		mJsContext.js(MessageFormat.format(JsCommands.DELETE_CALLBACK_JS, argsList));
 	}

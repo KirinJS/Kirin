@@ -20,12 +20,18 @@ public interface IKirinHelper {
 	 */
 	void jsMethod(String methodName, Object... args);
 	
+	void jsCallbackObjectMethod(String objectId, String methodName, Object... args);
+	
+	@Deprecated
 	void jsCallback(String callbackId, Object... args);
 	
+	@Deprecated
 	void jsCallback(JSONObject config, String callbackName, Object... args);
 	
+	@Deprecated
 	void cleanupCallback(String... callbackIds);
 	
+	@Deprecated
 	void cleanupCallback(JSONObject config, String... callbackNames);
 	
 	/*
