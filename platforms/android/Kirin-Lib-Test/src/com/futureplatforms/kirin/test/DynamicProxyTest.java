@@ -92,9 +92,12 @@ public class DynamicProxyTest extends AndroidTestCase {
     	obj.put("name", "myName");
     	obj.put("ready", true);
     	
+    	
+    	// Test getters.
     	assertEquals(obj.optString("name"), proxy.getName());
     	assertEquals(obj.optBoolean("ready"), proxy.isReady());
     	
+    	// Test more complicated getters, with interfaces.
     	JSONObject paramsObject = new JSONObject();
     	paramsObject.put("name", "anotherName");
     	paramsObject.put("id", 42l);
@@ -107,12 +110,31 @@ public class DynamicProxyTest extends AndroidTestCase {
     	
     	assertEquals(paramsObject.opt("name"), params.getName());
     	
-    	
-    	
+    	// test removals from the backing object, and toString().
     	obj.remove("ready");
     	obj.remove("params");
     	assertEquals("{\"name\":\"myName\"}", proxy.toString());
     	
+    	// test method calls
+    	obj.put("__id", "myCallbackObj0");
+    	// the method won't fire if it's not present in the object.
+    	//obj.put("errback", true);
+    	proxy.errback(32, false);
+    	assertNull(mKirinHelper.mLastCall);
+    	
+    	// now the method will be called.
+    	obj.put("errback", true);
+    	proxy.errback(32, false);
+    	assertEquals("myCallbackObj0.errback[32, false]", mKirinHelper.mLastCall);
+    	
+    	obj.put("callback", true);
+    	
+    	ITestResponse response = mGenerator.javascriptProxyForResponse(new JSONObject(), ITestResponse.class);
+    	
+    	response.setName("poobah");
+    	proxy.callback(response);
+    	
+    	assertEquals("myCallbackObj0.callback[{\"name\":\"poobah\"}]", mKirinHelper.mLastCall);
     }
 
     public void testResponseProxy() throws JSONException {
