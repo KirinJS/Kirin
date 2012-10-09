@@ -174,5 +174,12 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	public <T> T javascriptProxyForModule(Class<T> interfaceClass) {
 		return new ProxyGenerator(this).javascriptProxyForModule(interfaceClass);
 	}
+
+	@Override
+	public void jsCallbackObjectMethod(String objectId, String methodName,
+			Object... args) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

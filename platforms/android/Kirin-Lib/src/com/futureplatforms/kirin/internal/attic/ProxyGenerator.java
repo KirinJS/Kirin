@@ -80,9 +80,14 @@ public class ProxyGenerator {
 					throws Throwable {
 				String methodName = method.getName();
 				Class<?> returnType = method.getReturnType();
-				if (void.class.equals(returnType)) {
-					// so assume it's a callback
-					mKirinHelper.jsCallback(obj, methodName, args);
+				
+				if (void.class.equals(returnType) && obj.has(methodName)) {
+					String id = obj.optString("__id");
+					
+					if (id != null) {
+						// so assume it's a callback
+						mKirinHelper.jsCallbackObjectMethod(id, methodName, args);
+					} 
 					return null;
 				}
 				
