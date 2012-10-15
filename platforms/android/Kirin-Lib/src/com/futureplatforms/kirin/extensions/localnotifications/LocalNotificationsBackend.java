@@ -166,7 +166,8 @@ public class LocalNotificationsBackend extends KirinExtensionAdapter implements 
         return intent;
     }
 
-    public Notification createNotification(Bundle settings, JSONObject obj) {
+    @SuppressWarnings("deprecation")
+	public Notification createNotification(Bundle settings, JSONObject obj) {
 
         // notifications[i] = api.normalizeAPI({
         // 'string': {
