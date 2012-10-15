@@ -88,7 +88,9 @@
             "bridge-utils": "src/utils/bridge-utils",
             "simple-timers": "src/extensions/Timers",
             "kirin-json-utils": "src/utils/JSONUtils"
-        }
+		},
+		"idl": "lib/javascript/idl",
+		"idlOutput": "src"
     },
     "dependencies": {
         "underscore": ">= 1.3.1",
