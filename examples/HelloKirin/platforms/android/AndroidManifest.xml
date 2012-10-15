@@ -7,7 +7,7 @@
 	<application android:icon="@drawable/icon" android:label="@string/app_name"
 		android:name="com.futureplatforms.kirin.application.KirinApplication"
 		android:enabled="true" android:hasCode="true" android:persistent="true"
-        android:theme="@style/FPTheme">
+        android:theme="@style/FPTheme" android:hardwareAccelerated="true">
 		<activity android:name=".activity.DumbButtonActivity"
 			android:label="@string/app_name">
 			<intent-filter>
