@@ -23,8 +23,16 @@ exports.onLoad = function (ui) {
 	theScreen = ui;
 };
 
+exports.onUnload = function () {
+    theScreen = null;
+};
+
 exports.onResume = function () {
 	console.log("Resuming " + __filename);
+};
+
+exports.onPause = function () {
+    // NOOP
 };
 
 exports.onDumbButtonClick = function () {
