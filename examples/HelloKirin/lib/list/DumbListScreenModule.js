@@ -31,6 +31,7 @@ var data = [
 
 exports.onLoad = function (ui) {
 	theScreen = ui;
+	theScreen.populateList(data);
 };
 
 exports.onUnload = function () {
@@ -38,7 +39,7 @@ exports.onUnload = function () {
 };
 
 exports.onResume = function () {
-	theScreen.populateList(data);	
+	// NOP
 };
 		
 exports.onListItemClick = function (index) {
