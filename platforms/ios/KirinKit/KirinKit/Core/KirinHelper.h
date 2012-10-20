@@ -66,8 +66,23 @@
 
 - (void) jsCallback: (NSString*) callbackId;
 
-/*
- * @deprecated
+#pragma mark -
+#pragma Deprecated callbacks.
+
+/* @Deprecated
+ * This implementation requires the native implementations to do a lot of work.
+ *
+ * On the JS side,  maintains a dictionary of functions that had no way of cleaning
+ * up once the request to native was over.
+ *
+ * Instead, native extensions needed to keep track of the keys that represented the callbacks
+ * and clean them up. This was difficult to do automatically, and writing extensions was hard.
+ *
+ * On the JS side, too, extension writers had to do work (one or two lines) to change the methods 
+ * into callbackIds. Worse, the functions were not called with the correct <code>this</code>, which 
+ * meant that it was difficult to sling around objects as you may want to in Javascript. This made 
+ * writing extensions hard.
+ *
  * Use [self jsCallback: callbackId withArgs: args] instead. That is safer than 
  * this.
  */
@@ -82,6 +97,28 @@
 
 - (void) jsCallback: (NSString*) callbackName fromConfig: (NSDictionary*) config withArgs:(NSObject *)arg, ...
     NS_REQUIRES_NIL_TERMINATION;
+
+#pragma mark -
+#pragma New style callbacks. It is unlikely you will want or need to call these directly
+
+/*
+ * In this implementation, Kirin Javascript maintains a dictionary of objects, which hold the correct functions, i.e. methods.
+ *
+ * This means that kirin can automatically clean up all the whole object when the extension has completed a request,
+ * and Javascript extension writers can have less work and fewer surprises.
+ * 
+ * When <code>jsCallbackObject*</code> gets called, the object is resolved, and the method is called. If this method 
+ * returns falsey, then the object is deleted from the kirin's object dictionary.
+ *
+ * Request proxies know about these methods, so sending non-getter messages to the request will result in a 
+ * <code>jsCallbackObjectWithId</code> message being sent to the extension's kirinHelper.
+ *
+ */
+
+- (void) jsCallbackObjectWithId: (NSString*) callbackObjectId withMethod: (NSString*) methodName andArgs:(NSArray*) args;
+
+- (void) jsCallbackObject: (NSDictionary*) object withMethod: (NSString*) string andArgs:(NSArray*) args;
+
 
 
 /**
@@ -118,5 +155,7 @@
 - (id) proxyForJavascriptRequest:(Protocol*) protocol andDictionary: (NSDictionary*) dictionary;
 
 - (id) proxyForJavascriptResponse:(Protocol*) protocol;
+
+
 
 @end

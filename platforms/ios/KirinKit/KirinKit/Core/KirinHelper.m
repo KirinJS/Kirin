@@ -95,6 +95,8 @@
     [self jsMethod:methodName withArgArray:argArray];
 }
 
+#pragma mark -
+#pragma mark Deprecated callback calling
 
 - (void) jsCallback: (NSString*) callbackId {
     [self jsCallback:callbackId withArgsList:nil];
@@ -191,9 +193,44 @@
     [self cleanupCallbacks:callbackIds];
 }
 
+#pragma mark -
+#pragma mark New style callback calling
+- (void) jsCallbackObjectWithId: (NSString*) callbackObjectId withMethod: (NSString*) methodName andArgs:(NSArray*) args {
+    NSString* jsString;
+    if (args) {
+        jsString = [NSString stringWithFormat: EXECUTE_CALLBACK_METHOD_JS, callbackObjectId, methodName];
+    } else {
+        jsString = [NSString stringWithFormat: EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, callbackObjectId, methodName, [args JSONRepresentation]];
+    }
+    [self.jsContext js:jsString];
+}
+
+
+- (void) jsCallbackObject: (NSDictionary*) object withMethod: (NSString*) methodName andArgs:(NSArray*) args {
+    NSObject* methodPresent = (NSNumber*) [object objectForKey:methodName];
+
+    if (!methodPresent || methodPresent == [NSNull null]) {
+        return;
+    }
+    NSString* callbackObjectId = [object objectForKey:@"__id"];
+    if (![callbackObjectId isKindOfClass:[NSString class]]) {
+        NSLog(@"Object id %@ does not encode for a callback object. Callback object id is a non-string: %@", methodName, callbackObjectId);
+        return;
+    }
+    [self jsCallbackObjectWithId:callbackObjectId withMethod:methodName andArgs:args];
+}
+
+#pragma mark -
+#pragma mark Access to state.
+
 - (KirinDropbox*) dropbox {
     return self.state.dropbox;
 }
+
+
+#pragma mark -
+#pragma mark Proxy creation
+
 
 - (id) proxyForJavascriptModule: (Protocol*) protocol {
     if (!self.proxyForJSModule) {
