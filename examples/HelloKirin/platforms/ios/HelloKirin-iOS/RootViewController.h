@@ -35,8 +35,4 @@
 
 -(IBAction) showListOnClick: (id)sender;
 
-- (void) updateLabelSize:(int) size andText:(NSString*) text;
-
-- (void) changeScreen:(NSString*) size;
-
 @end
