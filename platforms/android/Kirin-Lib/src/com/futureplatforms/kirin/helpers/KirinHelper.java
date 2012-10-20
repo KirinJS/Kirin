@@ -17,6 +17,7 @@ import com.futureplatforms.kirin.internal.core.IJsContext;
 import com.futureplatforms.kirin.internal.core.IKirinState;
 import com.futureplatforms.kirin.internal.core.INativeContext;
 import com.futureplatforms.kirin.internal.core.JsCommands;
+import com.futureplatforms.kirin.internal.core.NativeContext.SettableFuture;
 import com.futureplatforms.kirin.state.IKirinDropbox;
 import com.futureplatforms.kirin.state.IKirinFileSystem;
 
@@ -45,14 +46,28 @@ public class KirinHelper implements IKirinHelper {
 	@Override
 	public void jsMethod(String methodName, Object... args) {
 		if (args == null || args.length == 0) {			
-			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS, getModuleName(), methodName));
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS, getModuleName(), methodName, null));
 		} else {
 			String argsList = prepareArgs(args);
 			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS_WITH_ARGS, getModuleName(), 
-					methodName, argsList));
+					methodName, argsList, null));
 		}
 	}
 
+	public <T> T jsSyncMethod(Class<T> returnType, String methodName, Object... args) {
+		Long id = mNativeContext.createNewId();
+		SettableFuture<T> future = mNativeContext.getFuture(id);
+		
+		if (args == null || args.length == 0) {			
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS, getModuleName(), methodName, Long.toString(id)));
+		} else {
+			String argsList = prepareArgs(args);
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_METHOD_JS_WITH_ARGS, getModuleName(), 
+					methodName, argsList, Long.toString(id)));
+		}
+		return future.get();
+	}
+	
 	private String prepareArgs(Object... args) {
 		for (int i=0, length=args.length; i<length; i++) {
 			Object arg = args[i];
@@ -119,11 +134,27 @@ public class KirinHelper implements IKirinHelper {
 	public void jsCallbackObjectMethod(String objectId, String methodName, Object... args) {
 		// TODO test this.
 		if (args == null || args.length == 0) {			
-			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_JS, objectId, methodName));
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_JS, objectId, methodName, null));
 		} else {
 			String argsList = prepareArgs(args);
-			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, objectId, methodName, argsList));
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, objectId, methodName, argsList, null));
 		}
+	}
+	
+	@Override
+	public <T> T jsSyncCallbackObjectMethod(String objectId, Class<?> returnType, String methodName, Object... args) {
+		// TODO test this.
+		Long id = mNativeContext.createNewId();
+		SettableFuture<T> future = mNativeContext.getFuture(id);
+		
+		if (args == null || args.length == 0) {			
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_JS, objectId, methodName, Long.toString(id)));
+		} else {
+			String argsList = prepareArgs(args);
+			mJsContext.js(MessageFormat.format(JsCommands.EXECUTE_CALLBACK_METHOD_WITH_ARGS_JS, objectId, methodName, argsList, Long.toString(id)));
+		}
+		
+		return future.get();
 	}
 	
 	@SuppressWarnings("deprecation")

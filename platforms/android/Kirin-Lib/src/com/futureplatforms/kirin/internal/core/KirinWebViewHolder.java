@@ -3,6 +3,7 @@ package com.futureplatforms.kirin.internal.core;
 import java.text.MessageFormat;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Future;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -150,6 +151,10 @@ public class KirinWebViewHolder implements IJsContext {
 	        }
 	        
 	        mNativeContext.executeCommandFromModule(moduleName, methodName, args);
+	    }
+	    
+	    public void returnValue(int futureId, String result) {
+	    	mNativeContext.setReturnValue((long) futureId, result);
 	    }
     
 	}

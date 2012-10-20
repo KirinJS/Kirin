@@ -4,8 +4,10 @@ import java.text.MessageFormat;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicLong;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -19,9 +21,36 @@ import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 
 public class NativeContext implements INativeContext {
 
+	public static final class SettableFuture<T> {
+		
+		private final CountDownLatch mLatch = new CountDownLatch(1);
+
+		private T mValue;
+		
+		public T get() {
+			try {
+				mLatch.await();
+			} catch (InterruptedException e) {
+				Log.e(C.TAG, "Problem handling return value");
+			}
+			Log.d(C.TAG, "Getting value: " + mValue);
+			return mValue;
+		}
+		
+		public void set(T value) {
+			mValue = value;
+			Log.d(C.TAG, "Setting value: " + mValue);
+			mLatch.countDown();
+		}
+	}
+
 	private final Map<String, IObjectHolder> mObjectHolders = new ConcurrentHashMap<String, IObjectHolder>();
 	
+	private final Map<Long, SettableFuture<?>> mFutureMap = new ConcurrentHashMap<Long, SettableFuture<?>>();
+	private final AtomicLong mNextId = new AtomicLong(0);
+	
 	private final Executor mDefaultExecutorService;
+	
 	
 	public NativeContext() {
 		this(Executors.newCachedThreadPool());
@@ -78,6 +107,31 @@ public class NativeContext implements INativeContext {
 	@Override
 	public void executeCommandFromModule(String moduleName, String methodName, Object... args) {
 		getObjectHolder(moduleName).invoke(methodName, (Object[]) args);
+	}
+
+	@Override
+	public <T> SettableFuture<T> getFuture(Long id) {
+		@SuppressWarnings("unchecked")
+		SettableFuture<T> future = (SettableFuture<T>) mFutureMap.get(id);
+		if (future == null) {
+			future = new SettableFuture<T>();
+			mFutureMap.put(id, future);
+		}
+		return future;
+	}
+
+	@Override
+	public <T> void setReturnValue(Long id, T value) {
+		@SuppressWarnings("unchecked")
+		SettableFuture<Object> future = (SettableFuture<Object>) mFutureMap.remove(id);
+		if (future != null) {
+			future.set(value);
+		}
+	}
+
+	@Override
+	public Long createNewId() {
+		return mNextId.incrementAndGet();
 	}
 
 }
