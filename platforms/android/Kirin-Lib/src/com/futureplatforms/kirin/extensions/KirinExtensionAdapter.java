@@ -3,6 +3,7 @@ package com.futureplatforms.kirin.extensions;
 import android.content.Context;
 import android.content.Intent;
 
+import com.futureplatforms.kirin.Kirin;
 import com.futureplatforms.kirin.application.IKirinApplication;
 import com.futureplatforms.kirin.helpers.IKirinExtensionHelper;
 
@@ -22,7 +23,7 @@ public class KirinExtensionAdapter implements IKirinExtension {
 		mModuleName = moduleName;
 		mContext = context;
 		if (helper == null) {
-			helper = ((IKirinApplication) mContext.getApplicationContext()).getKirin().bindExtension(mModuleName, this);
+			helper = getKirin().bindExtension(mModuleName, this);
 		}
 		mKirinHelper = helper;
 	}
@@ -64,4 +65,15 @@ public class KirinExtensionAdapter implements IKirinExtension {
 		// NOP
 	}
 
+	/**
+	 * Utility method to get an 
+	 */
+	protected <T> T bindExtensionModule(Class<T> javascriptModule) {
+		return mKirinHelper.javascriptProxyForModule(javascriptModule);
+	}
+	
+	
+	protected Kirin getKirin() {
+		return ((IKirinApplication) mContext.getApplicationContext()).getKirin();
+	}
 }
