@@ -6,12 +6,9 @@
     "kirin": {
         "shared": "shared/lib",
         "idl": "shared/idl",
-        "dependencies": [
-            "kirin-core"
-        ],
-	"platforms": {
+        "platforms": {
             "ios": {
-                "project": "platforms/ios/__project_name__.xcodeproj",
+                "project": "platforms/ios/{{project_name}}.xcodeproj",
                 "build": "xcodebuild clean build",
                 "build.debug": "xcodebuild -configuration Debug clean build",
                 "build.release": "xcodebuild -configuration Release clean build"
@@ -21,9 +18,10 @@
                 "build": "ant clean debug && ant clean release",
                 "build.debug": "ant clean debug",
                 "build.release": "ant clean release"
-            }
+            },
+            "idlOutput": "src"
         },
-	"extensions": {
-	}
+	    "extensions": {
+	    }
     }
 }

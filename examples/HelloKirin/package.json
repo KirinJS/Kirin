@@ -26,9 +26,6 @@
     ],
     "kirin": {
         "shared": "lib",
-        "dependencies": [
-            "kirin-core"
-        ],
 	    "platforms": {
 		    "ios": {
 			    "project": "platforms/ios/HelloKirin-iOS.xcodeproj",
