@@ -67,7 +67,7 @@ public class KirinHelperTest extends AndroidTestCase {
 		assertTrue(mJsContext.mLastCall.contains(MY_MODULE_NAME));
 		assertTrue(mJsContext.mLastCall.contains("aMethodCall"));
 		
-		assertEquals("EXPOSED_TO_NATIVE.native2js.execMethod('MyModule', 'aMethodCall')", mJsContext.mLastCall);		
+		assertEquals("EXPOSED_TO_NATIVE.native2js.execMethod('MyModule', 'aMethodCall', null, null)", mJsContext.mLastCall);		
 	}
 	
 	public void testJsMethod_withTypedArg() {
@@ -78,7 +78,7 @@ public class KirinHelperTest extends AndroidTestCase {
 		assertTrue(mJsContext.mLastCall.contains(MY_MODULE_NAME));
 		assertTrue(mJsContext.mLastCall.contains("aMethodCallWithArgs"));
 		
-		assertEquals("EXPOSED_TO_NATIVE.native2js.execMethod('MyModule', 'aMethodCallWithArgs', [1])", mJsContext.mLastCall);
+		assertEquals("EXPOSED_TO_NATIVE.native2js.execMethod('MyModule', 'aMethodCallWithArgs', [1], null)", mJsContext.mLastCall);
 		mJsContext.reset();
 		testJsMethod_withArgs("1", 1);
 		testJsMethod_withArgs("1000000000", 1000000000); // no commas 

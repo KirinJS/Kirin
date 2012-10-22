@@ -34,6 +34,8 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	
     public String mLastCall;
     
+    public Object mNextReturn;
+    
     public void clear() {
         mOrderOfCallbacks.clear();
         mCallbacks.clear();
@@ -182,6 +184,27 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	public void jsCallbackObjectMethod(String objectId, String methodName,
 			Object... args) {
 		mLastCall = objectId + "." + methodName + Arrays.toString(args);
+	}
+
+	private <T> T getNextReturn(Class<T> returnType) {
+		if (returnType.isInstance(mNextReturn)) {
+			return returnType.cast(mNextReturn);
+		}
+		return null;
+	}
+	
+	@Override
+	public <T> T jsSyncMethod(Class<T> returnType, String methodName,
+			Object... args) {
+		// TODO Auto-generated method stub
+		return getNextReturn(returnType);
+	}
+
+	@Override
+	public <T> T jsSyncCallbackObjectMethod(String objectId,
+			Class<T> returnType, String methodName, Object... args) {
+		jsCallbackObjectMethod(objectId, methodName, args);
+		return getNextReturn(returnType);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.futureplatforms.kirin.internal.attic.ProxyGenerator;
 import com.futureplatforms.kirin.internal.core.INativeContext;
+import com.futureplatforms.kirin.internal.core.NativeContext.SettableFuture;
 
 public class DummyNativeContext implements INativeContext {
 
@@ -52,6 +53,24 @@ public class DummyNativeContext implements INativeContext {
 	public void reset() {
 		unregisterNativeObject(null);
 		mMethodNames = null;
+	}
+
+	@Override
+	public <T> SettableFuture<T> getFuture(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <T> void setReturnValue(Long id, T value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Long createNewId() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

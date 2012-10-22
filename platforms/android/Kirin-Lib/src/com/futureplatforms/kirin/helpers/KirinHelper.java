@@ -142,7 +142,7 @@ public class KirinHelper implements IKirinHelper {
 	}
 	
 	@Override
-	public <T> T jsSyncCallbackObjectMethod(String objectId, Class<?> returnType, String methodName, Object... args) {
+	public <T> T jsSyncCallbackObjectMethod(String objectId, Class<T> returnType, String methodName, Object... args) {
 		// TODO test this.
 		Long id = mNativeContext.createNewId();
 		SettableFuture<T> future = mNativeContext.getFuture(id);

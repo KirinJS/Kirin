@@ -24,7 +24,7 @@ public interface IKirinHelper {
 	
 	<T> T jsSyncMethod(Class<T> returnType, String methodName, Object... args);
 	
-	<T> T jsSyncCallbackObjectMethod(String objectId, Class<?> returnType, String methodName, Object... args);
+	<T> T jsSyncCallbackObjectMethod(String objectId, Class<T> returnType, String methodName, Object... args);
 	
 	@Deprecated
 	void jsCallback(String callbackId, Object... args);
