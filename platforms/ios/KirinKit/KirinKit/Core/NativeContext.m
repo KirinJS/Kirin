@@ -142,6 +142,10 @@
             }
             @finally {
                 if (isBackgroundThread) {
+                    // This will unregister as safe background task one second after the end of this invocation finishes. When an app is
+                    // backgrounded, the webview is kept alive until all background tasks have unregistered.
+                    // This delay is give JS time to execute during execution. The assumption is that it will finish or launch another task
+                    // quick enough such that there is at least one registered as running for long enogh after an phone interrupt occurs.
                     [self performSelector:@selector(endBackgroundTask:) withObject:[NSNumber numberWithUnsignedInt:taskId] afterDelay:1];
                 }
             }
