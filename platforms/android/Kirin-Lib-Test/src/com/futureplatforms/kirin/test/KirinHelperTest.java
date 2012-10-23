@@ -191,4 +191,28 @@ public class KirinHelperTest extends AndroidTestCase {
 		mJsContext.reset();
 
 	}
+	
+	public void testJsCallbackMethod_noArgs() throws JSONException {
+		assertNull(mJsContext.mLastCall);
+		
+		mKirinHelper.jsCallbackObjectMethod("foo", "respond");
+		
+		assertTrue(mJsContext.mLastCall.contains("foo"));
+		assertTrue(mJsContext.mLastCall.contains("respond"));
+		
+		assertEquals("EXPOSED_TO_NATIVE.native2js.execCallbackMethod('foo', 'respond', null, null)", mJsContext.mLastCall);
+		mJsContext.reset();
+	}
+	
+	public void testJsCallbackMethod_witTypedArgs() throws JSONException {
+		assertNull(mJsContext.mLastCall);
+		
+		mKirinHelper.jsCallbackObjectMethod("foo", "respond", 1, true, "three");
+		
+		assertTrue(mJsContext.mLastCall.contains("foo"));
+		assertTrue(mJsContext.mLastCall.contains("respond"));
+		
+		assertEquals("EXPOSED_TO_NATIVE.native2js.execCallbackMethod('foo', 'respond', [1,true,'three'], null)", mJsContext.mLastCall);
+		mJsContext.reset();
+	}
 }
