@@ -55,4 +55,6 @@ public interface IKirinHelper {
 	void onUnload();
 	
 	<T> T javascriptProxyForModule(Class<T> interfaceClass);
+
+	<T> T javascriptProxyForValueObject(JSONObject obj, Class<T> interfaceClass);
 }

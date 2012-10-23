@@ -205,4 +205,9 @@ public class KirinHelper implements IKirinHelper {
 	public <T> T javascriptProxyForModule(Class<T> interfaceClass) {
 		return mProxyGenerator.javascriptProxyForModule(interfaceClass);
 	}
+	
+	@Override
+	public <T> T javascriptProxyForValueObject(JSONObject obj, Class<T> interfaceClass) {
+		return mProxyGenerator.javascriptProxyForResponse(obj, interfaceClass);
+	}
 }
