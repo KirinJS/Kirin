@@ -3,12 +3,12 @@ package com.futureplatforms.kirin.internal.core;
 import java.text.MessageFormat;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.Future;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
@@ -64,6 +64,7 @@ public class KirinWebViewHolder implements IJsContext {
         }
     }
 	
+	@SuppressLint("SetJavaScriptEnabled")
 	private void initWebView(WebView webView) {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient() {
