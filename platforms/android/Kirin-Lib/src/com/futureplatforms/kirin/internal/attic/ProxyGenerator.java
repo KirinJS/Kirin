@@ -87,9 +87,9 @@ public class ProxyGenerator {
 					if (id != null) {
 						// so assume it's a callback
 						if (void.class.equals(returnType)) {
-							mKirinHelper.jsCallbackObjectMethod(id, methodName, args);
+							mKirinHelper.jsCallbackObjectMethod(id, methodName, (Object[]) args);
 						} else {
-							return mKirinHelper.jsSyncCallbackObjectMethod(id, returnType, methodName, args);
+							return mKirinHelper.jsSyncCallbackObjectMethod(id, returnType, methodName, (Object[]) args);
 						}
 					} 
 					return null;
@@ -104,8 +104,6 @@ public class ProxyGenerator {
     				return obj.toString();
     			}
 
-    			
-    			
 				return null;
 			}
 		};

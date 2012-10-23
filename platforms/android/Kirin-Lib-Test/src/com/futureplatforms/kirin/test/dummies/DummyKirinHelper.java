@@ -181,6 +181,12 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 	}
 
 	@Override
+	public <T> T javascriptProxyForValueObject(JSONObject obj,
+			Class<T> interfaceClass) {
+		return new ProxyGenerator(this).javascriptProxyForResponse(obj, interfaceClass);
+	}
+	
+	@Override
 	public void jsCallbackObjectMethod(String objectId, String methodName,
 			Object... args) {
 		mLastCall = objectId + "." + methodName + Arrays.toString(args);
@@ -206,5 +212,7 @@ public class DummyKirinHelper implements IKirinHelper, IKirinExtensionHelper {
 		jsCallbackObjectMethod(objectId, methodName, args);
 		return getNextReturn(returnType);
 	}
+
+	
 	
 }

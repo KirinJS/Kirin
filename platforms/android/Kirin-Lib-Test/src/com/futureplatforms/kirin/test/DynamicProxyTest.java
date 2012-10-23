@@ -38,7 +38,7 @@ public class DynamicProxyTest extends AndroidTestCase {
 
         void withTwoArgs(String s1, boolean s2);
         
-        void withTwoArgs(JSONArray array, JSONObject object);
+        void withTwoJsonArgs(JSONArray array, JSONObject object);
     }
     
     public static interface ITestResponse {
@@ -55,6 +55,7 @@ public class DynamicProxyTest extends AndroidTestCase {
     }
     
     public static interface ITestRequest {
+    	void callback2(ITestResponse response, String string);
     	void callback(ITestResponse response);
     	void errback(int number, boolean flag);
     	
@@ -78,14 +79,18 @@ public class DynamicProxyTest extends AndroidTestCase {
         ITestModule proxy = mGenerator.javascriptProxyForModule(ITestModule.class);
         
         proxy.withNoArgs();
+        assertEquals("withNoArgs[]", mKirinHelper.mLastCall);
         
         proxy.withTwoArgs("foo", true);
+        // toString is being called, so foo isn't being quited.
+        assertEquals("withTwoArgs[foo, true]", mKirinHelper.mLastCall);
         
         JSONArray array = new JSONArray("[1,2,3]");
-        proxy.withTwoArgs(array, new JSONObject("{}"));
+        proxy.withTwoJsonArgs(array, new JSONObject("{}"));
+        assertEquals("withTwoJsonArgs[[1,2,3], {}]", mKirinHelper.mLastCall);
     }
     
-    public void testRequestProxy() throws JSONException {
+    public void testRequestProxy_properties() throws JSONException {
     	JSONObject obj = new JSONObject();
     	ITestRequest proxy = mGenerator.javascriptProxyForRequest(obj, ITestRequest.class);
     	
@@ -114,6 +119,15 @@ public class DynamicProxyTest extends AndroidTestCase {
     	obj.remove("ready");
     	obj.remove("params");
     	assertEquals("{\"name\":\"myName\"}", proxy.toString());
+    }
+    
+    public void testRequestProxy_callingMethods() throws JSONException {
+    	JSONObject obj = new JSONObject();
+    	ITestRequest proxy = mGenerator.javascriptProxyForRequest(obj, ITestRequest.class);
+    	
+    	obj.put("name", "myName");
+    	obj.put("ready", true);
+    	
     	
     	// test method calls
     	obj.put("__id", "myCallbackObj0");
@@ -135,6 +149,11 @@ public class DynamicProxyTest extends AndroidTestCase {
     	proxy.callback(response);
     	
     	assertEquals("myCallbackObj0.callback[{\"name\":\"poobah\"}]", mKirinHelper.mLastCall);
+    	
+    	mKirinHelper.clear();
+    	obj.put("callback2", true);
+    	proxy.callback2(response, "paz");
+    	assertEquals("myCallbackObj0.callback2[{\"name\":\"poobah\"}, paz]", mKirinHelper.mLastCall);
     }
 
     public void testResponseProxy() throws JSONException {
