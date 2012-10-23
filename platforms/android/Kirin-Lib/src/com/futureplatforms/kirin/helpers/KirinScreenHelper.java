@@ -30,6 +30,13 @@ public class KirinScreenHelper extends KirinUiFragmentHelper {
 		super.onPause();
 	}
 	
+	/**
+	 * This is called by the activity (by default for KirinActivity), 
+	 * and will extension that has launched another activity to get something (e.g. a login, taking a picture).
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		IKirinExtension extension = getAppState().getActiveExtension();
 		if (extension != null) {
