@@ -1,18 +1,13 @@
 {
   "name": "kirin",
   "description": "A toolkit to help building native crossplatform mobile apps by implementing the application logic in Javascript.",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "homepage": "https://github.com/kirinjs/kirin",
   "author": [
     {
-      "name": "Future Platforms",
-      "email": "james.hugman@futureplatforms.com",
-      "url": "http://futureplatforms.com"
-    },
-    {
       "name": "jhugman",
       "email": "james@hugman.tv",
-      "url": "https://hugman.posterous.com/kirin"
+      "url": "https://hugman.posterous.com/tag/kirin"
     }
   ],
   "repository": {
