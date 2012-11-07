@@ -9,10 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <KirinKit/KirinKit.h>
 #import <CoreLocation/CoreLocation.h>
-#import "KirinLocation.h"
+#import "KirinLocationLegacy.h"
 
-@interface KirinLocationBackend : KirinExtensionStub<KirinLocation, CLLocationManagerDelegate>
+@interface KirinLocationLegacyBackend : KirinExtensionStub<KirinLocationLegacy, CLLocationManagerDelegate>
 
-+ (KirinLocationBackend*) instance;
++ (KirinLocationLegacyBackend*) instance;
 
 @end

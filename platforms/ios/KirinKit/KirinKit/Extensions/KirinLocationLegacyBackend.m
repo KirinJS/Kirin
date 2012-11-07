@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Future Platforms. All rights reserved.
 //
 
-#import "KirinLocationBackend.h"
+#import "KirinLocationLegacyBackend.h"
 
 #import <CoreLocation/CoreLocation.h>
 #import <KirinKit/JSON.h>
 
-@interface KirinLocationBackend ()
+@interface KirinLocationLegacyBackend ()
 
 @property(nonatomic, retain) NSString* callback;
 @property(nonatomic, retain) NSString* errback;
@@ -23,14 +23,14 @@
 
 @end
 
-@implementation KirinLocationBackend
+@implementation KirinLocationLegacyBackend
 
 @synthesize callback = callback_;
 @synthesize errback = errback_;
 @synthesize locationManager = locationManager_;
 
-+ (KirinLocationBackend*) instance {
-    return [[[KirinLocationBackend alloc] init] autorelease];
++ (KirinLocationLegacyBackend*) instance {
+    return [[[KirinLocationLegacyBackend alloc] init] autorelease];
 }
 
 #pragma mark - 

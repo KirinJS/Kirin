@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol KirinLocation <NSObject>
+@protocol KirinLocationLegacy <NSObject>
 
 - (void) startWithCallback: (NSString*) callback andErrback: (NSString*) errback;
 
