@@ -7,7 +7,10 @@ import android.content.Context;
 import android.util.Log;
 
 import com.futureplatforms.kirin.C;
+import com.futureplatforms.kirin.extensions.databases.DatabasesBackend;
+import com.futureplatforms.kirin.extensions.networking.NetworkingBackend;
 import com.futureplatforms.kirin.extensions.settings.SettingsBackend;
+import com.futureplatforms.kirin.extensions.settings.PreferencesBackendImpl;
 
 public class KirinExtensions {
 
@@ -18,7 +21,13 @@ public class KirinExtensions {
 	public static KirinExtensions coreExtensions(Context context) {
 		KirinExtensions extensions = emptyExtensions();
 		Log.i(C.TAG, "Registering core extensions");
+		// this one is stable.
 		extensions.registerExtension(new SettingsBackend(context));
+		// this one is in alpha.
+		extensions.registerExtension(new PreferencesBackendImpl(context));
+		extensions.registerExtension(new NetworkingBackend(context));
+		extensions.registerExtension(new DatabasesBackend(context));
+		
 		
 		return extensions;
 	}
