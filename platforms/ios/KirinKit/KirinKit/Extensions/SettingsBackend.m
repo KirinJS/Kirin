@@ -36,12 +36,11 @@
 @implementation SettingsBackend
 
 - (id) init {
-    return [super initWithModuleName:@"Settings"];
+    return [super initWithModuleName:@"app-preferences"];
 }
 
 - (void) onLoad {
     [super onLoad];
-    
     [self.kirinHelper jsMethod:@"mergeOrOverwrite" withArgsList:[[self settingsAsDictionary] JSONRepresentation]];
     [self.kirinHelper jsMethod:@"resetEnvironment"];
 }
