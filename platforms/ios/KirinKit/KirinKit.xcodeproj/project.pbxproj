@@ -109,9 +109,16 @@
 		1A61952A14D22105004FDD8E /* KirinFileSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A61952814D22105004FDD8E /* KirinFileSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1A61952B14D22105004FDD8E /* KirinFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A61952914D22105004FDD8E /* KirinFileSystem.m */; };
 		1A6A21F11546B249006B5D13 /* DummyNativeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6A21F01546B249006B5D13 /* DummyNativeObject.m */; };
-		1A7B90C914FFDA390090DF19 /* KirinLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C614FFDA390090DF19 /* KirinLocation.h */; };
-		1A7B90CA14FFDA390090DF19 /* KirinLocationBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C714FFDA390090DF19 /* KirinLocationBackend.h */; };
-		1A7B90CB14FFDA390090DF19 /* KirinLocationBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B90C814FFDA390090DF19 /* KirinLocationBackend.m */; };
+		1A782A501628EF870030A933 /* idl-generated in Resources */ = {isa = PBXBuildFile; fileRef = 1A782A4F1628EF870030A933 /* idl-generated */; };
+		1A782A7A162B8CDE0030A933 /* KirinPreferenceListener.h in Resources */ = {isa = PBXBuildFile; fileRef = 1A782A77162B8CDE0030A933 /* KirinPreferenceListener.h */; };
+		1A782A7B162B8CDE0030A933 /* KirinPreferences.h in Resources */ = {isa = PBXBuildFile; fileRef = 1A782A78162B8CDE0030A933 /* KirinPreferences.h */; };
+		1A782A7C162B8CDE0030A933 /* KirinPreferencesBackend.h in Resources */ = {isa = PBXBuildFile; fileRef = 1A782A79162B8CDE0030A933 /* KirinPreferencesBackend.h */; };
+		1A7B90C914FFDA390090DF19 /* KirinLocationLegacy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C614FFDA390090DF19 /* KirinLocationLegacy.h */; };
+		1A7B90CA14FFDA390090DF19 /* KirinLocationLegacyBackend.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A7B90C714FFDA390090DF19 /* KirinLocationLegacyBackend.h */; };
+		1A7B90CB14FFDA390090DF19 /* KirinLocationLegacyBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A7B90C814FFDA390090DF19 /* KirinLocationLegacyBackend.m */; };
+		1A82E2DC161FA491007213CA /* KirinLocationBackendImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A82E2DA161FA491007213CA /* KirinLocationBackendImpl.m */; };
+		1A82E2E71620E30F007213CA /* PreferencesBackendImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A82E2E51620E30F007213CA /* PreferencesBackendImpl.h */; };
+		1A82E2E81620E30F007213CA /* PreferencesBackendImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A82E2E61620E30F007213CA /* PreferencesBackendImpl.m */; };
 		1A8C032E14C86AF8000829F2 /* StringDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A8C032C14C86AF7000829F2 /* StringDownloader.h */; };
 		1A8C032F14C86AF8000829F2 /* StringDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8C032D14C86AF8000829F2 /* StringDownloader.m */; };
 		1A9FE0A114D5F745008C0565 /* NativeObjectHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */; };
@@ -122,6 +129,12 @@
 		1AA97D1F150921C5001F557E /* KirinImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AA97D1D150921C5001F557E /* KirinImageTransformer.m */; };
 		1AB1252314E4819A00933949 /* KirinAppDelegateHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AB1252414E4819A00933949 /* KirinAppDelegateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */; };
+		1AC4F9A9164A5B890068E3E4 /* KirinLocation.h in Resources */ = {isa = PBXBuildFile; fileRef = 1AC4F9A4164A5B890068E3E4 /* KirinLocation.h */; };
+		1AC4F9AA164A5B890068E3E4 /* KirinLocationBackend.h in Resources */ = {isa = PBXBuildFile; fileRef = 1AC4F9A5164A5B890068E3E4 /* KirinLocationBackend.h */; };
+		1AC4F9AB164A5B890068E3E4 /* KirinLocationData.h in Resources */ = {isa = PBXBuildFile; fileRef = 1AC4F9A6164A5B890068E3E4 /* KirinLocationData.h */; };
+		1AC4F9AC164A5B890068E3E4 /* KirinLocationListener.h in Resources */ = {isa = PBXBuildFile; fileRef = 1AC4F9A7164A5B890068E3E4 /* KirinLocationListener.h */; };
+		1AC4F9AD164A5B890068E3E4 /* KirinLocationPermissions.h in Resources */ = {isa = PBXBuildFile; fileRef = 1AC4F9A8164A5B890068E3E4 /* KirinLocationPermissions.h */; };
+		1AC4F9B0164A5C680068E3E4 /* KirinLocationBackendImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AC4F9AE164A5C680068E3E4 /* KirinLocationBackendImpl.h */; };
 		1AE3FD8D14C9A41D009C2F3B /* KirinState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AE3FD8B14C9A41D009C2F3B /* KirinState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AE3FD8E14C9A41D009C2F3B /* KirinState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE3FD8C14C9A41D009C2F3B /* KirinState.m */; };
 		1AEA44E91527B29500E7B961 /* KirinProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AEA44E71527B29500E7B961 /* KirinProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -260,9 +273,16 @@
 		1A61952914D22105004FDD8E /* KirinFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinFileSystem.m; sourceTree = "<group>"; };
 		1A6A21EF1546B249006B5D13 /* DummyNativeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyNativeObject.h; sourceTree = "<group>"; };
 		1A6A21F01546B249006B5D13 /* DummyNativeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyNativeObject.m; sourceTree = "<group>"; };
-		1A7B90C614FFDA390090DF19 /* KirinLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocation.h; sourceTree = "<group>"; };
-		1A7B90C714FFDA390090DF19 /* KirinLocationBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocationBackend.h; sourceTree = "<group>"; };
-		1A7B90C814FFDA390090DF19 /* KirinLocationBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinLocationBackend.m; sourceTree = "<group>"; };
+		1A782A4F1628EF870030A933 /* idl-generated */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "idl-generated"; sourceTree = SOURCE_ROOT; };
+		1A782A77162B8CDE0030A933 /* KirinPreferenceListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinPreferenceListener.h; path = "../../idl-generated/extensions/preferences/KirinPreferenceListener.h"; sourceTree = "<group>"; };
+		1A782A78162B8CDE0030A933 /* KirinPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinPreferences.h; path = "../../idl-generated/extensions/preferences/KirinPreferences.h"; sourceTree = "<group>"; };
+		1A782A79162B8CDE0030A933 /* KirinPreferencesBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinPreferencesBackend.h; path = "../../idl-generated/extensions/preferences/KirinPreferencesBackend.h"; sourceTree = "<group>"; };
+		1A7B90C614FFDA390090DF19 /* KirinLocationLegacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocationLegacy.h; sourceTree = "<group>"; };
+		1A7B90C714FFDA390090DF19 /* KirinLocationLegacyBackend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocationLegacyBackend.h; sourceTree = "<group>"; };
+		1A7B90C814FFDA390090DF19 /* KirinLocationLegacyBackend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinLocationLegacyBackend.m; sourceTree = "<group>"; };
+		1A82E2DA161FA491007213CA /* KirinLocationBackendImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinLocationBackendImpl.m; sourceTree = "<group>"; };
+		1A82E2E51620E30F007213CA /* PreferencesBackendImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesBackendImpl.h; sourceTree = "<group>"; };
+		1A82E2E61620E30F007213CA /* PreferencesBackendImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesBackendImpl.m; sourceTree = "<group>"; };
 		1A8C032C14C86AF7000829F2 /* StringDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringDownloader.h; sourceTree = "<group>"; };
 		1A8C032D14C86AF8000829F2 /* StringDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringDownloader.m; sourceTree = "<group>"; };
 		1A9FE09F14D5F744008C0565 /* NativeObjectHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NativeObjectHolder.h; sourceTree = "<group>"; };
@@ -274,6 +294,12 @@
 		1AA97D2015092413001F557E /* ImageTransformProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageTransformProtocol.h; sourceTree = "<group>"; };
 		1AB1252114E4819A00933949 /* KirinAppDelegateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinAppDelegateHelper.h; sourceTree = "<group>"; };
 		1AB1252214E4819A00933949 /* KirinAppDelegateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinAppDelegateHelper.m; sourceTree = "<group>"; };
+		1AC4F9A4164A5B890068E3E4 /* KirinLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinLocation.h; path = "../../idl-generated/extensions/location/KirinLocation.h"; sourceTree = "<group>"; };
+		1AC4F9A5164A5B890068E3E4 /* KirinLocationBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinLocationBackend.h; path = "../../idl-generated/extensions/location/KirinLocationBackend.h"; sourceTree = "<group>"; };
+		1AC4F9A6164A5B890068E3E4 /* KirinLocationData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinLocationData.h; path = "../../idl-generated/extensions/location/KirinLocationData.h"; sourceTree = "<group>"; };
+		1AC4F9A7164A5B890068E3E4 /* KirinLocationListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinLocationListener.h; path = "../../idl-generated/extensions/location/KirinLocationListener.h"; sourceTree = "<group>"; };
+		1AC4F9A8164A5B890068E3E4 /* KirinLocationPermissions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KirinLocationPermissions.h; path = "../../idl-generated/extensions/location/KirinLocationPermissions.h"; sourceTree = "<group>"; };
+		1AC4F9AE164A5C680068E3E4 /* KirinLocationBackendImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinLocationBackendImpl.h; sourceTree = "<group>"; };
 		1AE3FD8B14C9A41D009C2F3B /* KirinState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinState.h; sourceTree = "<group>"; };
 		1AE3FD8C14C9A41D009C2F3B /* KirinState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KirinState.m; sourceTree = "<group>"; };
 		1AEA44E71527B29500E7B961 /* KirinProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KirinProxy.h; sourceTree = "<group>"; };
@@ -337,6 +363,7 @@
 		1A00C8B114B2E2FD00211F34 /* KirinKit */ = {
 			isa = PBXGroup;
 			children = (
+				1A782A4F1628EF870030A933 /* idl-generated */,
 				1A00C99814B2EE8800211F34 /* KirinKit.h */,
 				1A4F7CD61549666D00A010E0 /* KirinKitUI.h */,
 				1A00C8DB14B2E32600211F34 /* Core */,
@@ -519,6 +546,11 @@
 				1A02012014BD658200CB9765 /* Settings.h */,
 				1A00C8FC14B2E32600211F34 /* SettingsBackend.h */,
 				1A00C8FD14B2E32600211F34 /* SettingsBackend.m */,
+				1A782A78162B8CDE0030A933 /* KirinPreferences.h */,
+				1A782A79162B8CDE0030A933 /* KirinPreferencesBackend.h */,
+				1A82E2E51620E30F007213CA /* PreferencesBackendImpl.h */,
+				1A82E2E61620E30F007213CA /* PreferencesBackendImpl.m */,
+				1A782A77162B8CDE0030A933 /* KirinPreferenceListener.h */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -584,9 +616,16 @@
 		1A7B90CD14FFDA3F0090DF19 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				1A7B90C614FFDA390090DF19 /* KirinLocation.h */,
-				1A7B90C714FFDA390090DF19 /* KirinLocationBackend.h */,
-				1A7B90C814FFDA390090DF19 /* KirinLocationBackend.m */,
+				1A7B90C614FFDA390090DF19 /* KirinLocationLegacy.h */,
+				1A7B90C714FFDA390090DF19 /* KirinLocationLegacyBackend.h */,
+				1A7B90C814FFDA390090DF19 /* KirinLocationLegacyBackend.m */,
+				1AC4F9A5164A5B890068E3E4 /* KirinLocationBackend.h */,
+				1AC4F9AE164A5C680068E3E4 /* KirinLocationBackendImpl.h */,
+				1A82E2DA161FA491007213CA /* KirinLocationBackendImpl.m */,
+				1AC4F9A4164A5B890068E3E4 /* KirinLocation.h */,
+				1AC4F9A6164A5B890068E3E4 /* KirinLocationData.h */,
+				1AC4F9A7164A5B890068E3E4 /* KirinLocationListener.h */,
+				1AC4F9A8164A5B890068E3E4 /* KirinLocationPermissions.h */,
 			);
 			name = Location;
 			sourceTree = "<group>";
@@ -662,8 +701,8 @@
 				1A2EF3C914FA9B9300D00DE2 /* SBJsonStreamWriterState.h in Headers */,
 				1A2EF3CB14FA9B9300D00DE2 /* SBJsonTokeniser.h in Headers */,
 				1A2EF3CD14FA9B9300D00DE2 /* SBJsonWriter.h in Headers */,
-				1A7B90C914FFDA390090DF19 /* KirinLocation.h in Headers */,
-				1A7B90CA14FFDA390090DF19 /* KirinLocationBackend.h in Headers */,
+				1A7B90C914FFDA390090DF19 /* KirinLocationLegacy.h in Headers */,
+				1A7B90CA14FFDA390090DF19 /* KirinLocationLegacyBackend.h in Headers */,
 				1AA97D1E150921C5001F557E /* KirinImageTransformer.h in Headers */,
 				1AEA44E91527B29500E7B961 /* KirinProxy.h in Headers */,
 				1A4F7CD31549632A00A010E0 /* KirinUIViewController.h in Headers */,
@@ -672,6 +711,8 @@
 				1A4F7CDE15496D0000A010E0 /* KirinProxyWithDictionary.h in Headers */,
 				1AEE8DA3154EC8DD00B8C0D7 /* KirinUITableViewController.h in Headers */,
 				1A35BFCF1566B00E00B47A70 /* KirinProxyWithEmptyDictionary.h in Headers */,
+				1A82E2E71620E30F007213CA /* PreferencesBackendImpl.h in Headers */,
+				1AC4F9B0164A5C680068E3E4 /* KirinLocationBackendImpl.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,6 +723,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1A00C8D514B2E2FD00211F34 /* Build configuration list for PBXNativeTarget "KirinKit" */;
 			buildPhases = (
+				1A82E2CC161F9F6D007213CA /* ShellScript */,
 				1A00C8A814B2E2FD00211F34 /* Run Script */,
 				1A00C8A914B2E2FD00211F34 /* Sources */,
 				1A00C8AA14B2E2FD00211F34 /* Frameworks */,
@@ -750,6 +792,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1A00C8B614B2E2FD00211F34 /* InfoPlist.strings in Resources */,
+				1A782A501628EF870030A933 /* idl-generated in Resources */,
+				1A782A7A162B8CDE0030A933 /* KirinPreferenceListener.h in Resources */,
+				1A782A7B162B8CDE0030A933 /* KirinPreferences.h in Resources */,
+				1A782A7C162B8CDE0030A933 /* KirinPreferencesBackend.h in Resources */,
+				1AC4F9A9164A5B890068E3E4 /* KirinLocation.h in Resources */,
+				1AC4F9AA164A5B890068E3E4 /* KirinLocationBackend.h in Resources */,
+				1AC4F9AB164A5B890068E3E4 /* KirinLocationData.h in Resources */,
+				1AC4F9AC164A5B890068E3E4 /* KirinLocationListener.h in Resources */,
+				1AC4F9AD164A5B890068E3E4 /* KirinLocationPermissions.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +856,20 @@
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
+		1A82E2CC161F9F6D007213CA /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$HOME/bin/kirin-build --platform ios --noJavascript";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -849,7 +914,7 @@
 				1A2EF3CA14FA9B9300D00DE2 /* SBJsonStreamWriterState.m in Sources */,
 				1A2EF3CC14FA9B9300D00DE2 /* SBJsonTokeniser.m in Sources */,
 				1A2EF3CE14FA9B9300D00DE2 /* SBJsonWriter.m in Sources */,
-				1A7B90CB14FFDA390090DF19 /* KirinLocationBackend.m in Sources */,
+				1A7B90CB14FFDA390090DF19 /* KirinLocationLegacyBackend.m in Sources */,
 				1AA97D1F150921C5001F557E /* KirinImageTransformer.m in Sources */,
 				1AEA44EA1527B29500E7B961 /* KirinProxy.m in Sources */,
 				1A4F7CD41549632A00A010E0 /* KirinUIViewController.m in Sources */,
@@ -857,6 +922,8 @@
 				1A4F7CDF15496D0000A010E0 /* KirinProxyWithDictionary.m in Sources */,
 				1AEE8DA4154EC8DD00B8C0D7 /* KirinUITableViewController.m in Sources */,
 				1A35BFD01566B00E00B47A70 /* KirinProxyWithEmptyDictionary.m in Sources */,
+				1A82E2DC161FA491007213CA /* KirinLocationBackendImpl.m in Sources */,
+				1A82E2E81620E30F007213CA /* PreferencesBackendImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,12 @@
 #import "KirinExtensions.h"
 
 #import "SettingsBackend.h"
+#import "PreferencesBackendImpl.h"
 #import "FileSystemBackend.h"
 #import "NetworkingBackend.h"
 #import "KirinImagePicker.h"
 #import "DatabasesBackend.h"
-#import "KirinLocationBackend.h"
+#import "KirinLocationBackendImpl.h"
 #import "KirinImageTransformer.h"
 
 @interface KirinExtensions()
@@ -37,11 +38,12 @@
     KirinExtensions* services = [KirinExtensions empty];
     NSLog(@"Core KirinExtensions");
     [services registerExtension:[[[SettingsBackend alloc] init] autorelease]];
+    [services registerExtension:[PreferencesBackendImpl instance]];
     [services registerExtension:[[[FileSystemBackend alloc] init] autorelease]];
     [services registerExtension:[[[NetworkingBackend alloc] init] autorelease]];
     [services registerExtension:[[[KirinImagePicker alloc] init] autorelease]];
     [services registerExtension:[[[DatabasesBackend alloc] init] autorelease]];
-    [services registerExtension:[KirinLocationBackend instance]];
+    [services registerExtension:[KirinLocationBackendImpl instance]];
     [services registerExtension:[KirinImageTransformer instance]];
     return services;
 }
