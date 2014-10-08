@@ -12,6 +12,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -126,7 +127,7 @@ public class KirinWebViewHolder implements IJsContext {
 	
 	
 	public class InjectedObject {
-		
+		@JavascriptInterface
 	    public void call(String classMethod, String jsonArgs) {
 	        String[] split = classMethod.split("\\.", 2);
 	        assert split.length == 2;
