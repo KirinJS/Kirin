@@ -46,3 +46,11 @@ idl-generated
 /.project
 *.stub.js
 */android/bin
+examples/HelloKirin/node_modules
+node_modules
+/build/
+build\/
+examples/platforms/android/bin
+examples/HelloKirin/build
+platforms/android/Kirin-Lib/src/com/futureplatforms/kirin/generated
+platforms/ios/KirinKit/build

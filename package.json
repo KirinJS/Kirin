@@ -34,7 +34,9 @@
     "kirin-rebuild-kirin-kit": "./bin/rebuild_kirinkit.sh",
     "kirin-create": "./bin/kirin-create.js"
   },
+  "main": "lib/javascript/src/core/kirin-javascript.js",
   "kirin": {
+    "library": true,
     "shared": "lib/javascript",
     "directories": [
       "src"
@@ -68,7 +70,6 @@
       "kirin-image-utils-alpha": "src/extensions/ImageTransform",
       "kirin-functional-utils-alpha": "src/utils/FunctionalUtils",
       "kirin-string-utils-alpha": "src/utils/StringUtils",
-
       "Filesystem": "src/extensions/FileSystem",
       "Databases": "src/extensions/Databases",
       "Networking": "src/extensions/Networking",
@@ -86,7 +87,8 @@
     "progenitor": "git://github.com/KirinJS/progenitor.git",
     "kirin-build": "git://github.com/KirinJS/kirin-build.git",
     "tap": "*",
-    "findit": "~0.1.2"
+    "findit": "~0.1.2",
+    "harmonizr": "~0.2.0"
   },
   "keywords": [
     "mobile",
