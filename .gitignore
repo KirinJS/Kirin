@@ -55,3 +55,5 @@ examples/HelloKirin/build
 platforms/android/Kirin-Lib/src/com/futureplatforms/kirin/generated
 platforms/ios/KirinKit/build
 platforms/android/**/build
+platforms/android/kirin-for-android/.gradle
+platforms/android/kirin-for-android/gradle/.gradle
