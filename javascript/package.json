@@ -26,14 +26,6 @@
   "engines": {
     "node": "*"
   },
-  "scripts": {
-    "kirinkit": "./bin/rebuild_kirinkit.sh",
-    "install": "./bin/install-me.js"
-  },
-  "bin": {
-    "kirin-rebuild-kirin-kit": "./bin/rebuild_kirinkit.sh",
-    "kirin-create": "./bin/kirin-create.js"
-  },
   "main": "lib/javascript/src/entry.js",
   "kirin": {
     "idl": "lib/javascript/idl",
