@@ -34,59 +34,24 @@
     "kirin-rebuild-kirin-kit": "./bin/rebuild_kirinkit.sh",
     "kirin-create": "./bin/kirin-create.js"
   },
-  "main": "lib/javascript/src/core/kirin-javascript.js",
+  "main": "lib/javascript/src/entry.js",
   "kirin": {
-    "library": true,
-    "shared": "lib/javascript",
-    "directories": [
-      "src"
-    ],
-    "platforms": {
-      "ios": {
-        "project": "platforms/ios/KirinKit/KirinKit.xcodeproj",
-        "build": "xcodebuild -target KirinKit",
-        "build.debug": "xcodebuild -sdk iphoneos -configuration Debug clean build",
-        "build.release": "xcodebuild -sdk iphoneos -configuration Release clean build"
-      },
-      "android": {
-        "project": "platforms/android/Kirin-Lib",
-        "build": "ant clean debug && ant clean release",
-        "build.debug": "ant clean debug",
-        "build.release": "ant clean release",
-        "idlOutput": "src"
-      }
-    },
-    "extensions": {
-      "kirin": "src/core/kirin",
-      "kirin-bridge-utils": "src/core/kirin-validation",
-      "app-analytics-beta": "src/extensions/Analytics",
-      "app-databases-alpha": "src/extensions/Databases",
-      "app-preferences": "src/extensions/Settings",
-      "app-preferences-alpha": "src/extensions/preferences/KirinPreferences",
-      "device-camera-alpha": "src/extensions/Camera",
-      "device-location-alpha": "src/extensions/location/KirinLocationModule",
-      "device-networking-alpha": "src/extensions/Networking",
-      "device-filesystem-alpha": "src/extensions/FileSystem",
-      "kirin-image-utils-alpha": "src/extensions/ImageTransform",
-      "kirin-functional-utils-alpha": "src/utils/FunctionalUtils",
-      "kirin-string-utils-alpha": "src/utils/StringUtils",
-      "Filesystem": "src/extensions/FileSystem",
-      "Databases": "src/extensions/Databases",
-      "Networking": "src/extensions/Networking",
-      "bridge-utils": "src/utils/bridge-utils",
-      "simple-timers": "src/extensions/Timers",
-      "kirin-json-utils": "src/utils/JSONUtils"
-    },
     "idl": "lib/javascript/idl",
     "idlOutput": "src"
   },
+  "browserify": {
+    "transform": [
+      "aliasify",
+      "overidify"
+    ]
+  },
+  "aliasify": "extensions.js",
   "dependencies": {
     "underscore": ">= 1.3.1"
   },
   "optionalDependencies": {
     "progenitor": "git://github.com/KirinJS/progenitor.git",
     "kirin-build": "git://github.com/KirinJS/kirin-build.git",
-    "tap": "*",
     "findit": "~0.1.2",
     "harmonizr": "~0.2.0"
   },
@@ -95,5 +60,10 @@
     "crossplatform",
     "native",
     "apps"
-  ]
+  ],
+  "devDependencies": {
+    "overidify": "jhugman/overidify",
+    "tap": "~0.4.13",
+    "aliasify": "~1.4.0"
+  }
 }
