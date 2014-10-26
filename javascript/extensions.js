@@ -1,23 +1,24 @@
 module.exports = {
-  'aliases': {
-    'kirin': 'src/core/kirin',
-    'kirin-bridge-utils': 'src/core/kirin-validation',
-    'app-analytics-beta': 'src/extensions/Analytics',
-    'app-databases-alpha': 'src/extensions/Databases',
-    'app-preferences': 'src/extensions/Settings',
-    'app-preferences-alpha': 'src/extensions/preferences/KirinPreferences',
-    'device-camera-alpha': 'src/extensions/Camera',
-    'device-location-alpha': 'src/extensions/location/KirinLocationModule',
-    'device-networking-alpha': 'src/extensions/Networking',
-    'device-filesystem-alpha': 'src/extensions/FileSystem',
-    'kirin-image-utils-alpha': 'src/extensions/ImageTransform',
-    'kirin-functional-utils-alpha': 'src/utils/FunctionalUtils',
-    'kirin-string-utils-alpha': 'src/utils/StringUtils',
-    'Filesystem': 'src/extensions/FileSystem',
-    'Databases': 'src/extensions/Databases',
-    'Networking': 'src/extensions/Networking',
-    'bridge-utils': 'src/utils/bridge-utils',
-    'simple-timers': 'src/extensions/Timers',
-    'kirin-json-utils': 'src/utils/JSONUtils'
+  aliases: {
+    'kirin-bridge-utils': './lib/core/kirin-validation',
+    'app-analytics-beta': './lib/extensions/Analytics',
+    'app-databases-alpha': './lib/extensions/Databases',
+    'app-preferences': './lib/extensions/Settings',
+    'app-preferences-alpha': './lib/extensions/preferences/KirinPreferences',
+    'device-camera-alpha': './lib/extensions/Camera',
+    'device-location-alpha': './lib/extensions/location/KirinLocationModule',
+    'device-networking-alpha': './lib/extensions/Networking',
+    'device-filesystem-alpha': './lib/extensions/FileSystem',
+    'kirin-image-utils-alpha': './lib/extensions/ImageTransform',
+    'kirin-functional-utils-alpha': './lib/utils/FunctionalUtils',
+    'kirin-string-utils-alpha': './lib/utils/StringUtils',
+    'Filesystem': './lib/extensions/FileSystem',
+    'Databases': './lib/extensions/Databases',
+    'Networking': './lib/extensions/Networking',
+    'bridge-utils': './lib/utils/bridge-utils',
+    //'simple-timers': './lib/extensions/Timers',
+    'kirin-json-utils': './lib/utils/JSONUtils'
   },
+  verbose: false
+
 };

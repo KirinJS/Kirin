@@ -33,9 +33,9 @@ exports.onUnload = function () {
 /* Native facing methods */
 
 exports.resetEnvironment = function () {
-        
+    var environmentModule = "Environment";
     try {
-        require("Environment");
+        require(environmentModule);
     } catch (e) {
         console.warn("No Environment.js module is loaded");
     }
