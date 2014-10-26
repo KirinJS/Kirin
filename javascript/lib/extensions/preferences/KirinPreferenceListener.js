@@ -1,5 +1,5 @@
 var _ = require('underscore'),
-    kirinBridge = require('kirin-bridge-utils');
+    kirinBridge = require('kirin/lib/core/kirin-validation');
 
 function KirinPreferenceListener (params) {
     if (typeof params === 'object') {
