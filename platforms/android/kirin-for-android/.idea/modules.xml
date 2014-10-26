@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/kirin-for-android.iml" filepath="$PROJECT_DIR$/kirin-for-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kirin-lib/kirin-lib.iml" filepath="$PROJECT_DIR$/kirin-lib/kirin-lib.iml" />
     </modules>
   </component>
 </project>
