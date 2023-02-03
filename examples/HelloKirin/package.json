@@ -3,18 +3,7 @@
     "description": "A demonstration of the kirin project",
     "version": "0.0.1",
     "private": true,
-    "author": [
-        {
-            "name": "Future Platforms",
-            "email": "james.hugman@futureplatforms.com",
-            "url": "http://futureplatforms.com"
-        },
-        {
-            "name": "jhugman",
-            "email": "james@hugman.tv",
-            "url": "https://hugman.posterous.com/kirin"
-        }
-    ],
+    "author": "@jhugman",
     "bugs": {
         "url": "https://github.com/kirinjs/kirin/issues"
     },
